@@ -12,6 +12,8 @@ import App from "./components/App.vue";
 
 import { store } from "./components/store/store";
 
+import router from "./router";
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -30,6 +32,7 @@ import { store } from "./components/store/store";
  */
 
 const app = new Vue({
+    router,
     store,
     el: "#app",
     render: h => h(App)
