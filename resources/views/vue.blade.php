@@ -1,8 +1,9 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div>
-        <p>Helldddddddddddddddddddddddddddo</p>
+    <div id="app">
     </div>
+
+    <script src="{{ asset('js/app.js') }}"></script>
 
 @endsection
