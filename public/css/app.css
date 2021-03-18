@@ -42120,6 +42120,20 @@ video {
           animation: bounce 1s infinite;
 }
 
+.question_container {
+  width: 90%;
+}
+
+.my-form {
+  width: 22rem;
+}
+
+@media (min-width: 768px) {
+  .question_container {
+    width: 40rem;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

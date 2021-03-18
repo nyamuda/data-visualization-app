@@ -31,6 +31,9 @@
                     type="password"
                     placeholder="Password"
                 />
+                <span v-if="errorMessage.password">{{
+                    errorMessage.password[0]
+                }}</span>
                 <input
                     class="w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2 mt-4"
                     v-model="registerData.password_confirmation"
@@ -39,6 +42,9 @@
                     type="password"
                     placeholder="Confirm Password"
                 />
+                <span v-if="errorMessage.password">{{
+                    errorMessage.password[0]
+                }}</span>
 
                 <button
                     @click.prevent="addNewUser"
@@ -73,7 +79,7 @@ export default {
                 .post("/api/register", this.registerData)
                 .then(res => console.log(res))
                 .catch(error => {
-                    // this.errorMessage = error.response.data.errors;
+                    this.errorMessage = error.response.data.errors;
                     console.log(error.response.data.errors.password[0]);
                     console.error(error);
                 });

@@ -1,6 +1,6 @@
 <template>
     <div class="mt-8">
-        <div class="container mt-8 m-auto shadow-xl">
+        <div class="question_container mt-8 m-auto shadow-xl">
             <div class="bg-purple-500 p-2 text-gray-100">
                 <p>Salary</p>
             </div>

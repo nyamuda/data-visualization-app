@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.question_container {
+    width: 90%;
+}
+
+.my-form {
+    width: 22rem;
+}
+
+@media (min-width: 768px) {
+    .question_container {
+        width: 40rem;
+    }
+}

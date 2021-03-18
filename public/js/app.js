@@ -2333,6 +2333,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2348,10 +2354,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addNewUser: function addNewUser() {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/register", this.registerData).then(function (res) {
         return console.log(res);
       })["catch"](function (error) {
-        // this.errorMessage = error.response.data.errors;
+        _this.errorMessage = error.response.data.errors;
         console.log(error.response.data.errors.password[0]);
         console.error(error);
       });
@@ -39009,7 +39017,7 @@ var render = function() {
   return _c("div", { staticClass: "mt-8" }, [
     _c(
       "div",
-      { staticClass: "container mt-8 m-auto shadow-xl" },
+      { staticClass: "question_container mt-8 m-auto shadow-xl" },
       [
         _vm._m(0),
         _vm._v(" "),
@@ -39208,7 +39216,7 @@ var render = function() {
   return _c("div", { staticClass: "mt-8" }, [
     _c(
       "div",
-      { staticClass: "container mt-8 m-auto shadow-xl" },
+      { staticClass: "question_container mt-8 m-auto shadow-xl" },
       [
         _vm._m(0),
         _vm._v(" "),
@@ -39404,7 +39412,7 @@ var render = function() {
   return _c("div", { staticClass: "mt-8" }, [
     _c(
       "div",
-      { staticClass: "container mt-8 m-auto shadow-xl" },
+      { staticClass: "question_container mt-8 m-auto shadow-xl" },
       [
         _vm._m(0),
         _vm._v(" "),
@@ -39759,6 +39767,10 @@ var render = function() {
             }
           }),
           _vm._v(" "),
+          _vm.errorMessage.password
+            ? _c("span", [_vm._v(_vm._s(_vm.errorMessage.password[0]))])
+            : _vm._e(),
+          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -39790,6 +39802,10 @@ var render = function() {
               }
             }
           }),
+          _vm._v(" "),
+          _vm.errorMessage.password
+            ? _c("span", [_vm._v(_vm._s(_vm.errorMessage.password[0]))])
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "button",
