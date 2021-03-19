@@ -16,13 +16,21 @@ export default {
         category3: Category3
     },
     data() {
-        return {};
+        return {
+            loggedInUserInfo: ""
+        };
     },
     methods: {},
     computed: {
         showCategory() {
             return this.$store.state.show_Categories;
         }
+    },
+    created() {
+        axios.get("/api/user").then(res => {
+            this.loggedInUserInfo = res.data;
+            console.log(this.loggedInUserInfo);
+        });
     }
 };
 </script>

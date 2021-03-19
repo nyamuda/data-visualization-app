@@ -1,30 +1,15 @@
 <template>
     <div>
-        <div v-show="registerFormDisplay" class="mt-10">
+        <div class="mt-10">
             <form
-                class="form_register rounded-sm m-auto flex flex-col border-2 border-gray-200 shadow-2xl p-8"
+                class="my_forms rounded-sm m-auto flex flex-col border-2 border-gray-200 shadow-2xl p-8"
                 action=""
             >
-                <p class="text-center text-2xl">Register New User</p>
-                <div class="flex flex-col justify-center">
-                    <input
-                        class="w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2 mt-4"
-                        v-model="registerData.name"
-                        id="user_name"
-                        name="name"
-                        type="text"
-                        placeholder="Name"
-                    />
-                    <span
-                        class="text-xs text-red-600"
-                        v-if="errorMessage.name"
-                        >{{ errorMessage.name[0] }}</span
-                    >
-                </div>
+                <p class="text-center text-2xl">Admin Login</p>
                 <div class="flex flex-col justify-center mt-4">
                     <input
                         class="w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2"
-                        v-model="registerData.email"
+                        v-model="adminData.email"
                         id="user_email"
                         name="email"
                         type="text"
@@ -39,7 +24,7 @@
                 <div class="flex flex-col justify-center mt-4">
                     <input
                         class="w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2"
-                        v-model="registerData.password"
+                        v-model="adminData.password"
                         id="user_password"
                         name="password"
                         type="password"
@@ -51,28 +36,13 @@
                         >{{ errorMessage.password[0] }}</span
                     >
                 </div>
-                <div class="flex flex-col justify-center mt-4">
-                    <input
-                        class="w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2"
-                        v-model="registerData.password_confirmation"
-                        id="user_password_confirmation"
-                        name="password_confirmation"
-                        type="password"
-                        placeholder="Confirm Password"
-                    />
-                    <span
-                        class="text-xs text-red-600"
-                        v-if="errorMessage.password"
-                        >{{ errorMessage.password[0] }}</span
-                    >
-                </div>
 
                 <button
-                    @click.prevent="addNewUser"
+                    @click.prevent="adminLogin"
                     class="focus:outline-none bg-green-500 rounded-sm w-auto hover:bg-green-800 transition duration-500 ease-in-out mt-4 py-1 text-gray-100 text-center h-10"
                     type="submit"
                 >
-                    Register
+                    Login
                 </button>
             </form>
         </div>
@@ -85,20 +55,18 @@ import axios from "axios";
 export default {
     data() {
         return {
-            registerData: {
-                name: "",
+            adminData: {
                 email: "",
-                password: "",
-                password_confirmation: ""
+                password: ""
             },
             errorMessage: "",
             registerFormDisplay: true
         };
     },
     methods: {
-        addNewUser() {
+        adminLogin() {
             axios
-                .post("/api/register", this.registerData)
+                .post("/api/register", this.adminData)
                 .then(res => {
                     console.log(res);
                 })

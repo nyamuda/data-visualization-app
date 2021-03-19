@@ -5,7 +5,12 @@
     width: 90%;
 }
 
-.my-form {
+.form_register {
+    /*width: 22rem;*/
+    width: 30rem;
+}
+
+.my_forms {
     width: 22rem;
 }
 
