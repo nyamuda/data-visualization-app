@@ -70,7 +70,7 @@ export default {
                 .post("/api/login", this.userData)
                 .then(res => {
                     console.log(res);
-                    this.$router.push({ name: "home" });
+                    this.$router.push({ name: "dashboard" });
                 })
                 .catch(error => {
                     this.errorMessage = error.response.data.errors;
