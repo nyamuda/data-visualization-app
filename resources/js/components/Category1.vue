@@ -106,7 +106,7 @@ export default {
     },
     computed: {
         category1_data() {
-            return this.$store.state.category1;
+            return this.$store.state.a.category1;
         }
     }
 };

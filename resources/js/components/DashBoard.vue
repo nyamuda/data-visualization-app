@@ -52,7 +52,7 @@ export default {
         });
 
         //getting the survey questions from the database
-        axios.get("/api/questions").then(res => {
+        axios.get("/api/get_questions").then(res => {
             console.log(res);
         });
     }

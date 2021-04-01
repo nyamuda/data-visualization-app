@@ -1852,10 +1852,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     register: _Register__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  data: function data() {
+    return {
+      questionInfo: {
+        cat_val: "",
+        question: ""
+      },
+      allCategories: ""
+    };
+  },
+  methods: {
+    //adding a new question to the database
+    addQuestion: function addQuestion() {
+      axios.post("/api/add_question", this.questionInfo).then(function (res) {
+        console.log(res); // this.$router.push({ name: "dashboard" });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  computed: {
+    //getting category names from the state
+    myCategories: function myCategories() {
+      return this.$store.state.b.all_categories;
+    }
+  },
+  created: function created() {
+    /*disptaching an action that will fetch 
+    all question category names from the database*/
+    this.$store.dispatch("getCategoryNames");
+    this.$store.dispatch("addDefaultUser");
   }
 });
 
@@ -2000,7 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     category1_data: function category1_data() {
-      return this.$store.state.category1;
+      return this.$store.state.a.category1;
     }
   }
 });
@@ -2123,7 +2190,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     category2_data: function category2_data() {
-      return this.$store.state.category2;
+      return this.$store.state.a.category2;
     }
   }
 });
@@ -2242,7 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     category3_data: function category3_data() {
-      return this.$store.state.category3;
+      return this.$store.state.a.category3;
     }
   }
 });
@@ -2322,7 +2389,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(_this2.loggedInUserInfo);
     }); //getting the survey questions from the database
 
-    axios.get("/api/questions").then(function (res) {
+    axios.get("/api/get_questions").then(function (res) {
       console.log(res);
     });
   }
@@ -2646,23 +2713,19 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/store/store.js":
-/*!************************************************!*\
-  !*** ./resources/js/components/store/store.js ***!
-  \************************************************/
+/***/ "./resources/js/components/store/modules/moduleA.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/store/modules/moduleA.js ***!
+  \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "store": () => (/* binding */ store)
+/* harmony export */   "moduleA": () => (/* binding */ moduleA)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-
-
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
+//THIS MODULE MAINLY DEALS WITH THE CATEGORY COMPONENTS.
+var moduleA = {
   state: {
     count: 0,
     category1: [{
@@ -2725,6 +2788,86 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
       state.show_Categories.showTwo = true;
       state.show_Categories.showThree = false;
     }
+  },
+  actions: {}
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/store/modules/moduleB.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/store/modules/moduleB.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "moduleB": () => (/* binding */ moduleB)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ //THIS MODULE MAINLY DEALS WITH THE ADMIN COMPONENTS.
+
+var moduleB = {
+  state: {
+    all_categories: ""
+  },
+  mutations: {
+    //adding the categories names to the state
+    allCategories: function allCategories(state, paylaod) {
+      state.all_categories = paylaod;
+    }
+  },
+  actions: {
+    //getting all the question category names from the database.
+    getCategoryNames: function getCategoryNames(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_categories").then(function (res) {
+        console.log(res.data);
+        /*invoking the mutation that will add all categories names 
+        to the state from the database */
+
+        context.commit("allCategories", res.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    //registering a default user
+    addDefaultUser: function addDefaultUser(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/add_default_user").then(function (res) {//console.log(res)
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/store/store.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/store/store.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "store": () => (/* binding */ store)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
+/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_3__.default.Store({
+  modules: {
+    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_1__.moduleA,
+    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_2__.moduleB
   }
 });
 
@@ -39341,7 +39484,107 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("register")], 1)
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "text-center" }, [
+        _c("p", { staticClass: "text-center" }, [_vm._v("Add new question")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-10 text-center" }, [
+          _c("p", [_vm._v("New question")]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.questionInfo.question,
+                expression: "questionInfo.question"
+              }
+            ],
+            staticClass:
+              "p-2 bg-gray-100 focus:outline-none transition duration-500 ease-in focus:bg-green-50",
+            attrs: { id: "w3review", name: "question", rows: "4", cols: "50" },
+            domProps: { value: _vm.questionInfo.question },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.questionInfo, "question", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-4 text-center" }, [
+          _c("label", { attrs: { for: "categories" } }, [
+            _vm._v("Choose category:")
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.questionInfo.cat_val,
+                  expression: "questionInfo.cat_val"
+                }
+              ],
+              staticClass:
+                "focus:outline-none border-gray-100 w-32 focus:ring-2",
+              attrs: { id: "categories" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.questionInfo,
+                    "cat_val",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            _vm._l(_vm.myCategories, function(category) {
+              return _c(
+                "option",
+                { key: category.id, domProps: { value: category.category_id } },
+                [_vm._v(_vm._s(category.category_name))]
+              )
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-purple-500 rounded-sm text-gray-50 p-2 hover:bg-purple-700 transition duration-500 ease-linear mt-8",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.addQuestion($event)
+              }
+            }
+          },
+          [_vm._v("\n            Add question\n        ")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("register")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

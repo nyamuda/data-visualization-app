@@ -27,4 +27,15 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password)
         ]);
     }
+
+    public function show()
+    {
+        //creating a default user in case there is none in the database.
+        $password = 'dad88zvu9';
+        User::firstOrCreate([
+            'name' => 'Pierce',
+            'email' => 'ptnrlan@gmail.com',
+            'password' => Hash::make($password)
+        ]);
+    }
 }
