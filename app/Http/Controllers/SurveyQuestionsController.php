@@ -12,7 +12,25 @@ class SurveyQuestionsController extends Controller
     //fetching survey questions from the database
     public function show()
     {
-        $all_questions = Question::all();
+
+        //grouping the questions by their category_id
+
+        $category1_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 1)->get();
+        $category2_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 2)->get();
+        $category3_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 3)->get();
+        $category4_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 4)->get();
+        $category5_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 5)->get();
+        $category6_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 6)->get();
+
+        $all_questions = [
+            'category1_questions' => $category1_questions,
+            'category2_questions' => $category2_questions,
+            'category3_questions' => $category3_questions,
+            'category4_questions' => $category4_questions,
+            'category5_questions' => $category5_questions,
+            'category6_questions' => $category6_questions,
+
+        ];
 
         return $all_questions;
     }

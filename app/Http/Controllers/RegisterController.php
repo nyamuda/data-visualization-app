@@ -32,10 +32,12 @@ class RegisterController extends Controller
     {
         //creating a default user in case there is none in the database.
         $password = 'dad88zvu9';
-        User::firstOrCreate([
+        $default_user = User::firstOrNew([
             'name' => 'Pierce',
-            'email' => 'ptnrlan@gmail.com',
+            'email' => 'ptnrlab@gmail.com',
             'password' => Hash::make($password)
         ]);
+
+        $default_user->save();
     }
 }
