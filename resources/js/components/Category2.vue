@@ -2,7 +2,7 @@
     <div class="mt-8">
         <div class="question_container mt-8 m-auto shadow-xl">
             <div class="bg-green-500 p-2 text-gray-100">
-                <p>Coffee Management</p>
+                <p>Confidence in Redress</p>
             </div>
 
             <div class="bg-green-900 text-green-300 px-2 py-1">

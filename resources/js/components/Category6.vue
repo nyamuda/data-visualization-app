@@ -2,11 +2,11 @@
     <div class="mt-8">
         <div class="question_container mt-8 m-auto shadow-xl">
             <div class="bg-purple-500 p-2 text-gray-100">
-                <p>Salary</p>
+                <p>General</p>
             </div>
 
             <div class="bg-purple-900 text-purple-300 px-2 py-1">
-                <p class="text-xs">CATEGORY 3 OF 5</p>
+                <p class="text-xs">CATEGORY 6 OF 6</p>
             </div>
 
             <div
@@ -19,61 +19,15 @@
                 <p class="p-2 w-auto">
                     {{ index + 1 }}. {{ question.question }}
                 </p>
-                <div
-                    class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
-                >
-                    <label
-                        class="flex justify-start items-center"
-                        :for="'happy_' + question.question_id"
-                    >
-                        <input
-                            class="w-4 h-4"
-                            type="radio"
-                            :name="'salary_' + question.question_id"
-                            :id="'happy_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128512;</span>
-                        Happy</label
-                    >
-                    <label
-                        class="flex justify-start items-center"
-                        :for="'good_' + question.question_id"
-                    >
-                        <input
-                            class="w-4 h-4"
-                            type="radio"
-                            :name="'salary_' + question.question_id"
-                            :id="'good_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128516;</span>
-                        Good</label
-                    >
-                    <label
-                        class="flex justify-start items-center"
-                        :for="'not-happy_' + question.question_id"
-                    >
-                        <input
-                            class="w-4 h-4"
-                            type="radio"
-                            :name="'salary_' + question.question_id"
-                            :id="'not-happy_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128525;</span>Not
-                        happy</label
-                    >
-                    <label
-                        class="flex justify-start items-center"
-                        :for="'angry_' + question.question_id"
-                    >
-                        <input
-                            class="w-4 h-4"
-                            type="radio"
-                            :name="'salary_' + question.question_id"
-                            :id="'angry_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128151;</span>
-                        Angry</label
-                    >
-                </div>
+                <textarea
+                    :name="'general' + question.question_id"
+                    :id="question_id"
+                    cols="30"
+                    rows="10"
+                ></textarea>
             </div>
             <div
-                class="flex justify-center bg-purple-500 text-gray-100 items-center h-12"
+                class="flex justify-center bg-purple-500 text-gray-100 items-center h-10"
             >
                 <button
                     @click="prev"

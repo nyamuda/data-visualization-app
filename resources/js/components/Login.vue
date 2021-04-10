@@ -58,7 +58,8 @@ export default {
         return {
             userData: {
                 email: "",
-                password: ""
+                password: "",
+                is_admin: 0
             },
             errorMessage: "",
             registerFormDisplay: true

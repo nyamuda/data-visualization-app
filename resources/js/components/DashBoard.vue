@@ -1,12 +1,12 @@
 <template>
-    <div class="mt-8">
-        <div class="m-auto">
-            <p>name: {{ userData.name }}</p>
-            <p>email: {{ userData.email }}</p>
-            <p>id: {{ userData.id }}</p>
+    <div class="mt-8 mb-10">
+        <div class="text-center">
+            <p class="text-xl text-blue-500">name: {{ userData.name }}</p>
+            <p class="text-xl text-blue-500">email: {{ userData.email }}</p>
+            <!--    <p>id: {{ userData.id }}</p> -->
             <button
                 @click.prevent="logoutUser"
-                class="text-gray-100 bg-blue-500 py-4 px-2"
+                class="bg-purple-500 rounded-sm text-gray-50 p-2 hover:bg-purple-700 transition duration-500 ease-linear mt-8"
             >
                 Logout
             </button>

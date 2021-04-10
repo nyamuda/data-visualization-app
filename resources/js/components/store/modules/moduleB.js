@@ -26,8 +26,9 @@ export const moduleB = {
                 .catch(error => {
                     console.log(error);
                 });
-        },
+        }
         //registering a default user
+        /*
         addDefaultUser(context) {
             axios
                 .get("/api/add_default_user")
@@ -37,6 +38,6 @@ export const moduleB = {
                 .catch(err => {
                     console.log(err);
                 });
-        }
+        } */
     }
 };

@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 import DashBoard from "./components/DashBoard.vue";
 import AdminPage from "./components/AdminPage.vue";
+import AdminLogin from "./components/AdminLogin.vue";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
 import axios from "axios";
@@ -28,12 +29,25 @@ const router = new VueRouter({
         {
             path: "/admin",
             name: "admin",
-            component: AdminPage
+            component: AdminPage,
+            beforeEnter: (to, from, next) => {
+                axios
+                    .get("/api/authenticated")
+                    .then(() => next())
+                    .catch(() => {
+                        return next({ name: "admin_login" });
+                    });
+            }
         },
         {
             path: "/login",
             name: "login",
             component: Login
+        },
+        {
+            path: "/admin_login",
+            name: "admin_login",
+            component: AdminLogin
         },
         {
             path: "/register",

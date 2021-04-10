@@ -2,11 +2,11 @@
     <div class="mt-8">
         <div class="question_container mt-8 m-auto shadow-xl">
             <div class="bg-purple-500 p-2 text-gray-100">
-                <p>Salary</p>
+                <p>Mutual Support</p>
             </div>
 
             <div class="bg-purple-900 text-purple-300 px-2 py-1">
-                <p class="text-xs">CATEGORY 3 OF 5</p>
+                <p class="text-xs">CATEGORY 4 OF 6</p>
             </div>
 
             <div

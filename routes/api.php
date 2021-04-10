@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SurveyQuestionsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,12 @@ Route::middleware('auth:sanctum')->get('/authenticated', function () {
 
 
 
+
 Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/add_default_user', [RegisterController::class, 'show']);
+//Route::get('/add_default_user', [RegisterController::class, 'show']);
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/admin_login', [AdminLoginController::class, 'login']);
+Route::post('/admin_logout', [AdminLoginController::class, 'logout_admin']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/questions', [SurveyQuestionsController::class, 'index']);
 Route::post('/add_question', [SurveyQuestionsController::class, 'store']);

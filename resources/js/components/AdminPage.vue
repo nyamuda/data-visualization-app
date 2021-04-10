@@ -1,10 +1,18 @@
 <template>
     <div>
-        <div class="text-center">
-            <p class="text-center">Add new question</p>
+        <!--    <p>id: {{ userData.id }}</p> -->
+        <button
+            @click.prevent="logoutAdmin"
+            class="bg-purple-500 rounded-sm text-gray-50 p-2 hover:bg-purple-700 transition duration-500 ease-linear mt-8"
+        >
+            Logout
+        </button>
+        <div class="text-center mt-8">
+            <p class="text-center text-2xl">Add new question</p>
             <div class="mt-10 text-center">
                 <p>New question</p>
                 <textarea
+                    :val="questionInfo.question"
                     v-model="questionInfo.question"
                     id="w3review"
                     name="question"
@@ -12,15 +20,17 @@
                     cols="50"
                     class="p-2 bg-gray-100 focus:outline-none transition duration-500 ease-in focus:bg-green-50"
                 ></textarea>
+                <p class="text-red-500 text-xs">{{ question_error }}</p>
             </div>
             <div class="mt-4 text-center">
-                <label for="categories">Choose category:</label>
+                <label for="categories">Category:</label>
 
                 <select
-                    class="focus:outline-none border-gray-100 w-32 focus:ring-2"
+                    class="focus:outline-none focus:ring-2 ring-purple-400 rounded-sm shadow-md h-8 transition divide-purple-1000 ease-in-out"
                     v-model="questionInfo.cat_val"
                     id="categories"
                 >
+                    <option selected hidden value="">Choose here</option>
                     <option
                         v-for="category in myCategories"
                         :key="category.id"
@@ -28,6 +38,7 @@
                         >{{ category.category_name }}</option
                     >
                 </select>
+                <p class="text-red-500 text-xs">{{ cat_error }}</p>
             </div>
             <button
                 @click.prevent="addQuestion"
@@ -52,7 +63,9 @@ export default {
                 cat_val: "",
                 question: ""
             },
-            allCategories: ""
+            allCategories: "",
+            question_error: "",
+            cat_error: ""
         };
     },
     methods: {
@@ -63,10 +76,22 @@ export default {
                 .then(res => {
                     console.log(res);
                     // this.$router.push({ name: "dashboard" });
+                    this.questionInfo.question = "";
+                    this.question_error = "";
+                    this.cat_error = "";
                 })
                 .catch(error => {
-                    console.log(error);
+                    // console.log(error.response.data.errors.question.shift());
+
+                    this.question_error = error.response.data.errors.question.shift();
+                    this.cat_error = error.response.data.errors.cat_val.shift();
                 });
+        },
+        logoutAdmin() {
+            axios.post("/api/admin_logout").then(res => {
+                this.$router.push({ name: "admin_login" });
+                console.log(res);
+            });
         }
     },
     computed: {
@@ -76,10 +101,10 @@ export default {
         }
     },
     created() {
-        /*disptaching an action that will fetch 
+        /*disptaching an action that will fetch
         all question category names from the database*/
         this.$store.dispatch("getCategoryNames");
-        this.$store.dispatch("addDefaultUser");
+        // this.$store.dispatch("addDefaultUser");
     }
 };
 </script>

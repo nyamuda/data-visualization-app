@@ -41,6 +41,9 @@ class SurveyQuestionsController extends Controller
         $request->validate([
             'question' => 'required|unique:questions',
             'cat_val' => 'required|numeric'
+        ], [
+            'question.unique' => 'The question is already added. Please enter a different question.',
+            'cat_val.required' => 'Category is required. Please select the category.'
         ]);
 
         Question::create([

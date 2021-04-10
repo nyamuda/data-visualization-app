@@ -36,7 +36,6 @@
                         >{{ errorMessage.password[0] }}</span
                     >
                 </div>
-
                 <button
                     @click.prevent="adminLogin"
                     class="focus:outline-none bg-green-500 rounded-sm w-auto hover:bg-green-800 transition duration-500 ease-in-out mt-4 py-1 text-gray-100 text-center h-10"
@@ -57,7 +56,8 @@ export default {
         return {
             adminData: {
                 email: "",
-                password: ""
+                password: "",
+                is_admin: 1
             },
             errorMessage: "",
             registerFormDisplay: true
@@ -66,14 +66,13 @@ export default {
     methods: {
         adminLogin() {
             axios
-                .post("/api/register", this.adminData)
+                .post("/api/admin_login", this.adminData)
                 .then(res => {
                     console.log(res);
+                    this.$router.push({ name: "admin" });
                 })
                 .catch(error => {
                     this.errorMessage = error.response.data.errors;
-                    console.log(error.response.data.errors.password[0]);
-                    console.error(error);
                 });
         }
     }

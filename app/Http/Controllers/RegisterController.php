@@ -27,7 +27,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password)
         ]);
     }
-
+    /*
     public function show()
     {
         //creating a default user in case there is none in the database.
@@ -40,4 +40,5 @@ class RegisterController extends Controller
 
         $default_user->save();
     }
+8*/
 }

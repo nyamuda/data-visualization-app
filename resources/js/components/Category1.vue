@@ -2,7 +2,7 @@
     <div class="mt-8">
         <div class="question_container mt-8 m-auto shadow-xl">
             <div class="bg-blue-500 p-2 text-gray-100">
-                <p></p>
+                <p>Equitable Treatment</p>
             </div>
 
             <div class="bg-blue-900 text-blue-300 px-2 py-1">

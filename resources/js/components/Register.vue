@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-show="registerFormDisplay" class="mt-10">
+        <div class="mt-10">
             <form
                 class="form_register rounded-sm m-auto flex flex-col border-2 border-gray-200 shadow-2xl p-8"
                 action=""
@@ -101,6 +101,10 @@ export default {
                 .post("/api/register", this.registerData)
                 .then(res => {
                     console.log(res);
+                    this.registerData.name = "";
+                    this.registerData.email = "";
+                    this.registerData.password = "";
+                    this.registerData.password_confirmation = "";
                 })
                 .catch(error => {
                     this.errorMessage = error.response.data.errors;
