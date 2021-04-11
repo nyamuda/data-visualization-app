@@ -11,7 +11,10 @@
                 Logout
             </button>
         </div>
-        <category1 v-show="showCategory['show1']"></category1>
+        <category1
+            :userData="userData"
+            v-show="showCategory['show1']"
+        ></category1>
         <category2 v-show="showCategory['show2']"></category2>
         <category3 v-show="showCategory['show3']"></category3>
         <category4 v-show="showCategory['show4']"></category4>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Answer;
 
 
 
@@ -50,5 +51,22 @@ class SurveyQuestionsController extends Controller
             'question' => $request->question,
             'category_id' => $request->cat_val
         ]);
+    }
+    public function add(Request $request)
+    {
+        $answers = $request->all();
+        foreach ($answers as $key => $val) {
+            $question_id = $answers[$key]['question_id'];
+            $category_id = $answers[$key]['category_id'];
+            $answer_value = $answers[$key]['question_answer'];
+            $user_id = $answers[$key]['user_id'];
+
+            Answer::create([
+                'user_id' => $user_id,
+                'question_id' => $question_id,
+                'category_id' => $category_id,
+                'answer_value' => $answer_value
+            ]);
+        }
     }
 }

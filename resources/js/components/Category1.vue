@@ -22,11 +22,17 @@
                 <div
                     class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
                 >
+                    <!--The purpose of the following first input element is to hold
+                the id value of each question. The second input element holds
+                the category id of the question-->
+                    <input type="text" hidden :value="question.question_id" />
+                    <input type="text" hidden :value="question.category_id" />
                     <label
                         class="flex justify-start items-center"
                         :for="'happy_' + question.question_id"
                     >
                         <input
+                            @click="getValue"
                             value="100"
                             class="w-4 h-4"
                             type="radio"
@@ -40,6 +46,7 @@
                         :for="'good_' + question.question_id"
                     >
                         <input
+                            @click="getValue"
                             value="50"
                             class="w-4 h-4"
                             type="radio"
@@ -53,6 +60,7 @@
                         :for="'not-happy_' + question.question_id"
                     >
                         <input
+                            @click="getValue"
                             value="25"
                             class="w-4 h-4"
                             type="radio"
@@ -66,6 +74,7 @@
                         :for="'angry_' + question.question_id"
                     >
                         <input
+                            @click="getValue"
                             value=""
                             class="w-4 h-4"
                             type="radio"
@@ -92,24 +101,63 @@
                 </button>
             </div>
         </div>
+        <button @click="add">Add</button>
     </div>
 </template>
 <script>
 export default {
+    props: ["userData"],
     data() {
         return {
-            val: ""
+            val: "",
+            cat1Answers: {}
         };
     },
     methods: {
         next() {
             this.$store.commit("nextFirstCategory");
+        },
+        getValue(event) {
+            //getting the id value of each question and its selected answer.
+            //so first getting the id value of the question.
+            let question_id =
+                event.target.parentElement.parentElement.firstElementChild
+                    .value;
+            //then the selected answer to the question
+            let given_answer = Number(event.target.value);
+
+            //the question category id
+            let category_id =
+                event.target.parentElement.parentElement.children[1].value;
+            let question_name = event.target.name;
+
+            let answerObject = {};
+
+            answerObject["question_id"] = question_id;
+            answerObject["category_id"] = category_id;
+            answerObject["question_answer"] = given_answer;
+            answerObject["user_id"] = this.userData.id;
+
+            this.cat1Answers[question_name] = answerObject;
+
+            console.log(this.cat1Answers);
+        },
+        add() {
+            axios
+                .post("/api/add", this.cat1Answers)
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     },
     computed: {
         category1_data() {
             //getting the category1 questions from the state  - module C.
             /*the all_question object's values are arrays with elements which are objects.*/
+            console.log(this.$store.state.c.all_questions.category1_questions);
             return this.$store.state.c.all_questions.category1_questions;
         }
     }

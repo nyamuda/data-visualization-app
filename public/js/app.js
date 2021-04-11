@@ -2415,15 +2415,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["userData"],
   data: function data() {
     return {
-      val: ""
+      val: "",
+      cat1Answers: {}
     };
   },
   methods: {
     next: function next() {
       this.$store.commit("nextFirstCategory");
+    },
+    getValue: function getValue(event) {
+      //getting the id value of each question and its selected answer.
+      //so first getting the id value of the question.
+      var question_id = event.target.parentElement.parentElement.firstElementChild.value; //then the selected answer to the question
+
+      var given_answer = Number(event.target.value); //the question category id
+
+      var category_id = event.target.parentElement.parentElement.children[1].value;
+      var question_name = event.target.name;
+      var answerObject = {};
+      answerObject["question_id"] = question_id;
+      answerObject["category_id"] = category_id;
+      answerObject["question_answer"] = given_answer;
+      answerObject["user_id"] = this.userData.id;
+      this.cat1Answers[question_name] = answerObject;
+      console.log(this.cat1Answers);
+    },
+    add: function add() {
+      axios.post("/api/add", this.cat1Answers).then(function (res) {
+        console.log(res);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   computed: {
@@ -2431,6 +2467,7 @@ __webpack_require__.r(__webpack_exports__);
       //getting the category1 questions from the state  - module C.
 
       /*the all_question object's values are arrays with elements which are objects.*/
+      console.log(this.$store.state.c.all_questions.category1_questions);
       return this.$store.state.c.all_questions.category1_questions;
     }
   }
@@ -3055,6 +3092,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Category4__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Category4 */ "./resources/js/components/Category4.vue");
 /* harmony import */ var _Category5__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Category5 */ "./resources/js/components/Category5.vue");
 /* harmony import */ var _Category6__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Category6 */ "./resources/js/components/Category6.vue");
+//
+//
+//
 //
 //
 //
@@ -3707,15 +3747,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
-/* harmony import */ var _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminPage.vue */ "./resources/js/components/AdminPage.vue");
-/* harmony import */ var _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AdminLogin.vue */ "./resources/js/components/AdminLogin.vue");
-/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
-/* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
+/* harmony import */ var _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/AdminPage.vue */ "./resources/js/components/AdminPage.vue");
+/* harmony import */ var _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminLogin.vue */ "./resources/js/components/AdminLogin.vue");
+/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
+/* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -3724,16 +3764,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_7__.default);
+vue__WEBPACK_IMPORTED_MODULE_6__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_7__.default);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_7__.default({
   mode: "history",
   linkExactActiveClass: "active",
   routes: [{
     path: "/dashboard",
     name: "dashboard",
-    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__.default,
     beforeEnter: function beforeEnter(to, from, next) {
-      axios__WEBPACK_IMPORTED_MODULE_6___default().get("/api/authenticated").then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/authenticated").then(function () {
         return next();
       })["catch"](function () {
         return next({
@@ -3744,9 +3784,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_7__.default({
   }, {
     path: "/admin",
     name: "admin",
-    component: _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    component: _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     beforeEnter: function beforeEnter(to, from, next) {
-      axios__WEBPACK_IMPORTED_MODULE_6___default().get("/api/authenticated").then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/authenticated").then(function () {
         return next();
       })["catch"](function () {
         return next({
@@ -3757,15 +3797,15 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_7__.default({
   }, {
     path: "/login",
     name: "login",
-    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__.default
+    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__.default
   }, {
     path: "/admin_login",
     name: "admin_login",
-    component: _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    component: _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__.default
   }, {
     path: "/register",
     name: "register",
-    component: _components_Register_vue__WEBPACK_IMPORTED_MODULE_5__.default
+    component: _components_Register_vue__WEBPACK_IMPORTED_MODULE_4__.default
   }]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -41629,6 +41669,16 @@ var render = function() {
                     "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
                 },
                 [
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.question_id }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.category_id }
+                  }),
+                  _vm._v(" "),
                   _c(
                     "label",
                     {
@@ -41643,7 +41693,8 @@ var render = function() {
                           type: "radio",
                           name: "team_" + question.question_id,
                           id: "happy_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😀")
@@ -41666,7 +41717,8 @@ var render = function() {
                           type: "radio",
                           name: "team_" + question.question_id,
                           id: "good_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
@@ -41689,7 +41741,8 @@ var render = function() {
                           type: "radio",
                           name: "team_" + question.question_id,
                           id: "not-happy_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😍")
@@ -41712,7 +41765,8 @@ var render = function() {
                           type: "radio",
                           name: "team_" + question.question_id,
                           id: "angry_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("💗")
@@ -41755,7 +41809,9 @@ var render = function() {
         )
       ],
       2
-    )
+    ),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.add } }, [_vm._v("Add")])
   ])
 }
 var staticRenderFns = [
@@ -42764,7 +42820,8 @@ var render = function() {
             value: _vm.showCategory["show1"],
             expression: "showCategory['show1']"
           }
-        ]
+        ],
+        attrs: { userData: _vm.userData }
       }),
       _vm._v(" "),
       _c("category2", {
