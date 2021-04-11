@@ -3,12 +3,18 @@ import axios from "axios";
 //THIS MODULE MAINLY DEALS WITH THE ADMIN COMPONENTS.
 export const moduleB = {
     state: {
-        all_categories: ""
+        all_categories: "",
+        registerComp: false,
+        newQuestionComp: false,
+        dashBoardComp: false
     },
     mutations: {
         //adding the categories names to the state
         allCategories(state, paylaod) {
             state.all_categories = paylaod;
+        },
+        changeAdminComponent() {
+
         }
     },
     actions: {
