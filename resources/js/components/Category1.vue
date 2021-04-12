@@ -1,6 +1,6 @@
 <template>
     <div class="mt-8">
-        <div class="question_container mt-8 m-auto shadow-xl">
+        <form class="question_container mt-8 m-auto shadow-xl">
             <div class="bg-blue-500 p-2 text-gray-100">
                 <p>Equitable Treatment</p>
             </div>
@@ -33,10 +33,11 @@
                     >
                         <input
                             @click="getValue"
+                            required="required"
                             value="100"
-                            class="w-4 h-4"
+                            class="cat1_input w-4 h-4"
                             type="radio"
-                            :name="'team_' + question.question_id"
+                            :name="'team_' + index"
                             :id="'happy_' + question.question_id"
                         /><span class="text-xl ml-1">&#128512;</span>
                         Happy</label
@@ -48,9 +49,9 @@
                         <input
                             @click="getValue"
                             value="50"
-                            class="w-4 h-4"
+                            class="cat1_input w-4 h-4"
                             type="radio"
-                            :name="'team_' + question.question_id"
+                            :name="'team_' + index"
                             :id="'good_' + question.question_id"
                         /><span class="text-xl ml-1">&#128516;</span>
                         Good</label
@@ -62,9 +63,9 @@
                         <input
                             @click="getValue"
                             value="25"
-                            class="w-4 h-4"
+                            class="cat1_input w-4 h-4"
                             type="radio"
-                            :name="'team_' + question.question_id"
+                            :name="'team_' + index"
                             :id="'not-happy_' + question.question_id"
                         /><span class="text-xl ml-1">&#128525;</span>Not
                         happy</label
@@ -76,14 +77,15 @@
                         <input
                             @click="getValue"
                             value=""
-                            class="w-4 h-4"
+                            class="cat1_input w-4 h-4"
                             type="radio"
-                            :name="'team_' + question.question_id"
+                            :name="'team_' + index"
                             :id="'angry_' + question.question_id"
                         /><span class="text-xl ml-1">&#128151;</span>
                         Angry</label
                     >
                 </div>
+                <p :id="'team_' + index" class="text-red-600 text-xs mt-0"></p>
             </div>
             <div
                 class="flex justify-center bg-blue-500 text-gray-100 items-center h-12"
@@ -94,71 +96,63 @@
                     Prev
                 </button>
                 <button
-                    @click="next"
+                    @click.prevent="moveNext"
                     class="bg-green-500 rounded-sm px-3 py-1 hover:bg-green-800 ml-4 transform duration-500 ease-in-out focus:outline-none"
                 >
                     Next
                 </button>
             </div>
-        </div>
-        <button @click="add">Add</button>
+        </form>
     </div>
 </template>
 <script>
+import * as myMethods from "./categoriesCode";
 export default {
     props: ["userData"],
     data() {
         return {
             val: "",
-            cat1Answers: {}
+            cat1Answers: {},
+            countErrors: 0
         };
     },
     methods: {
-        next() {
+        /*the following fuction invokes a mutation that will take us to the next category of questions.*/
+        mutate1() {
             this.$store.commit("nextFirstCategory");
         },
-        getValue(event) {
-            //getting the id value of each question and its selected answer.
-            //so first getting the id value of the question.
-            let question_id =
-                event.target.parentElement.parentElement.firstElementChild
-                    .value;
-            //then the selected answer to the question
-            let given_answer = Number(event.target.value);
-
-            //the question category id
-            let category_id =
-                event.target.parentElement.parentElement.children[1].value;
-            let question_name = event.target.name;
-
-            let answerObject = {};
-
-            answerObject["question_id"] = question_id;
-            answerObject["category_id"] = category_id;
-            answerObject["question_answer"] = given_answer;
-            answerObject["user_id"] = this.userData.id;
-
-            this.cat1Answers[question_name] = answerObject;
-
-            console.log(this.cat1Answers);
+        moveNext() {
+            //calling the 'next' function from the categoriesCode module.
+            myMethods.next(
+                "cat1_input", //all radio button class names
+                this.category1_data, //the total number of questions for this category
+                "team", //the radio buttons category name
+                this.countErrors, //radio buttons not checked
+                this.mutate1
+            );
         },
-        add() {
-            axios
-                .post("/api/add", this.cat1Answers)
-                .then(res => {
-                    console.log(res);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        }
+
+        //get all the selected all answers
+        getValue() {
+            //calling the 'getAnswers' function for the categoriesCode module.
+            myMethods.getAnswers(event, this.userData, this.cat1Answers);
+            this.addAnswersToState();
+        },
+        //this will add the answers to the state by dispatching an action
+        addAnswersToState() {
+            this.$store.dispatch("getAnswers", this.cat1Answers);
+            console.log(this.$store.state.d.all_answers);
+        },
+
+        add() {}
     },
     computed: {
         category1_data() {
             //getting the category1 questions from the state  - module C.
             /*the all_question object's values are arrays with elements which are objects.*/
-            console.log(this.$store.state.c.all_questions.category1_questions);
-            return this.$store.state.c.all_questions.category1_questions;
+            let the_questions = this.$store.state.c.all_questions
+                .category1_questions;
+            return the_questions;
         }
     }
 };

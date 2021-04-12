@@ -15,11 +15,29 @@
             :userData="userData"
             v-show="showCategory['show1']"
         ></category1>
-        <category2 v-show="showCategory['show2']"></category2>
-        <category3 v-show="showCategory['show3']"></category3>
-        <category4 v-show="showCategory['show4']"></category4>
-        <category5 v-show="showCategory['show5']"></category5>
+        <category2
+            :userData="userData"
+            v-show="showCategory['show2']"
+        ></category2>
+        <category3
+            :userData="userData"
+            v-show="showCategory['show3']"
+        ></category3>
+        <category4
+            :userData="userData"
+            v-show="showCategory['show4']"
+        ></category4>
+        <category5
+            :userData="userData"
+            v-show="showCategory['show5']"
+        ></category5>
         <category6 v-show="showCategory['show6']"></category6>
+        <button
+            @click.prevent="storeAllAnswers"
+            class="bg-purple-500 rounded-sm px-3 py-1 hover:bg-purple-800 ml-4 transform duration-500 ease-in-out focus:outline-none"
+        >
+            Submit Answers
+        </button>
     </div>
 </template>
 <script>
@@ -47,6 +65,10 @@ export default {
                 console.log(res);
                 this.$router.push({ name: "login" });
             });
+        },
+        //store the answers to the database
+        storeAllAnswers() {
+            this.$store.dispatch("saveAnswers");
         }
     },
     computed: {

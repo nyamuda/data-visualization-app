@@ -14,6 +14,11 @@
                 v-for="(question, index) in category6_data"
                 :key="question.id"
             >
+                <!--The purpose of the following first input element is to hold
+                the id value of each question. The second input element holds
+                the category id of the question-->
+                <input type="text" hidden :value="question.question_id" />
+                <input type="text" hidden :value="question.category_id" />
                 <hr class="border-gray-300" />
 
                 <p class="p-2 w-auto">
@@ -48,12 +53,38 @@
 export default {
     data() {
         return {
-            val: ""
+            val: "",
+            cat6Answers: {}
         };
     },
     methods: {
         prev() {
             this.$store.commit("prevSixthCategory");
+        },
+        getValue6(event) {
+            //getting the id value of each question and its selected answer.
+            //so first getting the id value of the question.
+            let question_id =
+                event.target.parentElement.parentElement.firstElementChild
+                    .value;
+            //then the selected answer to the question
+            let given_answer = Number(event.target.value);
+
+            //the question category id
+            let category_id =
+                event.target.parentElement.parentElement.children[1].value;
+            let question_name = event.target.name;
+
+            let answerObject = {};
+
+            answerObject["question_id"] = question_id;
+            answerObject["category_id"] = categoryid;
+            answerObject["question_answer"] = given_answer;
+            answerObject["user_id"] = this.userData.id;
+
+            this.cat6Answers[question_name] = answerObject;
+
+            console.log(this.cat1Answers);
         }
     },
     computed: {

@@ -2319,6 +2319,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
 //
 //
 //
@@ -2425,50 +2426,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["userData"],
   data: function data() {
     return {
       val: "",
-      cat1Answers: {}
+      cat1Answers: {},
+      countErrors: 0
     };
   },
   methods: {
-    next: function next() {
+    /*the following fuction invokes a mutation that will take us to the next category of questions.*/
+    mutate1: function mutate1() {
       this.$store.commit("nextFirstCategory");
     },
-    getValue: function getValue(event) {
-      //getting the id value of each question and its selected answer.
-      //so first getting the id value of the question.
-      var question_id = event.target.parentElement.parentElement.firstElementChild.value; //then the selected answer to the question
-
-      var given_answer = Number(event.target.value); //the question category id
-
-      var category_id = event.target.parentElement.parentElement.children[1].value;
-      var question_name = event.target.name;
-      var answerObject = {};
-      answerObject["question_id"] = question_id;
-      answerObject["category_id"] = category_id;
-      answerObject["question_answer"] = given_answer;
-      answerObject["user_id"] = this.userData.id;
-      this.cat1Answers[question_name] = answerObject;
-      console.log(this.cat1Answers);
+    moveNext: function moveNext() {
+      //calling the 'next' function from the categoriesCode module.
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.next("cat1_input", //all radio button class names
+      this.category1_data, //the total number of questions for this category
+      "team", //the radio buttons category name
+      this.countErrors, //radio buttons not checked
+      this.mutate1);
     },
-    add: function add() {
-      axios.post("/api/add", this.cat1Answers).then(function (res) {
-        console.log(res);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    }
+    //get all the selected all answers
+    getValue: function getValue() {
+      //calling the 'getAnswers' function for the categoriesCode module.
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.cat1Answers);
+      this.addAnswersToState();
+    },
+    //this will add the answers to the state by dispatching an action
+    addAnswersToState: function addAnswersToState() {
+      this.$store.dispatch("getAnswers", this.cat1Answers);
+      console.log(this.$store.state.d.all_answers);
+    },
+    add: function add() {}
   },
   computed: {
     category1_data: function category1_data() {
       //getting the category1 questions from the state  - module C.
 
       /*the all_question object's values are arrays with elements which are objects.*/
-      console.log(this.$store.state.c.all_questions.category1_questions);
-      return this.$store.state.c.all_questions.category1_questions;
+      var the_questions = this.$store.state.c.all_questions.category1_questions;
+      return the_questions;
     }
   }
 });
@@ -2486,6 +2487,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
 //
 //
 //
@@ -2579,18 +2581,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["userData"],
   data: function data() {
     return {
-      val: ""
+      val: "",
+      cat2Answers: {},
+      countErros: 0
     };
   },
   methods: {
-    next: function next() {
+    mutate2: function mutate2() {
       this.$store.commit("nextSecondCategory");
+    },
+    moveNext: function moveNext() {
+      //calling the 'next' function from the categoriesCode module.
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.next("cat2_radio", //all radio button class names
+      this.category2_data, //the total number of questions for this category
+      "redress", //the radio buttons category name
+      this.countErrors, //radio buttons not checked
+      this.mutate2);
     },
     prev: function prev() {
       this.$store.commit("prevSecondCategory");
+    },
+    getValue2: function getValue2() {
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.cat2Answers);
+      this.addAnswersToState();
+    },
+    //this will add the answers to the state by dispatching an action
+    addAnswersToState: function addAnswersToState() {
+      this.$store.dispatch("getAnswers", this.cat2Answers);
     }
   },
   computed: {
@@ -2616,6 +2651,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
 //
 //
 //
@@ -2709,18 +2745,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["userData"],
   data: function data() {
     return {
-      val: ""
+      val: "",
+      cat3Answers: {},
+      countErros: 0
     };
   },
   methods: {
-    next: function next() {
+    mutate3: function mutate3() {
       this.$store.commit("nextThirdCategory");
+    },
+    moveNext: function moveNext() {
+      //calling the 'next' function from the categoriesCode module.
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.next("cat3_radio", //all radio button class names
+      this.category3_data, //the total number of questions for this category
+      "workplace", //the radio buttons category name
+      this.countErrors, //radio buttons not checked
+      this.mutate3);
     },
     prev: function prev() {
       this.$store.commit("prevThirdCategory");
+    },
+    getValue3: function getValue3() {
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.cat3Answers);
+      console.log(this.cat3Answers);
+      this.addAnswersToState();
+    },
+    //this will add the answers to the state by dispatching an action
+    addAnswersToState: function addAnswersToState() {
+      this.$store.dispatch("getAnswers", this.cat3Answers);
     }
   },
   computed: {
@@ -2746,6 +2816,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
 //
 //
 //
@@ -2839,18 +2910,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["userData"],
   data: function data() {
     return {
-      val: ""
+      val: "",
+      cat4Answers: {},
+      countErros: 0
     };
   },
   methods: {
-    next: function next() {
+    mutate4: function mutate4() {
       this.$store.commit("nextFourthCategory");
+    },
+    moveNext: function moveNext() {
+      //calling the 'next' function from the categoriesCode module.
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.next("cat4_radio", //all radio button class names
+      this.category4_data, //the total number of questions for this category
+      "support", //the radio buttons category name
+      this.countErrors, //radio buttons not checked
+      this.mutate4);
     },
     prev: function prev() {
       this.$store.commit("prevFourthCategory");
+    },
+    getValue4: function getValue4() {
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.cat4Answers);
+      this.addAnswersToState();
+    },
+    //this will add the answers to the state by dispatching an action
+    addAnswersToState: function addAnswersToState() {
+      this.$store.dispatch("getAnswers", this.cat4Answers);
     }
   },
   computed: {
@@ -2876,6 +2980,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
 //
 //
 //
@@ -2969,18 +3074,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["userData"],
   data: function data() {
     return {
-      val: ""
+      val: "",
+      cat5Answers: {},
+      countErros: 0
     };
   },
   methods: {
-    next: function next() {
+    mutate5: function mutate5() {
       this.$store.commit("nextFifthCategory");
+    },
+    moveNext: function moveNext() {
+      //calling the 'next' function from the categoriesCode module.
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.next("cat5_radio", //all radio button class names
+      this.category5_data, //the total number of questions for this category
+      "belonging", //the radio buttons category name
+      this.countErrors, //radio buttons not checked
+      this.mutate5);
     },
     prev: function prev() {
       this.$store.commit("prevFifthCategory");
+    },
+    getValue5: function getValue5() {
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.cat5Answers);
+      this.addAnswersToState();
+    },
+    //this will add the answers to the state by dispatching an action
+    addAnswersToState: function addAnswersToState() {
+      this.$store.dispatch("getAnswers", this.cat5Answers);
     }
   },
   computed: {
@@ -3052,15 +3190,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      val: ""
+      val: "",
+      cat6Answers: {}
     };
   },
   methods: {
     prev: function prev() {
       this.$store.commit("prevSixthCategory");
+    },
+    getValue6: function getValue6(event) {
+      //getting the id value of each question and its selected answer.
+      //so first getting the id value of the question.
+      var question_id = event.target.parentElement.parentElement.firstElementChild.value; //then the selected answer to the question
+
+      var given_answer = Number(event.target.value); //the question category id
+
+      var category_id = event.target.parentElement.parentElement.children[1].value;
+      var question_name = event.target.name;
+      var answerObject = {};
+      answerObject["question_id"] = question_id;
+      answerObject["category_id"] = categoryid;
+      answerObject["question_answer"] = given_answer;
+      answerObject["user_id"] = this.userData.id;
+      this.cat6Answers[question_name] = answerObject;
+      console.log(this.cat1Answers);
     }
   },
   computed: {
@@ -3116,6 +3277,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3145,6 +3324,10 @@ __webpack_require__.r(__webpack_exports__);
           name: "login"
         });
       });
+    },
+    //store the answers to the database
+    storeAllAnswers: function storeAllAnswers() {
+      this.$store.dispatch("saveAnswers");
     }
   },
   computed: {
@@ -3486,6 +3669,113 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/categoriesCode.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/categoriesCode.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "next": () => (/* binding */ next),
+/* harmony export */   "getAnswers": () => (/* binding */ getAnswers)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+/*The purpose of the following code is to check if the radio buttons have been
+    checked for each group before the user can go to the next category of the questions*/
+function next(class_name, category_questions, category_name, errors, mutation_name) {
+  //first get all the radio buttons
+  var allInputs = _toConsumableArray(document.getElementsByClassName(class_name)); //getting the total number of questions
+
+
+  var numQuestions = category_questions.length; //looping through each radio button
+
+  var _loop = function _loop(i) {
+    /*getting each group of the radio buttons. Each radio group has a name of 'category_name'_index.
+    So for each index, we get a group of radio buttons. If for instance there are 5 questions 
+    and the category_name parameter is 'team', it means there are going to be 5 groups of 
+    radio buttons: team_0, team_1,...,team_4*/
+    var groupName = allInputs.filter(function (val2) {
+      //returnong a specific group of radio buttons.
+      //remember val2 is one specific radio button.
+      return val2.name == "".concat(category_name, "_").concat(i);
+    });
+    /*Once we get a radio group. We check to see if one of the radio buttons of the group has been checked */
+
+    var groupStatus = groupName.some(function (val3) {
+      return val3.checked;
+    });
+    /*Then we check and display an error message if the groupStatus
+    variable is false i.e if none of the radio button was checked for that specific group.*/
+
+    errors = 0;
+
+    if (!groupStatus) {
+      var showError = document.getElementById("".concat(category_name, "_").concat(i));
+      showError.innerHTML = "Please check one of the values.";
+      errors++;
+    } //else we remove the error messages
+    else {
+        var removeError = document.getElementById("".concat(category_name, "_").concat(i));
+        removeError.innerHTML = "";
+      }
+  };
+
+  for (var i = 0; i < numQuestions; i++) {
+    _loop(i);
+  }
+  /*If all the radio buttons for each question have be checked - errors=0
+  Then  we move to the next category of questions.*/
+
+
+  if (errors == 0) {
+    mutation_name();
+  }
+}
+/* The following function is for getting the answers the user selects */
+
+
+function getAnswers(par, userInfo, categoryAnswers) {
+  //getting the id value of each question and its selected answer.
+  //so first getting the id value of the question.
+  var question_id = par.target.parentElement.parentElement.firstElementChild.value; //then the selected answer to the question
+
+  var given_answer = Number(par.target.value); //the question category id
+
+  var category_id = par.target.parentElement.parentElement.children[1].value; //the name of the clicked radio button
+
+  var question_name = par.target.name;
+  var answerObject = {};
+  /*storing the question_id,category_id of the question and the
+  answer to the question to the answerObject */
+
+  answerObject["question_id"] = question_id;
+  answerObject["category_id"] = category_id;
+  answerObject["question_answer"] = given_answer; //getting the id of the user
+
+  answerObject["user_id"] = userInfo.id;
+  /*storing the answerObject to the component's object 'categoryAnswers' with the radio button 
+  name (question_name) as the key */
+
+  categoryAnswers[question_name] = answerObject;
+}
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/store/modules/moduleA.js":
 /*!**********************************************************!*\
   !*** ./resources/js/components/store/modules/moduleA.js ***!
@@ -3704,6 +3994,49 @@ var moduleC = {
 
 /***/ }),
 
+/***/ "./resources/js/components/store/modules/moduleD.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/store/modules/moduleD.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "moduleD": () => (/* binding */ moduleD)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ //THIS MODULE MAINLY ANSWERS FOR THE SURVEY..
+
+var moduleD = {
+  state: {
+    all_answers: {}
+  },
+  mutations: {
+    //add the answers to the state
+    addAnswers: function addAnswers(state, payload) {
+      Object.assign(state.all_answers, payload);
+    }
+  },
+  actions: {
+    //fetching the user answers for the survey questions.
+    getAnswers: function getAnswers(context, payload) {
+      context.commit("addAnswers", payload);
+    },
+    //saving all the answers to the database
+    saveAnswers: function saveAnswers(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/add", context.all_answers).then(function (res) {
+        console.log(res);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/store/store.js":
 /*!************************************************!*\
   !*** ./resources/js/components/store/store.js ***!
@@ -3715,22 +4048,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
-/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
-/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
+/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
+/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
 
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_3__.default.use(vuex__WEBPACK_IMPORTED_MODULE_4__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_4__.default.Store({
+
+vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_5__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_5__.default.Store({
   modules: {
-    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__.moduleA,
-    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__.moduleB,
-    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__.moduleC
+    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_1__.moduleA,
+    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_2__.moduleB,
+    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_3__.moduleC,
+    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_4__.moduleD
   }
 });
 
@@ -41635,7 +41971,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "mt-8" }, [
     _c(
-      "div",
+      "form",
       { staticClass: "question_container mt-8 m-auto shadow-xl" },
       [
         _vm._m(0),
@@ -41687,11 +42023,12 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat1_input w-4 h-4",
                         attrs: {
+                          required: "required",
                           value: "100",
                           type: "radio",
-                          name: "team_" + question.question_id,
+                          name: "team_" + index,
                           id: "happy_" + question.question_id
                         },
                         on: { click: _vm.getValue }
@@ -41711,11 +42048,11 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat1_input w-4 h-4",
                         attrs: {
                           value: "50",
                           type: "radio",
-                          name: "team_" + question.question_id,
+                          name: "team_" + index,
                           id: "good_" + question.question_id
                         },
                         on: { click: _vm.getValue }
@@ -41735,11 +42072,11 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat1_input w-4 h-4",
                         attrs: {
                           value: "25",
                           type: "radio",
-                          name: "team_" + question.question_id,
+                          name: "team_" + index,
                           id: "not-happy_" + question.question_id
                         },
                         on: { click: _vm.getValue }
@@ -41759,11 +42096,11 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat1_input w-4 h-4",
                         attrs: {
                           value: "",
                           type: "radio",
-                          name: "team_" + question.question_id,
+                          name: "team_" + index,
                           id: "angry_" + question.question_id
                         },
                         on: { click: _vm.getValue }
@@ -41775,7 +42112,12 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("p", {
+                staticClass: "text-red-600 text-xs mt-0",
+                attrs: { id: "team_" + index }
+              })
             ]
           )
         }),
@@ -41801,7 +42143,12 @@ var render = function() {
               {
                 staticClass:
                   "bg-green-500 rounded-sm px-3 py-1 hover:bg-green-800 ml-4 transform duration-500 ease-in-out focus:outline-none",
-                on: { click: _vm.next }
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.moveNext($event)
+                  }
+                }
               },
               [_vm._v("\n                Next\n            ")]
             )
@@ -41809,9 +42156,7 @@ var render = function() {
         )
       ],
       2
-    ),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.add } }, [_vm._v("Add")])
+    )
   ])
 }
 var staticRenderFns = [
@@ -41890,6 +42235,16 @@ var render = function() {
                     "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
                 },
                 [
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.question_id }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.category_id }
+                  }),
+                  _vm._v(" "),
                   _c(
                     "label",
                     {
@@ -41898,12 +42253,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat2_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "coffee_" + question.question_id,
+                          name: "redress_" + index,
                           id: "happy_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue2 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😀")
@@ -41920,12 +42276,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat2_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "coffee_" + question.question_id,
+                          name: "redress_" + index,
                           id: "good_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue2 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
@@ -41942,12 +42299,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat2_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "coffee_" + question.question_id,
+                          name: "redress_" + index,
                           id: "coffee_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue2 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😍")
@@ -41964,12 +42322,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat2_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "coffee_" + question.question_id,
+                          name: "redress_" + index,
                           id: "angry_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue2 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("💗")
@@ -41978,7 +42337,12 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("p", {
+                staticClass: "text-red-600 text-xs mt-0",
+                attrs: { id: "redress_" + index }
+              })
             ]
           )
         }),
@@ -42005,7 +42369,7 @@ var render = function() {
               {
                 staticClass:
                   "bg-purple-500 rounded-sm px-3 py-1 hover:bg-purple-800 ml-4 transform duration-500 ease-in-out focus:outline-none",
-                on: { click: _vm.next }
+                on: { click: _vm.moveNext }
               },
               [_vm._v("\n                Next\n            ")]
             )
@@ -42092,6 +42456,16 @@ var render = function() {
                     "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
                 },
                 [
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.question_id }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.category_id }
+                  }),
+                  _vm._v(" "),
                   _c(
                     "label",
                     {
@@ -42100,12 +42474,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat3_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "workplace_" + index,
                           id: "happy_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue3 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😀")
@@ -42122,12 +42497,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat3_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "workplace_" + index,
                           id: "good_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue3 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
@@ -42144,12 +42520,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat3_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "workplace_" + index,
                           id: "not-happy_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue3 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😍")
@@ -42166,12 +42543,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat3_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "workplace_" + index,
                           id: "angry_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue3 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("💗")
@@ -42180,7 +42558,12 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("p", {
+                staticClass: "text-red-600 text-xs mt-0",
+                attrs: { id: "workplace_" + index }
+              })
             ]
           )
         }),
@@ -42207,7 +42590,7 @@ var render = function() {
               {
                 staticClass:
                   "bg-red-500 px-3 py-1 hover:bg-red-800 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm",
-                on: { click: _vm.next }
+                on: { click: _vm.moveNext }
               },
               [_vm._v("\n                Next\n            ")]
             )
@@ -42296,6 +42679,16 @@ var render = function() {
                     "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
                 },
                 [
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.question_id }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.category_id }
+                  }),
+                  _vm._v(" "),
                   _c(
                     "label",
                     {
@@ -42304,12 +42697,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat4_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "support_" + index,
                           id: "happy_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue4 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😀")
@@ -42326,12 +42720,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat4_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "support_" + index,
                           id: "good_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue4 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
@@ -42348,12 +42743,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat4_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "support_" + index,
                           id: "not-happy_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue4 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😍")
@@ -42370,12 +42766,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat4_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "support_" + index,
                           id: "angry_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue4 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("💗")
@@ -42384,7 +42781,12 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("p", {
+                staticClass: "text-red-600 text-xs mt-0",
+                attrs: { id: "support_" + index }
+              })
             ]
           )
         }),
@@ -42411,7 +42813,7 @@ var render = function() {
               {
                 staticClass:
                   "bg-red-500 px-3 py-1 hover:bg-red-800 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm",
-                on: { click: _vm.next }
+                on: { click: _vm.moveNext }
               },
               [_vm._v("\n                Next\n            ")]
             )
@@ -42500,6 +42902,16 @@ var render = function() {
                     "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
                 },
                 [
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.question_id }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "text", hidden: "" },
+                    domProps: { value: question.category_id }
+                  }),
+                  _vm._v(" "),
                   _c(
                     "label",
                     {
@@ -42508,12 +42920,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat5_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "belonging_" + index,
                           id: "happy_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue5 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😀")
@@ -42530,12 +42943,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat5_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "belonging_" + index,
                           id: "good_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue5 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
@@ -42552,12 +42966,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat5_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "belonging_" + index,
                           id: "not-happy_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue5 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😍")
@@ -42574,12 +42989,13 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "w-4 h-4",
+                        staticClass: "cat5_radio w-4 h-4",
                         attrs: {
                           type: "radio",
-                          name: "salary_" + question.question_id,
+                          name: "belonging_" + index,
                           id: "angry_" + question.question_id
-                        }
+                        },
+                        on: { click: _vm.getValue5 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("💗")
@@ -42588,7 +43004,12 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("p", {
+                staticClass: "text-red-600 text-xs mt-0",
+                attrs: { id: "belonging_" + index }
+              })
             ]
           )
         }),
@@ -42615,7 +43036,7 @@ var render = function() {
               {
                 staticClass:
                   "bg-red-500 px-3 py-1 hover:bg-red-800 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm",
-                on: { click: _vm.next }
+                on: { click: _vm.moveNext }
               },
               [_vm._v("\n                Next\n            ")]
             )
@@ -42685,6 +43106,16 @@ var render = function() {
               staticClass: "flex justify-around flex-col bg-gray-100 px-4"
             },
             [
+              _c("input", {
+                attrs: { type: "text", hidden: "" },
+                domProps: { value: question.question_id }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "text", hidden: "" },
+                domProps: { value: question.category_id }
+              }),
+              _vm._v(" "),
               _c("hr", { staticClass: "border-gray-300" }),
               _vm._v(" "),
               _c("p", { staticClass: "p-2 w-auto" }, [
@@ -42832,7 +43263,8 @@ var render = function() {
             value: _vm.showCategory["show2"],
             expression: "showCategory['show2']"
           }
-        ]
+        ],
+        attrs: { userData: _vm.userData }
       }),
       _vm._v(" "),
       _c("category3", {
@@ -42843,7 +43275,8 @@ var render = function() {
             value: _vm.showCategory["show3"],
             expression: "showCategory['show3']"
           }
-        ]
+        ],
+        attrs: { userData: _vm.userData }
       }),
       _vm._v(" "),
       _c("category4", {
@@ -42854,7 +43287,8 @@ var render = function() {
             value: _vm.showCategory["show4"],
             expression: "showCategory['show4']"
           }
-        ]
+        ],
+        attrs: { userData: _vm.userData }
       }),
       _vm._v(" "),
       _c("category5", {
@@ -42865,7 +43299,8 @@ var render = function() {
             value: _vm.showCategory["show5"],
             expression: "showCategory['show5']"
           }
-        ]
+        ],
+        attrs: { userData: _vm.userData }
       }),
       _vm._v(" "),
       _c("category6", {
@@ -42877,7 +43312,22 @@ var render = function() {
             expression: "showCategory['show6']"
           }
         ]
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-purple-500 rounded-sm px-3 py-1 hover:bg-purple-800 ml-4 transform duration-500 ease-in-out focus:outline-none",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.storeAllAnswers($event)
+            }
+          }
+        },
+        [_vm._v("\n        Submit Answers\n    ")]
+      )
     ],
     1
   )

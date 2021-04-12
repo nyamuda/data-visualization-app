@@ -22,14 +22,20 @@
                 <div
                     class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
                 >
+                    <!--The purpose of the following first input element is to hold
+                the id value of each question. The second input element holds
+                the category id of the question-->
+                    <input type="text" hidden :value="question.question_id" />
+                    <input type="text" hidden :value="question.category_id" />
                     <label
                         class="flex justify-start items-center"
                         :for="'happy_' + question.question_id"
                     >
                         <input
-                            class="w-4 h-4"
+                            @click="getValue2"
+                            class="cat2_radio w-4 h-4"
                             type="radio"
-                            :name="'coffee_' + question.question_id"
+                            :name="'redress_' + index"
                             :id="'happy_' + question.question_id"
                         /><span class="text-xl ml-1">&#128512;</span>
                         Happy</label
@@ -39,9 +45,10 @@
                         :for="'good_' + question.question_id"
                     >
                         <input
-                            class="w-4 h-4"
+                            @click="getValue2"
+                            class="cat2_radio w-4 h-4"
                             type="radio"
-                            :name="'coffee_' + question.question_id"
+                            :name="'redress_' + index"
                             :id="'good_' + question.question_id"
                         /><span class="text-xl ml-1">&#128516;</span>
                         Good</label
@@ -51,9 +58,10 @@
                         :for="'not-happy_' + question.question_id"
                     >
                         <input
-                            class="w-4 h-4"
+                            @click="getValue2"
+                            class="cat2_radio w-4 h-4"
                             type="radio"
-                            :name="'coffee_' + question.question_id"
+                            :name="'redress_' + index"
                             :id="'coffee_' + question.question_id"
                         /><span class="text-xl ml-1">&#128525;</span>Not
                         happy</label
@@ -63,14 +71,19 @@
                         :for="'angry_' + question.question_id"
                     >
                         <input
-                            class="w-4 h-4"
+                            @click="getValue2"
+                            class="cat2_radio w-4 h-4"
                             type="radio"
-                            :name="'coffee_' + question.question_id"
+                            :name="'redress_' + index"
                             :id="'angry_' + question.question_id"
                         /><span class="text-xl ml-1">&#128151;</span>
                         Angry</label
                     >
                 </div>
+                <p
+                    :id="'redress_' + index"
+                    class="text-red-600 text-xs mt-0"
+                ></p>
             </div>
             <div
                 class="flex justify-center bg-green-500 text-gray-100 items-center h-12"
@@ -82,7 +95,7 @@
                     Prev
                 </button>
                 <button
-                    @click="next"
+                    @click="moveNext"
                     class="bg-purple-500 rounded-sm px-3 py-1 hover:bg-purple-800 ml-4 transform duration-500 ease-in-out focus:outline-none"
                 >
                     Next
@@ -92,18 +105,40 @@
     </div>
 </template>
 <script>
+import * as myMethods from "./categoriesCode";
 export default {
+    props: ["userData"],
     data() {
         return {
-            val: ""
+            val: "",
+            cat2Answers: {},
+            countErros: 0
         };
     },
     methods: {
-        next() {
+        mutate2() {
             this.$store.commit("nextSecondCategory");
+        },
+        moveNext() {
+            //calling the 'next' function from the categoriesCode module.
+            myMethods.next(
+                "cat2_radio", //all radio button class names
+                this.category2_data, //the total number of questions for this category
+                "redress", //the radio buttons category name
+                this.countErrors, //radio buttons not checked
+                this.mutate2
+            );
         },
         prev() {
             this.$store.commit("prevSecondCategory");
+        },
+        getValue2() {
+            myMethods.getAnswers(event, this.userData, this.cat2Answers);
+            this.addAnswersToState();
+        },
+        //this will add the answers to the state by dispatching an action
+        addAnswersToState() {
+            this.$store.dispatch("getAnswers", this.cat2Answers);
         }
     },
     computed: {
