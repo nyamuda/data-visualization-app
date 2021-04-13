@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-8">
+    <div id="cat1" class="mt-8">
         <form class="question_container mt-8 m-auto shadow-xl">
             <div class="bg-blue-500 p-2 text-gray-100">
                 <p>Equitable Treatment</p>
@@ -16,11 +16,12 @@
             >
                 <hr class="border-gray-300" />
 
-                <p class="p-2 w-auto">
-                    {{ index + 1 }}. {{ question.question }}
+                <p class="p-2 w-auto flex flex-row">
+                    <!--The Entity Number below is for space -->
+                   <span>{{ index + 1}}.&#160;&#160;</span> <ul><li>{{ question.question }}</li></ul>
                 </p>
                 <div
-                    class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
+                    class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
                 >
                     <!--The purpose of the following first input element is to hold
                 the id value of each question. The second input element holds
@@ -29,75 +30,91 @@
                     <input type="text" hidden :value="question.category_id" />
                     <label
                         class="flex justify-start items-center"
-                        :for="'happy_' + question.question_id"
+                        :for="'very_unhappy_' + question.question_id"
                     >
                         <input
                             @click="getValue"
                             required="required"
-                            value="100"
+                            value="20"
+                            class="cat1_input w-4 h-4"
+                            type="radio"
+                            :name="'team_' + index"
+                            :id="'very_unhappy_' + question.question_id"
+                        /><span class="text-xl ml-1">😠</span>Very
+                        Unhappy</label
+                    >
+                    <label
+                        class="flex justify-start items-center"
+                        :for="'unhappy_' + question.question_id"
+                    >
+                        <input
+                            @click="getValue"
+                            value="40"
+                            class="cat1_input w-4 h-4"
+                            type="radio"
+                            :name="'team_' + index"
+                            :id="'unhappy_' + question.question_id"
+                        /><span class="text-xl ml-1">😓</span>Unhappy</label
+                    >
+                    <label
+                        class="flex justify-start items-center"
+                        :for="'neutral_' + question.question_id"
+                    >
+                        <input
+                            @click="getValue"
+                            value="60"
+                            class="cat1_input w-4 h-4"
+                            type="radio"
+                            :name="'team_' + index"
+                            :id="'neutral_' + question.question_id"
+                        /><span class="text-xl ml-1">😐</span>Neutral</label
+                    >
+                    <label
+                        class="flex justify-start items-center"
+                        :for="'happy_' + question.question_id"
+                    >
+                        <input
+                            @click="getValue"
+                            value="80"
                             class="cat1_input w-4 h-4"
                             type="radio"
                             :name="'team_' + index"
                             :id="'happy_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128512;</span>
-                        Happy</label
+                        /><span class="text-xl ml-1">😊</span> Happy</label
                     >
                     <label
                         class="flex justify-start items-center"
-                        :for="'good_' + question.question_id"
+                        :for="'very_happy_' + question.question_id"
                     >
                         <input
                             @click="getValue"
-                            value="50"
+                            value="100"
                             class="cat1_input w-4 h-4"
                             type="radio"
                             :name="'team_' + index"
-                            :id="'good_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128516;</span>
-                        Good</label
-                    >
-                    <label
-                        class="flex justify-start items-center"
-                        :for="'not-happy_' + question.question_id"
-                    >
-                        <input
-                            @click="getValue"
-                            value="25"
-                            class="cat1_input w-4 h-4"
-                            type="radio"
-                            :name="'team_' + index"
-                            :id="'not-happy_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128525;</span>Not
-                        happy</label
-                    >
-                    <label
-                        class="flex justify-start items-center"
-                        :for="'angry_' + question.question_id"
-                    >
-                        <input
-                            @click="getValue"
-                            value=""
-                            class="cat1_input w-4 h-4"
-                            type="radio"
-                            :name="'team_' + index"
-                            :id="'angry_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128151;</span>
-                        Angry</label
+                            :id="'very_happy_' + question.question_id"
+                        /><span class="text-xl ml-1">😄</span>Very Happy</label
                     >
                 </div>
-                <p :id="'team_' + index" class="text-red-600 text-xs mt-0"></p>
+                <div>
+                    <p
+                        :id="'team_' + index"
+                        class="text-red-600 text-xs -mt-6 text-center"
+                    ></p>
+                </div>
             </div>
             <div
                 class="flex justify-center bg-blue-500 text-gray-100 items-center h-12"
             >
                 <button
-                    class="bg-green-300 px-3 py-1 hover:bg-green-300 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm"
+                @click.prevent=""
+                    class="bg-green-400 px-3 py-1 hover:bg-green-400 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm"
                 >
                     Prev
                 </button>
                 <button
                     @click.prevent="moveNext"
-                    class="bg-green-500 rounded-sm px-3 py-1 hover:bg-green-800 ml-4 transform duration-500 ease-in-out focus:outline-none"
+                    class="bg-green-600 rounded-sm px-3 py-1 hover:bg-green-900 ml-4 transform duration-500 linear focus:outline-none"
                 >
                     Next
                 </button>
@@ -159,13 +176,26 @@ export default {
 </script>
 
 <style scoped>
+
 .container {
     width: 90%;
+}
+input {
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #999;
+    transition: 0.2s all linear;
+  
+}
+input:checked {
+  border: 6px solid #2B60DE;
 }
 
 @media (min-width: 768px) {
     .container {
-        width: 40rem;
+        width: 45rem;
     }
 }
 </style>

@@ -16,11 +16,12 @@
             >
                 <hr class="border-gray-300" />
 
-                <p class="p-2 w-auto">
-                    {{ index + 1 }}. {{ question.question }}
+                 <p class="p-2 w-auto flex flex-row">
+                    <!--The Entity Number below is for space -->
+                   <span>{{ index + 1}}.&#160;&#160;</span> <ul><li>{{ question.question }}</li></ul>
                 </p>
                 <div
-                    class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
+                    class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
                 >
                     <!--The purpose of the following first input element is to hold
                 the id value of each question. The second input element holds
@@ -29,61 +30,78 @@
                     <input type="text" hidden :value="question.category_id" />
                     <label
                         class="flex justify-start items-center"
+                        :for="'very_unhappy_' + question.question_id"
+                    >
+                        <input
+                            @click="getValue3"
+                            required
+                            value="20"
+                            class="cat3_radio w-4 h-4"
+                            type="radio"
+                            :name="'workplace_' + index"
+                            :id="'very_unhappy_' + question.question_id"
+                        /><span class="text-xl ml-1">😠</span>Very
+                        Unhappy</label
+                    >
+                    <label
+                        class="flex justify-start items-center"
+                        :for="'unhappy_' + question.question_id"
+                    >
+                        <input
+                            @click="getValue3"
+                            value="40"
+                            class="cat3_radio w-4 h-4"
+                            type="radio"
+                            :name="'workplace_' + index"
+                            :id="'unhappy_' + question.question_id"
+                        /><span class="text-xl ml-1">😓</span>Unhappy</label
+                    >
+                    <label
+                        class="flex justify-start items-center"
+                        :for="'neutral_' + question.question_id"
+                    >
+                        <input
+                            @click="getValue3"
+                            value="60"
+                            class="cat3_radio w-4 h-4"
+                            type="radio"
+                            :name="'workplace_' + index"
+                            :id="'neutral_' + question.question_id"
+                        /><span class="text-xl ml-1">😐</span>Neutral</label
+                    >
+                    <label
+                        class="flex justify-start items-center"
                         :for="'happy_' + question.question_id"
                     >
                         <input
                             @click="getValue3"
+                            value="80"
                             class="cat3_radio w-4 h-4"
                             type="radio"
                             :name="'workplace_' + index"
                             :id="'happy_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128512;</span>
-                        Happy</label
+                        /><span class="text-xl ml-1">😊</span> Happy</label
                     >
                     <label
                         class="flex justify-start items-center"
-                        :for="'good_' + question.question_id"
+                        :for="'very_happy_' + question.question_id"
                     >
                         <input
                             @click="getValue3"
+                            value="100"
                             class="cat3_radio w-4 h-4"
                             type="radio"
                             :name="'workplace_' + index"
-                            :id="'good_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128516;</span>
-                        Good</label
-                    >
-                    <label
-                        class="flex justify-start items-center"
-                        :for="'not-happy_' + question.question_id"
-                    >
-                        <input
-                            @click="getValue3"
-                            class="cat3_radio w-4 h-4"
-                            type="radio"
-                            :name="'workplace_' + index"
-                            :id="'not-happy_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128525;</span>Not
-                        happy</label
-                    >
-                    <label
-                        class="flex justify-start items-center"
-                        :for="'angry_' + question.question_id"
-                    >
-                        <input
-                            @click="getValue3"
-                            class="cat3_radio w-4 h-4"
-                            type="radio"
-                            :name="'workplace_' + index"
-                            :id="'angry_' + question.question_id"
-                        /><span class="text-xl ml-1">&#128151;</span>
-                        Angry</label
+                            :id="'very_happy_' + question.question_id"
+                        /><span class="text-xl ml-1">😄</span>Very Happy</label
                     >
                 </div>
-                <p
-                    :id="'workplace_' + index"
-                    class="text-red-600 text-xs mt-0"
-                ></p>
+                 <div>
+                    <p
+                        :id="'workplace_' + index"
+                        class="text-red-600 text-xs -mt-6 text-center"
+                    ></p>
+                </div>
             </div>
             <div
                 class="flex justify-center bg-purple-500 text-gray-100 items-center h-12"
@@ -155,6 +173,18 @@ export default {
 <style scoped>
 .container {
     width: 90%;
+}
+input {
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #999;
+    transition: 0.2s all linear;
+  
+}
+input:checked {
+  border: 6px solid #4B0082;
 }
 
 @media (min-width: 768px) {

@@ -1,15 +1,22 @@
 <template>
-    <div class="mt-8 mb-10">
-        <div class="text-center">
+    <div id="survey-container" class="mt-0 mb-10">
+        <header class="bg-gray-800 text-gray-100 h-12 .shadow">
+            <div class="h-full flex items-center justify-between">
+                <p class="text-xl ml-4">Survey App</p>
+
+                <button
+                    @click.prevent="logoutUser"
+                    class="bg-gray-600 rounded-sm text-gray-100 p-2 hover:bg-gray-500 transition duration-300 ease-linear mr-16"
+                >
+                    Logout
+                </button>
+            </div>
+        </header>
+        <div class="text-center w-full">
+            <!-- 
             <p class="text-xl text-blue-500">name: {{ userData.name }}</p>
             <p class="text-xl text-blue-500">email: {{ userData.email }}</p>
-            <!--    <p>id: {{ userData.id }}</p> -->
-            <button
-                @click.prevent="logoutUser"
-                class="bg-purple-500 rounded-sm text-gray-50 p-2 hover:bg-purple-700 transition duration-500 ease-linear mt-8"
-            >
-                Logout
-            </button>
+              <p>id: {{ userData.id }}</p> -->
         </div>
         <category1
             :userData="userData"
@@ -91,4 +98,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+#survey-container {
+    font-family: "Noto Sans JP", sans-serif;
+}
+</style>

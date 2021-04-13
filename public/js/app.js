@@ -2427,6 +2427,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["userData"],
@@ -2594,6 +2611,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["userData"],
@@ -2652,6 +2687,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2923,6 +2976,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["userData"],
@@ -2981,6 +3052,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3253,6 +3342,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Category4__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Category4 */ "./resources/js/components/Category4.vue");
 /* harmony import */ var _Category5__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Category5 */ "./resources/js/components/Category5.vue");
 /* harmony import */ var _Category6__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Category6 */ "./resources/js/components/Category6.vue");
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3700,7 +3796,17 @@ function next(class_name, category_questions, category_name, errors, mutation_na
   var allInputs = _toConsumableArray(document.getElementsByClassName(class_name)); //getting the total number of questions
 
 
-  var numQuestions = category_questions.length; //looping through each radio button
+  var numQuestions = category_questions.length;
+  /**errors respresents the number of unchecked questions. 
+   So everytime a user clicks the next button, we start we
+   zero errors and if all the questions have been answered,
+   errors will still remain zero and the user can move on 
+   to the next category otherwise errors will be greater 
+   than zero and the user won't be able to move to the
+   next category.
+  */
+
+  errors = 0; //looping through each radio button
 
   var _loop = function _loop(i) {
     /*getting each group of the radio buttons. Each radio group has a name of 'category_name'_index.
@@ -3720,11 +3826,9 @@ function next(class_name, category_questions, category_name, errors, mutation_na
     /*Then we check and display an error message if the groupStatus
     variable is false i.e if none of the radio button was checked for that specific group.*/
 
-    errors = 0;
-
     if (!groupStatus) {
       var showError = document.getElementById("".concat(category_name, "_").concat(i));
-      showError.innerHTML = "Please check one of the values.";
+      showError.innerHTML = "*Please select one of the options.";
       errors++;
     } //else we remove the error messages
     else {
@@ -3739,6 +3843,8 @@ function next(class_name, category_questions, category_name, errors, mutation_na
   /*If all the radio buttons for each question have be checked - errors=0
   Then  we move to the next category of questions.*/
 
+
+  console.log(errors);
 
   if (errors == 0) {
     mutation_name();
@@ -4048,25 +4154,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
-/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
-/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
-/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
+/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
+/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
+/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
 
 
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_5__.default);
+vue__WEBPACK_IMPORTED_MODULE_4__.default.use(vuex__WEBPACK_IMPORTED_MODULE_5__.default);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_5__.default.Store({
   modules: {
-    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_1__.moduleA,
-    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_2__.moduleB,
-    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_3__.moduleC,
-    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_4__.moduleD
+    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__.moduleA,
+    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__.moduleB,
+    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__.moduleC,
+    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__.moduleD
   }
 });
 
@@ -8606,7 +8712,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f56db98] {\r\n    width: 90%;\n}\n@media (min-width: 768px) {\n.container[data-v-3f56db98] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f56db98] {\r\n    width: 90%;\n}\ninput[data-v-3f56db98] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border-radius: 50%;\r\n    width: 16px;\r\n    height: 16px;\r\n    border: 2px solid #999;\r\n    transition: 0.2s all linear;\n}\ninput[data-v-3f56db98]:checked {\r\n  border: 6px solid #2B60DE;\n}\n@media (min-width: 768px) {\n.container[data-v-3f56db98] {\r\n        width: 45rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8630,7 +8736,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f64f319] {\r\n    width: 90%;\n}\n@media (min-width: 768px) {\n.container[data-v-3f64f319] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f64f319] {\r\n    width: 90%;\n}\ninput[data-v-3f64f319] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border-radius: 50%;\r\n    width: 16px;\r\n    height: 16px;\r\n    border: 2px solid #999;\r\n    transition: 0.2s all linear;\n}\ninput[data-v-3f64f319]:checked {\r\n  border: 6px solid #008000;\n}\n@media (min-width: 768px) {\n.container[data-v-3f64f319] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8654,7 +8760,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f730a9a] {\r\n    width: 90%;\n}\n@media (min-width: 768px) {\n.container[data-v-3f730a9a] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f730a9a] {\r\n    width: 90%;\n}\ninput[data-v-3f730a9a] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border-radius: 50%;\r\n    width: 16px;\r\n    height: 16px;\r\n    border: 2px solid #999;\r\n    transition: 0.2s all linear;\n}\ninput[data-v-3f730a9a]:checked {\r\n  border: 6px solid #4B0082;\n}\n@media (min-width: 768px) {\n.container[data-v-3f730a9a] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8678,7 +8784,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f81221b] {\r\n    width: 90%;\n}\n@media (min-width: 768px) {\n.container[data-v-3f81221b] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f81221b] {\r\n    width: 90%;\n}\ninput[data-v-3f81221b] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border-radius: 50%;\r\n    width: 16px;\r\n    height: 16px;\r\n    border: 2px solid #999;\r\n    transition: 0.2s all linear;\n}\ninput[data-v-3f81221b]:checked {\r\n  border: 6px solid #4B0082;\n}\n@media (min-width: 768px) {\n.container[data-v-3f81221b] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8702,7 +8808,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f8f399c] {\r\n    width: 90%;\n}\n@media (min-width: 768px) {\n.container[data-v-3f8f399c] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f8f399c] {\r\n    width: 90%;\n}\ninput[data-v-3f8f399c] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border-radius: 50%;\r\n    width: 16px;\r\n    height: 16px;\r\n    border: 2px solid #999;\r\n    transition: 0.2s all linear;\n}\ninput[data-v-3f8f399c]:checked {\r\n  border: 6px solid #4B0082;\n}\n@media (min-width: 768px) {\n.container[data-v-3f8f399c] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8727,6 +8833,31 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f9d511d] {\r\n    width: 90%;\n}\n@media (min-width: 768px) {\n.container[data-v-3f9d511d] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap);"]);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n#survey-container[data-v-7b804a99] {\r\n    font-family: \"Noto Sans JP\", sans-serif;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39944,6 +40075,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -40638,15 +40799,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DashBoard.vue?vue&type=template&id=7b804a99&scoped=true& */ "./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true&");
 /* harmony import */ var _DashBoard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DashBoard.vue?vue&type=script&lang=js& */ "./resources/js/components/DashBoard.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _DashBoard_vue_vue_type_style_index_0_id_7b804a99_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css& */ "./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _DashBoard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
   _DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -41024,6 +41187,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Category6_vue_vue_type_style_index_0_id_3f9d511d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Category6.vue?vue&type=style&index=0&id=3f9d511d&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Category6.vue?vue&type=style&index=0&id=3f9d511d&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -41969,7 +42145,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mt-8" }, [
+  return _c("div", { staticClass: "mt-8", attrs: { id: "cat1" } }, [
     _c(
       "form",
       { staticClass: "question_container mt-8 m-auto shadow-xl" },
@@ -41988,21 +42164,17 @@ var render = function() {
             [
               _c("hr", { staticClass: "border-gray-300" }),
               _vm._v(" "),
-              _c("p", { staticClass: "p-2 w-auto" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(index + 1) +
-                    ". " +
-                    _vm._s(question.question) +
-                    "\n            "
-                )
+              _c("p", { staticClass: "p-2 w-auto flex flex-row" }, [
+                _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                _vm._v(" "),
+                _c("ul", [_c("li", [_vm._v(_vm._s(question.question))])])
               ]),
               _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass:
-                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
+                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
                 },
                 [
                   _c("input", {
@@ -42019,14 +42191,86 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
-                      attrs: { for: "happy_" + question.question_id }
+                      attrs: { for: "very_unhappy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat1_input w-4 h-4",
                         attrs: {
                           required: "required",
-                          value: "100",
+                          value: "20",
+                          type: "radio",
+                          name: "team_" + index,
+                          id: "very_unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😠")
+                      ]),
+                      _vm._v("Very\n                    Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "unhappy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat1_input w-4 h-4",
+                        attrs: {
+                          value: "40",
+                          type: "radio",
+                          name: "team_" + index,
+                          id: "unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😓")
+                      ]),
+                      _vm._v("Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "neutral_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat1_input w-4 h-4",
+                        attrs: {
+                          value: "60",
+                          type: "radio",
+                          name: "team_" + index,
+                          id: "neutral_" + question.question_id
+                        },
+                        on: { click: _vm.getValue }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😐")
+                      ]),
+                      _vm._v("Neutral")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "happy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat1_input w-4 h-4",
+                        attrs: {
+                          value: "80",
                           type: "radio",
                           name: "team_" + index,
                           id: "happy_" + question.question_id
@@ -42034,9 +42278,9 @@ var render = function() {
                         on: { click: _vm.getValue }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😀")
+                        _vm._v("😊")
                       ]),
-                      _vm._v("\n                    Happy")
+                      _vm._v(" Happy")
                     ]
                   ),
                   _vm._v(" "),
@@ -42044,80 +42288,34 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
-                      attrs: { for: "good_" + question.question_id }
+                      attrs: { for: "very_happy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat1_input w-4 h-4",
                         attrs: {
-                          value: "50",
+                          value: "100",
                           type: "radio",
                           name: "team_" + index,
-                          id: "good_" + question.question_id
+                          id: "very_happy_" + question.question_id
                         },
                         on: { click: _vm.getValue }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
                       ]),
-                      _vm._v("\n                    Good")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "not-happy_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat1_input w-4 h-4",
-                        attrs: {
-                          value: "25",
-                          type: "radio",
-                          name: "team_" + index,
-                          id: "not-happy_" + question.question_id
-                        },
-                        on: { click: _vm.getValue }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😍")
-                      ]),
-                      _vm._v("Not\n                    happy")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "angry_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat1_input w-4 h-4",
-                        attrs: {
-                          value: "",
-                          type: "radio",
-                          name: "team_" + index,
-                          id: "angry_" + question.question_id
-                        },
-                        on: { click: _vm.getValue }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("💗")
-                      ]),
-                      _vm._v("\n                    Angry")
+                      _vm._v("Very Happy")
                     ]
                   )
                 ]
               ),
               _vm._v(" "),
-              _c("p", {
-                staticClass: "text-red-600 text-xs mt-0",
-                attrs: { id: "team_" + index }
-              })
+              _c("div", [
+                _c("p", {
+                  staticClass: "text-red-600 text-xs -mt-6 text-center",
+                  attrs: { id: "team_" + index }
+                })
+              ])
             ]
           )
         }),
@@ -42133,7 +42331,12 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "bg-green-300 px-3 py-1 hover:bg-green-300 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm"
+                  "bg-green-400 px-3 py-1 hover:bg-green-400 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                  }
+                }
               },
               [_vm._v("\n                Prev\n            ")]
             ),
@@ -42142,7 +42345,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "bg-green-500 rounded-sm px-3 py-1 hover:bg-green-800 ml-4 transform duration-500 ease-in-out focus:outline-none",
+                  "bg-green-600 rounded-sm px-3 py-1 hover:bg-green-900 ml-4 transform duration-500 linear focus:outline-none",
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -42218,21 +42421,17 @@ var render = function() {
             [
               _c("hr", { staticClass: "border-gray-300" }),
               _vm._v(" "),
-              _c("p", { staticClass: "p-2 w-auto" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(index + 1) +
-                    ". " +
-                    _vm._s(question.question) +
-                    "\n            "
-                )
+              _c("p", { staticClass: "p-2 w-auto flex flex-row" }, [
+                _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                _vm._v(" "),
+                _c("ul", [_c("li", [_vm._v(_vm._s(question.question))])])
               ]),
               _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass:
-                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
+                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
                 },
                 [
                   _c("input", {
@@ -42249,12 +42448,86 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
+                      attrs: { for: "very_unhappy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat2_radio w-4 h-4",
+                        attrs: {
+                          required: "",
+                          value: "20",
+                          type: "radio",
+                          name: "redress_" + index,
+                          id: "very_unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue2 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😠")
+                      ]),
+                      _vm._v("Very\n                    Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "unhappy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat2_radio w-4 h-4",
+                        attrs: {
+                          value: "40",
+                          type: "radio",
+                          name: "redress_" + index,
+                          id: "unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue2 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😓")
+                      ]),
+                      _vm._v("Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "neutral_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat2_radio w-4 h-4",
+                        attrs: {
+                          value: "60",
+                          type: "radio",
+                          name: "redress_" + index,
+                          id: "neutral_" + question.question_id
+                        },
+                        on: { click: _vm.getValue2 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😐")
+                      ]),
+                      _vm._v("Neutral")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
                       attrs: { for: "happy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat2_radio w-4 h-4",
                         attrs: {
+                          value: "80",
                           type: "radio",
                           name: "redress_" + index,
                           id: "happy_" + question.question_id
@@ -42262,9 +42535,9 @@ var render = function() {
                         on: { click: _vm.getValue2 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😀")
+                        _vm._v("😊")
                       ]),
-                      _vm._v("\n                    Happy")
+                      _vm._v(" Happy")
                     ]
                   ),
                   _vm._v(" "),
@@ -42272,77 +42545,34 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
-                      attrs: { for: "good_" + question.question_id }
+                      attrs: { for: "very_happy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat2_radio w-4 h-4",
                         attrs: {
+                          value: "100",
                           type: "radio",
                           name: "redress_" + index,
-                          id: "good_" + question.question_id
+                          id: "very_happy_" + question.question_id
                         },
                         on: { click: _vm.getValue2 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
                       ]),
-                      _vm._v("\n                    Good")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "not-happy_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat2_radio w-4 h-4",
-                        attrs: {
-                          type: "radio",
-                          name: "redress_" + index,
-                          id: "coffee_" + question.question_id
-                        },
-                        on: { click: _vm.getValue2 }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😍")
-                      ]),
-                      _vm._v("Not\n                    happy")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "angry_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat2_radio w-4 h-4",
-                        attrs: {
-                          type: "radio",
-                          name: "redress_" + index,
-                          id: "angry_" + question.question_id
-                        },
-                        on: { click: _vm.getValue2 }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("💗")
-                      ]),
-                      _vm._v("\n                    Angry")
+                      _vm._v("Very Happy")
                     ]
                   )
                 ]
               ),
               _vm._v(" "),
-              _c("p", {
-                staticClass: "text-red-600 text-xs mt-0",
-                attrs: { id: "redress_" + index }
-              })
+              _c("div", [
+                _c("p", {
+                  staticClass: "text-red-600 text-xs -mt-6 text-center",
+                  attrs: { id: "redress_" + index }
+                })
+              ])
             ]
           )
         }),
@@ -42439,21 +42669,17 @@ var render = function() {
             [
               _c("hr", { staticClass: "border-gray-300" }),
               _vm._v(" "),
-              _c("p", { staticClass: "p-2 w-auto" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(index + 1) +
-                    ". " +
-                    _vm._s(question.question) +
-                    "\n            "
-                )
+              _c("p", { staticClass: "p-2 w-auto flex flex-row" }, [
+                _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                _vm._v(" "),
+                _c("ul", [_c("li", [_vm._v(_vm._s(question.question))])])
               ]),
               _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass:
-                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
+                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
                 },
                 [
                   _c("input", {
@@ -42470,12 +42696,86 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
+                      attrs: { for: "very_unhappy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat3_radio w-4 h-4",
+                        attrs: {
+                          required: "",
+                          value: "20",
+                          type: "radio",
+                          name: "workplace_" + index,
+                          id: "very_unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue3 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😠")
+                      ]),
+                      _vm._v("Very\n                    Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "unhappy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat3_radio w-4 h-4",
+                        attrs: {
+                          value: "40",
+                          type: "radio",
+                          name: "workplace_" + index,
+                          id: "unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue3 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😓")
+                      ]),
+                      _vm._v("Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "neutral_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat3_radio w-4 h-4",
+                        attrs: {
+                          value: "60",
+                          type: "radio",
+                          name: "workplace_" + index,
+                          id: "neutral_" + question.question_id
+                        },
+                        on: { click: _vm.getValue3 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😐")
+                      ]),
+                      _vm._v("Neutral")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
                       attrs: { for: "happy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat3_radio w-4 h-4",
                         attrs: {
+                          value: "80",
                           type: "radio",
                           name: "workplace_" + index,
                           id: "happy_" + question.question_id
@@ -42483,9 +42783,9 @@ var render = function() {
                         on: { click: _vm.getValue3 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😀")
+                        _vm._v("😊")
                       ]),
-                      _vm._v("\n                    Happy")
+                      _vm._v(" Happy")
                     ]
                   ),
                   _vm._v(" "),
@@ -42493,77 +42793,34 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
-                      attrs: { for: "good_" + question.question_id }
+                      attrs: { for: "very_happy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat3_radio w-4 h-4",
                         attrs: {
+                          value: "100",
                           type: "radio",
                           name: "workplace_" + index,
-                          id: "good_" + question.question_id
+                          id: "very_happy_" + question.question_id
                         },
                         on: { click: _vm.getValue3 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
                       ]),
-                      _vm._v("\n                    Good")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "not-happy_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat3_radio w-4 h-4",
-                        attrs: {
-                          type: "radio",
-                          name: "workplace_" + index,
-                          id: "not-happy_" + question.question_id
-                        },
-                        on: { click: _vm.getValue3 }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😍")
-                      ]),
-                      _vm._v("Not\n                    happy")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "angry_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat3_radio w-4 h-4",
-                        attrs: {
-                          type: "radio",
-                          name: "workplace_" + index,
-                          id: "angry_" + question.question_id
-                        },
-                        on: { click: _vm.getValue3 }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("💗")
-                      ]),
-                      _vm._v("\n                    Angry")
+                      _vm._v("Very Happy")
                     ]
                   )
                 ]
               ),
               _vm._v(" "),
-              _c("p", {
-                staticClass: "text-red-600 text-xs mt-0",
-                attrs: { id: "workplace_" + index }
-              })
+              _c("div", [
+                _c("p", {
+                  staticClass: "text-red-600 text-xs -mt-6 text-center",
+                  attrs: { id: "workplace_" + index }
+                })
+              ])
             ]
           )
         }),
@@ -42662,21 +42919,17 @@ var render = function() {
             [
               _c("hr", { staticClass: "border-gray-300" }),
               _vm._v(" "),
-              _c("p", { staticClass: "p-2 w-auto" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(index + 1) +
-                    ". " +
-                    _vm._s(question.question) +
-                    "\n            "
-                )
+              _c("p", { staticClass: "p-2 w-auto flex flex-row" }, [
+                _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                _vm._v(" "),
+                _c("ul", [_c("li", [_vm._v(_vm._s(question.question))])])
               ]),
               _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass:
-                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
+                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
                 },
                 [
                   _c("input", {
@@ -42693,12 +42946,86 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
+                      attrs: { for: "very_unhappy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat4_radio w-4 h-4",
+                        attrs: {
+                          required: "",
+                          value: "20",
+                          type: "radio",
+                          name: "support_" + index,
+                          id: "very_unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue4 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😠")
+                      ]),
+                      _vm._v("Very\n                    Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "unhappy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat4_radio w-4 h-4",
+                        attrs: {
+                          value: "40",
+                          type: "radio",
+                          name: "support_" + index,
+                          id: "unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue4 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😓")
+                      ]),
+                      _vm._v("Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "neutral_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat4_radio w-4 h-4",
+                        attrs: {
+                          value: "60",
+                          type: "radio",
+                          name: "support_" + index,
+                          id: "neutral_" + question.question_id
+                        },
+                        on: { click: _vm.getValue4 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😐")
+                      ]),
+                      _vm._v("Neutral")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
                       attrs: { for: "happy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat4_radio w-4 h-4",
                         attrs: {
+                          value: "80",
                           type: "radio",
                           name: "support_" + index,
                           id: "happy_" + question.question_id
@@ -42706,9 +43033,9 @@ var render = function() {
                         on: { click: _vm.getValue4 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😀")
+                        _vm._v("😊")
                       ]),
-                      _vm._v("\n                    Happy")
+                      _vm._v(" Happy")
                     ]
                   ),
                   _vm._v(" "),
@@ -42716,77 +43043,34 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
-                      attrs: { for: "good_" + question.question_id }
+                      attrs: { for: "very_happy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat4_radio w-4 h-4",
                         attrs: {
+                          value: "100",
                           type: "radio",
                           name: "support_" + index,
-                          id: "good_" + question.question_id
+                          id: "very_happy_" + question.question_id
                         },
                         on: { click: _vm.getValue4 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
                       ]),
-                      _vm._v("\n                    Good")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "not-happy_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat4_radio w-4 h-4",
-                        attrs: {
-                          type: "radio",
-                          name: "support_" + index,
-                          id: "not-happy_" + question.question_id
-                        },
-                        on: { click: _vm.getValue4 }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😍")
-                      ]),
-                      _vm._v("Not\n                    happy")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "angry_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat4_radio w-4 h-4",
-                        attrs: {
-                          type: "radio",
-                          name: "support_" + index,
-                          id: "angry_" + question.question_id
-                        },
-                        on: { click: _vm.getValue4 }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("💗")
-                      ]),
-                      _vm._v("\n                    Angry")
+                      _vm._v("Very Happy")
                     ]
                   )
                 ]
               ),
               _vm._v(" "),
-              _c("p", {
-                staticClass: "text-red-600 text-xs mt-0",
-                attrs: { id: "support_" + index }
-              })
+              _c("div", [
+                _c("p", {
+                  staticClass: "text-red-600 text-xs -mt-6 text-center",
+                  attrs: { id: "support_" + index }
+                })
+              ])
             ]
           )
         }),
@@ -42885,21 +43169,17 @@ var render = function() {
             [
               _c("hr", { staticClass: "border-gray-300" }),
               _vm._v(" "),
-              _c("p", { staticClass: "p-2 w-auto" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(index + 1) +
-                    ". " +
-                    _vm._s(question.question) +
-                    "\n            "
-                )
+              _c("p", { staticClass: "p-2 w-auto flex flex-row" }, [
+                _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                _vm._v(" "),
+                _c("ul", [_c("li", [_vm._v(_vm._s(question.question))])])
               ]),
               _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass:
-                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between"
+                    "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
                 },
                 [
                   _c("input", {
@@ -42916,12 +43196,86 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
+                      attrs: { for: "very_unhappy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat5_radio w-4 h-4",
+                        attrs: {
+                          required: "",
+                          value: "20",
+                          type: "radio",
+                          name: "belonging_" + index,
+                          id: "very_unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue5 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😠")
+                      ]),
+                      _vm._v("Very\n                    Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "unhappy_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat5_radio w-4 h-4",
+                        attrs: {
+                          value: "40",
+                          type: "radio",
+                          name: "belonging_" + index,
+                          id: "unhappy_" + question.question_id
+                        },
+                        on: { click: _vm.getValue5 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😓")
+                      ]),
+                      _vm._v("Unhappy")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
+                      attrs: { for: "neutral_" + question.question_id }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "cat5_radio w-4 h-4",
+                        attrs: {
+                          value: "60",
+                          type: "radio",
+                          name: "belonging_" + index,
+                          id: "neutral_" + question.question_id
+                        },
+                        on: { click: _vm.getValue5 }
+                      }),
+                      _c("span", { staticClass: "text-xl ml-1" }, [
+                        _vm._v("😐")
+                      ]),
+                      _vm._v("Neutral")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "flex justify-start items-center",
                       attrs: { for: "happy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat5_radio w-4 h-4",
                         attrs: {
+                          value: "80",
                           type: "radio",
                           name: "belonging_" + index,
                           id: "happy_" + question.question_id
@@ -42929,9 +43283,9 @@ var render = function() {
                         on: { click: _vm.getValue5 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😀")
+                        _vm._v("😊")
                       ]),
-                      _vm._v("\n                    Happy")
+                      _vm._v(" Happy")
                     ]
                   ),
                   _vm._v(" "),
@@ -42939,77 +43293,34 @@ var render = function() {
                     "label",
                     {
                       staticClass: "flex justify-start items-center",
-                      attrs: { for: "good_" + question.question_id }
+                      attrs: { for: "very_happy_" + question.question_id }
                     },
                     [
                       _c("input", {
                         staticClass: "cat5_radio w-4 h-4",
                         attrs: {
+                          value: "100",
                           type: "radio",
                           name: "belonging_" + index,
-                          id: "good_" + question.question_id
+                          id: "very_happy_" + question.question_id
                         },
                         on: { click: _vm.getValue5 }
                       }),
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😄")
                       ]),
-                      _vm._v("\n                    Good")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "not-happy_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat5_radio w-4 h-4",
-                        attrs: {
-                          type: "radio",
-                          name: "belonging_" + index,
-                          id: "not-happy_" + question.question_id
-                        },
-                        on: { click: _vm.getValue5 }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("😍")
-                      ]),
-                      _vm._v("Not\n                    happy")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "flex justify-start items-center",
-                      attrs: { for: "angry_" + question.question_id }
-                    },
-                    [
-                      _c("input", {
-                        staticClass: "cat5_radio w-4 h-4",
-                        attrs: {
-                          type: "radio",
-                          name: "belonging_" + index,
-                          id: "angry_" + question.question_id
-                        },
-                        on: { click: _vm.getValue5 }
-                      }),
-                      _c("span", { staticClass: "text-xl ml-1" }, [
-                        _vm._v("💗")
-                      ]),
-                      _vm._v("\n                    Angry")
+                      _vm._v("Very Happy")
                     ]
                   )
                 ]
               ),
               _vm._v(" "),
-              _c("p", {
-                staticClass: "text-red-600 text-xs mt-0",
-                attrs: { id: "belonging_" + index }
-              })
+              _c("div", [
+                _c("p", {
+                  staticClass: "text-red-600 text-xs -mt-6 text-center",
+                  attrs: { id: "belonging_" + index }
+                })
+              ])
             ]
           )
         }),
@@ -43216,32 +43527,30 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mt-8 mb-10" },
+    { staticClass: "mt-0 mb-10", attrs: { id: "survey-container" } },
     [
-      _c("div", { staticClass: "text-center" }, [
-        _c("p", { staticClass: "text-xl text-blue-500" }, [
-          _vm._v("name: " + _vm._s(_vm.userData.name))
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-xl text-blue-500" }, [
-          _vm._v("email: " + _vm._s(_vm.userData.email))
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-purple-500 rounded-sm text-gray-50 p-2 hover:bg-purple-700 transition duration-500 ease-linear mt-8",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.logoutUser($event)
+      _c("header", { staticClass: "bg-gray-800 text-gray-100 h-12 .shadow" }, [
+        _c("div", { staticClass: "h-full flex items-center justify-between" }, [
+          _c("p", { staticClass: "text-xl ml-4" }, [_vm._v("Survey App")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-gray-600 rounded-sm text-gray-100 p-2 hover:bg-gray-500 transition duration-300 ease-linear mr-16",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.logoutUser($event)
+                }
               }
-            }
-          },
-          [_vm._v("\n            Logout\n        ")]
-        )
+            },
+            [_vm._v("\n                Logout\n            ")]
+          )
+        ])
       ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-center w-full" }),
       _vm._v(" "),
       _c("category1", {
         directives: [

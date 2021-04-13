@@ -13,6 +13,16 @@ function next(
     //getting the total number of questions
     let numQuestions = category_questions.length;
 
+    /**errors respresents the number of unchecked questions. 
+     So everytime a user clicks the next button, we start we
+     zero errors and if all the questions have been answered,
+     errors will still remain zero and the user can move on 
+     to the next category otherwise errors will be greater 
+     than zero and the user won't be able to move to the
+     next category.
+    */
+    errors = 0;
+
     //looping through each radio button
     for (let i = 0; i < numQuestions; i++) {
         /*getting each group of the radio buttons. Each radio group has a name of 'category_name'_index.
@@ -33,10 +43,9 @@ function next(
 
         /*Then we check and display an error message if the groupStatus
         variable is false i.e if none of the radio button was checked for that specific group.*/
-        errors = 0;
         if (!groupStatus) {
             let showError = document.getElementById(`${category_name}_${i}`);
-            showError.innerHTML = "Please check one of the values.";
+            showError.innerHTML = "*Please select one of the options.";
             errors++;
         }
         //else we remove the error messages
@@ -47,6 +56,7 @@ function next(
     }
     /*If all the radio buttons for each question have be checked - errors=0
     Then  we move to the next category of questions.*/
+    console.log(errors);
     if (errors == 0) {
         mutation_name();
     }
