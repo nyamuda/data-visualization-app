@@ -17,19 +17,35 @@
                 <!--The purpose of the following first input element is to hold
                 the id value of each question. The second input element holds
                 the category id of the question-->
-                <input type="text" hidden :value="question.question_id" />
-                <input type="text" hidden :value="question.category_id" />
-                <hr class="border-gray-300" />
+                <div v-if="question.type == 'Open Ended'">
+                    <input type="text" hidden :value="question.question_id" />
+                    <input type="text" hidden :value="question.category_id" />
+                    <hr class="border-gray-300" />
 
-                <p class="p-2 w-auto">
-                    {{ index + 1 }}. {{ question.question }}
-                </p>
-                <textarea
-                    :name="'general' + question.question_id"
-                    :id="question_id"
-                    cols="30"
-                    rows="10"
-                ></textarea>
+                    <p class="p-2 w-auto">
+                        {{ index + 1 }}. {{ question.question }}
+                    </p>
+                    <textarea
+                        :name="'general' + question.question_id"
+                        :id="question.question_id"
+                        cols="30"
+                        rows="10"
+                    ></textarea>
+                </div>
+
+                <div v-else-if="question.type == 'Scale'">
+                    <p class="p-2 w-auto">
+                        {{ index + 1 }}. {{ question.question }}
+                    </p>
+                    <button>heyy scale</button>
+                </div>
+
+                <div v-else-if="question.type == 'Multiple Choice'">
+                    <p class="p-2 w-auto">
+                        {{ index + 1 }}. {{ question.question }}
+                    </p>
+                    <input type="text" name="" id="" placeholder="multiple" />
+                </div>
             </div>
             <div
                 class="flex justify-center bg-purple-500 text-gray-100 items-center h-10"
@@ -54,7 +70,8 @@ export default {
     data() {
         return {
             val: "",
-            cat6Answers: {}
+            cat6Answers: {},
+            dat: {}
         };
     },
     methods: {

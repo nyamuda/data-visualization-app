@@ -10,6 +10,7 @@ export const moduleC = {
         //adding the questions to the state
         loadQuestions(state, paylaod) {
             state.all_questions = paylaod;
+            console.log(state.all_questions);
         },
         //laod user info
         loadUserInfo(state, payload) {

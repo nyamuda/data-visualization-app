@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Answer;
-
-
+use App\Models\Category;
 
 class SurveyQuestionsController extends Controller
 {
@@ -15,13 +14,18 @@ class SurveyQuestionsController extends Controller
     {
 
         //grouping the questions by their category_id
+        /*Looking for questions related to the category with with given id */
+        $category1_questions = Category::firstWhere('category_id', 1)->questions;
+        $category2_questions = Category::firstWhere('category_id', 2)->questions;
+        $category3_questions = Category::firstWhere('category_id', 3)->questions;
+        $category4_questions = Category::firstWhere('category_id', 4)->questions;
+        $category5_questions = Category::firstWhere('category_id', 5)->questions;
 
-        $category1_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 1)->get();
-        $category2_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 2)->get();
-        $category3_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 3)->get();
-        $category4_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 4)->get();
-        $category5_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 5)->get();
-        $category6_questions = Question::select('question_id', 'question', "category_id")->where('category_id', 6)->get();
+        //getting general questions
+        $category6_questions = Category::select('question_id', 'question', 'category_questions.category_id', 'type')
+            ->join('questions', 'category_questions.category_id', '=', 'questions.category_id')
+            ->where('category_name', 'General')
+            ->get();
 
         $all_questions = [
             'category1_questions' => $category1_questions,
@@ -30,9 +34,7 @@ class SurveyQuestionsController extends Controller
             'category4_questions' => $category4_questions,
             'category5_questions' => $category5_questions,
             'category6_questions' => $category6_questions,
-
         ];
-
         return $all_questions;
     }
 

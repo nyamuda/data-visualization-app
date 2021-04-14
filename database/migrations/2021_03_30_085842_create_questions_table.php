@@ -16,7 +16,15 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id('question_id');
             $table->string('question', 500);
-            $table->integer('category_id');
+            /*foreign key - there one-many relationship between the category table 
+            and the questions table respectively*/
+            $table->unsignedBigInteger('category_id');
+
+            $table->foreign('category_id')
+                ->references('category_id') //referenced column on the parent table
+                ->on('category_questions') //table name
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

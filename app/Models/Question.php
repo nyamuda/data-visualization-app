@@ -11,4 +11,9 @@ class Question extends Model
 
     /* since we're are using the create method to store a record in the controller */
     protected $fillable = ['question', 'category_id'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

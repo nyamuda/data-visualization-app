@@ -16,6 +16,7 @@ class CreateCategoryQuestionsTable extends Migration
         Schema::create('category_questions', function (Blueprint $table) {
             $table->id('category_id');
             $table->string('category_name', 100);
+            $table->string('type', 40);
             $table->timestamps();
         });
     }

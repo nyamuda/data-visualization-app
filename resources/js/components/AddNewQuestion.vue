@@ -28,7 +28,8 @@
                         v-for="category in myCategories"
                         :key="category.id"
                         :value="category.category_id"
-                        >{{ category.category_name }}</option
+                        >{{ category.category_name
+                        }}<span> - {{ category.type }}</span></option
                     >
                 </select>
                 <p class="text-red-500 text-xs">{{ cat_error }}</p>

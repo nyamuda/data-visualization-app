@@ -1890,6 +1890,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3284,11 +3285,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       val: "",
-      cat6Answers: {}
+      cat6Answers: {},
+      dat: {}
     };
   },
   methods: {
@@ -4076,6 +4094,7 @@ var moduleC = {
     //adding the questions to the state
     loadQuestions: function loadQuestions(state, paylaod) {
       state.all_questions = paylaod;
+      console.log(state.all_questions);
     },
     //laod user info
     loadUserInfo: function loadUserInfo(state, payload) {
@@ -41528,7 +41547,10 @@ var render = function() {
               return _c(
                 "option",
                 { key: category.id, domProps: { value: category.category_id } },
-                [_vm._v(_vm._s(category.category_name))]
+                [
+                  _vm._v(_vm._s(category.category_name)),
+                  _c("span", [_vm._v(" - " + _vm._s(category.type))])
+                ]
               )
             })
           ],
@@ -43417,36 +43439,75 @@ var render = function() {
               staticClass: "flex justify-around flex-col bg-gray-100 px-4"
             },
             [
-              _c("input", {
-                attrs: { type: "text", hidden: "" },
-                domProps: { value: question.question_id }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: { type: "text", hidden: "" },
-                domProps: { value: question.category_id }
-              }),
-              _vm._v(" "),
-              _c("hr", { staticClass: "border-gray-300" }),
-              _vm._v(" "),
-              _c("p", { staticClass: "p-2 w-auto" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(index + 1) +
-                    ". " +
-                    _vm._s(question.question) +
-                    "\n            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("textarea", {
-                attrs: {
-                  name: "general" + question.question_id,
-                  id: _vm.question_id,
-                  cols: "30",
-                  rows: "10"
-                }
-              })
+              question.type == "Open Ended"
+                ? _c("div", [
+                    _c("input", {
+                      attrs: { type: "text", hidden: "" },
+                      domProps: { value: question.question_id }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "text", hidden: "" },
+                      domProps: { value: question.category_id }
+                    }),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "border-gray-300" }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "p-2 w-auto" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(index + 1) +
+                          ". " +
+                          _vm._s(question.question) +
+                          "\n                "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      attrs: {
+                        name: "general" + question.question_id,
+                        id: question.question_id,
+                        cols: "30",
+                        rows: "10"
+                      }
+                    })
+                  ])
+                : question.type == "Scale"
+                ? _c("div", [
+                    _c("p", { staticClass: "p-2 w-auto" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(index + 1) +
+                          ". " +
+                          _vm._s(question.question) +
+                          "\n                "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("button", [_vm._v("heyy scale")])
+                  ])
+                : question.type == "Multiple Choice"
+                ? _c("div", [
+                    _c("p", { staticClass: "p-2 w-auto" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(index + 1) +
+                          ". " +
+                          _vm._s(question.question) +
+                          "\n                "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: {
+                        type: "text",
+                        name: "",
+                        id: "",
+                        placeholder: "multiple"
+                      }
+                    })
+                  ])
+                : _vm._e()
             ]
           )
         }),
