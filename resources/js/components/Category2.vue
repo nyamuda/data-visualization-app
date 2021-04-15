@@ -96,13 +96,20 @@
                         /><span class="text-xl ml-1">😄</span>Very Happy</label
                     >
                 </div>
+
+
                  <div>
                     <p
                         :id="'redress_' + index"
                         class="text-red-600 text-xs -mt-6 text-center"
                     ></p>
                 </div>
-            </div>
+            
+
+</div>
+            
+            
+            
             <div
                 class="flex justify-center bg-green-500 text-gray-100 items-center h-12"
             >

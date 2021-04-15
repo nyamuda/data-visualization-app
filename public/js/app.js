@@ -1999,7 +1999,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2373,78 +2372,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["userData"],
@@ -2630,6 +2557,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["userData"],
@@ -2688,74 +2622,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3234,6 +3100,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -3301,34 +3180,148 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["userData"],
   data: function data() {
     return {
       val: "",
       cat6Answers: {},
-      dat: {}
+      dat: {},
+      answerObject: {},
+      countErrors: 0,
+      scaleAnswers: {}
     };
   },
   methods: {
+    getScaleAnswers: function getScaleAnswers() {},
+
+    /*This function determines what happens when the user clicks one of the input buttons.
+    It handles questions about 'Scale' meaning there will be ten buttons, each with its only
+    value. The purpose is to show visually the clicked button, add a checked attribute to it and
+    disable all other buttons at the same time in case the user has already clicked another
+    button and is now clicking a different one. It also gets the value of the button clicked.
+    */
+    buttonClicked: function buttonClicked(event) {
+      event.target.checked = 'checked';
+      event.target.classList.add('ring-2');
+      event.target.classList.add('ring-opacity-50');
+      event.target.classList.add('ring-offset-2');
+      event.target.classList.add('ring-gray-900'); //getting all the inputs
+
+      var all_inputs = _toConsumableArray(document.getElementsByClassName('cat6_input'));
+      /*getting only those inputs with the same name as the clicked input (meaning they belong to the same question) 
+      but not including the clicked input.*/
+
+
+      var all_buttons = all_inputs.filter(function (val) {
+        return val.name == event.target.name && val.value != event.target.value;
+      }); //And then disabling the checked attribute and other classes for those inputs.
+      // console.log(all_buttons)
+
+      all_buttons.forEach(function (val) {
+        val.checked = false;
+        val.classList.remove('ring-2');
+        val.classList.remove('ring-opacity-50');
+        val.classList.remove('ring-offset-2');
+        val.classList.remove('ring-gray-900');
+      }); //getting the value of the clicked buttoon
+
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.cat6Answers);
+      console.log(this.cat6Answers);
+    },
+    //get the answers when a radio button is clicked
+    radioClicked6: function radioClicked6(event) {
+      //calling the 'getAnswers' function for the categoriesCode module.
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.cat6Answers);
+    },
+
+    /* The following function checks for the number of questions that
+    are either multiple choice or scale. Its only these types of questions that
+    we can check using the myMethods.next() method whether a user
+    has answered them or not.*/
+    numberChecked: function numberChecked() {
+      //looping the category6_data
+      return this.category6_data.filter(function (val) {
+        return val.type == 'Multiple Choice' || val.type == 'Scale';
+      });
+    },
     prev: function prev() {
       this.$store.commit("prevSixthCategory");
     },
-    getValue6: function getValue6(event) {
-      //getting the id value of each question and its selected answer.
-      //so first getting the id value of the question.
-      var question_id = event.target.parentElement.parentElement.firstElementChild.value; //then the selected answer to the question
+    moveNext: function moveNext() {
+      /*calling the 'next' function from the categoriesCode module.
+      For a full understanding of the 'next' function and how it works,
+      please check the categoriesCode.js module
+      */
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.next("cat6_input", //all radio button class names
+      this.numberChecked(), //the total number of questions tha can be checked
+      "general", //the radio buttons category name
+      this.countErrors, //radio buttons not checked
+      this.runOpen //function that will run if there are no errors
+      );
+    },
+    runOpen: function runOpen() {
+      /* Running the checkOpen function which check if all open ended questions have been answered.*/
+      console.log('hey you');
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.checkOpen(this.countErrors, 'open-ended', this.addAnswersToState, this.userData, this.cat6Answers);
+    },
 
-      var given_answer = Number(event.target.value); //the question category id
-
-      var category_id = event.target.parentElement.parentElement.children[1].value;
-      var question_name = event.target.name;
-      var answerObject = {};
-      answerObject["question_id"] = question_id;
-      answerObject["category_id"] = categoryid;
-      answerObject["question_answer"] = given_answer;
-      answerObject["user_id"] = this.userData.id;
-      this.cat6Answers[question_name] = answerObject;
-      console.log(this.cat1Answers);
+    /*The following function is the one that will run, if all the questions have been answered */
+    addAnswersToState: function addAnswersToState() {
+      //this will add the answers to the state by dispatching an action
+      this.$store.dispatch("getAnswers", this.cat6Answers);
     }
   },
   computed: {
@@ -3360,6 +3353,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Category4__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Category4 */ "./resources/js/components/Category4.vue");
 /* harmony import */ var _Category5__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Category5 */ "./resources/js/components/Category5.vue");
 /* harmony import */ var _Category6__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Category6 */ "./resources/js/components/Category6.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -3793,7 +3790,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "next": () => (/* binding */ next),
-/* harmony export */   "getAnswers": () => (/* binding */ getAnswers)
+/* harmony export */   "getAnswers": () => (/* binding */ getAnswers),
+/* harmony export */   "checkOpen": () => (/* binding */ checkOpen)
 /* harmony export */ });
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -3809,7 +3807,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /*The purpose of the following code is to check if the radio buttons have been
     checked for each group before the user can go to the next category of the questions*/
-function next(class_name, category_questions, category_name, errors, mutation_name) {
+function next(class_name, category_questions, category_name, errors, callback) {
   //first get all the radio buttons
   var allInputs = _toConsumableArray(document.getElementsByClassName(class_name)); //getting the total number of questions
 
@@ -3832,7 +3830,7 @@ function next(class_name, category_questions, category_name, errors, mutation_na
     and the category_name parameter is 'team', it means there are going to be 5 groups of 
     radio buttons: team_0, team_1,...,team_4*/
     var groupName = allInputs.filter(function (val2) {
-      //returnong a specific group of radio buttons.
+      //returning a specific group of radio buttons.
       //remember val2 is one specific radio button.
       return val2.name == "".concat(category_name, "_").concat(i);
     });
@@ -3846,7 +3844,8 @@ function next(class_name, category_questions, category_name, errors, mutation_na
 
     if (!groupStatus) {
       var showError = document.getElementById("".concat(category_name, "_").concat(i));
-      showError.innerHTML = "*Please select one of the options.";
+      showError.innerHTML = "*Please select one of the options."; //console.log(groupName);
+
       errors++;
     } //else we remove the error messages
     else {
@@ -3865,7 +3864,7 @@ function next(class_name, category_questions, category_name, errors, mutation_na
   console.log(errors);
 
   if (errors == 0) {
-    mutation_name();
+    callback();
   }
 }
 /* The following function is for getting the answers the user selects */
@@ -3894,6 +3893,61 @@ function getAnswers(par, userInfo, categoryAnswers) {
   name (question_name) as the key */
 
   categoryAnswers[question_name] = answerObject;
+}
+/*the following function is for open-ended questions and checking if they been answered. 
+And if there are, we store the answers.*/
+
+
+function checkOpen(err, class_name, fn, userInfo, categoryAnswers) {
+  err = 0;
+
+  var open_questions = _toConsumableArray(document.getElementsByClassName(class_name));
+
+  console.log(open_questions[0]['value']); //we check if there are any open ended questions.
+
+  if (open_questions.length > 0) {
+    //if there are, we loop through them
+    for (var i = 0; i < open_questions.length; i++) {
+      //if the open ended question has no answer give - its empty
+      if (!!!open_questions[i]['value']) {
+        //then display the error
+        var showError = document.getElementById("".concat(open_questions[i]['name']));
+        showError.innerHTML = '*This field is required';
+        err++;
+      } else {
+        //else remove the error message
+        var hideError = document.getElementById("".concat(open_questions[i]['name']));
+        hideError.innerHTML = "";
+        /*Now for this particular question, since an answer was given, we store that answer.*/
+        //getting the id value of each question and its selected answer.
+        //so first getting the id value of the question.
+
+        var question_id = open_questions[i].parentElement.firstElementChild.value; //then the selected answer to the question
+
+        var given_answer = Number(open_questions[i].value); //the question category_id
+
+        var category_id = open_questions[i].parentElement.children[1].value; //the name of the text area
+
+        var question_name = open_questions[i].name;
+        var objAnswer = {};
+        objAnswer["question_id"] = question_id;
+        objAnswer["category_id"] = category_id;
+        objAnswer["question_answer"] = given_answer; //getting the id of the user
+
+        objAnswer["user_id"] = userInfo.id;
+        /*storing the objAnswer to the component's object 'categoryAnswers' with the text area
+        name (question_name) as the key */
+
+        categoryAnswers[question_name] = objAnswer;
+      }
+    } // if there are no errors - err=0
+
+
+    if (err == 0) {
+      //run  a function fn()
+      fn();
+    }
+  }
 }
 
 
@@ -8731,7 +8785,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f56db98] {\r\n    width: 90%;\n}\ninput[data-v-3f56db98] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border-radius: 50%;\r\n    width: 16px;\r\n    height: 16px;\r\n    border: 2px solid #999;\r\n    transition: 0.2s all linear;\n}\ninput[data-v-3f56db98]:checked {\r\n  border: 6px solid #2B60DE;\n}\n@media (min-width: 768px) {\n.container[data-v-3f56db98] {\r\n        width: 45rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.question_container[data-v-3f56db98] {\r\n  width: 90%;\n}\ninput[data-v-3f56db98] {\r\n  -webkit-appearance: none;\r\n     -moz-appearance: none;\r\n          appearance: none;\r\n  border-radius: 50%;\r\n  width: 16px;\r\n  height: 16px;\r\n  border: 2px solid #999;\r\n  transition: 0.2s all linear;\n}\ninput[data-v-3f56db98]:checked {\r\n  border: 6px solid #2B60DE;\n}\n@media (min-width: 768px) {\n.question_container[data-v-3f56db98] {\r\n    width: 45rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8779,7 +8833,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f730a9a] {\r\n    width: 90%;\n}\ninput[data-v-3f730a9a] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border-radius: 50%;\r\n    width: 16px;\r\n    height: 16px;\r\n    border: 2px solid #999;\r\n    transition: 0.2s all linear;\n}\ninput[data-v-3f730a9a]:checked {\r\n  border: 6px solid #4B0082;\n}\n@media (min-width: 768px) {\n.container[data-v-3f730a9a] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f730a9a] {\r\n    width: 90%;\n}\ninput[data-v-3f730a9a] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border-radius: 50%;\r\n    width: 16px;\r\n    height: 16px;\r\n    border: 2px solid #999;\r\n    transition: 0.2s all linear;\n}\ninput[data-v-3f730a9a]:checked {\r\n    border: 6px solid #4B0082;\n}\n@media (min-width: 768px) {\n.container[data-v-3f730a9a] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8851,7 +8905,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-3f9d511d] {\r\n    width: 90%;\n}\n@media (min-width: 768px) {\n.container[data-v-3f9d511d] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.my-scale[data-v-3f9d511d] {\r\n  width: 90%;\n}\n.question_container[data-v-3f9d511d] {\r\n  width: 90%;\n}\n@media (min-width: 640px) {\n.my-scale[data-v-3f9d511d] {\r\n    width: 80%;\n}\n}\n@media (min-width: 768px) {\n.question_container[data-v-3f9d511d] {\r\n    width: 50rem;\n}\n.my-scale[data-v-3f9d511d] {\r\n    width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -42230,7 +42284,7 @@ var render = function() {
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😠")
                       ]),
-                      _vm._v("Very\n                    Unhappy")
+                      _vm._v("Very Unhappy\n        ")
                     ]
                   ),
                   _vm._v(" "),
@@ -42360,7 +42414,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                Prev\n            ")]
+              [_vm._v("\n        Prev\n      ")]
             ),
             _vm._v(" "),
             _c(
@@ -42375,7 +42429,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                Next\n            ")]
+              [_vm._v("\n        Next\n      ")]
             )
           ]
         )
@@ -42487,7 +42541,7 @@ var render = function() {
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😠")
                       ]),
-                      _vm._v("Very\n                    Unhappy")
+                      _vm._v("Very\n                        Unhappy")
                     ]
                   ),
                   _vm._v(" "),
@@ -42613,7 +42667,7 @@ var render = function() {
                   "bg-purple-500 px-3 py-1 hover:bg-purple-800 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm",
                 on: { click: _vm.prev }
               },
-              [_vm._v("\n                Prev\n            ")]
+              [_vm._v("\n                    Prev\n                ")]
             ),
             _vm._v(" "),
             _c(
@@ -42623,7 +42677,7 @@ var render = function() {
                   "bg-purple-500 rounded-sm px-3 py-1 hover:bg-purple-800 ml-4 transform duration-500 ease-in-out focus:outline-none",
                 on: { click: _vm.moveNext }
               },
-              [_vm._v("\n                Next\n            ")]
+              [_vm._v("\n                    Next\n                ")]
             )
           ]
         )
@@ -42735,7 +42789,7 @@ var render = function() {
                       _c("span", { staticClass: "text-xl ml-1" }, [
                         _vm._v("😠")
                       ]),
-                      _vm._v("Very\n                    Unhappy")
+                      _vm._v("Very\r\n                    Unhappy")
                     ]
                   ),
                   _vm._v(" "),
@@ -42861,7 +42915,7 @@ var render = function() {
                   "bg-red-500 px-3 py-1 hover:bg-red-800 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm",
                 on: { click: _vm.prev }
               },
-              [_vm._v("\n                Prev\n            ")]
+              [_vm._v("\r\n                Prev\r\n            ")]
             ),
             _vm._v(" "),
             _c(
@@ -42871,7 +42925,7 @@ var render = function() {
                   "bg-red-500 px-3 py-1 hover:bg-red-800 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm",
                 on: { click: _vm.moveNext }
               },
-              [_vm._v("\n                Next\n            ")]
+              [_vm._v("\r\n                Next\r\n            ")]
             )
           ]
         )
@@ -43439,74 +43493,397 @@ var render = function() {
               staticClass: "flex justify-around flex-col bg-gray-100 px-4"
             },
             [
+              _c("hr", { staticClass: "border-gray-300" }),
+              _vm._v(" "),
               question.type == "Open Ended"
-                ? _c("div", [
-                    _c("input", {
-                      attrs: { type: "text", hidden: "" },
-                      domProps: { value: question.question_id }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "text", hidden: "" },
-                      domProps: { value: question.category_id }
-                    }),
-                    _vm._v(" "),
-                    _c("hr", { staticClass: "border-gray-300" }),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "p-2 w-auto" }, [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(index + 1) +
-                          ". " +
-                          _vm._s(question.question) +
-                          "\n                "
-                      )
+                ? _c("div", { staticClass: "mb-4" }, [
+                    _c("p", { staticClass: "p-2 w-auto flex flex-row" }, [
+                      _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                      _vm._v(" "),
+                      _c("ul", [_c("li", [_vm._v(_vm._s(question.question))])])
                     ]),
                     _vm._v(" "),
-                    _c("textarea", {
-                      attrs: {
-                        name: "general" + question.question_id,
-                        id: question.question_id,
-                        cols: "30",
-                        rows: "10"
-                      }
-                    })
+                    _c(
+                      "div",
+                      { staticClass: "flex flex-col items-start ml-4" },
+                      [
+                        _c("input", {
+                          attrs: { type: "text", hidden: "" },
+                          domProps: { value: question.question_id }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", hidden: "" },
+                          domProps: { value: question.category_id }
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          staticClass:
+                            "open-ended w-5/6 p-2 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-100",
+                          attrs: {
+                            required: "",
+                            id: "open_" + question.question_id,
+                            name: "general_" + question.question_id,
+                            rows: "4",
+                            cols: "50"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", [
+                          _c("p", {
+                            staticClass:
+                              "text-red-600 text-xs text-center mt-4",
+                            attrs: { id: "general_" + question.question_id }
+                          })
+                        ])
+                      ]
+                    )
                   ])
                 : question.type == "Scale"
-                ? _c("div", [
-                    _c("p", { staticClass: "p-2 w-auto" }, [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(index + 1) +
-                          ". " +
-                          _vm._s(question.question) +
-                          "\n                "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("button", [_vm._v("heyy scale")])
-                  ])
+                ? _c(
+                    "div",
+                    { staticClass: "mb-4 flex flex-col justify-around" },
+                    [
+                      _c("input", {
+                        attrs: { type: "text", hidden: "" },
+                        domProps: { value: question.question_id }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: { type: "text", hidden: "" },
+                        domProps: { value: question.category_id }
+                      }),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "p-2 w-auto flex flex-row" }, [
+                        _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                        _vm._v(" "),
+                        _c("ul", [
+                          _c("li", [_vm._v(_vm._s(question.question))])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "my-scale relative m-auto" }, [
+                        _c("input", {
+                          attrs: { type: "text", hidden: "" },
+                          domProps: { value: question.question_id }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", hidden: "" },
+                          domProps: { value: question.category_id }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(2, true),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "flex justify-evenly flex-wrap" },
+                          [
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-700 focus:outline-none appearance-none bg-red-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-700 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "0"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-600 focus:outline-none appearance-none bg-red-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-600 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "1"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-500 focus:outline-none appearance-none bg-red-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-500 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "2"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-700 focus:outline-none appearance-none bg-yellow-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-700 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "3"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-600 focus:outline-none appearance-none bg-yellow-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-600 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "4"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-500 focus:outline-none appearance-none bg-yellow-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-500 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "5"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-400 focus:outline-none appearance-none bg-yellow-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-400 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "6"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-400 focus:outline-none appearance-none bg-green-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-400 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "7"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-500 focus:outline-none appearance-none bg-green-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-500 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "8"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-600 focus:outline-none appearance-none bg-green-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-600 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "9"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass:
+                                "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-700 focus:outline-none appearance-none bg-green-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-700 transition duration-500 ease-in-out",
+                              attrs: {
+                                name: "general_" + index,
+                                type: "button",
+                                value: "10"
+                              },
+                              on: { click: _vm.buttonClicked }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "p",
+                          {
+                            staticClass: "text-red-600 text-xs text-center",
+                            attrs: { id: "general_" + index }
+                          },
+                          [_vm._v("Hello")]
+                        )
+                      ])
+                    ]
+                  )
                 : question.type == "Multiple Choice"
-                ? _c("div", [
-                    _c("p", { staticClass: "p-2 w-auto" }, [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(index + 1) +
-                          ". " +
-                          _vm._s(question.question) +
-                          "\n                "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: {
-                        type: "text",
-                        name: "",
-                        id: "",
-                        placeholder: "multiple"
-                      }
-                    })
-                  ])
+                ? _c(
+                    "div",
+                    { staticClass: "mb-4 flex flex-col justify-around" },
+                    [
+                      _c("p", { staticClass: "p-2 w-auto flex flex-row" }, [
+                        _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                        _vm._v(" "),
+                        _c("ul", [
+                          _c("li", [_vm._v(_vm._s(question.question))])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
+                        },
+                        [
+                          _c("input", {
+                            attrs: { type: "text", hidden: "" },
+                            domProps: { value: question.question_id }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "text", hidden: "" },
+                            domProps: { value: question.category_id }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "flex justify-start items-center",
+                              attrs: {
+                                for: "very_unhappy_" + question.question_id
+                              }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "cat6_input w-4 h-4",
+                                attrs: {
+                                  required: "required",
+                                  value: "20",
+                                  type: "radio",
+                                  name: "general_" + index,
+                                  id: "very_unhappy_" + question.question_id
+                                },
+                                on: { click: _vm.radioClicked6 }
+                              }),
+                              _c("span", { staticClass: "text-xl ml-1" }, [
+                                _vm._v("😠")
+                              ]),
+                              _vm._v("Very Unhappy\n          ")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "flex justify-start items-center",
+                              attrs: { for: "unhappy_" + question.question_id }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "cat6_input w-4 h-4",
+                                attrs: {
+                                  value: "40",
+                                  type: "radio",
+                                  name: "general_" + index,
+                                  id: "unhappy_" + question.question_id
+                                },
+                                on: { click: _vm.radioClicked6 }
+                              }),
+                              _c("span", { staticClass: "text-xl ml-1" }, [
+                                _vm._v("😓")
+                              ]),
+                              _vm._v("Unhappy")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "flex justify-start items-center",
+                              attrs: { for: "neutral_" + question.question_id }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "cat6_input w-4 h-4",
+                                attrs: {
+                                  value: "60",
+                                  type: "radio",
+                                  name: "general_" + index,
+                                  id: "neutral_" + question.question_id
+                                },
+                                on: { click: _vm.radioClicked6 }
+                              }),
+                              _c("span", { staticClass: "text-xl ml-1" }, [
+                                _vm._v("😐")
+                              ]),
+                              _vm._v("Neutral")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "flex justify-start items-center",
+                              attrs: { for: "happy_" + question.question_id }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "cat6_input w-4 h-4",
+                                attrs: {
+                                  value: "80",
+                                  type: "radio",
+                                  name: "general_" + index,
+                                  id: "happy_" + question.question_id
+                                },
+                                on: { click: _vm.radioClicked6 }
+                              }),
+                              _c("span", { staticClass: "text-xl ml-1" }, [
+                                _vm._v("😊")
+                              ]),
+                              _vm._v(" Happy")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "flex justify-start items-center",
+                              attrs: {
+                                for: "very_happy_" + question.question_id
+                              }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "cat6_input w-4 h-4",
+                                attrs: {
+                                  value: "100",
+                                  type: "radio",
+                                  name: "general_" + index,
+                                  id: "very_happy_" + question.question_id
+                                },
+                                on: { click: _vm.radioClicked6 }
+                              }),
+                              _c("span", { staticClass: "text-xl ml-1" }, [
+                                _vm._v("😄")
+                              ]),
+                              _vm._v("Very Happy")
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "p",
+                          {
+                            staticClass: "text-red-600 text-xs text-center",
+                            attrs: { id: "general_" + index }
+                          },
+                          [_vm._v("Hello")]
+                        )
+                      ])
+                    ]
+                  )
                 : _vm._e()
             ]
           )
@@ -43526,22 +43903,25 @@ var render = function() {
                   "bg-red-500 px-3 py-1 hover:bg-red-800 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm",
                 on: { click: _vm.prev }
               },
-              [_vm._v("\n                Prev\n            ")]
+              [_vm._v("\n        Prev\n      ")]
             ),
             _vm._v(" "),
             _c(
               "button",
               {
                 staticClass:
-                  "bg-red-300 rounded-sm px-3 py-1 hover:bg-red-300 ml-4 transform duration-500 ease-in-out focus:outline-none"
+                  "bg-red-500 rounded-sm px-3 py-1 hover:bg-red-500 ml-4 transform duration-500 ease-in-out focus:outline-none",
+                on: { click: _vm.moveNext }
               },
-              [_vm._v("\n                Next\n            ")]
+              [_vm._v("\n        Next\n      ")]
             )
           ]
         )
       ],
       2
-    )
+    ),
+    _vm._v(" "),
+    _c("div")
   ])
 }
 var staticRenderFns = [
@@ -43561,6 +43941,20 @@ var staticRenderFns = [
       "div",
       { staticClass: "bg-purple-900 text-purple-300 px-2 py-1" },
       [_c("p", { staticClass: "text-xs" }, [_vm._v("CATEGORY 6 OF 6")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "flex justify-between flex-wrap text-gray-500 text-sm" },
+      [
+        _c("p", [_vm._v("0 = Not likely at all")]),
+        _vm._v(" "),
+        _c("p", [_vm._v("10 = Extremely likely")])
+      ]
     )
   }
 ]
@@ -43681,7 +44075,8 @@ var render = function() {
             value: _vm.showCategory["show6"],
             expression: "showCategory['show6']"
           }
-        ]
+        ],
+        attrs: { userData: _vm.userData }
       }),
       _vm._v(" "),
       _c(

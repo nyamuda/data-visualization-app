@@ -38,7 +38,10 @@
             :userData="userData"
             v-show="showCategory['show5']"
         ></category5>
-        <category6 v-show="showCategory['show6']"></category6>
+        <category6
+            :userData="userData"
+            v-show="showCategory['show6']"
+        ></category6>
         <button
             @click.prevent="storeAllAnswers"
             class="bg-purple-500 rounded-sm px-3 py-1 hover:bg-purple-800 ml-4 transform duration-500 ease-in-out focus:outline-none"
@@ -47,6 +50,7 @@
         </button>
     </div>
 </template>
+
 <script>
 import Category1 from "./Category1";
 import Category2 from "./Category2";
@@ -70,7 +74,9 @@ export default {
         logoutUser() {
             axios.post("/api/logout").then(res => {
                 console.log(res);
-                this.$router.push({ name: "login" });
+                this.$router.push({
+                    name: "login"
+                });
             });
         },
         //store the answers to the database
@@ -100,6 +106,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+
 #survey-container {
     font-family: "Noto Sans JP", sans-serif;
 }

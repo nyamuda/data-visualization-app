@@ -50,11 +50,11 @@ export default {
         return {
             questionInfo: {
                 cat_val: "",
-                question: ""
+                question: "",
             },
             allCategories: "",
             question_error: "",
-            cat_error: ""
+            cat_error: "",
         };
     },
     methods: {
@@ -62,32 +62,32 @@ export default {
         addQuestion() {
             axios
                 .post("/api/add_question", this.questionInfo)
-                .then(res => {
+                .then((res) => {
                     console.log(res);
                     // this.$router.push({ name: "dashboard" });
                     this.questionInfo.question = "";
                     this.question_error = "";
                     this.cat_error = "";
                 })
-                .catch(error => {
+                .catch((error) => {
                     // console.log(error.response.data.errors.question.shift());
 
                     this.question_error = error.response.data.errors.question.shift();
                     this.cat_error = error.response.data.errors.cat_val.shift();
                 });
-        }
+        },
     },
     computed: {
         //getting category names from the state
         myCategories() {
             return this.$store.state.b.all_categories;
-        }
+        },
     },
     created() {
         /*disptaching an action that will fetch
         all question category names from the database*/
         this.$store.dispatch("getCategoryNames");
         // this.$store.dispatch("addDefaultUser");
-    }
+    },
 };
 </script>

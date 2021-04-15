@@ -37,7 +37,6 @@ class SurveyQuestionsController extends Controller
         ];
         return $all_questions;
     }
-
     //save a question to the database
     public function store(Request $request)
     {
@@ -48,12 +47,13 @@ class SurveyQuestionsController extends Controller
             'question.unique' => 'The question is already added. Please enter a different question.',
             'cat_val.required' => 'Category is required. Please select the category.'
         ]);
-
         Question::create([
             'question' => $request->question,
             'category_id' => $request->cat_val
         ]);
     }
+
+
     public function add(Request $request)
     {
         $answers = $request->all();
