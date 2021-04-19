@@ -39,5 +39,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/questions', [SurveyQuestionsController::class, 'index']);
 Route::post('/add_question', [SurveyQuestionsController::class, 'store']);
 Route::get('/get_questions', [SurveyQuestionsController::class, 'show']);
+Route::get('/unanswered_categories', [SurveyQuestionsController::class, 'userCategories']);
 Route::get('/get_categories', [CategoryController::class, 'show']);
 Route::post('/add', [SurveyQuestionsController::class, 'add']);

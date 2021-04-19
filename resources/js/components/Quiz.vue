@@ -92,77 +92,77 @@
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-700 focus:outline-none appearance-none bg-red-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-700 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-700 focus:outline-none appearance-none bg-red-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-700 transition duration-500 ease-in-out"
                                 type="button"
                                 value="0"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-600 focus:outline-none appearance-none bg-red-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-600 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-600 focus:outline-none appearance-none bg-red-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-600 transition duration-500 ease-in-out"
                                 type="button"
                                 value="1"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-500 focus:outline-none appearance-none bg-red-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-500 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-500 focus:outline-none appearance-none bg-red-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-500 transition duration-500 ease-in-out"
                                 type="button"
                                 value="2"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-700 focus:outline-none appearance-none bg-yellow-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-700 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-700 focus:outline-none appearance-none bg-yellow-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-700 transition duration-500 ease-in-out"
                                 type="button"
                                 value="3"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-600 focus:outline-none appearance-none bg-yellow-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-600 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-600 focus:outline-none appearance-none bg-yellow-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-600 transition duration-500 ease-in-out"
                                 type="button"
                                 value="4"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-500 focus:outline-none appearance-none bg-yellow-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-500 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-500 focus:outline-none appearance-none bg-yellow-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-500 transition duration-500 ease-in-out"
                                 type="button"
                                 value="5"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-400 focus:outline-none appearance-none bg-yellow-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-400 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-400 focus:outline-none appearance-none bg-yellow-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-400 transition duration-500 ease-in-out"
                                 type="button"
                                 value="6"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-400 focus:outline-none appearance-none bg-green-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-400 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-400 focus:outline-none appearance-none bg-green-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-400 transition duration-500 ease-in-out"
                                 type="button"
                                 value="7"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-500 focus:outline-none appearance-none bg-green-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-500 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-500 focus:outline-none appearance-none bg-green-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-500 transition duration-500 ease-in-out"
                                 type="button"
                                 value="8"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-600 focus:outline-none appearance-none bg-green-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-600 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-600 focus:outline-none appearance-none bg-green-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-600 transition duration-500 ease-in-out"
                                 type="button"
                                 value="9"
                             />
                             <input
                                 @click="buttonClicked"
                                 :name="'quiz_' + index"
-                                class="cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-700 focus:outline-none appearance-none bg-green-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-700 transition duration-500 ease-in-out"
+                                class="cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-700 focus:outline-none appearance-none bg-green-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-700 transition duration-500 ease-in-out"
                                 type="button"
                                 value="10"
                             />
@@ -208,10 +208,10 @@
                             :for="'very_unhappy_' + question.question_id"
                         >
                             <input
-                                @click="radioClicked6"
+                                @click="radioClicked"
                                 required="required"
                                 value="20"
-                                class="cat6_input w-4 h-4"
+                                class="cat_input w-4 h-4"
                                 type="radio"
                                 :name="'quiz_' + index"
                                 :id="'very_unhappy_' + question.question_id"
@@ -222,9 +222,9 @@
                             :for="'unhappy_' + question.question_id"
                         >
                             <input
-                                @click="radioClicked6"
+                                @click="radioClicked"
                                 value="40"
-                                class="cat6_input w-4 h-4"
+                                class="cat_input w-4 h-4"
                                 type="radio"
                                 :name="'quiz_' + index"
                                 :id="'unhappy_' + question.question_id"
@@ -235,9 +235,9 @@
                             :for="'neutral_' + question.question_id"
                         >
                             <input
-                                @click="radioClicked6"
+                                @click="radioClicked"
                                 value="60"
-                                class="cat6_input w-4 h-4"
+                                class="cat_input w-4 h-4"
                                 type="radio"
                                 :name="'quiz_' + index"
                                 :id="'neutral_' + question.question_id"
@@ -248,9 +248,9 @@
                             :for="'happy_' + question.question_id"
                         >
                             <input
-                                @click="radioClicked6"
+                                @click="radioClicked"
                                 value="80"
-                                class="cat6_input w-4 h-4"
+                                class="cat_input w-4 h-4"
                                 type="radio"
                                 :name="'quiz_' + index"
                                 :id="'happy_' + question.question_id"
@@ -261,9 +261,9 @@
                             :for="'very_happy_' + question.question_id"
                         >
                             <input
-                                @click="radioClicked6"
+                                @click="radioClicked"
                                 value="100"
-                                class="cat6_input w-4 h-4"
+                                class="cat_input w-4 h-4"
                                 type="radio"
                                 :name="'quiz_' + index"
                                 :id="'very_happy_' + question.question_id"
@@ -283,26 +283,28 @@
                 class="flex justify-center bg-purple-500 text-gray-100 items-center h-10"
             >
                 <button
-                    @click="prev"
-                    class="bg-red-500 px-3 py-1 hover:bg-red-800 mr-4 transform duration-500 ease-in-out focus:outline-none rounded-sm"
-                >
-                    Prev
-                </button>
-                <button
-                    @click="moveNext"
+                    @click="submitQuiz"
                     class="bg-red-500 rounded-sm px-3 py-1 hover:bg-red-800 ml-4 transform duration-500 ease-in-out focus:outline-none"
                 >
                     Submit
                 </button>
             </div>
         </div>
+        <Modal
+            :toggleModal="toggleModal"
+            :showModal="showModal"
+            :storeAllAnswers="storeAllAnswers"
+        ></Modal>
     </div>
 </template>
 
 <script>
 import * as myMethods from "./categoriesCode";
+import Modal from "./Modal";
 export default {
-    props: ["userData", "toggleModal"],
+    components: {
+        Modal
+    },
     data() {
         return {
             val: "",
@@ -310,7 +312,8 @@ export default {
             dat: {},
             answerObject: {},
             countErrors: 0,
-            scaleAnswers: {}
+            scaleAnswers: {},
+            showModal: false
         };
     },
     methods: {
@@ -329,9 +332,9 @@ export default {
             event.target.classList.add("ring-offset-2");
             event.target.classList.add("ring-gray-900");
             //getting all the inputs
-            let all_inputs = [...document.getElementsByClassName("cat6_input")];
+            let all_inputs = [...document.getElementsByClassName("cat_input")];
 
-            /*getting only those inputs with the same name as the clicked input (meaning they belong to the same question) 
+            /*getting only those inputs with the same name as the clicked input (meaning they belong to the same question)
       but not including the clicked input.*/
             let all_buttons = all_inputs.filter(val => {
                 return (
@@ -349,35 +352,33 @@ export default {
                 val.classList.remove("ring-gray-900");
             });
 
-            //getting the value of the clicked buttoon
+            /*getting the value of the clicked buttoon using the getAnswers Method.*/
             myMethods.getAnswers(event, this.userData, this.categoryAnswers);
-            console.log(this.categoryAnswers);
         },
         //get the answers when a radio button is clicked
-        radioClicked6(event) {
+        radioClicked(event) {
             //calling the 'getAnswers' function for the categoriesCode module.
             myMethods.getAnswers(event, this.userData, this.categoryAnswers);
         },
-        /* The following function checks for the number of questions that
+        /* The following function checks for the total number of questions that
     are either multiple choice or scale. Its only these types of questions that
-    we can check using the myMethods.next() method whether a user
-    has answered them or not.*/
+    we can check using the next() method whether a user has answered them or not.*/
         numberChecked() {
-            //looping the category6_data
-            return this.category6_data.filter(val => {
+            //looping the category_data
+            return this.category_data.filter(val => {
                 return val.type == "Multiple Choice" || val.type == "Scale";
             });
         },
         prev() {
             this.$store.commit("prevSixthCategory");
         },
-        moveNext() {
+        submitQuiz() {
             /*calling the 'next' function from the categoriesCode module.
       For a full understanding of the 'next' function and how it works,
       please check the categoriesCode.js module
       */
             myMethods.next(
-                "cat6_input", //all radio button class names
+                "cat_input", //all radio button class names
                 this.numberChecked(), //the total number of questions tha can be checked
                 "quiz", //the radio buttons category name
                 this.countErrors, //radio buttons not checked
@@ -387,7 +388,8 @@ export default {
 
         runOpen() {
             /* Running the checkOpen function which check if all open ended questions have been answered.
-            Check the categoriesCode.js module for more about the question*/
+            For a full understanding of the 'next' function and how it works, please check the categoriesCode.js module.*/
+            console.log("hey you");
             myMethods.checkOpen(
                 this.countErrors,
                 "open-ended",
@@ -402,14 +404,28 @@ export default {
             //this will add the answers to the state by dispatching an action
             this.$store.dispatch("getAnswers", this.categoryAnswers);
             this.toggleModal();
+        },
+        toggleModal() {
+            this.showModal = !this.showModal;
+        },
+        //store the answers to the database
+        storeAllAnswers() {
+            this.$store.dispatch("saveAnswers");
+            this.$router.push({ name: "dashboard" });
         }
     },
     computed: {
         category_data() {
-            //getting the category1 questions from the state  - module C.
-            /*the all_question object's values are arrays with elements which are objects.*/
-            return this.$store.state.c.quiz;
+            //getting the category questions from the state  - module C.
+            let category_id = this.$route.params.id;
+            return this.$store.getters.surveyQuestions(category_id);
+        },
+        userData() {
+            return this.$store.state.c.loggedInUserInfo;
         }
+    },
+    created() {
+        this.$store.dispatch("getSurveyQuestions");
     }
 };
 </script>

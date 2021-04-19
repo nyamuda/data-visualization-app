@@ -3554,7 +3554,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   data: function data() {
     return {
       val: "",
-      cat6Answers: {},
+      categoryAnswers: {},
       dat: {},
       answerObject: {},
       countErrors: 0,
@@ -3595,13 +3595,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         val.classList.remove("ring-gray-900");
       }); //getting the value of the clicked buttoon
 
-      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.cat6Answers);
-      console.log(this.cat6Answers);
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.categoryAnswers);
+      console.log(this.categoryAnswers);
     },
     //get the answers when a radio button is clicked
     radioClicked6: function radioClicked6(event) {
       //calling the 'getAnswers' function for the categoriesCode module.
-      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.cat6Answers);
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.categoryAnswers);
     },
 
     /* The following function checks for the number of questions that
@@ -3624,30 +3624,30 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       */
       _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.next("cat6_input", //all radio button class names
       this.numberChecked(), //the total number of questions tha can be checked
-      "general", //the radio buttons category name
+      "quiz", //the radio buttons category name
       this.countErrors, //radio buttons not checked
       this.runOpen //function that will run if there are no errors
       );
     },
     runOpen: function runOpen() {
-      /* Running the checkOpen function which check if all open ended questions have been answered.*/
-      console.log("hey you");
-      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.checkOpen(this.countErrors, "open-ended", this.addAnswersToState, this.userData, this.cat6Answers);
+      /* Running the checkOpen function which check if all open ended questions have been answered.
+      Check the categoriesCode.js module for more about the question*/
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.checkOpen(this.countErrors, "open-ended", this.addAnswersToState, this.userData, this.categoryAnswers);
     },
 
     /*The following function is the one that will run, if all the questions have been answered */
     addAnswersToState: function addAnswersToState() {
       //this will add the answers to the state by dispatching an action
-      this.$store.dispatch("getAnswers", this.cat6Answers);
+      this.$store.dispatch("getAnswers", this.categoryAnswers);
       this.toggleModal();
     }
   },
   computed: {
-    category6_data: function category6_data() {
+    category_data: function category_data() {
       //getting the category1 questions from the state  - module C.
 
       /*the all_question object's values are arrays with elements which are objects.*/
-      return this.$store.state.c.all_questions.category6_questions;
+      return this.$store.state.c.quiz;
     }
   }
 });
@@ -3665,18 +3665,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modal */ "./resources/js/components/Modal.vue");
+/* harmony import */ var _QuizList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QuizList */ "./resources/js/components/QuizList.vue");
 /* harmony import */ var _Category1__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Category1 */ "./resources/js/components/Category1.vue");
 /* harmony import */ var _Category2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Category2 */ "./resources/js/components/Category2.vue");
 /* harmony import */ var _Category3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Category3 */ "./resources/js/components/Category3.vue");
 /* harmony import */ var _Category4__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Category4 */ "./resources/js/components/Category4.vue");
 /* harmony import */ var _Category5__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Category5 */ "./resources/js/components/Category5.vue");
 /* harmony import */ var _Category6__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Category6 */ "./resources/js/components/Category6.vue");
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3740,23 +3735,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
+    "quiz-list": _QuizList__WEBPACK_IMPORTED_MODULE_0__.default,
     category1: _Category1__WEBPACK_IMPORTED_MODULE_1__.default,
     category2: _Category2__WEBPACK_IMPORTED_MODULE_2__.default,
     category3: _Category3__WEBPACK_IMPORTED_MODULE_3__.default,
     category4: _Category4__WEBPACK_IMPORTED_MODULE_4__.default,
     category5: _Category5__WEBPACK_IMPORTED_MODULE_5__.default,
-    category6: _Category6__WEBPACK_IMPORTED_MODULE_6__.default,
-    Modal: _Modal__WEBPACK_IMPORTED_MODULE_0__.default
+    category6: _Category6__WEBPACK_IMPORTED_MODULE_6__.default
   },
   data: function data() {
-    return {
-      showModal: false
-    };
+    return {};
   },
   methods: {
-    toggleModal: function toggleModal() {
-      this.showModal = !this.showModal;
-    },
     logoutUser: function logoutUser() {
       var _this = this;
 
@@ -3766,13 +3756,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.$router.push({
           name: "login"
         });
-      });
-    },
-    //store the answers to the database
-    storeAllAnswers: function storeAllAnswers() {
-      this.$store.dispatch("saveAnswers");
-      this.$router.push({
-        name: "thank"
       });
     }
   },
@@ -3953,6 +3936,508 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
+/* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modal */ "./resources/js/components/Modal.vue");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Modal: _Modal__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  data: function data() {
+    return {
+      val: "",
+      categoryAnswers: {},
+      dat: {},
+      answerObject: {},
+      countErrors: 0,
+      scaleAnswers: {},
+      showModal: false
+    };
+  },
+  methods: {
+    getScaleAnswers: function getScaleAnswers() {},
+
+    /*This function determines what happens when the user clicks one of the input buttons.
+    It handles questions about 'Scale' meaning there will be ten buttons, each with its only
+    value. The purpose is to show visually the clicked button, add a checked attribute to it and
+    disable all other buttons at the same time in case the user has already clicked another
+    button and is now clicking a different one. It also gets the value of the button clicked.
+    */
+    buttonClicked: function buttonClicked(event) {
+      event.target.checked = "checked";
+      event.target.classList.add("ring-2");
+      event.target.classList.add("ring-opacity-50");
+      event.target.classList.add("ring-offset-2");
+      event.target.classList.add("ring-gray-900"); //getting all the inputs
+
+      var all_inputs = _toConsumableArray(document.getElementsByClassName("cat_input"));
+      /*getting only those inputs with the same name as the clicked input (meaning they belong to the same question)
+      but not including the clicked input.*/
+
+
+      var all_buttons = all_inputs.filter(function (val) {
+        return val.name == event.target.name && val.value != event.target.value;
+      }); //And then disabling the checked attribute and other classes for those inputs.
+      // console.log(all_buttons)
+
+      all_buttons.forEach(function (val) {
+        val.checked = false;
+        val.classList.remove("ring-2");
+        val.classList.remove("ring-opacity-50");
+        val.classList.remove("ring-offset-2");
+        val.classList.remove("ring-gray-900");
+      });
+      /*getting the value of the clicked buttoon using the getAnswers Method.*/
+
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.categoryAnswers);
+    },
+    //get the answers when a radio button is clicked
+    radioClicked: function radioClicked(event) {
+      //calling the 'getAnswers' function for the categoriesCode module.
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.getAnswers(event, this.userData, this.categoryAnswers);
+    },
+
+    /* The following function checks for the total number of questions that
+    are either multiple choice or scale. Its only these types of questions that
+    we can check using the next() method whether a user has answered them or not.*/
+    numberChecked: function numberChecked() {
+      //looping the category_data
+      return this.category_data.filter(function (val) {
+        return val.type == "Multiple Choice" || val.type == "Scale";
+      });
+    },
+    prev: function prev() {
+      this.$store.commit("prevSixthCategory");
+    },
+    submitQuiz: function submitQuiz() {
+      /*calling the 'next' function from the categoriesCode module.
+      For a full understanding of the 'next' function and how it works,
+      please check the categoriesCode.js module
+      */
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.next("cat_input", //all radio button class names
+      this.numberChecked(), //the total number of questions tha can be checked
+      "quiz", //the radio buttons category name
+      this.countErrors, //radio buttons not checked
+      this.runOpen //function that will run if there are no errors
+      );
+    },
+    runOpen: function runOpen() {
+      /* Running the checkOpen function which check if all open ended questions have been answered.
+      For a full understanding of the 'next' function and how it works, please check the categoriesCode.js module.*/
+      console.log("hey you");
+      _categoriesCode__WEBPACK_IMPORTED_MODULE_0__.checkOpen(this.countErrors, "open-ended", this.addAnswersToState, this.userData, this.categoryAnswers);
+    },
+
+    /*The following function is the one that will run, if all the questions have been answered */
+    addAnswersToState: function addAnswersToState() {
+      //this will add the answers to the state by dispatching an action
+      this.$store.dispatch("getAnswers", this.categoryAnswers);
+      this.toggleModal();
+    },
+    toggleModal: function toggleModal() {
+      this.showModal = !this.showModal;
+    },
+    //store the answers to the database
+    storeAllAnswers: function storeAllAnswers() {
+      this.$store.dispatch("saveAnswers");
+      this.$router.push({
+        name: "dashboard"
+      });
+    }
+  },
+  computed: {
+    category_data: function category_data() {
+      //getting the category questions from the state  - module C.
+      var category_id = this.$route.params.id;
+      return this.$store.getters.surveyQuestions(category_id);
+    },
+    userData: function userData() {
+      return this.$store.state.c.loggedInUserInfo;
+    }
+  },
+  created: function created() {
+    this.$store.dispatch("getSurveyQuestions");
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuizList.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuizList.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {};
+  },
+  methods: {
+    goToQuiz: function goToQuiz(event) {
+      var cat_id = Number(event.target.id);
+      this.$router.push("quiz/" + cat_id);
+    }
+  },
+  computed: {
+    pendingQuiz: function pendingQuiz() {
+      return this.$store.state.c.all_categories;
+    },
+    quizQuestions: function quizQuestions() {
+      return this.$store.state.c.all_questions;
+    }
+  },
+  created: function created() {
+    this.$store.dispatch("getCategories");
+  }
 });
 
 /***/ }),
@@ -4243,8 +4728,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-/*The purpose of the following code is to check if the radio buttons have been
-    checked for each group before the user can go to the next category of the questions*/
+/*The purpose of the following code is to check if each radio button has been
+    checked for each question before the user can submit the quiz*/
 function next(class_name, category_questions, category_name, errors, callback) {
   //first get all the radio buttons
   var allInputs = _toConsumableArray(document.getElementsByClassName(class_name)); //getting the total number of questions
@@ -4265,8 +4750,8 @@ function next(class_name, category_questions, category_name, errors, callback) {
   var _loop = function _loop(i) {
     /*getting each group of the radio buttons. Each radio group has a name of 'category_name'_index.
     So for each index, we get a group of radio buttons. If for instance there are 5 questions 
-    and the category_name parameter is 'team', it means there are going to be 5 groups of 
-    radio buttons: team_0, team_1,...,team_4*/
+    and the category_name parameter is 'quiz', it means there are going to be 5 groups of 
+    radio buttons: quiz_0, quiz_1,...,quiz_4*/
     var groupName = allInputs.filter(function (val2) {
       //returning a specific group of radio buttons.
       //remember val2 is one specific radio button.
@@ -4296,7 +4781,7 @@ function next(class_name, category_questions, category_name, errors, callback) {
     _loop(i);
   }
   /*If all the radio buttons for each question have be checked - errors=0
-  Then  we move to the next category of questions.*/
+  Then  we run the following callback*/
 
 
   console.log(errors);
@@ -4305,7 +4790,8 @@ function next(class_name, category_questions, category_name, errors, callback) {
     callback();
   }
 }
-/* The following function is for getting the answers the user selects */
+/* The following function is for getting the answers the user selects. 
+This function is run every the user selects/clicks a specific answer */
 
 
 function getAnswers(par, userInfo, categoryAnswers) {
@@ -4337,47 +4823,51 @@ And if there are, we store the answers.*/
 
 
 function checkOpen(err, class_name, fn, userInfo, categoryAnswers) {
-  err = 0;
+  err = 0; //all open ended questions have the same class name
 
-  var open_questions = _toConsumableArray(document.getElementsByClassName(class_name)); //  console.log(open_questions[0]['value']);
-  //we check if there are any open ended questions.
+  var open_questions = _toConsumableArray(document.getElementsByClassName(class_name));
 
+  console.log(open_questions.length); //we check if there are any open ended questions.
 
   if (open_questions.length > 0) {
     //if there are, we loop through them
     for (var i = 0; i < open_questions.length; i++) {
-      //if the open ended question has no answer give - its empty
+      //if the open ended question has no answer given - its empty
       if (!!!open_questions[i]["value"]) {
         //then display the error
+
+        /*The id of the p tag in which display an error is the same as the id its of textarea.
+        So to select the p tag, we can use the name of its textarea */
         var showError = document.getElementById("".concat(open_questions[i]["name"]));
         showError.innerHTML = "*This field is required";
         err++;
-      } else {
-        //else remove the error message
-        var hideError = document.getElementById("".concat(open_questions[i]["name"]));
-        hideError.innerHTML = "";
-        /*Now for this particular question, since an answer was given, we store that answer.*/
-        //getting the id value of each question and its selected answer.
-        //so first getting the id value of the question.
+      } //else if an answer was given
+      else {
+          //else remove the error message
+          var hideError = document.getElementById("".concat(open_questions[i]["name"]));
+          hideError.innerHTML = "";
+          /*Now for this particular question, since an answer was given, we store that answer.*/
+          //getting the id value of each question and its selected answer.
+          //so first getting the id value of the question.
 
-        var question_id = Number(open_questions[i].parentElement.firstElementChild.value); //then the selected answer to the question, which will be a string.
+          var question_id = Number(open_questions[i].parentElement.firstElementChild.value); //then the selected answer to the question, which will be a string.
 
-        var given_answer = open_questions[i].value.trim(); //the question category_id
+          var given_answer = open_questions[i].value.trim(); //the question category_id
 
-        var category_id = Number(open_questions[i].parentElement.children[1].value); //the name of the text area
+          var category_id = Number(open_questions[i].parentElement.children[1].value); //the name of the text area
 
-        var question_name = open_questions[i].name;
-        var objAnswer = {};
-        objAnswer["question_id"] = question_id;
-        objAnswer["category_id"] = category_id;
-        objAnswer["question_answer"] = given_answer; //getting the id of the user
+          var question_name = open_questions[i].name;
+          var objAnswer = {};
+          objAnswer["question_id"] = question_id;
+          objAnswer["category_id"] = category_id;
+          objAnswer["question_answer"] = given_answer; //getting the id of the user
 
-        objAnswer["user_id"] = userInfo.id;
-        /*storing the objAnswer to the component's object 'categoryAnswers' with the text area
-        name (question_name) as the key */
+          objAnswer["user_id"] = userInfo.id;
+          /*storing the objAnswer to the component's object 'categoryAnswers' with the text area
+          name (question_name) as the key */
 
-        categoryAnswers[question_name] = objAnswer;
-      }
+          categoryAnswers[question_name] = objAnswer;
+        }
     } // if there are no errors - err=0
 
 
@@ -4385,7 +4875,10 @@ function checkOpen(err, class_name, fn, userInfo, categoryAnswers) {
       //run  a function fn()
       fn();
     }
-  }
+  } //if there are no open endede questions
+  else {
+      fn();
+    }
 }
 
 
@@ -4580,13 +5073,29 @@ __webpack_require__.r(__webpack_exports__);
 var moduleC = {
   state: {
     loggedInUserInfo: "",
-    all_questions: ""
+    all_questions: [],
+    all_categories: [],
+    quiz: ""
+  },
+  getters: {
+    //getting questions with a specific given category id
+    surveyQuestions: function surveyQuestions(state) {
+      return function (id) {
+        var questions = state.all_questions.filter(function (val) {
+          return val.category_id == id;
+        });
+        return questions;
+      };
+    }
   },
   mutations: {
     //adding the questions to the state
     loadQuestions: function loadQuestions(state, paylaod) {
-      state.all_questions = paylaod;
-      console.log(state.all_questions);
+      state.all_questions = paylaod; // console.log(state.all_questions);
+    },
+    //laod category data
+    loadCategories: function loadCategories(state, payload) {
+      state.all_categories = payload; //console.log(state.all_categories);
     },
     //laod user info
     loadUserInfo: function loadUserInfo(state, payload) {
@@ -4599,15 +5108,20 @@ var moduleC = {
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/user").then(function (res) {
         context.commit("loadUserInfo", res.data); //if the user is successfully logged in
         //getting all the questions that haven't been answered by the user.
-
-        context.dispatch("getSurveyQuestions");
-        console.log(context.state.all_questions);
+        // context.dispatch("getSurveyQuestions");
+        //  console.log(context.state.all_questions);
       });
     },
     //fetching all the survey questions
     getSurveyQuestions: function getSurveyQuestions(context) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_questions").then(function (res) {
         context.commit("loadQuestions", res.data);
+      });
+    },
+    //getting quiz categories names for the questions the user hasn't answered
+    getCategories: function getCategories(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/unanswered_categories").then(function (res) {
+        context.commit("loadCategories", res.data);
       });
     }
   }
@@ -4704,16 +5218,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
-/* harmony import */ var _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/AdminPage.vue */ "./resources/js/components/AdminPage.vue");
-/* harmony import */ var _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminLogin.vue */ "./resources/js/components/AdminLogin.vue");
-/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
-/* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_Thank_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Thank.vue */ "./resources/js/components/Thank.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
+/* harmony import */ var _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminPage.vue */ "./resources/js/components/AdminPage.vue");
+/* harmony import */ var _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AdminLogin.vue */ "./resources/js/components/AdminLogin.vue");
+/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
+/* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_Thank_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Thank.vue */ "./resources/js/components/Thank.vue");
+/* harmony import */ var _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Quiz.vue */ "./resources/js/components/Quiz.vue");
 
 
 
@@ -4723,16 +5238,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_7__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_8__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__.default({
+
+vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_9__.default);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__.default({
   mode: "history",
   linkExactActiveClass: "active",
   routes: [{
     path: "/dashboard",
     name: "dashboard",
-    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     beforeEnter: function beforeEnter(to, from, next) {
-      axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/authenticated").then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_6___default().get("/api/authenticated").then(function () {
         return next();
       })["catch"](function () {
         return next({
@@ -4743,9 +5259,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__.default({
   }, {
     path: "/admin",
     name: "admin",
-    component: _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    component: _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_2__.default,
     beforeEnter: function beforeEnter(to, from, next) {
-      axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/authenticated").then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_6___default().get("/api/authenticated").then(function () {
         return next();
       })["catch"](function () {
         return next({
@@ -4756,19 +5272,23 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__.default({
   }, {
     path: "/login",
     name: "login",
-    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__.default
   }, {
     path: "/admin_login",
     name: "admin_login",
-    component: _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__.default
+    component: _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__.default
   }, {
     path: "/register",
     name: "register",
-    component: _components_Register_vue__WEBPACK_IMPORTED_MODULE_4__.default
+    component: _components_Register_vue__WEBPACK_IMPORTED_MODULE_5__.default
   }, {
     path: "/thank_you",
     name: "thank",
-    component: _components_Thank_vue__WEBPACK_IMPORTED_MODULE_6__.default
+    component: _components_Thank_vue__WEBPACK_IMPORTED_MODULE_7__.default
+  }, {
+    path: "/quiz/:id",
+    name: "quiz",
+    component: _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_8__.default
   }]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -9379,6 +9899,30 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n#survey-container[data-v-7b804a99] {\r\n    font-family: \"Noto Sans JP\", sans-serif;\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.my-scale[data-v-654966c0] {\r\n    width: 90%;\n}\n.question_container[data-v-654966c0] {\r\n    width: 90%;\n}\n@media (min-width: 640px) {\n.my-scale[data-v-654966c0] {\r\n        width: 80%;\n}\n}\n@media (min-width: 768px) {\n.question_container[data-v-654966c0] {\r\n        width: 50rem;\n}\n.my-scale[data-v-654966c0] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40626,6 +41170,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz_vue_vue_type_style_index_0_id_654966c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz_vue_vue_type_style_index_0_id_654966c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz_vue_vue_type_style_index_0_id_654966c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -41426,6 +42000,86 @@ component.options.__file = "resources/js/components/Modal.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Quiz.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/Quiz.vue ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Quiz_vue_vue_type_template_id_654966c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Quiz.vue?vue&type=template&id=654966c0&scoped=true& */ "./resources/js/components/Quiz.vue?vue&type=template&id=654966c0&scoped=true&");
+/* harmony import */ var _Quiz_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Quiz.vue?vue&type=script&lang=js& */ "./resources/js/components/Quiz.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Quiz_vue_vue_type_style_index_0_id_654966c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css& */ "./resources/js/components/Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _Quiz_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Quiz_vue_vue_type_template_id_654966c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Quiz_vue_vue_type_template_id_654966c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "654966c0",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Quiz.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/QuizList.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/QuizList.vue ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _QuizList_vue_vue_type_template_id_8a2aaf04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QuizList.vue?vue&type=template&id=8a2aaf04& */ "./resources/js/components/QuizList.vue?vue&type=template&id=8a2aaf04&");
+/* harmony import */ var _QuizList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QuizList.vue?vue&type=script&lang=js& */ "./resources/js/components/QuizList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _QuizList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _QuizList_vue_vue_type_template_id_8a2aaf04___WEBPACK_IMPORTED_MODULE_0__.render,
+  _QuizList_vue_vue_type_template_id_8a2aaf04___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/QuizList.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Register.vue":
 /*!**********************************************!*\
   !*** ./resources/js/components/Register.vue ***!
@@ -41712,6 +42366,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Quiz.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Quiz.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/QuizList.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/QuizList.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./QuizList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuizList.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Register.vue?vue&type=script&lang=js&":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/Register.vue?vue&type=script&lang=js& ***!
@@ -41831,6 +42517,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz_vue_vue_type_style_index_0_id_654966c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=style&index=0&id=654966c0&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -42052,6 +42751,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_template_id_53ab54d2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_template_id_53ab54d2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Modal.vue?vue&type=template&id=53ab54d2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Modal.vue?vue&type=template&id=53ab54d2&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz.vue?vue&type=template&id=654966c0&scoped=true&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/Quiz.vue?vue&type=template&id=654966c0&scoped=true& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz_vue_vue_type_template_id_654966c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz_vue_vue_type_template_id_654966c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz_vue_vue_type_template_id_654966c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz.vue?vue&type=template&id=654966c0&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=template&id=654966c0&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/QuizList.vue?vue&type=template&id=8a2aaf04&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/QuizList.vue?vue&type=template&id=8a2aaf04& ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizList_vue_vue_type_template_id_8a2aaf04___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizList_vue_vue_type_template_id_8a2aaf04___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizList_vue_vue_type_template_id_8a2aaf04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./QuizList.vue?vue&type=template&id=8a2aaf04& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuizList.vue?vue&type=template&id=8a2aaf04&");
 
 
 /***/ }),
@@ -44065,7 +44798,7 @@ var render = function() {
         _vm._v(" "),
         _vm._m(1),
         _vm._v(" "),
-        _vm._l(_vm.category6_data, function(question, index) {
+        _vm._l(_vm.category_data, function(question, index) {
           return _c(
             "div",
             {
@@ -44103,7 +44836,7 @@ var render = function() {
                           attrs: {
                             required: "",
                             id: "open_" + question.question_id,
-                            name: "general_" + question.question_id,
+                            name: "quiz_" + question.question_id,
                             rows: "4",
                             cols: "50"
                           }
@@ -44113,7 +44846,7 @@ var render = function() {
                           _c("p", {
                             staticClass:
                               "text-red-600 text-xs text-center mt-4",
-                            attrs: { id: "general_" + question.question_id }
+                            attrs: { id: "quiz_" + question.question_id }
                           })
                         ])
                       ]
@@ -44163,7 +44896,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-700 focus:outline-none appearance-none bg-red-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-700 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "0"
                               },
@@ -44174,7 +44907,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-600 focus:outline-none appearance-none bg-red-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-600 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "1"
                               },
@@ -44185,7 +44918,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-500 focus:outline-none appearance-none bg-red-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-500 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "2"
                               },
@@ -44196,7 +44929,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-700 focus:outline-none appearance-none bg-yellow-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-700 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "3"
                               },
@@ -44207,7 +44940,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-600 focus:outline-none appearance-none bg-yellow-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-600 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "4"
                               },
@@ -44218,7 +44951,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-500 focus:outline-none appearance-none bg-yellow-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-500 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "5"
                               },
@@ -44229,7 +44962,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-400 focus:outline-none appearance-none bg-yellow-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-400 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "6"
                               },
@@ -44240,7 +44973,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-400 focus:outline-none appearance-none bg-green-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-400 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "7"
                               },
@@ -44251,7 +44984,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-500 focus:outline-none appearance-none bg-green-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-500 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "8"
                               },
@@ -44262,7 +44995,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-600 focus:outline-none appearance-none bg-green-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-600 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "9"
                               },
@@ -44273,7 +45006,7 @@ var render = function() {
                               staticClass:
                                 "cat6_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-700 focus:outline-none appearance-none bg-green-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-700 transition duration-500 ease-in-out",
                               attrs: {
-                                name: "general_" + index,
+                                name: "quiz_" + index,
                                 type: "button",
                                 value: "10"
                               },
@@ -44286,7 +45019,7 @@ var render = function() {
                       _c("div", [
                         _c("p", {
                           staticClass: "text-red-600 text-xs text-center",
-                          attrs: { id: "general_" + index }
+                          attrs: { id: "quiz_" + index }
                         })
                       ])
                     ]
@@ -44336,7 +45069,7 @@ var render = function() {
                                   required: "required",
                                   value: "20",
                                   type: "radio",
-                                  name: "general_" + index,
+                                  name: "quiz_" + index,
                                   id: "very_unhappy_" + question.question_id
                                 },
                                 on: { click: _vm.radioClicked6 }
@@ -44360,7 +45093,7 @@ var render = function() {
                                 attrs: {
                                   value: "40",
                                   type: "radio",
-                                  name: "general_" + index,
+                                  name: "quiz_" + index,
                                   id: "unhappy_" + question.question_id
                                 },
                                 on: { click: _vm.radioClicked6 }
@@ -44384,7 +45117,7 @@ var render = function() {
                                 attrs: {
                                   value: "60",
                                   type: "radio",
-                                  name: "general_" + index,
+                                  name: "quiz_" + index,
                                   id: "neutral_" + question.question_id
                                 },
                                 on: { click: _vm.radioClicked6 }
@@ -44408,7 +45141,7 @@ var render = function() {
                                 attrs: {
                                   value: "80",
                                   type: "radio",
-                                  name: "general_" + index,
+                                  name: "quiz_" + index,
                                   id: "happy_" + question.question_id
                                 },
                                 on: { click: _vm.radioClicked6 }
@@ -44434,7 +45167,7 @@ var render = function() {
                                 attrs: {
                                   value: "100",
                                   type: "radio",
-                                  name: "general_" + index,
+                                  name: "quiz_" + index,
                                   id: "very_happy_" + question.question_id
                                 },
                                 on: { click: _vm.radioClicked6 }
@@ -44451,7 +45184,7 @@ var render = function() {
                       _c("div", [
                         _c("p", {
                           staticClass: "text-red-600 text-xs text-center",
-                          attrs: { id: "general_" + index }
+                          attrs: { id: "quiz_" + index }
                         })
                       ])
                     ]
@@ -44500,7 +45233,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bg-purple-500 p-2 text-gray-100" }, [
-      _c("p", [_vm._v("General")])
+      _c("p", [_vm._v("Quiz")])
     ])
   },
   function() {
@@ -44651,16 +45384,10 @@ var render = function() {
                 expression: "showCategory['show6']"
               }
             ],
-            attrs: { toggleModal: _vm.toggleModal, userData: _vm.userData }
+            attrs: { userData: _vm.userData }
           }),
           _vm._v(" "),
-          _c("Modal", {
-            attrs: {
-              toggleModal: _vm.toggleModal,
-              showModal: _vm.showModal,
-              storeAllAnswers: _vm.storeAllAnswers
-            }
-          })
+          _c("quiz-list")
         ],
         1
       ),
@@ -44892,7 +45619,7 @@ var render = function() {
                       "button",
                       {
                         staticClass:
-                          "transition duration-500 ease-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:ml-3 sm:w-24 sm:text-sm sm:p-2",
+                          "transition duration-500 ease-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:ml-3 sm:w-24 sm:text-sm sm:py-0",
                         attrs: { type: "button" },
                         on: { click: _vm.storeAllAnswers }
                       },
@@ -44960,6 +45687,555 @@ var staticRenderFns = [
     )
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=template&id=654966c0&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Quiz.vue?vue&type=template&id=654966c0&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "mt-8 mb-12" },
+    [
+      _c(
+        "div",
+        { staticClass: "question_container mt-8 m-auto shadow-xl" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._l(_vm.category_data, function(question, index) {
+            return _c(
+              "div",
+              {
+                key: question.id,
+                staticClass: "flex justify-around flex-col bg-gray-100 px-4"
+              },
+              [
+                _c("hr", { staticClass: "border-gray-300" }),
+                _vm._v(" "),
+                question.type == "Open Ended"
+                  ? _c("div", { staticClass: "mb-4" }, [
+                      _c("div", { staticClass: "p-2 w-auto flex flex-row" }, [
+                        _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                        _vm._v(" "),
+                        _c("ul", [
+                          _c("li", [_vm._v(_vm._s(question.question))])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "flex flex-col items-start ml-4" },
+                        [
+                          _c("input", {
+                            attrs: { type: "text", hidden: "" },
+                            domProps: { value: question.question_id }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "text", hidden: "" },
+                            domProps: { value: question.category_id }
+                          }),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            staticClass:
+                              "open-ended w-5/6 p-2 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-100",
+                            attrs: {
+                              required: "",
+                              id: "open_" + question.question_id,
+                              name: "quiz_" + question.question_id,
+                              rows: "4",
+                              cols: "50"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", [
+                            _c("p", {
+                              staticClass:
+                                "text-red-600 text-xs text-center mt-4",
+                              attrs: { id: "quiz_" + question.question_id }
+                            })
+                          ])
+                        ]
+                      )
+                    ])
+                  : question.type == "Scale"
+                  ? _c(
+                      "div",
+                      { staticClass: "mb-4 flex flex-col justify-around" },
+                      [
+                        _c("input", {
+                          attrs: { type: "text", hidden: "" },
+                          domProps: { value: question.question_id }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", hidden: "" },
+                          domProps: { value: question.category_id }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "p-2 w-auto flex flex-row" }, [
+                          _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                          _vm._v(" "),
+                          _c("ul", [
+                            _c("li", [_vm._v(_vm._s(question.question))])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "my-scale relative m-auto" }, [
+                          _c("input", {
+                            attrs: { type: "text", hidden: "" },
+                            domProps: { value: question.question_id }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "text", hidden: "" },
+                            domProps: { value: question.category_id }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(2, true),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "flex justify-evenly flex-wrap" },
+                            [
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-700 focus:outline-none appearance-none bg-red-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-700 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "0"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-600 focus:outline-none appearance-none bg-red-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-600 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "1"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-500 focus:outline-none appearance-none bg-red-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-500 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "2"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-700 focus:outline-none appearance-none bg-yellow-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-700 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "3"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-600 focus:outline-none appearance-none bg-yellow-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-600 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "4"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-500 focus:outline-none appearance-none bg-yellow-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-500 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "5"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-400 focus:outline-none appearance-none bg-yellow-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-400 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "6"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-400 focus:outline-none appearance-none bg-green-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-400 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "7"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-500 focus:outline-none appearance-none bg-green-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-500 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "8"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-600 focus:outline-none appearance-none bg-green-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-600 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "9"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-700 focus:outline-none appearance-none bg-green-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-700 transition duration-500 ease-in-out",
+                                attrs: {
+                                  name: "quiz_" + index,
+                                  type: "button",
+                                  value: "10"
+                                },
+                                on: { click: _vm.buttonClicked }
+                              })
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _c("p", {
+                            staticClass: "text-red-600 text-xs text-center",
+                            attrs: { id: "quiz_" + index }
+                          })
+                        ])
+                      ]
+                    )
+                  : question.type == "Multiple Choice"
+                  ? _c(
+                      "div",
+                      { staticClass: "mb-4 flex flex-col justify-around" },
+                      [
+                        _c("div", { staticClass: "p-2 w-auto flex flex-row" }, [
+                          _c("span", [_vm._v(_vm._s(index + 1) + ".  ")]),
+                          _vm._v(" "),
+                          _c("ul", [
+                            _c("li", [_vm._v(_vm._s(question.question))])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
+                          },
+                          [
+                            _c("input", {
+                              attrs: { type: "text", hidden: "" },
+                              domProps: { value: question.question_id }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: { type: "text", hidden: "" },
+                              domProps: { value: question.category_id }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "flex justify-start items-center",
+                                attrs: {
+                                  for: "very_unhappy_" + question.question_id
+                                }
+                              },
+                              [
+                                _c("input", {
+                                  staticClass: "cat_input w-4 h-4",
+                                  attrs: {
+                                    required: "required",
+                                    value: "20",
+                                    type: "radio",
+                                    name: "quiz_" + index,
+                                    id: "very_unhappy_" + question.question_id
+                                  },
+                                  on: { click: _vm.radioClicked }
+                                }),
+                                _c("span", { staticClass: "text-xl ml-1" }, [
+                                  _vm._v("😠")
+                                ]),
+                                _vm._v("Very Unhappy\n                    ")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "flex justify-start items-center",
+                                attrs: {
+                                  for: "unhappy_" + question.question_id
+                                }
+                              },
+                              [
+                                _c("input", {
+                                  staticClass: "cat_input w-4 h-4",
+                                  attrs: {
+                                    value: "40",
+                                    type: "radio",
+                                    name: "quiz_" + index,
+                                    id: "unhappy_" + question.question_id
+                                  },
+                                  on: { click: _vm.radioClicked }
+                                }),
+                                _c("span", { staticClass: "text-xl ml-1" }, [
+                                  _vm._v("😓")
+                                ]),
+                                _vm._v("Unhappy")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "flex justify-start items-center",
+                                attrs: {
+                                  for: "neutral_" + question.question_id
+                                }
+                              },
+                              [
+                                _c("input", {
+                                  staticClass: "cat_input w-4 h-4",
+                                  attrs: {
+                                    value: "60",
+                                    type: "radio",
+                                    name: "quiz_" + index,
+                                    id: "neutral_" + question.question_id
+                                  },
+                                  on: { click: _vm.radioClicked }
+                                }),
+                                _c("span", { staticClass: "text-xl ml-1" }, [
+                                  _vm._v("😐")
+                                ]),
+                                _vm._v("Neutral")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "flex justify-start items-center",
+                                attrs: { for: "happy_" + question.question_id }
+                              },
+                              [
+                                _c("input", {
+                                  staticClass: "cat_input w-4 h-4",
+                                  attrs: {
+                                    value: "80",
+                                    type: "radio",
+                                    name: "quiz_" + index,
+                                    id: "happy_" + question.question_id
+                                  },
+                                  on: { click: _vm.radioClicked }
+                                }),
+                                _c("span", { staticClass: "text-xl ml-1" }, [
+                                  _vm._v("😊")
+                                ]),
+                                _vm._v(" Happy")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "flex justify-start items-center",
+                                attrs: {
+                                  for: "very_happy_" + question.question_id
+                                }
+                              },
+                              [
+                                _c("input", {
+                                  staticClass: "cat_input w-4 h-4",
+                                  attrs: {
+                                    value: "100",
+                                    type: "radio",
+                                    name: "quiz_" + index,
+                                    id: "very_happy_" + question.question_id
+                                  },
+                                  on: { click: _vm.radioClicked }
+                                }),
+                                _c("span", { staticClass: "text-xl ml-1" }, [
+                                  _vm._v("😄")
+                                ]),
+                                _vm._v("Very\n                        Happy")
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", [
+                          _c("p", {
+                            staticClass: "text-red-600 text-xs text-center",
+                            attrs: { id: "quiz_" + index }
+                          })
+                        ])
+                      ]
+                    )
+                  : _vm._e()
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex justify-center bg-purple-500 text-gray-100 items-center h-10"
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-red-500 rounded-sm px-3 py-1 hover:bg-red-800 ml-4 transform duration-500 ease-in-out focus:outline-none",
+                  on: { click: _vm.submitQuiz }
+                },
+                [_vm._v("\n                Submit\n            ")]
+              )
+            ]
+          )
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("Modal", {
+        attrs: {
+          toggleModal: _vm.toggleModal,
+          showModal: _vm.showModal,
+          storeAllAnswers: _vm.storeAllAnswers
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-purple-500 p-2 text-gray-100" }, [
+      _c("p", [_vm._v("Quiz")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "bg-purple-900 text-purple-300 px-2 py-1" },
+      [_c("p", { staticClass: "text-xs" }, [_vm._v("CATEGORY 6 OF 6")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "flex justify-between flex-wrap text-gray-500 text-sm" },
+      [
+        _c("p", [_vm._v("0 = Not likely at all")]),
+        _vm._v(" "),
+        _c("p", [_vm._v("10 = Extremely likely")])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuizList.vue?vue&type=template&id=8a2aaf04&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/QuizList.vue?vue&type=template&id=8a2aaf04& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      _vm._l(_vm.pendingQuiz, function(category) {
+        return _c(
+          "p",
+          {
+            key: category.id,
+            staticClass: "hover:bg-red-500",
+            attrs: { id: category.category_id },
+            on: { click: _vm.goToQuiz }
+          },
+          [
+            _vm._v(
+              "\n            " + _vm._s(category.category_name) + "\n        "
+            )
+          ]
+        )
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

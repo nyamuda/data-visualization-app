@@ -31,7 +31,7 @@
                     <button
                         v-on:click="storeAllAnswers"
                         type="button"
-                        class="transition duration-500 ease-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:ml-3 sm:w-24 sm:text-sm sm:p-2"
+                        class="transition duration-500 ease-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:ml-3 sm:w-24 sm:text-sm sm:py-0"
                     >
                         Submit
                     </button>

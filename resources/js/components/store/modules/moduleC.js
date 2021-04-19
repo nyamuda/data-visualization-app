@@ -4,13 +4,31 @@ import axios from "axios";
 export const moduleC = {
     state: {
         loggedInUserInfo: "",
-        all_questions: ""
+        all_questions: [],
+        all_categories: [],
+        quiz: ""
+    },
+    getters: {
+        //getting questions with a specific given category id
+        surveyQuestions(state) {
+            return id => {
+                let questions = state.all_questions.filter(val => {
+                    return val.category_id == id;
+                });
+                return questions;
+            };
+        }
     },
     mutations: {
         //adding the questions to the state
         loadQuestions(state, paylaod) {
             state.all_questions = paylaod;
-            console.log(state.all_questions);
+            // console.log(state.all_questions);
+        },
+        //laod category data
+        loadCategories(state, payload) {
+            state.all_categories = payload;
+            //console.log(state.all_categories);
         },
         //laod user info
         loadUserInfo(state, payload) {
@@ -25,14 +43,20 @@ export const moduleC = {
 
                 //if the user is successfully logged in
                 //getting all the questions that haven't been answered by the user.
-                context.dispatch("getSurveyQuestions");
-                console.log(context.state.all_questions);
+                // context.dispatch("getSurveyQuestions");
+                //  console.log(context.state.all_questions);
             });
         },
         //fetching all the survey questions
         getSurveyQuestions(context) {
             axios.get("/api/get_questions").then(res => {
                 context.commit("loadQuestions", res.data);
+            });
+        },
+        //getting quiz categories names for the questions the user hasn't answered
+        getCategories(context) {
+            axios.get("/api/unanswered_categories").then(res => {
+                context.commit("loadCategories", res.data);
             });
         }
     }
