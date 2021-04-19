@@ -1,15 +1,21 @@
 <template>
     <div>
-        <div>
-            <p
-                @click="goToQuiz"
-                class="hover:bg-red-500"
-                :id="category.category_id"
-                v-for="category in pendingQuiz"
-                :key="category.id"
-            >
-                {{ category.category_name }}
-            </p>
+        <div class="text-center">
+            <p class="text-3xl mb-4">Surveys</p>
+            <div v-if="pendingQuiz.length > 0">
+                <p
+                    @click="goToQuiz"
+                    class="hover:bg-red-500"
+                    :id="category.category_id"
+                    v-for="category in pendingQuiz"
+                    :key="category.id"
+                >
+                    {{ category.category_name }}
+                </p>
+            </div>
+            <div v-else>
+                <p>There are no surveys at the moment</p>
+            </div>
         </div>
     </div>
 </template>
