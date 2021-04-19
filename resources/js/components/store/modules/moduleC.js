@@ -22,6 +22,11 @@ export const moduleC = {
         getAuthenticatedUserInfo(context) {
             axios.get("/api/user").then(res => {
                 context.commit("loadUserInfo", res.data);
+
+                //if the user is successfully logged in
+                //getting all the questions that haven't been answered by the user.
+                context.dispatch("getSurveyQuestions");
+                console.log(context.state.all_questions);
             });
         },
         //fetching all the survey questions

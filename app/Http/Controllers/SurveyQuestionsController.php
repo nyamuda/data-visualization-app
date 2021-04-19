@@ -6,39 +6,33 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Answer;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class SurveyQuestionsController extends Controller
 {
     //fetching survey questions from the database
-    public function show()
+    public function show(Request $request)
     {
 
-        //grouping the questions by their category_id
-        /*Looking for questions related to the category with with given id */
-        $category1_questions = Category::firstWhere('category_id', 1)->questions;
-        $category2_questions = Category::firstWhere('category_id', 2)->questions;
-        $category3_questions = Category::firstWhere('category_id', 3)->questions;
-        $category4_questions = Category::firstWhere('category_id', 4)->questions;
-        $category5_questions = Category::firstWhere('category_id', 5)->questions;
+        //logged in user id
+        $user_id = Auth::id();
 
-        //getting general questions
-        $category6_questions = Category::select('question_id', 'question', 'category_questions.category_id', 'type')
-            ->join('questions', 'category_questions.category_id', '=', 'questions.category_id')
-            ->where('category_name', 'General')
+        //getting the questions the logged in user has answered
+        $answered_questions = Answer::select('question_id')
+            ->where('user_id', $user_id)
             ->get();
 
-        $all_questions = [
-            'category1_questions' => $category1_questions,
-            'category2_questions' => $category2_questions,
-            'category3_questions' => $category3_questions,
-            'category4_questions' => $category4_questions,
-            'category5_questions' => $category5_questions,
-            'category6_questions' => $category6_questions,
-        ];
+        //then using that to get the questions the user hasn't answered
+        $all_questions = Question::select('question_id', 'question', 'questions.category_id', 'type', 'category_name')
+            //join with the category table to get the 'type' and 'category_name'
+            ->join('category_questions', 'category_questions.category_id', '=', 'questions.category_id')
+            ->whereNotIn('question_id', $answered_questions)->get();
+
+
         return $all_questions;
     }
     //save a question to the database
-public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'question' => 'required|unique:questions',
@@ -62,7 +56,7 @@ public function store(Request $request)
             $category_id = $answers[$key]['category_id'];
             $answer_value = $answers[$key]['question_answer'];
             $user_id = $answers[$key]['user_id'];
-            
+
             Answer::create([
                 'user_id' => $user_id,
                 'question_id' => $question_id,

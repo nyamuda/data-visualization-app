@@ -109,9 +109,6 @@ export default {
     created() {
         //getting the authenticated user info
         this.$store.dispatch("getAuthenticatedUserInfo");
-
-        //getting the survey questions from the database
-        this.$store.dispatch("getSurveyQuestions");
     }
 };
 </script>
