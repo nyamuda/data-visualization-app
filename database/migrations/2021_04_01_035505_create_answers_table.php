@@ -15,10 +15,26 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('question_id');
             $table->integer('category_id');
-            $table->integer('answer_value');
+            $table->string('answer_value', 300);
+            /*foreign key - there one-many relationship between the users table 
+            and the answers table respectively*/
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')
+                ->references('id') //referenced column on the parent table
+                ->on('users') //table name for parent table
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            /*foreign key - there one-many relationship between the questions table 
+            and the answers table respectively*/
+            $table->unsignedBigInteger('question_id');
+
+            $table->foreign('question_id')
+                ->references('question_id') //referenced column on the parent table
+                ->on('questions') //table name for parent table
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

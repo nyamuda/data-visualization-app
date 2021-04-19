@@ -38,7 +38,7 @@ class SurveyQuestionsController extends Controller
         return $all_questions;
     }
     //save a question to the database
-    public function store(Request $request)
+public function store(Request $request)
     {
         $request->validate([
             'question' => 'required|unique:questions',
@@ -62,7 +62,7 @@ class SurveyQuestionsController extends Controller
             $category_id = $answers[$key]['category_id'];
             $answer_value = $answers[$key]['question_answer'];
             $user_id = $answers[$key]['user_id'];
-
+            
             Answer::create([
                 'user_id' => $user_id,
                 'question_id' => $question_id,

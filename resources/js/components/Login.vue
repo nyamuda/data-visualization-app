@@ -1,24 +1,11 @@
 <template>
-    <div>
-        <div class="mt-10">
-            <form
-                class="my_forms rounded-sm m-auto flex flex-col border-2 border-gray-200 shadow-2xl p-8"
-                action=""
-            >
-                <p class="text-center text-2xl">Login</p>
-                <div class="flex flex-col justify-center mt-4">
-                    <input
-                        class="w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2"
-                        v-model="userData.email"
-                        id="user_email"
-                        name="email"
-                        type="text"
-                        placeholder="Email"
-                    />
-                    <span
-                        class="text-xs text-red-600"
-                        v-if="errorMessage.email"
-                        >{{ errorMessage.email[0] }}</span
+  <div class="flex flex-col h-screen justify-between">
+    <div class="mt-10 mb-auto">
+      <form class="my_forms rounded-sm m-auto flex flex-col border-2 border-gray-200 shadow-2xl p-8" action="">
+        <p class="text-center text-2xl">Login</p>
+        <div class="flex flex-col justify-center mt-4">
+          <input class="w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2" v-model="userData.email" id="user_email" name="email" type="text" placeholder="Email" />
+          <span class="text-xs text-red-600" v-if="errorMessage.email">{{ errorMessage.email[0] }}</span
                     >
                 </div>
                 <div class="flex flex-col justify-center mt-4">
@@ -46,7 +33,11 @@
                 </button>
             </form>
         </div>
-        {{ userData.email }}
+      <footer class="w-full h-32 bg-gray-800 text-gray-100 text-center object-bottom text-xs">
+        <div class="h-full flex flex-col justify-center">
+            <p class="inset-x-0 bottom-0">&#x000A9;2021. All rights reserved&#160;|&#160;Made by Aptego Software.</p>
+        </div>
+    </footer>
     </div>
 </template>
 
@@ -79,3 +70,6 @@ export default {
     }
 };
 </script>
+<style>
+
+</style>

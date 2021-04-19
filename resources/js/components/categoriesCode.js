@@ -1,12 +1,6 @@
 /*The purpose of the following code is to check if the radio buttons have been
     checked for each group before the user can go to the next category of the questions*/
-function next(
-    class_name,
-    category_questions,
-    category_name,
-    errors,
-    callback
-) {
+function next(class_name, category_questions, category_name, errors, callback) {
     //first get all the radio buttons
     let allInputs = [...document.getElementsByClassName(class_name)];
 
@@ -30,14 +24,14 @@ function next(
         and the category_name parameter is 'team', it means there are going to be 5 groups of 
         radio buttons: team_0, team_1,...,team_4*/
 
-        let groupName = allInputs.filter((val2) => {
+        let groupName = allInputs.filter(val2 => {
             //returning a specific group of radio buttons.
             //remember val2 is one specific radio button.
             return val2.name == `${category_name}_${i}`;
         });
 
         /*Once we get a radio group. We check to see if one of the radio buttons of the group has been checked */
-        let groupStatus = groupName.some((val3) => {
+        let groupStatus = groupName.some(val3 => {
             return val3.checked;
         });
 
@@ -56,13 +50,11 @@ function next(
         }
     }
 
-
-
     /*If all the radio buttons for each question have be checked - errors=0
     Then  we move to the next category of questions.*/
     console.log(errors);
     if (errors == 0) {
-        callback()
+        callback();
     }
 }
 
@@ -71,13 +63,16 @@ function next(
 function getAnswers(par, userInfo, categoryAnswers) {
     //getting the id value of each question and its selected answer.
     //so first getting the id value of the question.
-    let question_id =
-        par.target.parentElement.parentElement.firstElementChild.value;
+    let question_id = Number(
+        par.target.parentElement.parentElement.firstElementChild.value
+    );
     //then the selected answer to the question
     let given_answer = Number(par.target.value);
 
     //the question category id
-    let category_id = par.target.parentElement.parentElement.children[1].value;
+    let category_id = Number(
+        par.target.parentElement.parentElement.children[1].value
+    );
 
     //the name of the clicked radio button
     let question_name = par.target.name;
@@ -99,42 +94,47 @@ function getAnswers(par, userInfo, categoryAnswers) {
     categoryAnswers[question_name] = answerObject;
 }
 
-
 /*the following function is for open-ended questions and checking if they been answered. 
 And if there are, we store the answers.*/
 
 function checkOpen(err, class_name, fn, userInfo, categoryAnswers) {
-    err = 0
+    err = 0;
     let open_questions = [...document.getElementsByClassName(class_name)];
-    console.log(open_questions[0]['value']);
+    //  console.log(open_questions[0]['value']);
     //we check if there are any open ended questions.
     if (open_questions.length > 0) {
         //if there are, we loop through them
         for (let i = 0; i < open_questions.length; i++) {
             //if the open ended question has no answer give - its empty
-            if (!(!!open_questions[i]['value'])) {
+            if (!!!open_questions[i]["value"]) {
                 //then display the error
-                let showError = document.getElementById(`${open_questions[i]['name']}`);
+                let showError = document.getElementById(
+                    `${open_questions[i]["name"]}`
+                );
 
+                showError.innerHTML = "*This field is required";
 
-                showError.innerHTML = '*This field is required';
-
-                err++
-
+                err++;
             } else {
                 //else remove the error message
-                let hideError = document.getElementById(`${open_questions[i]['name']}`);
+                let hideError = document.getElementById(
+                    `${open_questions[i]["name"]}`
+                );
                 hideError.innerHTML = "";
                 /*Now for this particular question, since an answer was given, we store that answer.*/
 
                 //getting the id value of each question and its selected answer.
                 //so first getting the id value of the question.
-                let question_id = open_questions[i].parentElement.firstElementChild.value;
-                //then the selected answer to the question
-                let given_answer = Number(open_questions[i].value);
+                let question_id = Number(
+                    open_questions[i].parentElement.firstElementChild.value
+                );
+                //then the selected answer to the question, which will be a string.
+                let given_answer = open_questions[i].value.trim();
 
                 //the question category_id
-                let category_id = open_questions[i].parentElement.children[1].value;
+                let category_id = Number(
+                    open_questions[i].parentElement.children[1].value
+                );
 
                 //the name of the text area
                 let question_name = open_questions[i].name;
@@ -156,14 +156,9 @@ function checkOpen(err, class_name, fn, userInfo, categoryAnswers) {
         // if there are no errors - err=0
         if (err == 0) {
             //run  a function fn()
-            fn()
+            fn();
         }
     }
 }
 
-
-export {
-    next,
-    getAnswers,
-    checkOpen
-};
+export { next, getAnswers, checkOpen };

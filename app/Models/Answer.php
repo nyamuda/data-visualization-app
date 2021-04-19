@@ -14,4 +14,14 @@ class Answer extends Model
         'category_id',
         'answer_value'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
 }

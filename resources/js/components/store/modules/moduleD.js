@@ -19,7 +19,7 @@ export const moduleD = {
         //saving all the answers to the database
         saveAnswers(context) {
             axios
-                .post("/api/add", context.all_answers)
+                .post("/api/add", context.state.all_answers)
                 .then(res => {
                     console.log(res);
                 })

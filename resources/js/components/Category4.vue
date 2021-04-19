@@ -1,25 +1,25 @@
 <template>
-    <div class="mt-8">
+    <div class="my-12">
         <div class="question_container mt-8 m-auto shadow-xl">
             <div class="bg-purple-500 p-2 text-gray-100">
                 <p>Mutual Support</p>
             </div>
-
             <div class="bg-purple-900 text-purple-300 px-2 py-1">
                 <p class="text-xs">CATEGORY 4 OF 6</p>
             </div>
-
             <div
                 class="flex justify-around flex-col bg-gray-100 px-4"
                 v-for="(question, index) in category4_data"
                 :key="question.id"
             >
                 <hr class="border-gray-300" />
-
-                <p class="p-2 w-auto flex flex-row">
+                <div class="p-2 w-auto flex flex-row">
                     <!--The Entity Number below is for space -->
-                   <span>{{ index + 1}}.&#160;&#160;</span> <ul><li>{{ question.question }}</li></ul>
-                </p>
+                    <span>{{ index + 1 }}.&#160;&#160;</span>
+                    <ul>
+                        <li>{{ question.question }}</li>
+                    </ul>
+                </div>
                 <div
                     class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
                 >
@@ -40,9 +40,8 @@
                             type="radio"
                             :name="'support_' + index"
                             :id="'very_unhappy_' + question.question_id"
-                        /><span class="text-xl ml-1">😠</span>Very
-                        Unhappy</label
-                    >
+                        /><span class="text-xl ml-1">😠</span>Very Unhappy
+                    </label>
                     <label
                         class="flex justify-start items-center"
                         :for="'unhappy_' + question.question_id"
@@ -96,7 +95,7 @@
                         /><span class="text-xl ml-1">😄</span>Very Happy</label
                     >
                 </div>
-                 <div>
+                <div>
                     <p
                         :id="'support_' + index"
                         class="text-red-600 text-xs -mt-6 text-center"
@@ -122,6 +121,7 @@
         </div>
     </div>
 </template>
+
 <script>
 import * as myMethods from "./categoriesCode";
 export default {
@@ -173,6 +173,7 @@ export default {
 .container {
     width: 90%;
 }
+
 input {
     appearance: none;
     border-radius: 50%;
@@ -180,10 +181,10 @@ input {
     height: 16px;
     border: 2px solid #999;
     transition: 0.2s all linear;
-  
 }
+
 input:checked {
-  border: 6px solid #4B0082;
+    border: 6px solid #4b0082;
 }
 
 @media (min-width: 768px) {
