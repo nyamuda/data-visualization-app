@@ -18,34 +18,39 @@ class CategoryController extends Controller
     {
         $category_1 = Category::firstOrNew([
             'category_name' => 'Equitable Treatment',
-            'type' => 'Multiple Choice'
+            'type' => 'Multiple Choice',
+            'category_description' => 'Absence of discriminatory treatment on account of a different background'
         ]);
 
         $category_1->save();
 
         $category_2 = Category::firstOrNew([
             'category_name' => 'Confidence in Redress',
-            'type' => 'Multiple Choice'
+            'type' => 'Multiple Choice',
+            'category_description' => 'Employees feeling protected and respected while workplace conflicts are resolved'
         ]);
         $category_2->save();
 
         $category_3 = Category::firstOrNew([
             'category_name' => 'Workplace Fairness',
-            'type' => 'Multiple Choice'
+            'type' => 'Multiple Choice',
+            'category_description' => 'Experience of - and trust in - the organization striving for a fair workplace'
         ]);
 
         $category_3->save();
 
         $category_4 = Category::firstOrNew([
             'category_name' => 'Mutual Support',
-            'type' => 'Multiple Choice'
+            'type' => 'Multiple Choice',
+            'category_description' => 'Employees feeling encouraged and safe to participate and express themselves'
         ]);
 
         $category_4->save();
 
         $category_5 = Category::firstOrNew([
             'category_name' => 'Organizational Belonging',
-            'type' => 'Multiple Choice'
+            'type' => 'Multiple Choice',
+            'category_description' => 'Being able to meaningfully identify as a member of the organization'
         ]);
 
         $category_5->save();

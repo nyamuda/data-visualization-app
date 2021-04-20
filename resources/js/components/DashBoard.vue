@@ -12,31 +12,6 @@
             </div>
         </header>
         <div class="mb-auto">
-            <category1
-                :userData="userData"
-                v-show="showCategory['show1']"
-            ></category1>
-            <category2
-                :userData="userData"
-                v-show="showCategory['show2']"
-            ></category2>
-            <category3
-                :userData="userData"
-                v-show="showCategory['show3']"
-            ></category3>
-            <category4
-                :userData="userData"
-                v-show="showCategory['show4']"
-            ></category4>
-            <category5
-                :userData="userData"
-                v-show="showCategory['show5']"
-            ></category5>
-            <category6
-                :userData="userData"
-                v-show="showCategory['show6']"
-            ></category6>
-
             <quiz-list></quiz-list>
         </div>
         <footer
@@ -54,21 +29,9 @@
 
 <script>
 import QuizList from "./QuizList";
-import Category1 from "./Category1";
-import Category2 from "./Category2";
-import Category3 from "./Category3";
-import Category4 from "./Category4";
-import Category5 from "./Category5";
-import Category6 from "./Category6";
 export default {
     components: {
-        "quiz-list": QuizList,
-        category1: Category1,
-        category2: Category2,
-        category3: Category3,
-        category4: Category4,
-        category5: Category5,
-        category6: Category6
+        "quiz-list": QuizList
     },
     data() {
         return {};

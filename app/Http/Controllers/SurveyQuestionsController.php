@@ -21,7 +21,7 @@ class SurveyQuestionsController extends Controller
             ->get();
 
         //getting the category names for those questions
-        $all_categories = Question::select('category_name', 'category_questions.category_id')
+        $all_categories = Question::select('category_name', 'category_questions.category_id', 'category_description')
             //join with the category table to get the 'type' and 'category_name'
             ->join('category_questions', 'category_questions.category_id', '=', 'questions.category_id')
             ->whereNotIn('question_id', $answered_questions)

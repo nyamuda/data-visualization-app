@@ -11,7 +11,7 @@ class Category extends Model
     protected $table = "category_questions";
     use HasFactory;
 
-    protected $fillable = ['category_name', 'type'];
+    protected $fillable = ['category_name', 'type', 'category_description'];
 
     /* There is one-many relationship between the Category and Question model.
     A category can have many questions. 

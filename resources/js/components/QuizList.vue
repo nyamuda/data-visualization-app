@@ -1,64 +1,31 @@
 <template>
     <div>
-        <div class="text-center">
-            <p class="text-3xl mb-4">Surveys</p>
-            <div v-if="pendingQuiz.length > 0">
-                <p
-                    @click="goToQuiz"
-                    class="hover:bg-red-500"
-                    :id="category.category_id"
-                    v-for="category in pendingQuiz"
-                    :key="category.id"
-                >
-                    {{ category.category_name }}
-                </p>
-            </div>
-            <div v-else>
-                <p>There are no surveys at the moment</p>
-            </div>
-        </div>
-        <p class="text-2xl text-center">Uncompleted Surveys</p>
+        <p class="text-3xl text-center my-10 font-bold">
+            Uncompleted Surveys : {{ pendingQuiz.length }}
+        </p>
         <div
+            v-if="pendingQuiz.length > 0"
             class="flex flex-col justify-center items-center text-center w-5/6 m-auto sm:flex-row sm:justify-evenly sm:flex-wrap"
         >
             <div
+                v-for="category in pendingQuiz"
+                :key="category.id"
                 class="sm:w-80 m-4 w-full shadow-xl transition duration-500 ease-linear bg-purple-600 text-gray-100 pb-2 rounded cursor-pointer ring-3 ring-offset-3 ring-offset-purple-500 ring-purple-600 hover:bg-purple-800 hover:ring-1 hover:ring-offset-1 hover:ring-offset-purple-700"
             >
-                <p class="text-xl w-full shadow-lg p-1.5">Study</p>
-                <p class="p-2">
-                    Absence of discriminatory treatment on account of a
-                    different background.
+                <p
+                    @click="goToQuiz"
+                    :id="category.category_id"
+                    class="text-xl w-full shadow-lg p-1.5"
+                >
+                    {{ category.category_name }}
                 </p>
-            </div>
-            <div
-                class="sm:w-80 m-4 w-full shadow-xl transition duration-500 ease-linear bg-purple-600 text-gray-100 pb-2 rounded cursor-pointer ring-3 ring-offset-3 ring-offset-purple-500 ring-purple-600 hover:bg-purple-800 hover:ring-1 hover:ring-offset-1 hover:ring-offset-purple-700"
-            >
-                <p class="text-xl w-full shadow-lg p-1.5">Love</p>
                 <p class="p-2">
-                    Employees feeling protected and respected while workplace
-                    conflicts are resolved
-                </p>
-            </div>
-            <div
-                class="sm:w-80 m-4 w-full shadow-xl transition duration-500 ease-linear bg-purple-600 text-gray-100 pb-2 rounded cursor-pointer ring-3 ring-offset-3 ring-offset-purple-500 ring-purple-600 hover:bg-purple-800 hover:ring-1 hover:ring-offset-1 hover:ring-offset-purple-700"
-            >
-                <p class="text-xl w-full shadow-lg p-1.5">Determination</p>
-                <p class="p-2">
-                    Experience of - and trust in - the organization striving for
-                    a fair workplace
-                </p>
-            </div>
-            <div
-                class="sm:w-80 m-4 w-full shadow-xl transition duration-500 ease-linear bg-purple-600 text-gray-100 pb-2 rounded cursor-pointer ring-3 ring-offset-3 ring-offset-purple-500 ring-purple-600 hover:bg-purple-800 hover:ring-1 hover:ring-offset-1 hover:ring-offset-purple-700"
-            >
-                <p class="text-xl w-full shadow-lg p-1.5">Strong</p>
-                <p class="p-2">
-                    Employees feeling encouraged and safe to participate and
-                    express themselves
+                    {{ category.category_description }}
                 </p>
             </div>
         </div>
         <div
+            v-else
             class="m-auto w-5/6 text-center flex-col items-center justify-center"
         >
             <div class="w-20 m-auto">
