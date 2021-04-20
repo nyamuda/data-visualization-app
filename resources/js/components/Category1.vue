@@ -16,7 +16,7 @@
                 <hr class="border-gray-300" />
                 <div class="p-2 w-auto flex flex-row">
                     <!--The Entity Number below is for space -->
-                    <span>{{ index + 1 }}.&#160;&#160;</span>
+                    <span>{{ index + 1 }}.&#160;</span>
                     <ul>
                         <li>{{ question.question }}</li>
                     </ul>
