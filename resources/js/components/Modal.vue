@@ -8,7 +8,7 @@
                 class="w-5/6 m-auto flex flex-col items-center justify-center text-center shadow-xl md:w-2/5 md:items-start bg-white"
             >
                 <div
-                    class="md:flex md:flex-row md:items-center md:justify-start md:pt-8 md:pl-4"
+                    class="md:flex md:flex-row md:items-center md:justify-start md:pt-8 md:pl-4 md:-mt-8"
                 >
                     <div class="m-auto flex justify-center pt-4 md:pt-0">
                         <svg
@@ -42,23 +42,25 @@
                             </g>
                         </svg>
                     </div>
-                    <div class="p-4 md:flex md:flex-col md:items-start">
+                    <div
+                        class="p-4 md:flex md:flex-col md:items-start md:-ml-4 md:justify-center"
+                    >
                         <p class="text-xl font-bold">Submit Survey</p>
                         <p>Are you sure you want to submit</p>
                     </div>
                 </div>
                 <div
-                    class="flex flex-col items-center justify-center w-full bg-gray-100 p-4 md:py-2 md:flex-row-reverse md:justify-start md:items-center"
+                    class="flex flex-col items-center justify-center w-full bg-gray-100 px-4 py-2 md:py-2 md:flex-row-reverse md:justify-start md:items-center md:h-12"
                 >
                     <button
                         @click="storeAllAnswers"
-                        class="transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-3 py-1.5 bg-gray-600 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto"
+                        class="my-1 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-3 py-1.5 bg-gray-600 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto"
                     >
                         Submit
                     </button>
                     <button
                         @click="toggleModal"
-                        class="transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-gray-300 shadow-sm px-3 py-1.5 bg-white text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto mr-4"
+                        class="my-1 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-gray-300 shadow-sm px-3 py-1.5 bg-white text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto md:mr-4"
                     >
                         Cancel
                     </button>
@@ -67,7 +69,7 @@
         </div>
         <div
             v-show="showModal"
-            class="absolute inset-0 z-40 opacity-25 bg-black min-h-full"
+            class="fixed inset-0 z-40 opacity-25 bg-black min-h-full"
         ></div>
     </div>
 </template>

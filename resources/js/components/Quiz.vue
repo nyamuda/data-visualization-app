@@ -11,14 +11,16 @@
                 </button>
             </div>
         </header>
-        <div class="mb-auto mt-10">
+        <div v-if="category_data.length > 0" class="mb-auto mt-10">
             <div class="question_container mt-8 m-auto shadow-xl">
-                <div class="bg-purple-500 p-2 text-gray-100">
-                    <p>Survey : {{ category_data[0]["category_name"] }}</p>
+                <div class="bg-purple-500 px-2 py-1 text-gray-100">
+                    <p class="flex items-center justify-center text-lg">
+                        {{ category_data[0]["category_name"] }}
+                    </p>
                 </div>
                 <div class="bg-purple-900 text-purple-300 px-2 py-1">
-                    <p class="text-xs">
-                        Number Questions : {{ category_data.length }}
+                    <p class="text-sm flex items-center justify-center">
+                        Number of Questions : {{ category_data.length }}
                     </p>
                 </div>
                 <div
@@ -27,7 +29,10 @@
                     :key="question.id"
                 >
                     <hr class="border-gray-300" />
-                    <!-- If the question type is open ended -->
+
+                    <!--THE QUESTIONS CAN BE MULTIPLE CHOICE, OPEN ENDED OR SCALE -->
+
+                    <!-- IF THE QUESTION IS OPEN ENDED-->
                     <div class="mb-4" v-if="question.type == 'Open Ended'">
                         <div class="p-2 w-auto flex flex-row">
                             <!--The Entity Number below is for space -->
@@ -68,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- If the question type is a scale -->
+                    <!-- IF THE QUESTION IS SCALE -->
                     <div
                         class="mb-4 flex flex-col justify-around"
                         v-else-if="question.type == 'Scale'"
@@ -197,7 +202,8 @@
                             ></p>
                         </div>
                     </div>
-                    <!-- If the question type is multiple choice -->
+
+                    <!-- IF THE QUESTION IS A MULTIPLE CHOICE-->
                     <div
                         class="mb-4 flex flex-col justify-around"
                         v-else-if="question.type == 'Multiple Choice'"
@@ -673,12 +679,26 @@
                     </button>
                 </div>
             </div>
+
             <Modal
                 :toggleModal="toggleModal"
                 :showModal="showModal"
                 :storeAllAnswers="storeAllAnswers"
             ></Modal>
         </div>
+        <div
+            v-else
+            class="m-auto flex justify-center items-center w-full text-center"
+        >
+            <p class="text-2xl">
+                All questions for the survey have been answered.
+            </p>
+        </div>
+        <loader></loader>
+        <!--IF THE SURVEY HAS BEEN ANSWERED (NO QUESTIONS TO DISPLAY) -->
+
+        <!--THE FOLLOWING DIV IS FOR SPACE BETWEEN THE FOOTER AND THE QUIZ CONTAINER-->
+        <div class="mb-10"></div>
         <footer
             class="w-full h-32 bg-gray-800 text-gray-100 text-center object-bottom text-xs"
         >
@@ -694,10 +714,12 @@
 
 <script>
 import * as myMethods from "./categoriesCode";
+import Loader from "./Loader";
 import Modal from "./Modal";
 export default {
     components: {
-        Modal
+        Modal,
+        loader: Loader
     },
     data() {
         return {
@@ -707,7 +729,8 @@ export default {
             answerObject: {},
             countErrors: 0,
             scaleAnswers: {},
-            showModal: true
+            showModal: false,
+            showThank: false
         };
     },
     methods: {
@@ -805,6 +828,11 @@ export default {
         //store the answers to the database
         storeAllAnswers() {
             this.$store.dispatch("saveAnswers");
+            this.showThank = true;
+        },
+
+        //go the home page
+        goHome() {
             this.$router.push({ name: "dashboard" });
         }
     },
@@ -819,6 +847,9 @@ export default {
         }
     },
     created() {
+        //show page loader
+        this.$store.commit("loaderStatus");
+        //get survey questions
         this.$store.dispatch("getSurveyQuestions");
     }
 };

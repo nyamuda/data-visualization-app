@@ -6,7 +6,8 @@ export const moduleC = {
         loggedInUserInfo: "",
         all_questions: [],
         all_categories: [],
-        quiz: ""
+        quiz: "",
+        loader: false
     },
     getters: {
         //getting questions with a specific given category id
@@ -33,6 +34,10 @@ export const moduleC = {
         //laod user info
         loadUserInfo(state, payload) {
             state.loggedInUserInfo = payload;
+        },
+        //show/hide the loader
+        loaderStatus(state) {
+            state.loader = !state.loader;
         }
     },
     actions: {
@@ -51,12 +56,16 @@ export const moduleC = {
         getSurveyQuestions(context) {
             axios.get("/api/get_questions").then(res => {
                 context.commit("loadQuestions", res.data);
+                //hide the page loader
+                context.commit("loaderStatus");
             });
         },
         //getting quiz categories names for the questions the user hasn't answered
         getCategories(context) {
             axios.get("/api/unanswered_categories").then(res => {
                 context.commit("loadCategories", res.data);
+                //hide the page loader
+                context.commit("loaderStatus");
             });
         }
     }

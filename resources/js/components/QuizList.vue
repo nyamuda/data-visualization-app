@@ -1,7 +1,7 @@
 <template>
     <div>
         <p class="text-3xl text-center my-10 font-bold">
-            Uncompleted Surveys : {{ pendingQuiz.length }}
+            Pending Surveys : {{ pendingQuiz.length }}
         </p>
         <div
             v-if="pendingQuiz.length > 0"
@@ -10,12 +10,12 @@
             <div
                 v-for="category in pendingQuiz"
                 :key="category.id"
-                class="sm:w-80 m-4 w-full shadow-xl transition duration-500 ease-linear bg-purple-600 text-gray-100 pb-2 rounded cursor-pointer ring-3 ring-offset-3 ring-offset-purple-500 ring-purple-600 hover:bg-purple-800 hover:ring-1 hover:ring-offset-1 hover:ring-offset-purple-700"
+                class="sm:w-80 m-4 w-full shadow-xl transition duration-500 ease-linear bg-gray-50 text-gray-800 pb-2 rounded"
             >
                 <p
                     @click="goToQuiz"
                     :id="category.category_id"
-                    class="text-xl w-full shadow-lg p-1.5"
+                    class="text-xl w-full shadow-lg p-1.5 bg-gray-500 text-blue-100 cursor-pointer hover:text-blue-500 transition duration-200 ease-out"
                 >
                     {{ category.category_name }}
                 </p>
@@ -28,7 +28,7 @@
             v-else
             class="m-auto w-5/6 text-center flex-col items-center justify-center"
         >
-            <div class="w-20 m-auto">
+            <div class="w-16 m-auto">
                 <svg
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
@@ -82,6 +82,7 @@ export default {
         }
     },
     created() {
+        this.$store.commit("loaderStatus");
         this.$store.dispatch("getCategories");
     }
 };

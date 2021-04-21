@@ -13,6 +13,7 @@
         </header>
         <div class="mb-auto">
             <quiz-list></quiz-list>
+            <loader></loader>
         </div>
         <footer
             class="w-full h-32 bg-gray-800 text-gray-100 text-center object-bottom text-xs"
@@ -29,9 +30,11 @@
 
 <script>
 import QuizList from "./QuizList";
+import Loader from "./Loader";
 export default {
     components: {
-        "quiz-list": QuizList
+        "quiz-list": QuizList,
+        loader: Loader
     },
     data() {
         return {};
