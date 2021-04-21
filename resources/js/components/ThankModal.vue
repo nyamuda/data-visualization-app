@@ -58,9 +58,15 @@
 
 <script>
 export default {
-    props: ["goHome", "showThank"],
+    props: ["goHome"],
     data() {
         return {};
+    },
+    computed: {
+        //show/hide the thank you modal --the state is from module D
+        showThank() {
+            return this.$store.state.d.showThank;
+        }
     }
 };
 </script>

@@ -59,7 +59,7 @@
                         Submit
                     </button>
                     <button
-                        @click="toggleModal"
+                        @click="cancelConfirm"
                         class="my-1 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-gray-300 shadow-sm px-3 py-1.5 bg-white text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto md:mr-4"
                     >
                         Cancel
@@ -76,12 +76,20 @@
 
 <script>
 export default {
-    props: ["toggleModal", "showModal", "storeAllAnswers"],
-    name: "small-modal",
+    props: ["storeAllAnswers"],
     data() {
         return {};
     },
-    methods: {}
+    methods: {
+        cancelConfirm() {
+            this.$store.commit("confirmModal");
+        }
+    },
+    computed: {
+        showModal() {
+            return this.$store.state.d.confirmModal;
+        }
+    }
 };
 </script>
 <style scoped></style>

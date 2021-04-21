@@ -47,7 +47,7 @@ import axios from "axios";
 export default {
     data() {
         return {
-            userData: {
+ userData: {
                 email: "",
                 password: "",
                 is_admin: 0

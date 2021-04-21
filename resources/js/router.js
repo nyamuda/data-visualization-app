@@ -7,7 +7,6 @@ import AdminLogin from "./components/AdminLogin.vue";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
 import axios from "axios";
-import Thank from "./components/Thank.vue";
 import Quiz from "./components/Quiz.vue";
 
 Vue.use(VueRouter);
@@ -56,11 +55,6 @@ const router = new VueRouter({
             path: "/register",
             name: "register",
             component: Register
-        },
-        {
-            path: "/thank_you",
-            name: "thank",
-            component: Thank
         },
         {
             path: "/quiz/:id",

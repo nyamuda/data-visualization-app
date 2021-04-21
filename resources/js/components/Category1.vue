@@ -22,7 +22,7 @@
                     </ul>
                 </div>
                 <div
-                    class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
+   class="flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
                 >
                     <!--The purpose of the following first input element is to hold
                 the id value of each question. The second input element holds
