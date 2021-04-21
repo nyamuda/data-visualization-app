@@ -950,7 +950,7 @@ export default {
     computed: {
         category_data() {
             //getting the category questions from the state  - module C.
-            let category_id = this.$route.params.id;
+            let category_id = Number(this.$route.params.id);
             return this.$store.getters.surveyQuestions(category_id);
         },
         userData() {

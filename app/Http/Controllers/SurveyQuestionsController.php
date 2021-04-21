@@ -28,8 +28,10 @@ class SurveyQuestionsController extends Controller
             ->distinct()
             ->orderBy('category_name')
             ->get();
-
-        return $all_categories;
+        //using a colection to get unique values of category names.
+        $collection = collect($all_categories);
+        $unique = $collection->unique('category_name');
+        return $unique->values()->all();
     }
     //fetching survey questions from the database
     public function show(Request $request)

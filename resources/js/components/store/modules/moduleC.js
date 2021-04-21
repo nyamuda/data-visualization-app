@@ -10,13 +10,28 @@ export const moduleC = {
         loader: false
     },
     getters: {
-        //getting questions with a specific given category id
+        //getting questions with a specific given category_name
         surveyQuestions(state) {
             return id => {
-                let questions = state.all_questions.filter(val => {
+                let stateQuestions = state.all_questions;
+                //first getting questions with a category_id equal to the paramater -id.
+                let id_questions = stateQuestions.filter(val => {
                     return val.category_id == id;
                 });
-                return questions;
+                if (id_questions.length > 0) {
+                    /*Then getting the category_name of one of the question found above. All
+                    questions with the same ids have the same category_names*/
+                    let cat_name = id_questions[0]["category_name"];
+                    /* Then looking for questions that have the same category_name as the question above
+                 even though they might have different category_ids. The aim here is to get all questions 
+                 that have the same category_name as the filtered one.*/
+                    let questions = stateQuestions.filter(val => {
+                        return val.category_name == cat_name;
+                    });
+                    return questions;
+                } else {
+                    return id_questions;
+                }
             };
         }
     },
