@@ -1,5 +1,6 @@
 <template>
     <div>
+        <admin-menu></admin-menu>
         <!--    <p>id: {{ userData.id }}</p> -->
         <div class="mt-8 text-center">
             <button
@@ -10,10 +11,8 @@
             </button>
         </div>
 
-        <register v-show="register_section"></register>
-        <add-new-question v-show="questions_section"></add-new-question>
-
         <div
+            style="display:none"
             class="w-1/2 md:w-1/3 lg:w-64 fixed md:top-0 md:left-0 h-screen lg:block bg-gray-100 border-r z-30"
             id="main-nav"
         >
@@ -145,12 +144,10 @@
 </template>
 
 <script>
-import Register from "./Register";
-import AddNewQuestion from "./AddNewQuestion";
+import AdminMenu from "./AdminMenu";
 export default {
     components: {
-        register: Register,
-        "add-new-question": AddNewQuestion
+        "admin-menu": AdminMenu
     },
     data() {
         return {

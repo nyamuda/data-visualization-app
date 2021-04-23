@@ -56,24 +56,24 @@ export default {
             adminData: {
                 email: "",
                 password: "",
-                is_admin: 1,
+                is_admin: 1
             },
             errorMessage: "",
-            registerFormDisplay: true,
+            registerFormDisplay: true
         };
     },
     methods: {
         adminLogin() {
             axios
                 .post("/api/admin_login", this.adminData)
-                .then((res) => {
+                .then(res => {
                     console.log(res);
-                    this.$router.push({ name: "admin" });
+                    this.$router.push({ name: "admin_dashboard" });
                 })
-                .catch((error) => {
+                .catch(error => {
                     this.errorMessage = error.response.data.errors;
                 });
-        },
-    },
+        }
+    }
 };
 </script>
