@@ -1,54 +1,30 @@
 <template>
     <div id="survey-container" class="flex flex-col h-screen justify-between">
-        <header class="bg-gray-800 text-gray-100 h-12 .shadow">
-            <div class="h-full flex items-center justify-between">
-                <p class="text-xl ml-4">Survey App</p>
-                <button
-                    @click.prevent="logoutUser"
-                    class="bg-gray-600 rounded-sm text-gray-100 p-2 hover:bg-gray-500 transition duration-300 ease-linear mr-16"
-                >
-                    Logout
-                </button>
-            </div>
-        </header>
+        <the-header></the-header>
         <div class="mb-auto">
             <quiz-list></quiz-list>
             <loader></loader>
         </div>
-        <footer
-            class="w-full h-32 bg-gray-800 text-gray-100 text-center object-bottom text-xs"
-        >
-            <div class="h-full flex flex-col justify-center">
-                <p class="inset-x-0 bottom-0">
-                    &#x000A9;2021. All rights reserved&#160;|&#160;Made by
-                    Aptego Software.
-                </p>
-            </div>
-        </footer>
+        <the-footer></the-footer>
     </div>
 </template>
 
 <script>
 import QuizList from "./QuizList";
 import Loader from "./Loader";
+import Header from "./Header";
+import Footer from "./Footer";
 export default {
     components: {
         "quiz-list": QuizList,
-        loader: Loader
+        loader: Loader,
+        "the-header": Header,
+        "the-footer": Footer
     },
     data() {
         return {};
     },
-    methods: {
-        logoutUser() {
-            axios.post("/api/logout").then(res => {
-                console.log(res);
-                this.$router.push({
-                    name: "login"
-                });
-            });
-        }
-    },
+    methods: {},
     computed: {
         //show one category and hid others
         showCategory() {
