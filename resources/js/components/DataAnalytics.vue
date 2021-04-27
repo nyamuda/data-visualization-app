@@ -53,19 +53,29 @@
                 >
             </template>
         </admin-menu>
+
+        <div class="flex flex-col justify-around w-full">
+            <div><data-charts></data-charts></div>
+            <div><total-users></total-users></div>
+        </div>
     </div>
 </template>
 
 <script>
 import AdminMenu from "./AdminMenu";
+import Charts from "./Charts/Charts";
+import TotalUsersChart from "./Charts/TotalUsersChart.vue";
 export default {
     components: {
-        "admin-menu": AdminMenu
+        "admin-menu": AdminMenu,
+        "data-charts": Charts,
+        "total-users": TotalUsersChart
     },
     data() {
         return {
             section: "Analytics"
         };
-    }
+    },
+    computed: {}
 };
 </script>
