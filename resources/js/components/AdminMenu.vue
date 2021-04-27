@@ -14,39 +14,7 @@
                                 />
                             </div>
                             <div class="hidden md:block">
-                                <div
-                                    class="ml-10 flex items-baseline space-x-4"
-                                >
-                                    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-
-                                    <router-link
-                                        to="/admin/dashboard"
-                                        class="my-links bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                                        >Dashboard</router-link
-                                    >
-
-                                    <router-link
-                                        to="/admin/analytics"
-                                        class="my-links text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                        >Analytics</router-link
-                                    >
-                                    <router-link
-                                        to="/admin/register-employee"
-                                        class="my-links text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                        >Add Employee</router-link
-                                    >
-
-                                    <router-link
-                                        to="/admin/add-survey"
-                                        class="my-links text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                        >Add Survey</router-link
-                                    >
-
-                                    <router-link
-                                        class="my-links text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                        >Reports</router-link
-                                    >
-                                </div>
+                                <slot name="header"></slot>
                             </div>
                         </div>
 
@@ -163,32 +131,7 @@
                 <div v-show="showMobile" class="md:hidden" id="mobile-menu">
                     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-
-                        <router-link
-                            to="/dashboard"
-                            class="my-links bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-                            >Dashboard</router-link
-                        >
-
-                        <router-link
-                            to="/analytics"
-                            class="my-links text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                            >Analytics</router-link
-                        >
-                        <router-link
-                            to="/add-employee"
-                            class="my-links text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                            >Add Employee</router-link
-                        >
-                        <router-link
-                            to="/add-survey"
-                            class="my-links text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                            >Add Survey</router-link
-                        >
-                        <router-link
-                            class="my-links text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                            >Reports</router-link
-                        >
+                        <slot></slot>
                     </div>
                     <div class="pt-4 pb-3 border-t border-gray-700">
                         <div class="mt-3 px-2 space-y-1">
@@ -205,18 +148,19 @@
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <h1 class="text-3xl font-bold text-gray-900">
-                        Dashboard
+                        {{ section }}
                     </h1>
                 </div>
             </header>
         </div>
 
-        <p class="test">helllllllll</p>
+        <p class="test"></p>
     </div>
 </template>
 
 <script>
 export default {
+    props: ["section", "deskAactive"],
     data() {
         return {
             showMobile: false
@@ -225,12 +169,9 @@ export default {
     methods: {
         toggleMobile() {
             this.showMobile = !this.showMobile;
-        },
-        //changing the background of the menu links
-        clickLink(event) {
-            //first we change the background of the clicked link
         }
-    }
+    },
+    computed: {}
 };
 </script>
 <style scoped></style>

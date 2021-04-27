@@ -1,6 +1,58 @@
 <template>
     <div>
-        <admin-menu></admin-menu>
+        <admin-menu :section="section">
+            <template v-slot:header>
+                <div class="ml-10 flex items-baseline space-x-4">
+                    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+
+                    <router-link
+                        to="/admin_dashboard"
+                        class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                        >Dashboard</router-link
+                    >
+
+                    <router-link
+                        to="/admin_analytics"
+                        class="my-links text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        >Analytics</router-link
+                    >
+                    <router-link
+                        to="/admin_register_employee"
+                        class="my-links text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        >Add Employee</router-link
+                    >
+
+                    <router-link
+                        to="/admin_new_question"
+                        class="my-links text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        >Add Survey</router-link
+                    >
+                </div>
+            </template>
+            <template v-slot:default>
+                <router-link
+                    to="/admin_dashboard"
+                    class="my-links bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                    >Dashboard</router-link
+                >
+
+                <router-link
+                    to="/admin_analytics"
+                    class="my-links text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    >Analytics</router-link
+                >
+                <router-link
+                    to="/admin_register_employee"
+                    class="my-links text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    >Add Employee</router-link
+                >
+                <router-link
+                    to="/admin_new_question"
+                    class="my-links text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    >Add Survey</router-link
+                >
+            </template>
+        </admin-menu>
         <!--    <p>id: {{ userData.id }}</p> -->
         <div class="mt-8 text-center">
             <button
@@ -154,7 +206,10 @@ export default {
             dashboard_section: true,
             register_section: false,
             analytics_section: false,
-            questions_section: false
+            questions_section: false,
+            section: "Dashboard",
+            deskActive:
+                "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
         };
     },
     methods: {
@@ -219,6 +274,7 @@ export default {
                 dash: this.dashboard_section
             });
         }
-    }
+    },
+    computed: {}
 };
 </script>

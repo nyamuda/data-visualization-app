@@ -31,7 +31,7 @@ const router = new VueRouter({
             }
         },
         {
-            path: "/dashboard",
+            path: "/admin_dashboard",
             name: "admin_dashboard",
             component: AdminPage,
             beforeEnter: (to, from, next) => {
@@ -54,17 +54,17 @@ const router = new VueRouter({
             component: AdminLogin
         },
         {
-            path: "/register-employee",
+            path: "/admin_register_employee",
             name: "register",
             component: Register
         },
         {
-            path: "/add-new-question",
+            path: "/admin_new_question",
             name: "new_question",
             component: AddNewQuestion
         },
         {
-            path: "/analytics",
+            path: "/admin_analytics",
             name: "analytics",
             component: DataAnalytics
         },
