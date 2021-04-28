@@ -1,46 +1,44 @@
 <template>
-    <div>
-        <div class="w-full">
-            <zingchart :data="chartData"></zingchart>
-        </div>
+    <div class="w-1/3">
+        <JSCharting :options="chartOptions" class="columnChart"></JSCharting>
     </div>
 </template>
 
 <script>
-import "zingchart/es6";
-import zingchartVue from "zingchart-vue";
+import JSCharting from "jscharting-vue";
 
 export default {
-    components: {
-        zingchart: zingchartVue
-    },
+    name: "columnChart",
     data() {
         return {
-            chartData: {
+            chartOptions: {
                 type: "pie",
                 title: {
-                    text: "A Pie Chart"
+                    label_text: "Top World Populations",
+                    position: "center"
                 },
+                legend_visible: false,
+                defaultSeries: { angle: 45, pointSelection: true },
+                defaultPoint_label_text: "%name <b>%percentOfTotal%</b>",
                 series: [
                     {
-                        values: [59]
-                    },
-                    {
-                        values: [55]
-                    },
-                    {
-                        values: [30]
-                    },
-                    {
-                        values: [28]
-                    },
-                    {
-                        values: [15]
+                        name: "Top 5 Countries",
+                        points: [
+                            { name: "China", y: 1349585838 },
+                            { name: "India", y: 1220800359 },
+                            { name: "Europe", y: 509365627 },
+                            { name: "U.S.", y: 316438601 },
+                            { name: "Indonesia", y: 251160124 }
+                        ]
                     }
                 ]
             }
         };
     },
-    computed: {}
+    components: {
+        JSCharting
+    }
 };
 </script>
+
+<style></style>

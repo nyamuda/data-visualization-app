@@ -54,28 +54,34 @@
             </template>
         </admin-menu>
 
-        <div class="flex flex-col justify-around w-full">
-            <div><data-charts></data-charts></div>
-            <div><total-users></total-users></div>
+        <div class="flex flex-row justify-evenly w-full">
+            <em-chart></em-chart>
+            <data-charts></data-charts>
         </div>
     </div>
 </template>
 
 <script>
 import AdminMenu from "./AdminMenu";
+import EmployeeChart from "./Charts/EmployeeChart.vue";
 import Charts from "./Charts/Charts";
-import TotalUsersChart from "./Charts/TotalUsersChart.vue";
 export default {
     components: {
         "admin-menu": AdminMenu,
-        "data-charts": Charts,
-        "total-users": TotalUsersChart
+        "em-chart": EmployeeChart,
+        "data-charts": Charts
     },
     data() {
         return {
             section: "Analytics"
         };
     },
-    computed: {}
+    computed: {},
+    created() {
+        /*Getting the total number of users who have completed the survey.
+        From module E
+         */
+        this.$store.dispatch("userCompletedSurvey");
+    }
 };
 </script>

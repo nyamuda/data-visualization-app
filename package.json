@@ -14,6 +14,7 @@
         "axios": "^0.21",
         "bootstrap": "^4.0.0",
         "jquery": "^3.2",
+        "jscharting-vue": "^2.0.0-beta",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "popper.js": "^1.12",
@@ -29,8 +30,6 @@
     "dependencies": {
         "epic-spinners": "^1.1.0",
         "vue-router": "^3.5.1",
-        "vuex": "^3.6.2",
-        "zingchart": "^2.9.3",
-        "zingchart-vue": "^2.0.3"
+        "vuex": "^3.6.2"
     }
 }

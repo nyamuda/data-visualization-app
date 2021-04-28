@@ -18,15 +18,20 @@ export const moduleE = {
         /*getting the number of users who did not complete the survey and using that
         with the number of those completed it. */
         userCompleted(state) {
-            //those who did not complete
-            let leftUsers = Number(
-                state.userAnswered.totalUsers -
-                    state.userAnswered.completedUsers
-            );
+            //total users
+            let total = Number(state.userAnswered.totalUsers);
+
             //those who completed
             let goodUsers = Number(state.userAnswered.completedUsers);
-            //returning an array for use in the 'TotalUsersChart' component.
-            return [goodUsers, leftUsers];
+
+            //percentage of those who completed
+            let calculate = (goodUsers / total).toFixed(2) * 100;
+            /*When the app is still loading the value of calculate may be be 'NaN'.
+            to avoid that:*/
+            let percent = calculate ? calculate : 0;
+
+            //returning an object for use in the 'TotalUsersChart' component.
+            return { total, goodUsers, percent };
         }
     },
     actions: {
