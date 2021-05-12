@@ -18,6 +18,7 @@ class CategoryController extends Controller
     {
         $category_1 = Category::firstOrNew([
             'category_name' => 'Equitable Treatment',
+            'survey_type_id' => 1,
             'type' => 'Multiple Choice',
             'category_description' => 'Absence of discriminatory treatment on account of a different background'
         ]);
@@ -26,6 +27,7 @@ class CategoryController extends Controller
 
         $category_2 = Category::firstOrNew([
             'category_name' => 'Confidence in Redress',
+            'survey_type_id' => 1,
             'type' => 'Multiple Choice',
             'category_description' => 'Employees feeling protected and respected while workplace conflicts are resolved'
         ]);
@@ -33,6 +35,7 @@ class CategoryController extends Controller
 
         $category_3 = Category::firstOrNew([
             'category_name' => 'Workplace Fairness',
+            'survey_type_id' => 1,
             'type' => 'Multiple Choice',
             'category_description' => 'Experience of - and trust in - the organization striving for a fair workplace'
         ]);
@@ -41,6 +44,7 @@ class CategoryController extends Controller
 
         $category_4 = Category::firstOrNew([
             'category_name' => 'Mutual Support',
+            'survey_type_id' => 1,
             'type' => 'Multiple Choice',
             'category_description' => 'Employees feeling encouraged and safe to participate and express themselves'
         ]);
@@ -49,6 +53,7 @@ class CategoryController extends Controller
 
         $category_5 = Category::firstOrNew([
             'category_name' => 'Organizational Belonging',
+            'survey_type_id' => 1,
             'type' => 'Multiple Choice',
             'category_description' => 'Being able to meaningfully identify as a member of the organization'
         ]);
@@ -57,6 +62,7 @@ class CategoryController extends Controller
 
         $category_6 = Category::firstOrNew([
             'category_name' => 'General',
+            'survey_type_id' => 1,
             'type' => 'Multiple Choice'
         ]);
 
@@ -64,6 +70,7 @@ class CategoryController extends Controller
 
         $category_7 = Category::firstOrNew([
             'category_name' => 'General',
+            'survey_type_id' => 1,
             'type' => 'Scale'
         ]);
 
@@ -71,6 +78,7 @@ class CategoryController extends Controller
 
         $category_8 = Category::firstOrNew([
             'category_name' => 'General',
+            'survey_type_id' => 1,
             'type' => 'Open Ended'
         ]);
 

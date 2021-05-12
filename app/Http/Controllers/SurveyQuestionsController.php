@@ -21,9 +21,16 @@ class SurveyQuestionsController extends Controller
             ->get();
 
         //getting the category names for those questions
-        $all_categories = Question::select('category_name', 'category_questions.category_id', 'category_description')
+        $all_categories = Question::select(
+            'category_name',
+            'category_questions.category_id',
+            'category_description',
+            'category_questions.survey_type_id'
+        )
             //join with the category table to get the 'type' and 'category_name'
             ->join('category_questions', 'category_questions.category_id', '=', 'questions.category_id')
+            //join with the survey_types table to get the survey_type_id
+            ->join('survey_types', 'survey_types.id', '=', 'category_questions.survey_type_id')
             ->whereNotIn('question_id', $answered_questions)
             ->distinct()
             ->orderBy('category_name')

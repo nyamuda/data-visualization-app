@@ -10,6 +10,8 @@ import axios from "axios";
 import Quiz from "./components/Quiz.vue";
 import AddNewQuestion from "./components/AddNewQuestion.vue";
 import DataAnalytics from "./components/DataAnalytics.vue";
+import SurveyList from "./components/SurveyList.vue";
+import QuizList from "./components/QuizList.vue";
 
 Vue.use(VueRouter);
 
@@ -72,6 +74,16 @@ const router = new VueRouter({
             path: "/quiz/:id",
             name: "quiz",
             component: Quiz
+        },
+        {
+            path: "/survey_list",
+            name: "survey_list",
+            component: SurveyList
+        },
+        {
+            path: "/categories/:id",
+            name: "quiz_list",
+            component: QuizList
         }
     ]
 });

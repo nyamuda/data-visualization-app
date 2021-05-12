@@ -18,6 +18,10 @@ class CreateCategoryQuestionsTable extends Migration
             $table->string('category_name', 100);
             $table->string('category_description', 300)->default('General questions.');
             $table->string('type', 40);
+            $table->foreignId('survey_type_id')
+                ->constrained('survey_types')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

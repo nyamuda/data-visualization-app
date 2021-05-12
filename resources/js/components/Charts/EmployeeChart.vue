@@ -1,5 +1,5 @@
 <template>
-    <div class="w-1/3">
+    <div class="w-5/6">
         <JSCharting :options="chartOptions" class="columnChart"></JSCharting>
     </div>
 </template>
@@ -79,7 +79,7 @@ export default {
                             {
                                 text: "%sum%",
                                 verticalAlign: "middle",
-                                style_fontSize: 32
+                                style_fontSize: 20
                             }
                         ]
                     }
@@ -90,6 +90,16 @@ export default {
                         yAxis: "y3",
                         xAxis: "x3",
                         points: [["value", this.employeeTotal.percent]]
+                    },
+                    {
+                        name: "Inclusion",
+                        yAxis: "y2",
+                        xAxis: "x2",
+                        points: [["value", 45]]
+                    },
+                    {
+                        name: "Diversity",
+                        points: [["value", 45]]
                     }
                 ]
             };

@@ -6,6 +6,7 @@ export const moduleC = {
         loggedInUserInfo: "",
         all_questions: [],
         all_categories: [],
+        all_surveys: [],
         quiz: "",
         loader: false
     },
@@ -46,6 +47,10 @@ export const moduleC = {
             state.all_categories = payload;
             //console.log(state.all_categories);
         },
+        //load survey list
+        loadSurveys(state, payload) {
+            state.all_surveys = payload;
+        },
         //laod user info
         loadUserInfo(state, payload) {
             state.loggedInUserInfo = payload;
@@ -76,9 +81,21 @@ export const moduleC = {
             });
         },
         //getting quiz categories names for the questions the user hasn't answered
-        getCategories(context) {
+        getCategories(context, payload) {
             axios.get("/api/unanswered_categories").then(res => {
-                context.commit("loadCategories", res.data);
+                //getting categories for a specific survey
+                let specific_categories = res.data.filter(val => {
+                    return val.survey_type_id == payload;
+                });
+                context.commit("loadCategories", specific_categories);
+                //hide the page loader
+                context.commit("loaderStatus");
+            });
+        },
+        getSurveys(context) {
+            axios.get("/api/unanswered_surveys").then(res => {
+                console.log(res.data);
+                context.commit("loadSurveys", res.data);
                 //hide the page loader
                 context.commit("loaderStatus");
             });

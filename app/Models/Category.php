@@ -11,7 +11,7 @@ class Category extends Model
     protected $table = "category_questions";
     use HasFactory;
 
-    protected $fillable = ['category_name', 'type', 'category_description'];
+    protected $fillable = ['category_name', 'type', 'category_description', 'survey_type_id'];
 
     /* There is one-many relationship between the Category and Question model.
     A category can have many questions. 
@@ -20,5 +20,11 @@ class Category extends Model
     public function questions()
     {
         return $this->hasMany(Question::class, 'category_id', 'category_id');
+    }
+
+    public function surveytype()
+    {
+
+        return $this->belongsTo(SurveyType::class);
     }
 }

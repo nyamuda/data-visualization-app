@@ -54,7 +54,7 @@
             </template>
         </admin-menu>
 
-        <div class="flex flex-row justify-evenly w-full">
+        <div class="flex flex-col justify-evenly w-full items-center">
             <em-chart></em-chart>
             <data-charts></data-charts>
         </div>

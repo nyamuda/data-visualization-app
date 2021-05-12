@@ -78,7 +78,7 @@ export default {
                 .then(res => {
                     //hiding the page loader
                     this.$store.commit("loaderStatus");
-                    this.$router.push({ name: "dashboard" });
+                    this.$router.push({ name: "survey_list" });
                 })
                 .catch(error => {
                     //hiding the page loader

@@ -2,7 +2,6 @@
     <div id="survey-container" class="flex flex-col h-screen justify-between">
         <the-header></the-header>
         <div class="mb-auto">
-            <quiz-list></quiz-list>
             <loader></loader>
         </div>
         <the-footer></the-footer>
@@ -16,7 +15,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 export default {
     components: {
-        "quiz-list": QuizList,
         loader: Loader,
         "the-header": Header,
         "the-footer": Footer
