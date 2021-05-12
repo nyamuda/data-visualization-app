@@ -67,16 +67,44 @@
                     :key="survey.id"
                     class="flex flex-col items-center justify-evenly"
                 >
-                    <p
-                        @click="click_survey"
-                        :id="survey.id"
-                        class="text-2xl text-blue-600 cursor-pointer"
+                    <div
+                        class="
+          bg-gray-200
+          h-auto
+          px-2
+          py-1
+          md:py-0
+          flex
+          items-center
+          text-xl
+          min-w-2/5
+        "
                     >
-                        <span class="rounded-full bg-blue-400 text-gray-600">{{
-                            indx + 1
-                        }}</span>
-                        {{ survey.survey_type_name }}
-                    </p>
+                        <p
+                            class="
+            my-circle
+            hidden
+            md:bg-blue-400
+            md:rounded-full
+            md:h-12
+            md:w-12
+            md:flex
+            md:items-center
+            md:justify-center
+            md:-ml-8
+            md:mr-4
+          "
+                        >
+                            {{ indx + 1 }}
+                        </p>
+                        <p
+                            @click="click_survey"
+                            :id="survey.id"
+                            class="text-blue-500 cursor-pointer md:text-gray-800 md:hover:text-blue-600 transition duration-200 ease-in-out"
+                        >
+                            {{ survey.survey_type_name }}
+                        </p>
+                    </div>
                 </div>
             </div>
             <div
@@ -164,3 +192,9 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.my-circle {
+    box-shadow: -4px 0px 0px 8px #ffffff;
+}
+</style>
