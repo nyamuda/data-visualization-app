@@ -69,7 +69,7 @@
                 >
                     <div
                         class="
-          bg-gray-200
+          bg-gray-300
           h-auto
           px-2
           py-1
@@ -188,7 +188,10 @@ export default {
     },
     created() {
         this.$store.commit("loaderStatus");
+        //getting uncompleted surveys
         this.$store.dispatch("getSurveys");
+        //getting the authenticated user info
+        this.$store.dispatch("getAuthenticatedUserInfo");
     }
 };
 </script>

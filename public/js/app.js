@@ -4018,7 +4018,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /*The following function is the one that will run, if all the questions have been answered. */
     addAnswersToState: function addAnswersToState() {
-      //this will add the answers to the state by dispatching an action
+      console.log(this.$store.state.d.all_answers); //this will add the answers to the state by dispatching an action
+
       this.$store.dispatch("getAnswers", this.categoryAnswers); //showing the confirmation modal
 
       this.$store.commit("confirmModal");
@@ -4029,15 +4030,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       //hid the confirmation modal.
       this.$store.commit("confirmModal"); //show the loader.
 
-      this.$store.commit("loaderStatus"); //store the answers to the database.
+      this.$store.commit("loaderStatus");
+      /*storing the answers to the database and also passing in 
+      the total number of categories left and the survey id.*/
 
-      this.$store.dispatch("saveAnswers");
+      var cat_length = this.survey_categories.length;
+      var cat_survey_id = this.survey_categories[0]["survey_type_id"];
+      var cat_obj = {
+        cat_length: cat_length,
+        cat_survey_id: cat_survey_id
+      };
+      this.$store.dispatch("saveAnswers", cat_obj);
     },
     //go the home page
     goHome: function goHome() {
-      this.$store.commit("thankModal");
+      /*If the user has answered all the categories for a specific survey and they are about
+      to submit the last category, then we can thank the user and take them to the home page to see a list
+      of other surveys. */
+      //turning off the thank you modal
+      this.$store.commit("thankModal"); //the take the user to the survey list
+
       this.$router.push({
-        name: "dashboard"
+        name: "survey_list"
       });
     }
   },
@@ -4049,6 +4063,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     userData: function userData() {
       return this.$store.state.c.loggedInUserInfo;
+    },
+    //getting all the categories for the current survey -module C.
+    survey_categories: function survey_categories() {
+      return this.$store.state.c.all_categories;
     }
   },
   created: function created() {
@@ -4578,8 +4596,11 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.$store.commit("loaderStatus");
-    this.$store.dispatch("getSurveys");
+    this.$store.commit("loaderStatus"); //getting uncompleted surveys
+
+    this.$store.dispatch("getSurveys"); //getting the authenticated user info
+
+    this.$store.dispatch("getAuthenticatedUserInfo");
   }
 });
 
@@ -5244,6 +5265,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../router */ "./resources/js/router.js");
+
  //THIS MODULE MAINLY DEAL WITH THE ANSWERS FOR THE SURVEY..
 
 var moduleD = {
@@ -5272,15 +5295,25 @@ var moduleD = {
       context.commit("addAnswers", payload);
     },
     //saving all the answers to the database
-    saveAnswers: function saveAnswers(context) {
+    saveAnswers: function saveAnswers(context, payload) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/add", context.state.all_answers).then(function (res) {
         /*If the questions have been succesfully saved to the database,
         then we can show the thank you modal to the user.*/
 
         /*First we stop the page loader by invoking the loaderStatus mutation from module C.*/
-        context.commit("loaderStatus"); //then we show the thank you Modal.
+        context.commit("loaderStatus");
+        /*If the user has answered all the categories for a specific survey and they have
+        submitted the last category, then we can thank the user by showing the thank you modal
+        and take them to the home page to see a list of other surveys. */
 
-        context.commit("thankModal");
+        if (payload.cat_length == 1) {
+          context.commit("thankModal");
+        } else {
+          /*else we can't thank the user yet because they haven't answered all the
+          categories for a survey. So after submitting one category, we take them
+          to a list of other unanswered categories for that survey instead.*/
+          _router__WEBPACK_IMPORTED_MODULE_1__.default.push("/categories/" + payload.cat_survey_id);
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5363,13 +5396,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
-/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
-/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
-/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
-/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
+/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
+/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
+/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
 
 
 
@@ -5377,14 +5410,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
+vue__WEBPACK_IMPORTED_MODULE_5__.default.use(vuex__WEBPACK_IMPORTED_MODULE_6__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_6__.default.Store({
   modules: {
-    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__.moduleA,
-    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__.moduleB,
-    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__.moduleC,
-    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__.moduleD,
-    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__.moduleE
+    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__.moduleA,
+    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__.moduleB,
+    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__.moduleC,
+    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__.moduleD,
+    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__.moduleE
   }
 });
 
@@ -5401,20 +5434,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
-/* harmony import */ var _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminPage.vue */ "./resources/js/components/AdminPage.vue");
-/* harmony import */ var _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AdminLogin.vue */ "./resources/js/components/AdminLogin.vue");
-/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
-/* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Quiz.vue */ "./resources/js/components/Quiz.vue");
-/* harmony import */ var _components_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/AddNewQuestion.vue */ "./resources/js/components/AddNewQuestion.vue");
-/* harmony import */ var _components_DataAnalytics_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/DataAnalytics.vue */ "./resources/js/components/DataAnalytics.vue");
-/* harmony import */ var _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/SurveyList.vue */ "./resources/js/components/SurveyList.vue");
-/* harmony import */ var _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/QuizList.vue */ "./resources/js/components/QuizList.vue");
+/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
+/* harmony import */ var _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/AdminPage.vue */ "./resources/js/components/AdminPage.vue");
+/* harmony import */ var _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminLogin.vue */ "./resources/js/components/AdminLogin.vue");
+/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
+/* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Quiz.vue */ "./resources/js/components/Quiz.vue");
+/* harmony import */ var _components_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AddNewQuestion.vue */ "./resources/js/components/AddNewQuestion.vue");
+/* harmony import */ var _components_DataAnalytics_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/DataAnalytics.vue */ "./resources/js/components/DataAnalytics.vue");
+/* harmony import */ var _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/SurveyList.vue */ "./resources/js/components/SurveyList.vue");
+/* harmony import */ var _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/QuizList.vue */ "./resources/js/components/QuizList.vue");
 
 
 
@@ -5428,16 +5461,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_12__.default);
+vue__WEBPACK_IMPORTED_MODULE_11__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_12__.default);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__.default({
   mode: "history",
   linkExactActiveClass: "active",
   routes: [{
     path: "/dashboard",
     name: "dashboard",
-    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__.default,
     beforeEnter: function beforeEnter(to, from, next) {
-      axios__WEBPACK_IMPORTED_MODULE_6___default().get("/api/authenticated").then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/authenticated").then(function () {
         return next();
       })["catch"](function () {
         return next({
@@ -5448,9 +5481,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__.default({
   }, {
     path: "/admin_dashboard",
     name: "admin_dashboard",
-    component: _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    component: _components_AdminPage_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     beforeEnter: function beforeEnter(to, from, next) {
-      axios__WEBPACK_IMPORTED_MODULE_6___default().get("/api/authenticated").then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/authenticated").then(function () {
         return next();
       })["catch"](function () {
         return next({
@@ -5461,35 +5494,35 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__.default({
   }, {
     path: "/login",
     name: "login",
-    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__.default
+    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__.default
   }, {
     path: "/admin",
     name: "admin_login",
-    component: _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    component: _components_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__.default
   }, {
     path: "/admin_register_employee",
     name: "register",
-    component: _components_Register_vue__WEBPACK_IMPORTED_MODULE_5__.default
+    component: _components_Register_vue__WEBPACK_IMPORTED_MODULE_4__.default
   }, {
     path: "/admin_new_question",
     name: "new_question",
-    component: _components_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_8__.default
+    component: _components_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_7__.default
   }, {
     path: "/admin_analytics",
     name: "analytics",
-    component: _components_DataAnalytics_vue__WEBPACK_IMPORTED_MODULE_9__.default
+    component: _components_DataAnalytics_vue__WEBPACK_IMPORTED_MODULE_8__.default
   }, {
     path: "/quiz/:id",
     name: "quiz",
-    component: _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_7__.default
+    component: _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_6__.default
   }, {
     path: "/survey_list",
     name: "survey_list",
-    component: _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_10__.default
+    component: _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_9__.default
   }, {
     path: "/categories/:id",
     name: "quiz_list",
-    component: _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_11__.default
+    component: _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_10__.default
   }]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -53920,7 +53953,7 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "\n      bg-gray-200\n      h-auto\n      px-2\n      py-1\n      md:py-0\n      flex\n      items-center\n      text-xl\n      min-w-2/5\n    "
+                            "\n      bg-gray-300\n      h-auto\n      px-2\n      py-1\n      md:py-0\n      flex\n      items-center\n      text-xl\n      min-w-2/5\n    "
                         },
                         [
                           _c(

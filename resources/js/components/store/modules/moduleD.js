@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import router from "../../../router";
 //THIS MODULE MAINLY DEAL WITH THE ANSWERS FOR THE SURVEY..
 export const moduleD = {
     state: {
@@ -27,7 +27,7 @@ export const moduleD = {
             context.commit("addAnswers", payload);
         },
         //saving all the answers to the database
-        saveAnswers(context) {
+        saveAnswers(context, payload) {
             axios
                 .post("/api/add", context.state.all_answers)
                 .then(res => {
@@ -36,9 +36,18 @@ export const moduleD = {
 
                     /*First we stop the page loader by invoking the loaderStatus mutation from module C.*/
                     context.commit("loaderStatus");
+                    /*If the user has answered all the categories for a specific survey and they have
+                    submitted the last category, then we can thank the user by showing the thank you modal
+                    and take them to the home page to see a list of other surveys. */
 
-                    //then we show the thank you Modal.
-                    context.commit("thankModal");
+                    if (payload.cat_length == 1) {
+                        context.commit("thankModal");
+                    } else {
+                        /*else we can't thank the user yet because they haven't answered all the
+                    categories for a survey. So after submitting one category, we take them
+                    to a list of other unanswered categories for that survey instead.*/
+                        router.push("/categories/" + payload.cat_survey_id);
+                    }
                 })
                 .catch(error => {
                     console.log(error);

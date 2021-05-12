@@ -911,6 +911,7 @@ export default {
 
         /*The following function is the one that will run, if all the questions have been answered. */
         addAnswersToState() {
+            console.log(this.$store.state.d.all_answers);
             //this will add the answers to the state by dispatching an action
             this.$store.dispatch("getAnswers", this.categoryAnswers);
             //showing the confirmation modal
@@ -922,14 +923,23 @@ export default {
             this.$store.commit("confirmModal");
             //show the loader.
             this.$store.commit("loaderStatus");
-            //store the answers to the database.
-            this.$store.dispatch("saveAnswers");
+            /*storing the answers to the database and also passing in 
+            the total number of categories left and the survey id.*/
+            let cat_length = this.survey_categories.length;
+            let cat_survey_id = this.survey_categories[0]["survey_type_id"];
+            let cat_obj = { cat_length, cat_survey_id };
+            this.$store.dispatch("saveAnswers", cat_obj);
         },
 
         //go the home page
         goHome() {
+            /*If the user has answered all the categories for a specific survey and they are about
+            to submit the last category, then we can thank the user and take them to the home page to see a list
+            of other surveys. */
+            //turning off the thank you modal
             this.$store.commit("thankModal");
-            this.$router.push({ name: "dashboard" });
+            //the take the user to the survey list
+            this.$router.push({ name: "survey_list" });
         }
     },
     computed: {
@@ -940,6 +950,10 @@ export default {
         },
         userData() {
             return this.$store.state.c.loggedInUserInfo;
+        },
+        //getting all the categories for the current survey -module C.
+        survey_categories() {
+            return this.$store.state.c.all_categories;
         }
     },
     created() {
