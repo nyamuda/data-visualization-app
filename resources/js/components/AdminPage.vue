@@ -78,12 +78,13 @@ export default {
     },
     methods: {
         logoutAdmin() {
-            axios.post("/api/admin_logout").then(res => {
-                this.$router.push({ name: "admin_login" });
-                console.log(res);
-            });
+            //showing the page loader
+            this.$store.commit("loaderStatus");
+            //log out
+            this.$store.dispatch("admin_logout");
         }
     },
-    computed: {}
+    computed: {},
+    created() {}
 };
 </script>

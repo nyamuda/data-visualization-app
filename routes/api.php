@@ -29,6 +29,9 @@ Route::middleware('auth:sanctum')->get('/authenticated', function () {
 });
 
 
+Route::get('/admin_auth', function (Request $request) {
+    return $request->user();
+})->middleware('admin');
 
 
 

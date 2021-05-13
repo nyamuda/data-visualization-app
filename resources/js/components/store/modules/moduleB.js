@@ -13,9 +13,7 @@ export const moduleB = {
         allCategories(state, paylaod) {
             state.all_categories = paylaod;
         },
-        changeAdminComponent() {
-
-        }
+        changeAdminComponent() {}
     },
     actions: {
         //getting all the question category names from the database.
@@ -32,7 +30,8 @@ export const moduleB = {
                 .catch(error => {
                     console.log(error);
                 });
-        }
+        },
+       
         //registering a default user
         /*
         addDefaultUser(context) {

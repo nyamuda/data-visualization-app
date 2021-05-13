@@ -1,9 +1,11 @@
 import axios from "axios";
+import router from "../../../router";
 
 //THIS MODULE MAINLY DEALS WITH THE USER SIDE COMPONENTS.
 export const moduleC = {
     state: {
         loggedInUserInfo: "",
+        is_admin: "",
         all_questions: [],
         all_categories: [],
         all_surveys: [],
@@ -54,6 +56,7 @@ export const moduleC = {
         //laod user info
         loadUserInfo(state, payload) {
             state.loggedInUserInfo = payload;
+            state.is_admin = payload.is_admin;
         },
         //show/hide the loader
         loaderStatus(state) {
@@ -97,6 +100,24 @@ export const moduleC = {
                 console.log(res.data);
                 context.commit("loadSurveys", res.data);
                 //hide the page loader
+                context.commit("loaderStatus");
+            });
+        },
+        //logging out the admin
+        admin_logout(context) {
+            axios.post("/api/admin_logout").then(() => {
+                router.push({ name: "admin_login" });
+
+                //turn off the loader
+                context.commit("loaderStatus");
+            });
+        },
+        //logging out the user
+        user_logout(context) {
+            axios.post("/api/logout").then(() => {
+                router.push({ name: "login" });
+
+                //turn off the loader
                 context.commit("loaderStatus");
             });
         }

@@ -190,8 +190,6 @@ export default {
         this.$store.commit("loaderStatus");
         //getting uncompleted surveys
         this.$store.dispatch("getSurveys");
-        //getting the authenticated user info
-        this.$store.dispatch("getAuthenticatedUserInfo");
     }
 };
 </script>

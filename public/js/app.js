@@ -1990,6 +1990,9 @@ __webpack_require__.r(__webpack_exports__);
     /*disptaching an action that will fetch
     all question category names from the database*/
     this.$store.dispatch("getCategoryNames"); // this.$store.dispatch("addDefaultUser");
+    //admin info
+
+    this.$store.dispatch("getAuthenticatedUserInfo");
   }
 });
 
@@ -2079,8 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/sanctum/csrf-cookie").then(function (response) {
         //then making the post request
         axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/admin_login", _this.adminData).then(function (res) {
-          console.log(res);
-
+          //then moving to the admin dashboard
           _this.$router.push({
             name: "admin_dashboard"
           });
@@ -2089,6 +2091,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     }
+  },
+  created: function created() {//axios.post("/api/admin_logout");
   }
 });
 
@@ -2373,18 +2377,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logoutAdmin: function logoutAdmin() {
-      var _this = this;
+      //showing the page loader
+      this.$store.commit("loaderStatus"); //log out
 
-      axios.post("/api/admin_logout").then(function (res) {
-        _this.$router.push({
-          name: "admin_login"
-        });
-
-        console.log(res);
-      });
+      this.$store.dispatch("admin_logout");
     }
   },
-  computed: {}
+  computed: {},
+  created: function created() {}
 });
 
 /***/ }),
@@ -2913,18 +2913,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logoutUser: function logoutUser() {
-      var _this = this;
-
       //showing the page loader
-      this.$store.commit("loaderStatus");
-      axios.post("/api/logout").then(function (res) {
-        _this.$router.push({
-          name: "login"
-        }); //hiding the page loader
+      this.$store.commit("loaderStatus"); //logging the user
 
-
-        _this.$store.commit("loaderStatus");
-      });
+      this.$store.dispatch("user_logout");
     }
   }
 });
@@ -3076,7 +3068,8 @@ __webpack_require__.r(__webpack_exports__);
         //the maing the post request
         axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/login", _this.userData).then(function (res) {
           //hiding the page loader
-          _this.$store.commit("loaderStatus");
+          _this.$store.commit("loaderStatus"); //then going to the survey list page
+
 
           _this.$router.push({
             name: "survey_list"
@@ -4081,7 +4074,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     //show page loader
     this.$store.commit("loaderStatus"); //get survey questions
 
-    this.$store.dispatch("getSurveyQuestions");
+    this.$store.dispatch("getSurveyQuestions"); //user info
+
+    this.$store.dispatch("getAuthenticatedUserInfo"); //getting all categories for a specif survey id
+    // this.$store.dispatch("getCategories", this.$route.params.id);
   }
 });
 
@@ -4397,7 +4393,8 @@ __webpack_require__.r(__webpack_exports__);
         console.error(error);
       });
     }
-  }
+  },
+  created: function created() {}
 });
 
 /***/ }),
@@ -4606,9 +4603,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.$store.commit("loaderStatus"); //getting uncompleted surveys
 
-    this.$store.dispatch("getSurveys"); //getting the authenticated user info
-
-    this.$store.dispatch("getAuthenticatedUserInfo");
+    this.$store.dispatch("getSurveys");
   }
 });
 
@@ -4985,8 +4980,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "protectAdminRoutes": () => (/* binding */ protectAdminRoutes),
 /* harmony export */   "protectUserRoutes": () => (/* binding */ protectUserRoutes)
 /* harmony export */ });
+/* harmony import */ var _store_modules_moduleC__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store/modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../router */ "./resources/js/router.js");
+
+
+/*We are you using the same database table 'users' for both users and admins. The table
+has a column 'is_admin' and the value is 0 for users and 1 for admins. To prevent
+users from switching to the user side to admin side, for any admin page visited,
+we first need to determine if the currently logged in person is an admin else we take
+them to the admin log page.*/
+
 var protectAdminRoutes = function protectAdminRoutes(to, from, next) {
-  axios.get("/api/authenticated").then(function () {
+  //checking if the logged in user is an admin
+  axios.get("/api/admin_auth").then(function () {
     return next();
   })["catch"](function () {
     return next({
@@ -4994,6 +5000,10 @@ var protectAdminRoutes = function protectAdminRoutes(to, from, next) {
     });
   });
 };
+/*The following code does almost the same thing as the one above. To prevent an admin to switch
+from the admin side to the user side, for any user page visited, we protect it by first determining
+if the currently logged in person is a user else we take them to the user log in page */
+
 
 var protectUserRoutes = function protectUserRoutes(to, from, next) {
   axios.get("/api/authenticated").then(function () {
@@ -5192,11 +5202,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../router */ "./resources/js/router.js");
+
  //THIS MODULE MAINLY DEALS WITH THE USER SIDE COMPONENTS.
 
 var moduleC = {
   state: {
     loggedInUserInfo: "",
+    is_admin: "",
     all_questions: [],
     all_categories: [],
     all_surveys: [],
@@ -5247,6 +5260,7 @@ var moduleC = {
     //laod user info
     loadUserInfo: function loadUserInfo(state, payload) {
       state.loggedInUserInfo = payload;
+      state.is_admin = payload.is_admin;
     },
     //show/hide the loader
     loaderStatus: function loaderStatus(state) {
@@ -5287,6 +5301,26 @@ var moduleC = {
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/unanswered_surveys").then(function (res) {
         console.log(res.data);
         context.commit("loadSurveys", res.data); //hide the page loader
+
+        context.commit("loaderStatus");
+      });
+    },
+    //logging out the admin
+    admin_logout: function admin_logout(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/admin_logout").then(function () {
+        _router__WEBPACK_IMPORTED_MODULE_1__.default.push({
+          name: "admin_login"
+        }); //turn off the loader
+
+        context.commit("loaderStatus");
+      });
+    },
+    //logging out the user
+    user_logout: function user_logout(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/logout").then(function () {
+        _router__WEBPACK_IMPORTED_MODULE_1__.default.push({
+          name: "login"
+        }); //turn off the loader
 
         context.commit("loaderStatus");
       });
@@ -5440,13 +5474,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
-/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
-/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
-/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
-/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
+/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
+/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
+/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
 
 
 
@@ -5454,14 +5488,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_5__.default.use(vuex__WEBPACK_IMPORTED_MODULE_6__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_6__.default.Store({
+vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
   modules: {
-    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__.moduleA,
-    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__.moduleB,
-    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__.moduleC,
-    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__.moduleD,
-    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__.moduleE
+    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__.moduleA,
+    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__.moduleB,
+    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__.moduleC,
+    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__.moduleD,
+    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__.moduleE
   }
 });
 

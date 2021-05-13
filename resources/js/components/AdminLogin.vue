@@ -70,7 +70,7 @@ export default {
                 axios
                     .post("/api/admin_login", this.adminData)
                     .then(res => {
-                        console.log(res);
+                        //then moving to the admin dashboard
                         this.$router.push({ name: "admin_dashboard" });
                     })
                     .catch(error => {
@@ -78,6 +78,9 @@ export default {
                     });
             });
         }
+    },
+    created() {
+        //axios.post("/api/admin_logout");
     }
 };
 </script>

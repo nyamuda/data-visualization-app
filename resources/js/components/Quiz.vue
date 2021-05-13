@@ -961,6 +961,12 @@ export default {
         this.$store.commit("loaderStatus");
         //get survey questions
         this.$store.dispatch("getSurveyQuestions");
+
+        //user info
+        this.$store.dispatch("getAuthenticatedUserInfo");
+
+        //getting all categories for a specif survey id
+        // this.$store.dispatch("getCategories", this.$route.params.id);
     }
 };
 </script>

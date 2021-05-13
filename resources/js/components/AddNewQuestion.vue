@@ -146,6 +146,8 @@ export default {
         all question category names from the database*/
         this.$store.dispatch("getCategoryNames");
         // this.$store.dispatch("addDefaultUser");
+        //admin info
+        this.$store.dispatch("getAuthenticatedUserInfo");
     }
 };
 </script>

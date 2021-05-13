@@ -27,7 +27,7 @@ const router = new VueRouter({
             path: "/dashboard",
             name: "dashboard",
             component: DashBoard,
-            beforeEnter:protectUserRoutes
+            beforeEnter: protectUserRoutes
         },
         {
             path: "/admin_dashboard",
@@ -49,37 +49,37 @@ const router = new VueRouter({
             path: "/admin_register_employee",
             name: "register",
             component: Register,
-            beforeEnter:protectAdminRoutes
+            beforeEnter: protectAdminRoutes
         },
         {
             path: "/admin_new_question",
             name: "new_question",
             component: AddNewQuestion,
-            beforeEnter:protectAdminRoutes
+            beforeEnter: protectAdminRoutes
         },
         {
             path: "/admin_analytics",
             name: "analytics",
             component: DataAnalytics,
-            beforeEnter:protectAdminRoutes
+            beforeEnter: protectAdminRoutes
         },
         {
             path: "/quiz/:id",
             name: "quiz",
             component: Quiz,
-            beforeEnter:protectUserRoutes
+            beforeEnter: protectUserRoutes
         },
         {
             path: "/survey_list",
             name: "survey_list",
             component: SurveyList,
-            beforeEnter:protectUserRoutes
+            beforeEnter: protectUserRoutes
         },
         {
             path: "/categories/:id",
             name: "quiz_list",
             component: QuizList,
-            beforeEnter:protectUserRoutes
+            beforeEnter: protectUserRoutes
         }
     ]
 });

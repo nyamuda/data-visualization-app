@@ -23,13 +23,8 @@ export default {
         logoutUser() {
             //showing the page loader
             this.$store.commit("loaderStatus");
-            axios.post("/api/logout").then(res => {
-                this.$router.push({
-                    name: "login"
-                });
-                //hiding the page loader
-                this.$store.commit("loaderStatus");
-            });
+            //logging the user
+            this.$store.dispatch("user_logout");
         }
     }
 };
