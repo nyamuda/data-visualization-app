@@ -73,18 +73,22 @@ export default {
         userLogin() {
             //showing the page loader
             this.$store.commit("loaderStatus");
-            axios
-                .post("/api/login", this.userData)
-                .then(res => {
-                    //hiding the page loader
-                    this.$store.commit("loaderStatus");
-                    this.$router.push({ name: "survey_list" });
-                })
-                .catch(error => {
-                    //hiding the page loader
-                    this.$store.commit("loaderStatus");
-                    this.errorMessage = error.response.data.errors;
-                });
+            //initializing CSRF protection for the application
+            axios.get("/sanctum/csrf-cookie").then(response => {
+                //the maing the post request
+                axios
+                    .post("/api/login", this.userData)
+                    .then(res => {
+                        //hiding the page loader
+                        this.$store.commit("loaderStatus");
+                        this.$router.push({ name: "survey_list" });
+                    })
+                    .catch(error => {
+                        //hiding the page loader
+                        this.$store.commit("loaderStatus");
+                        this.errorMessage = error.response.data.errors;
+                    });
+            });
         }
     }
 };

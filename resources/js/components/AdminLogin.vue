@@ -64,15 +64,19 @@ export default {
     },
     methods: {
         adminLogin() {
-            axios
-                .post("/api/admin_login", this.adminData)
-                .then(res => {
-                    console.log(res);
-                    this.$router.push({ name: "admin_dashboard" });
-                })
-                .catch(error => {
-                    this.errorMessage = error.response.data.errors;
-                });
+            //initializing CSRF protection for the application
+            axios.get("/sanctum/csrf-cookie").then(response => {
+                //then making the post request
+                axios
+                    .post("/api/admin_login", this.adminData)
+                    .then(res => {
+                        console.log(res);
+                        this.$router.push({ name: "admin_dashboard" });
+                    })
+                    .catch(error => {
+                        this.errorMessage = error.response.data.errors;
+                    });
+            });
         }
     }
 };

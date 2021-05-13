@@ -20,6 +20,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password', 'is_admin');
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             return  response()->json(Auth::user(), 200);
         }
         throw ValidationException::withMessages([
