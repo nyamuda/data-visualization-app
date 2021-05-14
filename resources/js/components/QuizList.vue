@@ -2,7 +2,12 @@
     <div class="flex flex-col h-screen justify-between">
         <the-header></the-header>
         <div class="mb-auto">
-            <p class="text-center text-2xl mb-3 mt-8">Categories</p>
+            <p
+                v-if="pendingQuiz.length > 0"
+                class="text-center text-2xl mb-3 mt-8"
+            >
+                Survey Categories: {{ pendingQuiz[0]["survey_type_name"] }}
+            </p>
             <div
                 v-if="pendingQuiz.length > 0"
                 class="flex flex-col justify-center items-center text-center w-5/6 m-auto sm:flex-row sm:justify-evenly sm:flex-wrap"
@@ -26,7 +31,7 @@
             </div>
             <div
                 v-else
-                class="m-auto w-5/6 text-center flex-col items-center justify-center"
+                class="m-auto w-5/6 text-center flex-col items-center justify-center pt-12 lg:w-1/2"
             >
                 <div class="w-16 m-auto">
                     <svg
@@ -66,7 +71,7 @@
                 </div>
                 <div>
                     <p class="text-2xl">
-                        You have completed all the categories under this survey.
+                        You have completed all the categories for this survey.
                         There are no new categories at the moment.
                     </p>
                 </div>

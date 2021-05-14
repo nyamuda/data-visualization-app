@@ -40,12 +40,12 @@
                     </svg>
                 </div>
                 <p class="text-xl font-bold mt-2">Submitted</p>
-                <p class="mt-2">Thank you, the quiz has been submitted</p>
+                <p class="mt-2">Thank you, the survey has been completed</p>
                 <button
                     @click="goHome"
                     class="mt-4 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-3 py-1.5 bg-green-600 text-base font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 md:w-1/2 md:m-auto md:mt-2"
                 >
-                    Home
+                    Survey List
                 </button>
             </div>
         </div>

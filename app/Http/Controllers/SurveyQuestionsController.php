@@ -25,7 +25,8 @@ class SurveyQuestionsController extends Controller
             'category_name',
             'category_questions.category_id',
             'category_description',
-            'category_questions.survey_type_id'
+            'category_questions.survey_type_id',
+            'survey_type_name'
         )
             //join with the category table to get the 'type' and 'category_name'
             ->join('category_questions', 'category_questions.category_id', '=', 'questions.category_id')

@@ -2998,6 +2998,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -4207,6 +4282,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Loader */ "./resources/js/components/Loader.vue");
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.vue");
 /* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/Footer.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10672,7 +10752,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Enter and leave animations can use different */\r\n/* durations and timing functions.              */\n.slide-fade-enter-active[data-v-1f42fb90] {\r\n    transition: all 0.5s ease-in-out;\n}\n.slide-fade-leave-active[data-v-1f42fb90] {\r\n    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter[data-v-1f42fb90], .slide-fade-leave-to[data-v-1f42fb90]\r\n/* .slide-fade-leave-active below version 2.1.8 */ {\r\n    transform: translateX(10px);\r\n    opacity: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Enter and leave animations can use different */\r\n/* durations and timing functions.              */\n.slide-fade-enter-active[data-v-1f42fb90] {\r\n    transition: all 0.5s ease-in-out;\n}\n.slide-fade-leave-active[data-v-1f42fb90] {\r\n    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter[data-v-1f42fb90], .slide-fade-leave-to[data-v-1f42fb90]\r\n/* .slide-fade-leave-active below version 2.1.8 */ {\r\n    transform: translateX(10px);\r\n    opacity: 0;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51904,35 +51984,125 @@ var render = function() {
       [
         _c(
           "div",
-          { staticClass: "flex items-center flex-shrink-0 text-white mr-6" },
+          {
+            staticClass:
+              "flex items-center flex-shrink-0 text-white mr-6 -ml-1 lg:-ml-0"
+          },
           [
             _c(
               "svg",
               {
-                staticClass: "fill-current h-8 w-8 mr-2",
+                staticClass: "fill-current h-12 w-12",
+                staticStyle: { "enable-background": "new 0 0 512 512" },
                 attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                  "xmlns:svgjs": "http://svgjs.com/svgjs",
+                  version: "1.1",
                   width: "54",
                   height: "54",
-                  viewBox: "0 0 54 54",
-                  xmlns: "http://www.w3.org/2000/svg"
+                  x: "0",
+                  y: "0",
+                  viewBox: "0 0 300 300",
+                  "xml:space": "preserve"
                 }
               },
               [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"
-                  }
-                })
+                _c("g", [
+                  _c("path", {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      d:
+                        "m70.337 141.999h31.328c6.692 0 12.768-2.429 17.621-6.322l5.715 4.572c1.477 1.18 3.242 1.75 4.992 1.75 2.352 0 4.672-1.031 6.258-3 2.758-3.453 2.195-8.484-1.25-11.25l-6.553-5.242c.928-2.8 1.553-5.736 1.553-8.844v-55.328c0-15.625-12.711-28.336-28.336-28.336h-31.328c-15.625 0-28.336 12.711-28.336 28.336v55.328c0 15.625 12.711 28.336 28.336 28.336zm-12.336-83.664c0-6.805 5.531-12.336 12.336-12.336h31.328c6.805 0 12.336 5.531 12.336 12.336v52.614l-19-15.2c-3.461-2.766-8.477-2.18-11.25 1.25-2.758 3.453-2.195 8.484 1.25 11.25l21.111 16.889c-1.384.537-2.875.861-4.447.861h-31.328c-6.805 0-12.336-5.531-12.336-12.336z",
+                      fill: "#ffffff",
+                      "data-original": "#000000"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      d:
+                        "m137.516 259.264-32-88c-1.148-3.164-4.148-5.266-7.516-5.266h-24c-3.367 0-6.367 2.102-7.516 5.266l-32 88c-1.516 4.156.633 8.742 4.781 10.25 4.172 1.516 8.742-.625 10.25-4.781l12.631-34.734h47.707l12.631 34.734c1.18 3.25 4.25 5.266 7.516 5.266.906 0 1.828-.156 2.734-.484 4.15-1.508 6.298-6.094 4.782-10.251zm-69.55-45.265 11.637-32h12.797l11.637 32z",
+                      fill: "#ffffff",
+                      "data-original": "#000000"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      d:
+                        "m258.001 69.999h-96c-4.422 0-8-3.578-8-8s3.578-8 8-8h96c4.422 0 8 3.578 8 8s-3.578 8-8 8z",
+                      fill: "#ffffff",
+                      "data-original": "#000000"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      d:
+                        "m226.001 93.999h-64c-4.422 0-8-3.578-8-8s3.578-8 8-8h64c4.422 0 8 3.578 8 8s-3.578 8-8 8z",
+                      fill: "#ffffff",
+                      "data-original": "#000000"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      d:
+                        "m250.001 117.999h-88c-4.422 0-8-3.578-8-8s3.578-8 8-8h88c4.422 0 8 3.578 8 8s-3.578 8-8 8z",
+                      fill: "#e9e9e9",
+                      "data-original": "#d8b400"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      d:
+                        "m218.001 197.999h-56c-4.422 0-8-3.578-8-8s3.578-8 8-8h56c4.422 0 8 3.578 8 8s-3.578 8-8 8z",
+                      fill: "#e9e9e9",
+                      "data-original": "#d8b400"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      d:
+                        "m258.001 221.999h-96c-4.422 0-8-3.578-8-8s3.578-8 8-8h96c4.422 0 8 3.578 8 8s-3.578 8-8 8z",
+                      fill: "#ffffff",
+                      "data-original": "#000000"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      d:
+                        "m234.001 245.999h-72c-4.422 0-8-3.578-8-8s3.578-8 8-8h72c4.422 0 8 3.578 8 8s-3.578 8-8 8z",
+                      fill: "#e9e9e9",
+                      "data-original": "#d8b400"
+                    }
+                  })
+                ])
               ]
             ),
             _vm._v(" "),
             _c(
-              "span",
-              { staticClass: "font-semibold text-xl tracking-tight" },
+              "router-link",
+              {
+                staticClass:
+                  "font-semibold text-xl cursor-pointer text-gray-50 hover:text-gray-50 hover:no-underline",
+                attrs: { to: "/survey_list" }
+              },
               [_vm._v("Survey App")]
             )
-          ]
+          ],
+          1
         ),
         _vm._v(" "),
         _c("div", { staticClass: "block lg:hidden" }, [
@@ -51967,7 +52137,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "hidden flex-grow lg:flex items-center w-auto" },
+          { staticClass: "hidden flex-grow lg:flex items-center w-auto -mt-4" },
           [
             _c(
               "div",
@@ -51977,7 +52147,7 @@ var render = function() {
                   "router-link",
                   {
                     staticClass:
-                      "mt-4 inline-block lg:mt-0 text-teal-200 hover:text-white mr-4",
+                      "mt-4 inline-block lg:mt-0 text-gray-300 hover:no-underline hover:text-white mr-4",
                     attrs: { to: "/survey_list" }
                   },
                   [
@@ -51991,7 +52161,7 @@ var render = function() {
                   "a",
                   {
                     staticClass:
-                      "mt-4 inline-block lg:mt-0 text-teal-200 hover:text-white mr-4",
+                      "mt-4 inline-block lg:mt-0 text-gray-300 hover:no-underline hover:text-white mr-4",
                     attrs: { href: "#responsive-header" }
                   },
                   [_vm._v("\n                    Examples\n                ")]
@@ -52001,7 +52171,7 @@ var render = function() {
                   "a",
                   {
                     staticClass:
-                      "mt-4 inline-block lg:mt-0 text-teal-200 hover:text-white",
+                      "mt-4 inline-block lg:mt-0 text-gray-300 hover:no-underline hover:text-white",
                     attrs: { href: "#responsive-header" }
                   },
                   [_vm._v("\n                    Blog\n                ")]
@@ -52015,7 +52185,7 @@ var render = function() {
                 "a",
                 {
                   staticClass:
-                    "inline-block text-sm px-4 py-2 leading-none border rounded text-gray-100 border-gray-100 mt-0 cursor-pointer hover:bg-gray-50 hover:text-gray-800 hover:no-underline transition duration-200 ease-in-out",
+                    "inline-block text-sm px-4 py-2 leading-none border rounded text-gray-100 border-gray-100 mt-3 cursor-pointer hover:bg-gray-50 hover:text-gray-800 hover:no-underline transition duration-200 ease-in-out",
                   on: {
                     click: function($event) {
                       $event.preventDefault()
@@ -53815,9 +53985,15 @@ var render = function() {
       _c("the-header"),
       _vm._v(" "),
       _c("div", { staticClass: "mb-auto" }, [
-        _c("p", { staticClass: "text-center text-2xl mb-3 mt-8" }, [
-          _vm._v("Categories")
-        ]),
+        _vm.pendingQuiz.length > 0
+          ? _c("p", { staticClass: "text-center text-2xl mb-3 mt-8" }, [
+              _vm._v(
+                "\n            Survey Categories: " +
+                  _vm._s(_vm.pendingQuiz[0]["survey_type_name"]) +
+                  "\n        "
+              )
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _vm.pendingQuiz.length > 0
           ? _c(
@@ -53868,7 +54044,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "m-auto w-5/6 text-center flex-col items-center justify-center"
+                  "m-auto w-5/6 text-center flex-col items-center justify-center pt-12 lg:w-1/2"
               },
               [
                 _c("div", { staticClass: "w-16 m-auto" }, [
@@ -53941,7 +54117,7 @@ var staticRenderFns = [
     return _c("div", [
       _c("p", { staticClass: "text-2xl" }, [
         _vm._v(
-          "\n                    You have completed all the categories under this survey.\n                    There are no new categories at the moment.\n                "
+          "\n                    You have completed all the categories for this survey.\n                    There are no new categories at the moment.\n                "
         )
       ])
     ])
@@ -54627,7 +54803,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "mt-2" }, [
-              _vm._v("Thank you, the quiz has been submitted")
+              _vm._v("Thank you, the survey has been completed")
             ]),
             _vm._v(" "),
             _c(
@@ -54637,7 +54813,7 @@ var render = function() {
                   "mt-4 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-3 py-1.5 bg-green-600 text-base font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 md:w-1/2 md:m-auto md:mt-2",
                 on: { click: _vm.goHome }
               },
-              [_vm._v("\n                Home\n            ")]
+              [_vm._v("\n                Survey List\n            ")]
             )
           ]
         )
