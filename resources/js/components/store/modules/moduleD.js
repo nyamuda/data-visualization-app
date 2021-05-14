@@ -47,6 +47,8 @@ export const moduleD = {
                     categories for a survey. So after submitting one category, we take them
                     to a list of other unanswered categories for that survey instead.*/
                         router.push("/categories/" + payload.cat_survey_id);
+
+                        //  router.push("/quiz/" + payload.random_category_id);
                     }
                 })
                 .catch(error => {

@@ -915,18 +915,35 @@ export default {
             //this will add the answers to the state by dispatching an action
             this.$store.dispatch("getAnswers", this.categoryAnswers);
             //showing the confirmation modal
-            this.$store.commit("confirmModal");
+            //this.$store.commit("confirmModal");
+            this.storeAllAnswers();
         },
         /*This function will run when the user clicks the confirmation button to submit the quiz. */
         storeAllAnswers() {
-            //hid the confirmation modal.
-            this.$store.commit("confirmModal");
+            //hide the confirmation modal.
+           // this.$store.commit("confirmModal");
             //show the loader.
             this.$store.commit("loaderStatus");
             /*storing the answers to the database and also passing in 
-            the total number of categories left and the survey id.*/
+            the total number of categories left for a specific survey and the survey id.*/
+
+            //total number of categories for the current survey
+
+            //the survey_id of the the current category
             let cat_length = this.survey_categories.length;
             let cat_survey_id = this.survey_categories[0]["survey_type_id"];
+
+            /* picking the category_id of any random category aside from the currently
+            loaded category. We we load that random category next once the user
+            submits the current category.
+            let other_categories = this.survey_categories.filter(val => {
+                return val.category_id != this.$route.params.id;
+            });
+            let random_category_id =
+                other_categories[
+                    Math.floor(Math.random() * other_categories.length)
+                ]["category_id"]; */
+
             let cat_obj = { cat_length, cat_survey_id };
             this.$store.dispatch("saveAnswers", cat_obj);
         },
