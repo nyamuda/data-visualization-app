@@ -91,16 +91,7 @@ export default {
                         xAxis: "x3",
                         points: [["value", this.employeeTotal.percent]]
                     },
-                    {
-                        name: "Inclusion",
-                        yAxis: "y2",
-                        xAxis: "x2",
-                        points: [["value", 45]]
-                    },
-                    {
-                        name: "Diversity",
-                        points: [["value", 45]]
-                    }
+                   
                 ]
             };
         }

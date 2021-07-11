@@ -57,6 +57,10 @@
         <div class="flex flex-col justify-evenly w-full items-center">
             <em-chart></em-chart>
             <data-charts></data-charts>
+            <quali-chart></quali-chart>
+            <age-chart></age-chart>
+            <years-org></years-org>
+            <gender-chart></gender-chart>
         </div>
     </div>
 </template>
@@ -64,12 +68,20 @@
 <script>
 import AdminMenu from "./AdminMenu";
 import EmployeeChart from "./Charts/EmployeeChart.vue";
-import Charts from "./Charts/Charts";
+import Charts from "./Charts/PositionChart";
+import AgeChart from "./Charts/AgeChart";
+import QualificationChart from "./Charts/QualificationChart";
+import YearsOrganisationChart from "./Charts/YearsOrganisation";
+import GenderChart from "./Charts/GenderChart";
 export default {
     components: {
         "admin-menu": AdminMenu,
         "em-chart": EmployeeChart,
-        "data-charts": Charts
+        "data-charts": Charts,
+        "age-chart": AgeChart,
+        "quali-chart": QualificationChart,
+        "years-org": YearsOrganisationChart,
+        "gender-chart": GenderChart
     },
     data() {
         return {
