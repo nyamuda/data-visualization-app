@@ -2490,6 +2490,165 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/CategoryChart.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/CategoryChart.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var jscharting_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jscharting-vue */ "./node_modules/jscharting-vue/src/main.js");
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "columnChart",
+  data: function data() {
+    return {};
+  },
+  components: {
+    JSCharting: jscharting_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  computed: {
+    seriesData: function seriesData() {
+      return [{
+        name: "Very Happy",
+        id: "s1",
+        points: [{
+          x: "Equitable Treatment",
+          y: 230
+        }, {
+          x: "Mutual Support",
+          y: 240
+        }, {
+          x: "Confidence in Redress",
+          y: 267
+        }, {
+          x: "Workplace Fairness",
+          y: 238
+        }, {
+          x: "Organisational Belonging",
+          y: 238
+        }]
+      }, {
+        name: "Very Unhappy",
+        points: [{
+          x: "Equitable Treatment",
+          y: 130
+        }, {
+          x: "Mutual Support",
+          y: 140
+        }, {
+          x: "Confidence in Redress",
+          y: 167
+        }, {
+          x: "Workplace Fairness",
+          y: 138
+        }, {
+          x: "Organisational Belonging",
+          y: 138
+        }]
+      }, {
+        name: "Neutral",
+        points: [{
+          x: "Equitable Treatment",
+          y: 30
+        }, {
+          x: "Mutual Support",
+          y: 40
+        }, {
+          x: "Confidence in Redress",
+          y: 67
+        }, {
+          x: "Workplace Fairness",
+          y: 38
+        }, {
+          x: "Organisational Belonging",
+          y: 28
+        }]
+      }, {
+        name: "Happy",
+        points: [{
+          x: "Equitable Treatment",
+          y: 23
+        }, {
+          x: "Mutual Support",
+          y: 24
+        }, {
+          x: "Confidence in Redress",
+          y: 167
+        }, {
+          x: "Workplace Fairness",
+          y: 231
+        }, {
+          x: "Organisational Belonging",
+          y: 28
+        }]
+      }, {
+        name: "Unhappy",
+        points: [{
+          x: "Equitable Treatment",
+          y: 30
+        }, {
+          x: "Mutual Support",
+          y: 24
+        }, {
+          x: "Confidence in Redress",
+          y: 217
+        }, {
+          x: "Workplace Fairness",
+          y: 211
+        }, {
+          x: "Organisational Belonging",
+          y: 22
+        }]
+      }];
+    },
+    chartOptions1: function chartOptions1() {
+      return {
+        type: "column",
+        palette: "bright",
+        yAxis: {
+          scale_type: "stackedFull",
+          visible: true,
+          label_text: "<b>Percentage</b>"
+        },
+        defaultPoint: {
+          label_text: "{%percentOfGroup:n1}%<br>%seriesName",
+          tooltip: "%xValue %seriesName <b>%yValue</b><hr><b>{%percentOfGroup:n1}%</b> of %xValue<br><b>{%percentOfSeries:n1}%</b> of %seriesName"
+        },
+        title_label_text: "<b>Breakdown per Category</b>",
+        xAxis_label_text: "<b>Categories</b>",
+        series: this.seriesData
+      };
+    },
+    chartOptions2: function chartOptions2() {
+      return {
+        type: "pie",
+        palette: "bright",
+        title: {
+          label_text: "Sales By Representative",
+          position: "center"
+        },
+        defaultPoint_label_text: "<b>%name</b> %PercentOfTotal%",
+        legend_position: "bottom",
+        series: this.seriesData
+      };
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/EmployeeChart.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/EmployeeChart.vue?vue&type=script&lang=js& ***!
@@ -2614,82 +2773,34 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       chartOptions: {
-        title: {
-          label_text: "Annual Median Income by Race and Gender",
-          position: "center"
-        },
-        defaultAnnotation: {
-          label_style: {
-            fontSize: "15px"
-          }
-        },
-        annotations: [{
-          position: "inside 160,35",
-          label_text: "Male"
-        }, {
-          position: "inside 385,35",
-          label_text: "Female"
-        }],
-        legend: {
-          horizontalSpacing: 20,
-          defaultEntry_style_fontSize: "16px",
-          position: "inside bottom",
-          template: "%percentOfTotal% %name"
-        },
+        legend_visible: false,
+        title_position: "center",
         defaultSeries: {
-          legendEntry: {
-            visible: true
-          },
           type: "pie",
-          angle_sweep: "%percentOfTotal%",
-          shape: {
-            size: "45%"
-          },
-          defaultPoint: {
-            legendEntry_visible: false,
-            label_text: "%name <b>%percentOfTotal%</b>",
-            tooltip: "%seriesName - %name<br/><b>%yValue</b>"
-          }
+          pointSelection: true,
+          shape_padding: 0.15
         },
+        defaultPoint_label_text: "%name<br><b>%yValue</b>",
         yAxis: {
-          label_text: "USD",
-          formatString: "c"
+          formatString: "n",
+          label_text: ""
         },
         series: [{
-          palette: "default",
-          angle_orientation: -90,
-          name: "Male",
           points: [{
-            name: "Asian",
-            y: 51760
+            name: "Female",
+            y: 5452500
           }, {
-            name: "White",
-            y: 51405
+            exploded: true,
+            name: "Male",
+            y: 786052
           }, {
-            name: "Black",
-            y: 37496
-          }, {
-            name: "Hispanic",
-            y: 31393
-          }]
-        }, {
-          name: "Female",
-          palette: "default",
-          angle_orientation: 90,
-          points: [{
-            name: "Asian",
-            y: 42331
-          }, {
-            name: "White",
-            y: 38533
-          }, {
-            name: "Black",
-            y: 31824
-          }, {
-            name: "Hispanic",
-            y: 27181
-          }]
-        }]
+            exploded: true,
+            name: "Other",
+            y: 477338
+          }],
+          name: "Employees"
+        }],
+        title_label_text: "Driver Scores per Gender"
       }
     };
   },
@@ -3087,6 +3198,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Charts_QualificationChart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Charts/QualificationChart */ "./resources/js/components/Charts/QualificationChart.vue");
 /* harmony import */ var _Charts_YearsOrganisation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Charts/YearsOrganisation */ "./resources/js/components/Charts/YearsOrganisation.vue");
 /* harmony import */ var _Charts_GenderChart__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Charts/GenderChart */ "./resources/js/components/Charts/GenderChart.vue");
+/* harmony import */ var _Charts_CategoryChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Charts/CategoryChart */ "./resources/js/components/Charts/CategoryChart.vue");
 //
 //
 //
@@ -3154,6 +3266,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -3169,7 +3283,8 @@ __webpack_require__.r(__webpack_exports__);
     "age-chart": _Charts_AgeChart__WEBPACK_IMPORTED_MODULE_3__.default,
     "quali-chart": _Charts_QualificationChart__WEBPACK_IMPORTED_MODULE_4__.default,
     "years-org": _Charts_YearsOrganisation__WEBPACK_IMPORTED_MODULE_5__.default,
-    "gender-chart": _Charts_GenderChart__WEBPACK_IMPORTED_MODULE_6__.default
+    "gender-chart": _Charts_GenderChart__WEBPACK_IMPORTED_MODULE_6__.default,
+    "cat-chart": _Charts_CategoryChart__WEBPACK_IMPORTED_MODULE_7__.default
   },
   data: function data() {
     return {
@@ -48006,6 +48121,45 @@ component.options.__file = "resources/js/components/Charts/AgeChart.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Charts/CategoryChart.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Charts/CategoryChart.vue ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CategoryChart_vue_vue_type_template_id_6581a711___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CategoryChart.vue?vue&type=template&id=6581a711& */ "./resources/js/components/Charts/CategoryChart.vue?vue&type=template&id=6581a711&");
+/* harmony import */ var _CategoryChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryChart.vue?vue&type=script&lang=js& */ "./resources/js/components/Charts/CategoryChart.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _CategoryChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _CategoryChart_vue_vue_type_template_id_6581a711___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CategoryChart_vue_vue_type_template_id_6581a711___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Charts/CategoryChart.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Charts/EmployeeChart.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/Charts/EmployeeChart.vue ***!
@@ -48770,6 +48924,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AgeChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AgeChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/AgeChart.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AgeChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Charts/CategoryChart.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/Charts/CategoryChart.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoryChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CategoryChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/CategoryChart.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoryChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -50214,6 +50384,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AgeChart_vue_vue_type_template_id_21d4ee9e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AgeChart_vue_vue_type_template_id_21d4ee9e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AgeChart.vue?vue&type=template&id=21d4ee9e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/AgeChart.vue?vue&type=template&id=21d4ee9e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Charts/CategoryChart.vue?vue&type=template&id=6581a711&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/Charts/CategoryChart.vue?vue&type=template&id=6581a711& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoryChart_vue_vue_type_template_id_6581a711___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoryChart_vue_vue_type_template_id_6581a711___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoryChart_vue_vue_type_template_id_6581a711___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CategoryChart.vue?vue&type=template&id=6581a711& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/CategoryChart.vue?vue&type=template&id=6581a711&");
 
 
 /***/ }),
@@ -52145,6 +52332,46 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/CategoryChart.vue?vue&type=template&id=6581a711&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/CategoryChart.vue?vue&type=template&id=6581a711& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "w-3/4" },
+    [
+      _c("JSCharting", {
+        staticClass: "columnChart",
+        attrs: { options: _vm.chartOptions1 }
+      }),
+      _vm._v(" "),
+      _c("JSCharting", {
+        staticClass: "columnChart",
+        attrs: { options: _vm.chartOptions2 }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/EmployeeChart.vue?vue&type=template&id=7afd6361&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/EmployeeChart.vue?vue&type=template&id=7afd6361& ***!
@@ -52674,7 +52901,9 @@ var render = function() {
           _vm._v(" "),
           _c("years-org"),
           _vm._v(" "),
-          _c("gender-chart")
+          _c("gender-chart"),
+          _vm._v(" "),
+          _c("cat-chart")
         ],
         1
       )

@@ -12,60 +12,30 @@ export default {
     data() {
         return {
             chartOptions: {
-                title: {
-                    label_text: "Annual Median Income by Race and Gender",
-                    position: "center"
-                },
-                defaultAnnotation: { label_style: { fontSize: "15px" } },
-                annotations: [
-                    { position: "inside 160,35", label_text: "Male" },
-                    {
-                        position: "inside 385,35",
-                        label_text: "Female"
-                    }
-                ],
-                legend: {
-                    horizontalSpacing: 20,
-                    defaultEntry_style_fontSize: "16px",
-                    position: "inside bottom",
-                    template: "%percentOfTotal% %name"
-                },
+                legend_visible: false,
+                title_position: "center",
                 defaultSeries: {
-                    legendEntry: { visible: true },
                     type: "pie",
-                    angle_sweep: "%percentOfTotal%",
-                    shape: { size: "45%" },
-                    defaultPoint: {
-                        legendEntry_visible: false,
-                        label_text: "%name <b>%percentOfTotal%</b>",
-                        tooltip: "%seriesName - %name<br/><b>%yValue</b>"
-                    }
+                    pointSelection: true,
+                    shape_padding: 0.15
                 },
-                yAxis: { label_text: "USD", formatString: "c" },
+                defaultPoint_label_text: "%name<br><b>%yValue</b>",
+                yAxis: { formatString: "n", label_text: "" },
                 series: [
                     {
-                        palette: "default",
-                        angle_orientation: -90,
-                        name: "Male",
                         points: [
-                            { name: "Asian", y: 51760 },
-                            { name: "White", y: 51405 },
-                            { name: "Black", y: 37496 },
-                            { name: "Hispanic", y: 31393 }
-                        ]
-                    },
-                    {
-                        name: "Female",
-                        palette: "default",
-                        angle_orientation: 90,
-                        points: [
-                            { name: "Asian", y: 42331 },
-                            { name: "White", y: 38533 },
-                            { name: "Black", y: 31824 },
-                            { name: "Hispanic", y: 27181 }
-                        ]
+                            { name: "Female", y: 5452500 },
+                            { exploded: true, name: "Male", y: 786052 },
+                            {
+                                exploded: true,
+                                name: "Other",
+                                y: 477338
+                            }
+                        ],
+                        name: "Employees"
                     }
-                ]
+                ],
+                title_label_text: "Driver Scores per Gender"
             }
         };
     },

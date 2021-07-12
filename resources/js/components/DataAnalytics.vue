@@ -61,6 +61,7 @@
             <age-chart></age-chart>
             <years-org></years-org>
             <gender-chart></gender-chart>
+            <cat-chart></cat-chart>
         </div>
     </div>
 </template>
@@ -73,6 +74,7 @@ import AgeChart from "./Charts/AgeChart";
 import QualificationChart from "./Charts/QualificationChart";
 import YearsOrganisationChart from "./Charts/YearsOrganisation";
 import GenderChart from "./Charts/GenderChart";
+import CategoryChart from "./Charts/CategoryChart";
 export default {
     components: {
         "admin-menu": AdminMenu,
@@ -81,7 +83,8 @@ export default {
         "age-chart": AgeChart,
         "quali-chart": QualificationChart,
         "years-org": YearsOrganisationChart,
-        "gender-chart": GenderChart
+        "gender-chart": GenderChart,
+        "cat-chart": CategoryChart
     },
     data() {
         return {
