@@ -1,5 +1,5 @@
 <template>
-    <div class="w-1/2">
+    <div class="md:w-3/4 w-full">
         <JSCharting :options="chartOptions" class="columnChart"></JSCharting>
     </div>
 </template>
@@ -13,7 +13,7 @@ export default {
         return {
             chartOptions: {
                 title: {
-                    label_text: "Driver Scores per Generation",
+                    label_text: "<b>Driver Scores per Generation</b>",
                     position: "center"
                 },
                 legend_visible: false,

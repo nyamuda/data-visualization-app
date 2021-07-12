@@ -1,5 +1,5 @@
 <template>
-    <div class="w-5/6">
+    <div class="md:w-1/4 w-full">
         <JSCharting :options="chartOptions" class="columnChart"></JSCharting>
     </div>
 </template>
@@ -25,7 +25,7 @@ export default {
         chartOptions() {
             return {
                 title: {
-                    label_text: "Employee Participation.",
+                    label_text: "<b>Employee Participation</b>",
                     position: "center"
                 },
                 legend_visible: false,
@@ -90,8 +90,7 @@ export default {
                         yAxis: "y3",
                         xAxis: "x3",
                         points: [["value", this.employeeTotal.percent]]
-                    },
-                   
+                    }
                 ]
             };
         }

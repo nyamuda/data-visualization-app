@@ -6,7 +6,59 @@ export const moduleE = {
         userAnswered: {
             totalUsers: 0,
             completedUsers: 0
-        }
+        },
+        categoryBreakDown: [{
+                name: "Very Happy",
+                id: "s1",
+                points: [
+                    { x: "Equitable Treatment", y: 230 },
+                    { x: "Mutual Support", y: 240 },
+                    { x: "Confidence in Redress", y: 267 },
+                    { x: "Workplace Fairness", y: 238 },
+                    { x: "Organisational Belonging", y: 238 }
+                ]
+            },
+            {
+                name: "Very Unhappy",
+                points: [
+                    { x: "Equitable Treatment", y: 130 },
+                    { x: "Mutual Support", y: 140 },
+                    { x: "Confidence in Redress", y: 167 },
+                    { x: "Workplace Fairness", y: 138 },
+                    { x: "Organisational Belonging", y: 138 }
+                ]
+            },
+            {
+                name: "Neutral",
+                points: [
+                    { x: "Equitable Treatment", y: 30 },
+                    { x: "Mutual Support", y: 40 },
+                    { x: "Confidence in Redress", y: 67 },
+                    { x: "Workplace Fairness", y: 38 },
+                    { x: "Organisational Belonging", y: 28 }
+                ]
+            },
+            {
+                name: "Happy",
+                points: [
+                    { x: "Equitable Treatment", y: 23 },
+                    { x: "Mutual Support", y: 24 },
+                    { x: "Confidence in Redress", y: 167 },
+                    { x: "Workplace Fairness", y: 231 },
+                    { x: "Organisational Belonging", y: 28 }
+                ]
+            },
+            {
+                name: "Unhappy",
+                points: [
+                    { x: "Equitable Treatment", y: 30 },
+                    { x: "Mutual Support", y: 24 },
+                    { x: "Confidence in Redress", y: 217 },
+                    { x: "Workplace Fairness", y: 211 },
+                    { x: "Organisational Belonging", y: 22 }
+                ]
+            }
+        ]
     },
     mutations: {
         userCompletedSurvey(state, payload) {
@@ -32,6 +84,10 @@ export const moduleE = {
 
             //returning an object for use in the 'TotalUsersChart' component.
             return { total, goodUsers, percent };
+        },
+        /*getting break down information about the categories from the database*/
+        categoryBreakDown(state) {
+            return state.categoryBreakDown;
         }
     },
     actions: {

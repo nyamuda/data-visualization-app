@@ -2435,7 +2435,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       chartOptions: {
         title: {
-          label_text: "Driver Scores per Generation",
+          label_text: "<b>Driver Scores per Generation</b>",
           position: "center"
         },
         legend_visible: false,
@@ -2508,7 +2508,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "columnChart",
@@ -2520,100 +2519,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     seriesData: function seriesData() {
-      return [{
-        name: "Very Happy",
-        id: "s1",
-        points: [{
-          x: "Equitable Treatment",
-          y: 230
-        }, {
-          x: "Mutual Support",
-          y: 240
-        }, {
-          x: "Confidence in Redress",
-          y: 267
-        }, {
-          x: "Workplace Fairness",
-          y: 238
-        }, {
-          x: "Organisational Belonging",
-          y: 238
-        }]
-      }, {
-        name: "Very Unhappy",
-        points: [{
-          x: "Equitable Treatment",
-          y: 130
-        }, {
-          x: "Mutual Support",
-          y: 140
-        }, {
-          x: "Confidence in Redress",
-          y: 167
-        }, {
-          x: "Workplace Fairness",
-          y: 138
-        }, {
-          x: "Organisational Belonging",
-          y: 138
-        }]
-      }, {
-        name: "Neutral",
-        points: [{
-          x: "Equitable Treatment",
-          y: 30
-        }, {
-          x: "Mutual Support",
-          y: 40
-        }, {
-          x: "Confidence in Redress",
-          y: 67
-        }, {
-          x: "Workplace Fairness",
-          y: 38
-        }, {
-          x: "Organisational Belonging",
-          y: 28
-        }]
-      }, {
-        name: "Happy",
-        points: [{
-          x: "Equitable Treatment",
-          y: 23
-        }, {
-          x: "Mutual Support",
-          y: 24
-        }, {
-          x: "Confidence in Redress",
-          y: 167
-        }, {
-          x: "Workplace Fairness",
-          y: 231
-        }, {
-          x: "Organisational Belonging",
-          y: 28
-        }]
-      }, {
-        name: "Unhappy",
-        points: [{
-          x: "Equitable Treatment",
-          y: 30
-        }, {
-          x: "Mutual Support",
-          y: 24
-        }, {
-          x: "Confidence in Redress",
-          y: 217
-        }, {
-          x: "Workplace Fairness",
-          y: 211
-        }, {
-          x: "Organisational Belonging",
-          y: 22
-        }]
-      }];
+      return this.$store.getters.categoryBreakDown;
     },
-    chartOptions1: function chartOptions1() {
+    chartOptions: function chartOptions() {
       return {
         type: "column",
         palette: "bright",
@@ -2628,19 +2536,6 @@ __webpack_require__.r(__webpack_exports__);
         },
         title_label_text: "<b>Breakdown per Category</b>",
         xAxis_label_text: "<b>Categories</b>",
-        series: this.seriesData
-      };
-    },
-    chartOptions2: function chartOptions2() {
-      return {
-        type: "pie",
-        palette: "bright",
-        title: {
-          label_text: "Sales By Representative",
-          position: "center"
-        },
-        defaultPoint_label_text: "<b>%name</b> %PercentOfTotal%",
-        legend_position: "bottom",
         series: this.seriesData
       };
     }
@@ -2686,7 +2581,7 @@ __webpack_require__.r(__webpack_exports__);
     chartOptions: function chartOptions() {
       return {
         title: {
-          label_text: "Employee Participation.",
+          label_text: "<b>Employee Participation</b>",
           position: "center"
         },
         legend_visible: false,
@@ -2800,12 +2695,61 @@ __webpack_require__.r(__webpack_exports__);
           }],
           name: "Employees"
         }],
-        title_label_text: "Driver Scores per Gender"
+        title_label_text: "<b>Driver Scores per Gender</b>"
       }
     };
   },
   components: {
     JSCharting: jscharting_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/HappinessChart.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/HappinessChart.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var jscharting_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jscharting-vue */ "./node_modules/jscharting-vue/src/main.js");
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "columnChart",
+  data: function data() {
+    return {};
+  },
+  components: {
+    JSCharting: jscharting_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  computed: {
+    seriesData: function seriesData() {
+      return this.$store.getters.categoryBreakDown;
+    },
+    chartOptions: function chartOptions() {
+      return {
+        type: "pie",
+        palette: "bright",
+        title: {
+          label_text: "<b>Employee Satisfaction</b>",
+          position: "center"
+        },
+        defaultPoint_label_text: "<b>%name</b> %PercentOfTotal%",
+        legend_position: "bottom",
+        series: this.seriesData
+      };
+    }
   }
 });
 
@@ -2835,37 +2779,37 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       chartOptions: {
-        title_position: 'center',
+        title_position: "center",
         legend: {
-          template: '%value {%percentOfTotal:n1}% %icon %name',
-          position: 'inside left bottom'
+          template: "%value {%percentOfTotal:n1}% %icon %name",
+          position: "inside left bottom"
         },
         defaultSeries: {
-          type: 'pie',
+          type: "pie",
           pointSelection: true
         },
-        defaultPoint_label_text: '<b>%name</b>',
-        title_label_text: 'Driver Score per Position',
+        defaultPoint_label_text: "<b>%name</b>",
+        title_label_text: "<b>Driver Score per Position</b>",
         yAxis: {
-          label_text: 'Number',
-          formatString: 'n'
+          label_text: "Number",
+          formatString: "n"
         },
         series: [{
-          name: 'Employees',
+          name: "Employees",
           points: [{
-            name: 'Executive',
+            name: "Executive",
             y: 5452500
           }, {
-            name: 'Senior Manager',
+            name: "Senior Manager",
             y: 786052
           }, {
-            name: 'Junior Manager',
+            name: "Junior Manager",
             y: 477338
           }, {
-            name: 'Operational/Staff',
+            name: "Operational/Staff",
             y: 155313
           }, {
-            name: 'Supervisor',
+            name: "Supervisor",
             y: 155313
           }]
         }]
@@ -2905,7 +2849,7 @@ __webpack_require__.r(__webpack_exports__);
       chartOptions: {
         title: {
           position: "center",
-          label_text: "Driver Scores per Qualification"
+          label_text: "<b>Driver Scores per Qualification</b>"
         },
         defaultSeries_type: "column",
         series: [{
@@ -2974,7 +2918,7 @@ __webpack_require__.r(__webpack_exports__);
           formatString: ""
         },
         title: {
-          label_text: "Driver Scores per 'Years at Organization'",
+          label_text: "<b>Driver Scores per 'Years at Organization'</b>",
           position: "center"
         },
         defaultSeries: {
@@ -3199,6 +3143,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Charts_YearsOrganisation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Charts/YearsOrganisation */ "./resources/js/components/Charts/YearsOrganisation.vue");
 /* harmony import */ var _Charts_GenderChart__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Charts/GenderChart */ "./resources/js/components/Charts/GenderChart.vue");
 /* harmony import */ var _Charts_CategoryChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Charts/CategoryChart */ "./resources/js/components/Charts/CategoryChart.vue");
+/* harmony import */ var _Charts_HappinessChart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Charts/HappinessChart */ "./resources/js/components/Charts/HappinessChart.vue");
 //
 //
 //
@@ -3267,6 +3212,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -3284,7 +3234,8 @@ __webpack_require__.r(__webpack_exports__);
     "quali-chart": _Charts_QualificationChart__WEBPACK_IMPORTED_MODULE_4__.default,
     "years-org": _Charts_YearsOrganisation__WEBPACK_IMPORTED_MODULE_5__.default,
     "gender-chart": _Charts_GenderChart__WEBPACK_IMPORTED_MODULE_6__.default,
-    "cat-chart": _Charts_CategoryChart__WEBPACK_IMPORTED_MODULE_7__.default
+    "cat-chart": _Charts_CategoryChart__WEBPACK_IMPORTED_MODULE_7__.default,
+    "happy-chart": _Charts_HappinessChart__WEBPACK_IMPORTED_MODULE_8__.default
   },
   data: function data() {
     return {
@@ -6066,7 +6017,99 @@ var moduleE = {
     userAnswered: {
       totalUsers: 0,
       completedUsers: 0
-    }
+    },
+    categoryBreakDown: [{
+      name: "Very Happy",
+      id: "s1",
+      points: [{
+        x: "Equitable Treatment",
+        y: 230
+      }, {
+        x: "Mutual Support",
+        y: 240
+      }, {
+        x: "Confidence in Redress",
+        y: 267
+      }, {
+        x: "Workplace Fairness",
+        y: 238
+      }, {
+        x: "Organisational Belonging",
+        y: 238
+      }]
+    }, {
+      name: "Very Unhappy",
+      points: [{
+        x: "Equitable Treatment",
+        y: 130
+      }, {
+        x: "Mutual Support",
+        y: 140
+      }, {
+        x: "Confidence in Redress",
+        y: 167
+      }, {
+        x: "Workplace Fairness",
+        y: 138
+      }, {
+        x: "Organisational Belonging",
+        y: 138
+      }]
+    }, {
+      name: "Neutral",
+      points: [{
+        x: "Equitable Treatment",
+        y: 30
+      }, {
+        x: "Mutual Support",
+        y: 40
+      }, {
+        x: "Confidence in Redress",
+        y: 67
+      }, {
+        x: "Workplace Fairness",
+        y: 38
+      }, {
+        x: "Organisational Belonging",
+        y: 28
+      }]
+    }, {
+      name: "Happy",
+      points: [{
+        x: "Equitable Treatment",
+        y: 23
+      }, {
+        x: "Mutual Support",
+        y: 24
+      }, {
+        x: "Confidence in Redress",
+        y: 167
+      }, {
+        x: "Workplace Fairness",
+        y: 231
+      }, {
+        x: "Organisational Belonging",
+        y: 28
+      }]
+    }, {
+      name: "Unhappy",
+      points: [{
+        x: "Equitable Treatment",
+        y: 30
+      }, {
+        x: "Mutual Support",
+        y: 24
+      }, {
+        x: "Confidence in Redress",
+        y: 217
+      }, {
+        x: "Workplace Fairness",
+        y: 211
+      }, {
+        x: "Organisational Belonging",
+        y: 22
+      }]
+    }]
   },
   mutations: {
     userCompletedSurvey: function userCompletedSurvey(state, payload) {
@@ -6094,6 +6137,11 @@ var moduleE = {
         goodUsers: goodUsers,
         percent: percent
       };
+    },
+
+    /*getting break down information about the categories from the database*/
+    categoryBreakDown: function categoryBreakDown(state) {
+      return state.categoryBreakDown;
     }
   },
   actions: {
@@ -6119,13 +6167,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
-/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
-/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
-/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
-/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
+/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
+/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
+/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
 
 
 
@@ -6133,14 +6181,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_5__.default.use(vuex__WEBPACK_IMPORTED_MODULE_6__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_6__.default.Store({
+vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
   modules: {
-    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__.moduleA,
-    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__.moduleB,
-    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__.moduleC,
-    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__.moduleD,
-    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__.moduleE
+    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__.moduleA,
+    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__.moduleB,
+    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__.moduleC,
+    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__.moduleD,
+    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__.moduleE
   }
 });
 
@@ -11184,6 +11232,30 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n#survey-container[data-v-7b804a99] {\r\n    font-family: \"Noto Sans JP\", sans-serif;\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n#charts[data-v-173808a1] {\r\n    width: 95%;\r\n    margin-top: 5rem !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -44551,6 +44623,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_style_index_0_id_173808a1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_style_index_0_id_173808a1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_style_index_0_id_173808a1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Header.vue?vue&type=style&index=0&id=1f42fb90&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Header.vue?vue&type=style&index=0&id=1f42fb90&scoped=true&lang=css& ***!
@@ -48238,6 +48340,45 @@ component.options.__file = "resources/js/components/Charts/GenderChart.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Charts/HappinessChart.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Charts/HappinessChart.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _HappinessChart_vue_vue_type_template_id_1f993236___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HappinessChart.vue?vue&type=template&id=1f993236& */ "./resources/js/components/Charts/HappinessChart.vue?vue&type=template&id=1f993236&");
+/* harmony import */ var _HappinessChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HappinessChart.vue?vue&type=script&lang=js& */ "./resources/js/components/Charts/HappinessChart.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _HappinessChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _HappinessChart_vue_vue_type_template_id_1f993236___WEBPACK_IMPORTED_MODULE_0__.render,
+  _HappinessChart_vue_vue_type_template_id_1f993236___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Charts/HappinessChart.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Charts/PositionChart.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/Charts/PositionChart.vue ***!
@@ -48446,23 +48587,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _DataAnalytics_vue_vue_type_template_id_173808a1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DataAnalytics.vue?vue&type=template&id=173808a1& */ "./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&");
+/* harmony import */ var _DataAnalytics_vue_vue_type_template_id_173808a1_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DataAnalytics.vue?vue&type=template&id=173808a1&scoped=true& */ "./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&scoped=true&");
 /* harmony import */ var _DataAnalytics_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DataAnalytics.vue?vue&type=script&lang=js& */ "./resources/js/components/DataAnalytics.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _DataAnalytics_vue_vue_type_style_index_0_id_173808a1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css& */ "./resources/js/components/DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _DataAnalytics_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _DataAnalytics_vue_vue_type_template_id_173808a1___WEBPACK_IMPORTED_MODULE_0__.render,
-  _DataAnalytics_vue_vue_type_template_id_173808a1___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _DataAnalytics_vue_vue_type_template_id_173808a1_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _DataAnalytics_vue_vue_type_template_id_173808a1_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "173808a1",
   null
   
 )
@@ -48975,6 +49118,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Charts/HappinessChart.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/Charts/HappinessChart.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HappinessChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HappinessChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/HappinessChart.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HappinessChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Charts/PositionChart.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/Charts/PositionChart.vue?vue&type=script&lang=js& ***!
@@ -49484,6 +49643,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css& ***!
+  \************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_style_index_0_id_173808a1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=style&index=0&id=173808a1&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -50439,6 +50611,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Charts/HappinessChart.vue?vue&type=template&id=1f993236&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Charts/HappinessChart.vue?vue&type=template&id=1f993236& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HappinessChart_vue_vue_type_template_id_1f993236___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HappinessChart_vue_vue_type_template_id_1f993236___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HappinessChart_vue_vue_type_template_id_1f993236___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HappinessChart.vue?vue&type=template&id=1f993236& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/HappinessChart.vue?vue&type=template&id=1f993236&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Charts/PositionChart.vue?vue&type=template&id=9b416974&":
 /*!*****************************************************************************************!*\
   !*** ./resources/js/components/Charts/PositionChart.vue?vue&type=template&id=9b416974& ***!
@@ -50524,19 +50713,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1& ***!
-  \**********************************************************************************/
+/***/ "./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&scoped=true&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&scoped=true& ***!
+  \**********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_template_id_173808a1___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_template_id_173808a1___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_template_id_173808a1_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_template_id_173808a1_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_template_id_173808a1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DataAnalytics.vue?vue&type=template&id=173808a1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataAnalytics_vue_vue_type_template_id_173808a1_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DataAnalytics.vue?vue&type=template&id=173808a1&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&scoped=true&");
 
 
 /***/ }),
@@ -52315,7 +52504,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-1/2" },
+    { staticClass: "md:w-3/4 w-full" },
     [
       _c("JSCharting", {
         staticClass: "columnChart",
@@ -52350,16 +52539,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-3/4" },
+    { staticClass: "md:w-3/4 w-full" },
     [
       _c("JSCharting", {
         staticClass: "columnChart",
-        attrs: { options: _vm.chartOptions1 }
-      }),
-      _vm._v(" "),
-      _c("JSCharting", {
-        staticClass: "columnChart",
-        attrs: { options: _vm.chartOptions2 }
+        attrs: { options: _vm.chartOptions }
       })
     ],
     1
@@ -52390,7 +52574,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-5/6" },
+    { staticClass: "md:w-1/4 w-full" },
     [
       _c("JSCharting", {
         staticClass: "columnChart",
@@ -52425,7 +52609,42 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-1/2" },
+    { staticClass: "md:w-1/3 w-full" },
+    [
+      _c("JSCharting", {
+        staticClass: "columnChart",
+        attrs: { options: _vm.chartOptions }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/HappinessChart.vue?vue&type=template&id=1f993236&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Charts/HappinessChart.vue?vue&type=template&id=1f993236& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "md:w-2/3 w-full overflow-x-auto" },
     [
       _c("JSCharting", {
         staticClass: "columnChart",
@@ -52460,7 +52679,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-1/3" },
+    { staticClass: "md:w-1/3 w-full" },
     [
       _c("JSCharting", {
         staticClass: "columnChart",
@@ -52495,7 +52714,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-1/2" },
+    { staticClass: "md:w-1/2 w-full" },
     [
       _c("JSCharting", {
         staticClass: "columnChart",
@@ -52530,7 +52749,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-1/3" },
+    { staticClass: "md:w-2/3 w-full" },
     [
       _c("JSCharting", {
         staticClass: "columnChart",
@@ -52761,10 +52980,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1& ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/DataAnalytics.vue?vue&type=template&id=173808a1&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -52779,6 +52998,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "bg-white" },
     [
       _c("admin-menu", {
         attrs: { section: _vm.section },
@@ -52889,21 +53109,27 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex flex-col justify-evenly w-full items-center" },
+        {
+          staticClass:
+            "flex flex-col items-center justify-evenly flex-wrap m-auto relative border border-gray-200 pt-4 md:flex-row",
+          attrs: { id: "charts" }
+        },
         [
           _c("em-chart"),
+          _vm._v(" "),
+          _c("happy-chart"),
+          _vm._v(" "),
+          _c("cat-chart"),
           _vm._v(" "),
           _c("data-charts"),
           _vm._v(" "),
           _c("quali-chart"),
           _vm._v(" "),
-          _c("age-chart"),
+          _c("gender-chart"),
           _vm._v(" "),
           _c("years-org"),
           _vm._v(" "),
-          _c("gender-chart"),
-          _vm._v(" "),
-          _c("cat-chart")
+          _c("age-chart")
         ],
         1
       )

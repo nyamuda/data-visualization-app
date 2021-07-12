@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-white">
         <admin-menu :section="section">
             <template v-slot:header>
                 <div class="ml-10 flex items-baseline space-x-4">
@@ -54,14 +54,18 @@
             </template>
         </admin-menu>
 
-        <div class="flex flex-col justify-evenly w-full items-center">
+        <div
+            id="charts"
+            class="flex flex-col items-center justify-evenly flex-wrap m-auto relative border border-gray-200 pt-4 md:flex-row"
+        >
             <em-chart></em-chart>
+            <happy-chart></happy-chart>
+            <cat-chart></cat-chart>
             <data-charts></data-charts>
             <quali-chart></quali-chart>
-            <age-chart></age-chart>
-            <years-org></years-org>
             <gender-chart></gender-chart>
-            <cat-chart></cat-chart>
+            <years-org></years-org>
+            <age-chart></age-chart>
         </div>
     </div>
 </template>
@@ -75,6 +79,7 @@ import QualificationChart from "./Charts/QualificationChart";
 import YearsOrganisationChart from "./Charts/YearsOrganisation";
 import GenderChart from "./Charts/GenderChart";
 import CategoryChart from "./Charts/CategoryChart";
+import HappinessChart from "./Charts/HappinessChart";
 export default {
     components: {
         "admin-menu": AdminMenu,
@@ -84,7 +89,8 @@ export default {
         "quali-chart": QualificationChart,
         "years-org": YearsOrganisationChart,
         "gender-chart": GenderChart,
-        "cat-chart": CategoryChart
+        "cat-chart": CategoryChart,
+        "happy-chart": HappinessChart
     },
     data() {
         return {
@@ -100,3 +106,9 @@ export default {
     }
 };
 </script>
+<style scoped>
+#charts {
+    width: 95%;
+    margin-top: 5rem !important;
+}
+</style>

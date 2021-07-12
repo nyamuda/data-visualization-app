@@ -1,5 +1,5 @@
 <template>
-    <div class="w-1/2">
+    <div class="md:w-1/2 w-full">
         <JSCharting :options="chartOptions" class="columnChart"></JSCharting>
     </div>
 </template>
@@ -14,7 +14,7 @@ export default {
             chartOptions: {
                 title: {
                     position: "center",
-                    label_text: "Driver Scores per Qualification"
+                    label_text: "<b>Driver Scores per Qualification</b>"
                 },
                 defaultSeries_type: "column",
                 series: [

@@ -1,5 +1,5 @@
 <template>
-    <div class="w-1/3">
+    <div class="md:w-2/3 w-full">
         <JSCharting :options="chartOptions" class="columnChart"></JSCharting>
     </div>
 </template>
@@ -18,7 +18,8 @@ export default {
                 /*These y axis settings  describe the point y values.*/
                 yAxis: { label_text: "Employees", formatString: "" },
                 title: {
-                    label_text: "Driver Scores per 'Years at Organization'",
+                    label_text:
+                        "<b>Driver Scores per 'Years at Organization'</b>",
                     position: "center"
                 },
                 defaultSeries: {

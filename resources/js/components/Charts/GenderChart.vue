@@ -1,5 +1,5 @@
 <template>
-    <div class="w-1/2">
+    <div class="md:w-1/3 w-full">
         <JSCharting :options="chartOptions" class="columnChart"></JSCharting>
     </div>
 </template>
@@ -35,7 +35,7 @@ export default {
                         name: "Employees"
                     }
                 ],
-                title_label_text: "Driver Scores per Gender"
+                title_label_text: "<b>Driver Scores per Gender</b>"
             }
         };
     },
