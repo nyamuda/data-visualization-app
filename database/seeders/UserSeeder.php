@@ -17,10 +17,17 @@ class UserSeeder extends Seeder
     {
         //
         User::create([
-            'name' => 'admin',
+            'first_name' => 'admin',
+            'second_name' => 'admin',
+            'date_of_birth' => '2021-05-06',
+            'start_at_company' => '2020-05-06',
+            'gender' => 'male',
+            'position_at_company' => 'Supervisor',
+            'education' => 'Matric',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin'),
-            'is_admin' => 1
+            'is_admin' => 1,
+
         ]);
     }
 }

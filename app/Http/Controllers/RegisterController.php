@@ -14,7 +14,13 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'second_name' => 'required|max:255',
+            'date_birth' => 'date',
+            'start_at_company' => 'date',
+            'position_at_company' => 'required',
+            'gender' => 'required',
+            'education' => 'required',
             'email' => 'required|unique:users|email',
             'password' => 'required|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed'
         ], [
@@ -22,9 +28,16 @@ class RegisterController extends Controller
         ]);
 
         User::create([
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'second_name' => $request->second_name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'date_of_birth' => $request->date_birth,
+            'position_at_company' => $request->position_at_company,
+            'start_at_company' => $request->start_at_company,
+            'gender' => $request->gender,
+            'education' => $request->education,
+
         ]);
     }
     /*

@@ -4954,6 +4954,148 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4963,7 +5105,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       registerData: {
-        name: "",
+        first_name: "",
+        second_name: "",
+        date_birth: "",
+        education: "",
+        start_at_company: "",
+        gender: "",
+        position: "",
         email: "",
         password: "",
         password_confirmation: ""
@@ -4979,7 +5127,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/register", this.registerData).then(function (res) {
         console.log(res);
-        _this.registerData.name = "";
+        _this.registerData.first_name = "";
+        _this.registerData.second_name = "";
         _this.registerData.email = "";
         _this.registerData.password = "";
         _this.registerData.password_confirmation = "";
@@ -6167,13 +6316,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
-/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
-/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
-/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
-/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
+/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
+/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
+/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
 
 
 
@@ -6181,14 +6330,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
+vue__WEBPACK_IMPORTED_MODULE_5__.default.use(vuex__WEBPACK_IMPORTED_MODULE_6__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_6__.default.Store({
   modules: {
-    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__.moduleA,
-    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__.moduleB,
-    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__.moduleC,
-    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__.moduleD,
-    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__.moduleE
+    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__.moduleA,
+    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__.moduleB,
+    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__.moduleC,
+    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__.moduleD,
+    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__.moduleE
   }
 });
 
@@ -55433,7 +55582,7 @@ var render = function() {
                       },
                       [_vm._v("Add Survey")]
                     ),
-                    _vm._v("\n\n                >\n            ")
+                    _vm._v(">\n            ")
                   ],
                   1
                 )
@@ -55496,180 +55645,598 @@ var render = function() {
           "form",
           {
             staticClass:
-              "form_register rounded-sm m-auto flex flex-col border-2 border-gray-200 shadow-2xl p-8",
+              "w-5/6 md:w-1/2 flex flex-col items-center md:items-start relative m-auto px-4 shadow-xl",
             attrs: { action: "" }
           },
           [
-            _c("p", { staticClass: "text-center text-2xl" }, [
-              _vm._v("Register New User")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex flex-col justify-center" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.registerData.name,
-                    expression: "registerData.name"
-                  }
-                ],
-                staticClass:
-                  "w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2 mt-4",
-                attrs: {
-                  id: "user_name",
-                  name: "name",
-                  type: "text",
-                  placeholder: "Name"
-                },
-                domProps: { value: _vm.registerData.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.registerData, "name", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.errorMessage.name
-                ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                    _vm._v(_vm._s(_vm.errorMessage.name[0]))
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex flex-col justify-center mt-4" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.registerData.email,
-                    expression: "registerData.email"
-                  }
-                ],
-                staticClass:
-                  "w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2",
-                attrs: {
-                  id: "user_email",
-                  name: "email",
-                  type: "text",
-                  placeholder: "Email"
-                },
-                domProps: { value: _vm.registerData.email },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.registerData, "email", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.errorMessage.email
-                ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                    _vm._v(_vm._s(_vm.errorMessage.email[0]))
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex flex-col justify-center mt-4" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.registerData.password,
-                    expression: "registerData.password"
-                  }
-                ],
-                staticClass:
-                  "w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2",
-                attrs: {
-                  id: "user_password",
-                  name: "password",
-                  type: "password",
-                  placeholder: "Password"
-                },
-                domProps: { value: _vm.registerData.password },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.registerData, "password", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.errorMessage.password
-                ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                    _vm._v(_vm._s(_vm.errorMessage.password[0]))
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex flex-col justify-center mt-4" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.registerData.password_confirmation,
-                    expression: "registerData.password_confirmation"
-                  }
-                ],
-                staticClass:
-                  "w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2",
-                attrs: {
-                  id: "user_password_confirmation",
-                  name: "password_confirmation",
-                  type: "password",
-                  placeholder: "Confirm Password"
-                },
-                domProps: { value: _vm.registerData.password_confirmation },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.registerData,
-                      "password_confirmation",
-                      $event.target.value
-                    )
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.errorMessage.password
-                ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                    _vm._v(_vm._s(_vm.errorMessage.password[0]))
-                  ])
-                : _vm._e()
+            _c("p", { staticClass: "text-xl text-center w-full" }, [
+              _vm._v("Register New Employee")
             ]),
             _vm._v(" "),
             _c(
-              "button",
+              "label",
+              {
+                staticClass: "w-full mt-1 flex flex-col items-start",
+                attrs: { for: "email" }
+              },
+              [
+                _vm._v("\n                Email\n                "),
+                _c("br"),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.registerData.email,
+                      expression: "registerData.email"
+                    }
+                  ],
+                  staticClass:
+                    "w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1",
+                  attrs: { id: "email", type: "email" },
+                  domProps: { value: _vm.registerData.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.registerData, "email", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errorMessage.email
+                  ? _c("span", { staticClass: "text-xs text-red-600" }, [
+                      _vm._v(_vm._s(_vm.errorMessage.email[0]))
+                    ])
+                  : _vm._e()
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
               {
                 staticClass:
-                  "focus:outline-none bg-green-500 rounded-sm w-auto hover:bg-green-800 transition duration-500 ease-in-out mt-4 py-1 text-gray-100 text-center h-10",
-                attrs: { type: "submit" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.addNewUser($event)
-                  }
-                }
+                  "flex flex-col md:flex-row justify-between w-full flex-wrap"
               },
-              [_vm._v("\n                Register\n            ")]
-            )
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "w-full md:w-2/5 mt-2 flex flex-col items-start",
+                    attrs: { for: "first" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    First Name\n                    "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.registerData.first_name,
+                          expression: "registerData.first_name"
+                        }
+                      ],
+                      staticClass:
+                        "outline-none bg-gray-50 rounded-sm w-full ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1",
+                      attrs: { id: "first", type: "text" },
+                      domProps: { value: _vm.registerData.first_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.registerData,
+                            "first_name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errorMessage.first_name
+                      ? _c("span", { staticClass: "text-xs text-red-600" }, [
+                          _vm._v(_vm._s(_vm.errorMessage.first_name[0]))
+                        ])
+                      : _vm._e()
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "w-full md:w-2/5 mt-2 flex flex-col items-start",
+                    attrs: { for: "second" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Second Name\n                    "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.registerData.second_name,
+                          expression: "registerData.second_name"
+                        }
+                      ],
+                      staticClass:
+                        "outline-none bg-gray-50 rounded-sm w-full ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1",
+                      attrs: { id: "second", type: "text" },
+                      domProps: { value: _vm.registerData.second_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.registerData,
+                            "second_name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errorMessage.second_name
+                      ? _c("span", { staticClass: "text-xs text-red-600" }, [
+                          _vm._v(_vm._s(_vm.errorMessage.second_name[0]))
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col md:flex-row justify-between w-full flex-wrap"
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "mt-2 flex flex-col items-start",
+                    attrs: { for: "gender" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Gender\n                    "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.registerData.gender,
+                            expression: "registerData.gender"
+                          }
+                        ],
+                        staticClass:
+                          "outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-200 ease-in-out p-1",
+                        attrs: { name: "gender", id: "gender" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.registerData,
+                              "gender",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "Male" } }, [
+                          _vm._v("Male")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Female" } }, [
+                          _vm._v("Female")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Other" } }, [
+                          _vm._v("Other")
+                        ])
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "mt-2 flex flex-col items-start",
+                    attrs: { for: "education" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Education\n                    "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.registerData.education,
+                            expression: "registerData.education"
+                          }
+                        ],
+                        staticClass:
+                          "outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                        attrs: { name: "education", id: "education" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.registerData,
+                              "education",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "Postgrad Degree" } }, [
+                          _vm._v("Postgrad Degree")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { value: "Bachelor's Degree" } },
+                          [_vm._v("Bachelor's Degree")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { value: "Diploma/Certificate" } },
+                          [_vm._v("Diploma/Certificate")]
+                        ),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Matric" } }, [
+                          _vm._v("Matric")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Less than Matric" } }, [
+                          _vm._v("Less than Matric")
+                        ])
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "mt-2 flex flex-col items-start",
+                    attrs: { for: "position" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Position\n                    "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.registerData.position_at_company,
+                            expression: "registerData.position_at_company"
+                          }
+                        ],
+                        staticClass:
+                          "outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                        attrs: { name: "position", id: "position" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.registerData,
+                              "position_at_company",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "Executive" } }, [
+                          _vm._v("Executive")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Senior Manager" } }, [
+                          _vm._v("Senior Manager")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Junior Manager" } }, [
+                          _vm._v("Junior Manager")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Supervisor" } }, [
+                          _vm._v("Supervisor")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { value: "Operational/Staff" } },
+                          [_vm._v("Operational/Staff")]
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-full flex flex-col md:flex-row justify-between flex-wrap"
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "mt-2 flex flex-col items-start",
+                    attrs: { for: "begin-date" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Starting Date at Company\n                    "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.registerData.start_at_company,
+                          expression: "registerData.start_at_company"
+                        }
+                      ],
+                      staticClass:
+                        "outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                      attrs: { id: "begin-date", type: "date" },
+                      domProps: { value: _vm.registerData.start_at_company },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.registerData,
+                            "start_at_company",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errorMessage.start_at_company
+                      ? _c("span", { staticClass: "text-xs text-red-600" }, [
+                          _vm._v(_vm._s(_vm.errorMessage.start_at_company[0]))
+                        ])
+                      : _vm._e()
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "mt-2 flex flex-col items-start",
+                    attrs: { for: "dob" }
+                  },
+                  [
+                    _vm._v("\n                    D.O.B\n                    "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.registerData.date_birth,
+                          expression: "registerData.date_birth"
+                        }
+                      ],
+                      staticClass:
+                        "outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                      attrs: { id: "dob", type: "date" },
+                      domProps: { value: _vm.registerData.date_birth },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.registerData,
+                            "date_birth",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errorMessage.date_birth
+                      ? _c("span", { staticClass: "text-xs text-red-600" }, [
+                          _vm._v(_vm._s(_vm.errorMessage.date_birth[0]))
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-col justify-between w-full" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "mt-2 flex flex-col items-start",
+                  attrs: { for: "password" }
+                },
+                [
+                  _vm._v(
+                    "\n                    Password\n                    "
+                  ),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.registerData.password,
+                        expression: "registerData.password"
+                      }
+                    ],
+                    staticClass:
+                      "mb-2 w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1",
+                    attrs: { id: "password", type: "password" },
+                    domProps: { value: _vm.registerData.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.registerData,
+                          "password",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errorMessage.password
+                    ? _c("span", { staticClass: "text-xs text-red-600" }, [
+                        _vm._v(_vm._s(_vm.errorMessage.password[0]))
+                      ])
+                    : _vm._e()
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "mt-2 flex flex-col items-start",
+                  attrs: { for: "password-confirmation" }
+                },
+                [
+                  _vm._v(
+                    "\n                    Confirm Password\n                    "
+                  ),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.registerData.password_confirmation,
+                        expression: "registerData.password_confirmation"
+                      }
+                    ],
+                    staticClass:
+                      "w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1",
+                    attrs: { id: "password-confirmation", type: "password" },
+                    domProps: { value: _vm.registerData.password_confirmation },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.registerData,
+                          "password_confirmation",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errorMessage.password
+                    ? _c("span", { staticClass: "text-xs text-red-600" }, [
+                        _vm._v(_vm._s(_vm.errorMessage.password[0]))
+                      ])
+                    : _vm._e()
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-full my-4" }, [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center px-2 py-1 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out md:w-1/4 w-full justify-center",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.addNewUser($event)
+                    }
+                  }
+                },
+                [_vm._v("\n                    Submit\n                ")]
+              )
+            ])
           ]
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.registerData))])
     ],
     1
   )
