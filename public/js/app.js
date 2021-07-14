@@ -6167,6 +6167,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var moduleE = {
   state: {
+    check: "",
     userAnswered: {
       totalUsers: 0,
       completedUsers: 0
@@ -6187,7 +6188,7 @@ var moduleE = {
         x: "Workplace Fairness",
         y: 238
       }, {
-        x: "Organisational Belonging",
+        x: "Organizational Belonging",
         y: 238
       }]
     }, {
@@ -6205,7 +6206,7 @@ var moduleE = {
         x: "Workplace Fairness",
         y: 138
       }, {
-        x: "Organisational Belonging",
+        x: "Organizational Belonging",
         y: 138
       }]
     }, {
@@ -6223,7 +6224,7 @@ var moduleE = {
         x: "Workplace Fairness",
         y: 38
       }, {
-        x: "Organisational Belonging",
+        x: "Organizational Belonging",
         y: 28
       }]
     }, {
@@ -6241,7 +6242,7 @@ var moduleE = {
         x: "Workplace Fairness",
         y: 231
       }, {
-        x: "Organisational Belonging",
+        x: "Organizational Belonging",
         y: 28
       }]
     }, {
@@ -6259,7 +6260,7 @@ var moduleE = {
         x: "Workplace Fairness",
         y: 211
       }, {
-        x: "Organisational Belonging",
+        x: "Organizational Belonging",
         y: 22
       }]
     }]
@@ -6270,28 +6271,50 @@ var moduleE = {
       state.userAnswered.completedUsers = payload.completedUsers;
     },
     dataForAnalysis: function dataForAnalysis(state, payload) {
-      var category_breakdown = [];
-      var very_happy_object = payload.very_happy;
-      category_breakdown.push({
-        name: "Very Happy",
-        id: "s1",
-        points: [{
-          x: "Equitable Treatment",
-          y: very_happy_object['Equitable Treatment'].length
-        }, {
-          x: "Mutual Support",
-          y: 240
-        }, {
-          x: "Confidence in Redress",
-          y: 267
-        }, {
-          x: "Workplace Fairness",
-          y: 238
-        }, {
-          x: "Organisational Belonging",
-          y: 238
-        }]
-      });
+      /*Take a look at the categoryBreakdown data in our state...the data came directly from the chart as default data. Thus we should organise the
+      data coming from the database in that way.*/
+      var my_points = state.categoryBreakDown;
+
+      var _final = my_points.reduce(function (acc, next) {
+        acc.push({
+          //next.name are the category names e.g Mutual Support
+          name: next.name,
+          points: [{
+            x: "Equitable Treatment",
+
+            /*some of these properties may not exist/may not be there sometimes.
+            So we assign a value 0 instead.*/
+            y: payload[next.name]["Equitable Treatment"] ? payload[next.name]["Equitable Treatment"] : 0
+          }, {
+            x: "Mutual Support",
+
+            /*some of these properties may not exist/may not be there at sometimes.
+            So we assign a value 0 instead.*/
+            y: payload[next.name]["Mutual Support"] ? payload[next.name]["Mutual Support"] : 0
+          }, {
+            x: "Confidence in Redress",
+
+            /*some of these properties may not exist/may not be there at sometimes.
+            So we assign a value 0 instead.*/
+            y: payload[next.name]["Confidence in Redress"] ? payload[next.name]["Confidence in Redress"] : 0
+          }, {
+            x: "Workplace Fairness",
+
+            /*some of these properties may not exist/may not be there at sometimes.
+            So we assign a value 0 instead.*/
+            y: payload[next.name]["Workplace Fairness"] ? payload[next.name]["Workplace Fairness"] : 0
+          }, {
+            x: "Organizational Belonging",
+
+            /*some of these properties may not exist/may not be there at sometimes.
+            So we assign a value 0 instead.*/
+            y: payload[next.name]["Organizational Belonging"] ? payload[next.name]["Organizational Belonging"] : 0
+          }]
+        });
+        return acc;
+      }, []);
+
+      state.categoryBreakDown = _final;
     }
   },
   getters: {

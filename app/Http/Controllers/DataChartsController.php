@@ -84,17 +84,27 @@ class DataChartsController extends Controller
         $filtered_twenty = $twenty->groupBy('category_name');
 
 
+        /*The follwing function will count the length of each array for each category name. For instance,
+$filtered_hundred is an associate array where the keys are the category names and the values
+are arrays where the answer value is 100. Its the length of those arrays for each category name 
+we are trying to find.*/
 
-
-
+        function count_items($par)
+        {
+            $collection = collect($par);
+            $counted = $collection->map(function ($item, $key) {
+                return count($item);
+            });
+            return $counted;
+        }
 
 
         return [
-            'very_happy' => $filtered_hundred,
-            'happy' => $filtered_eighty,
-            'neutral' => $filtered_sixty,
-            'unhappy' => $filtered_forty,
-            'very_unhappy' => $filtered_twenty
+            'Very Happy' => count_items($filtered_hundred),
+            'Happy' => count_items($filtered_eighty),
+            'Neutral' => count_items($filtered_sixty),
+            'Unhappy' => count_items($filtered_forty),
+            'Very Unhappy' => count_items($filtered_twenty)
         ];
     }
 }
