@@ -49,3 +49,4 @@ Route::get('/unanswered_surveys', [SurveyTypesController::class, 'show']);
 Route::get('/get_categories', [CategoryController::class, 'show']);
 Route::post('/add', [SurveyQuestionsController::class, 'add']);
 Route::get('/users_completed_survey', [DataChartsController::class, 'show']);
+Route::get('/data_for_analysis', [DataChartsController::class, 'all_data']);

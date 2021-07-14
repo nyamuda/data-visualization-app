@@ -103,6 +103,7 @@ export default {
         From module E
          */
         this.$store.dispatch("userCompletedSurvey");
+        this.$store.dispatch("dataForAnalysis");
     }
 };
 </script>

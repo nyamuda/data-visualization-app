@@ -53,12 +53,12 @@
                 >
             </template>
         </admin-menu>
-        <div class="mt-10">
+        <div id="form-container">
             <form
                 action
-                class="w-5/6 md:w-1/2 flex flex-col items-center md:items-start relative m-auto px-4 shadow-xl"
+                class="w-full flex flex-col items-center md:items-start relative m-auto px-4 shadow-xl"
             >
-                <p class="text-xl text-center w-full">Register New Employee</p>
+                <p class="text-xl text-center w-full">Register Employees</p>
                 <label
                     class="w-full mt-1 flex flex-col items-start"
                     for="email"
@@ -118,7 +118,7 @@
                     </label>
                 </div>
                 <div
-                    class="flex flex-col md:flex-row justify-between w-full flex-wrap"
+                    class="flex flex-col md:flex-row justify-between w-full flex-wrap w-full"
                 >
                     <label class="mt-2 flex flex-col items-start" for="gender">
                         Gender
@@ -129,6 +129,7 @@
                             id="gender"
                             v-model="registerData.gender"
                         >
+                            <option value="">--Choose an option--</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
@@ -146,6 +147,7 @@
                             id="education"
                             v-model="registerData.education"
                         >
+                            <option value="">--Choose an option--</option>
                             <option value="Postgrad Degree"
                                 >Postgrad Degree</option
                             >
@@ -173,6 +175,7 @@
                             id="position"
                             v-model="registerData.position_at_company"
                         >
+                            <option value="">--Choose an option--</option>
                             <option value="Executive">Executive</option>
                             <option value="Senior Manager"
                                 >Senior Manager</option
@@ -188,7 +191,7 @@
                     </label>
                 </div>
                 <div
-                    class="w-full flex flex-col md:flex-row justify-between flex-wrap"
+                    class="w-full flex flex-col md:flex-row justify-between flex-wrap md:w-3/5"
                 >
                     <label
                         class="mt-2 flex flex-col items-start"
@@ -325,3 +328,17 @@ export default {
     created() {}
 };
 </script>
+
+<style scoped>
+#form-container {
+    width: 95%;
+    position: relative;
+    margin: auto;
+    margin-top: 5rem;
+}
+@media (min-width: 786.5px) {
+    #form-container {
+        width: 40rem;
+    }
+}
+</style>

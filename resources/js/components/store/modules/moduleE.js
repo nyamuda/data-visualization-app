@@ -64,6 +64,21 @@ export const moduleE = {
         userCompletedSurvey(state, payload) {
             state.userAnswered.totalUsers = payload.totalUsers;
             state.userAnswered.completedUsers = payload.completedUsers;
+        },
+        dataForAnalysis(state, payload) {
+            let category_breakdown = [];
+            let very_happy_object = payload.very_happy;
+            category_breakdown.push({
+                name: "Very Happy",
+                id: "s1",
+                points: [
+                    { x: "Equitable Treatment", y: very_happy_object['Equitable Treatment'].length },
+                    { x: "Mutual Support", y: 240 },
+                    { x: "Confidence in Redress", y: 267 },
+                    { x: "Workplace Fairness", y: 238 },
+                    { x: "Organisational Belonging", y: 238 }
+                ]
+            });
         }
     },
     getters: {
@@ -95,6 +110,12 @@ export const moduleE = {
         userCompletedSurvey(context) {
             axios.get("/api/users_completed_survey").then(res => {
                 context.commit("userCompletedSurvey", res.data);
+            });
+        },
+        /* Getting all the data to be to be analysed from the database*/
+        dataForAnalysis(context) {
+            axios.get("/api/data_for_analysis").then(res => {
+                context.commit("dataForAnalysis", res.data);
             });
         }
     }
