@@ -9,7 +9,7 @@ export const moduleE = {
             completedUsers: 0
         },
         categoryBreakDown: [{
-                name: "Very Happy",
+                name: "Very Unhappy",
                 id: "s1",
                 points: [
                     { x: "Equitable Treatment", y: 230 },
@@ -20,7 +20,7 @@ export const moduleE = {
                 ]
             },
             {
-                name: "Very Unhappy",
+                name: "Unhappy",
                 points: [
                     { x: "Equitable Treatment", y: 130 },
                     { x: "Mutual Support", y: 140 },
@@ -50,7 +50,7 @@ export const moduleE = {
                 ]
             },
             {
-                name: "Unhappy",
+                name: "Very Happy",
                 points: [
                     { x: "Equitable Treatment", y: 30 },
                     { x: "Mutual Support", y: 24 },
@@ -67,47 +67,56 @@ export const moduleE = {
             state.userAnswered.completedUsers = payload.completedUsers;
         },
         dataForAnalysis(state, payload) {
-            /*Take a look at the categoryBreakdown data in our state...the data came directly from the chart as default data. Thus we should organise the
+            /*Take a look at the categoryBreakdown data in our state...the data came directly from the chart (taken from chart.js) as default data. Thus we should organise the
             data coming from the database in that way.*/
             let my_points = state.categoryBreakDown;
+            /*all chart.js chart have an id of 's1' on the first object. SEE the categoryBreakdown above.*/
+            let id = "s1";
             let final = my_points.reduce((acc, next) => {
                 acc.push({
-                    //next.name are the category names e.g Mutual Support
+                    //next.name are the names lik eHappy, Neutral etc
                     name: next.name,
+                    //assigning an id 's1' to the first object
+                    id: next.name == "Very Unhappy" ? id : "",
                     points: [{
                             x: "Equitable Treatment",
                             /*some of these properties may not exist/may not be there sometimes.
                             So we assign a value 0 instead.*/
                             y: payload[next.name]["Equitable Treatment"] ?
-                                payload[next.name]["Equitable Treatment"] : 0
+                                payload[next.name]["Equitable Treatment"] :
+                                0
                         },
                         {
                             x: "Mutual Support",
                             /*some of these properties may not exist/may not be there at sometimes.
                             So we assign a value 0 instead.*/
                             y: payload[next.name]["Mutual Support"] ?
-                                payload[next.name]["Mutual Support"] : 0
+                                payload[next.name]["Mutual Support"] :
+                                0
                         },
                         {
                             x: "Confidence in Redress",
                             /*some of these properties may not exist/may not be there at sometimes.
                             So we assign a value 0 instead.*/
                             y: payload[next.name]["Confidence in Redress"] ?
-                                payload[next.name]["Confidence in Redress"] : 0
+                                payload[next.name]["Confidence in Redress"] :
+                                0
                         },
                         {
                             x: "Workplace Fairness",
                             /*some of these properties may not exist/may not be there at sometimes.
                             So we assign a value 0 instead.*/
                             y: payload[next.name]["Workplace Fairness"] ?
-                                payload[next.name]["Workplace Fairness"] : 0
+                                payload[next.name]["Workplace Fairness"] :
+                                0
                         },
                         {
                             x: "Organizational Belonging",
                             /*some of these properties may not exist/may not be there at sometimes.
                             So we assign a value 0 instead.*/
                             y: payload[next.name]["Organizational Belonging"] ?
-                                payload[next.name]["Organizational Belonging"] : 0
+                                payload[next.name]["Organizational Belonging"] :
+                                0
                         }
                     ]
                 });
@@ -115,6 +124,7 @@ export const moduleE = {
             }, []);
 
             state.categoryBreakDown = final;
+            console.log(final);
         }
     },
     getters: {

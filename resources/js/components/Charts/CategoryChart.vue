@@ -21,8 +21,8 @@ export default {
         },
         chartOptions() {
             return {
-                type: "column",
-                palette: "bright",
+                type: "horizontal column",
+                palette: "darkRainbow",
                 yAxis: {
                     scale_type: "stackedFull",
                     visible: true,
@@ -31,10 +31,11 @@ export default {
                 defaultPoint: {
                     label_text: "{%percentOfGroup:n1}%<br>%seriesName",
                     tooltip:
-                        "%xValue %seriesName <b>%yValue</b><hr><b>{%percentOfGroup:n1}%</b> of %xValue<br><b>{%percentOfSeries:n1}%</b> of %seriesName"
+                        "<b>%xValue (%seriesName)</b><hr><b>{%percentOfGroup:n1}%</b> of %xValue<br><b>{%percentOfSeries:n1}%</b> of %seriesName"
                 },
                 title_label_text: "<b>Breakdown per Category</b>",
                 xAxis_label_text: "<b>Categories</b>",
+                legend_visible: false,
                 series: this.seriesData
             };
         }

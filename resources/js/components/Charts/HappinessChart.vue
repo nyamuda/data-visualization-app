@@ -21,14 +21,18 @@ export default {
         },
         chartOptions() {
             return {
-                type: "pie",
-                palette: "bright",
+                type: "pieDonut",
+                palette: "darkRainbow",
                 title: {
                     label_text: "<b>Employee Satisfaction</b>",
                     position: "center"
                 },
-                defaultPoint_label_text: "<b>%name</b> %PercentOfTotal%",
+                defaultPoint: {
+                    label_text: "<b>%name</b> %PercentOfTotal%",
+                    tooltip: "%name <br> %PercentOfTotal% of Answers"
+                },
                 legend_position: "bottom",
+                legend_visible: false,
                 series: this.seriesData
             };
         }

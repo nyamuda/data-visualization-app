@@ -2523,8 +2523,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     chartOptions: function chartOptions() {
       return {
-        type: "column",
-        palette: "bright",
+        type: "horizontal column",
+        palette: "darkRainbow",
         yAxis: {
           scale_type: "stackedFull",
           visible: true,
@@ -2532,10 +2532,11 @@ __webpack_require__.r(__webpack_exports__);
         },
         defaultPoint: {
           label_text: "{%percentOfGroup:n1}%<br>%seriesName",
-          tooltip: "%xValue %seriesName <b>%yValue</b><hr><b>{%percentOfGroup:n1}%</b> of %xValue<br><b>{%percentOfSeries:n1}%</b> of %seriesName"
+          tooltip: "<b>%xValue (%seriesName)</b><hr><b>{%percentOfGroup:n1}%</b> of %xValue<br><b>{%percentOfSeries:n1}%</b> of %seriesName"
         },
         title_label_text: "<b>Breakdown per Category</b>",
         xAxis_label_text: "<b>Categories</b>",
+        legend_visible: false,
         series: this.seriesData
       };
     }
@@ -2739,14 +2740,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     chartOptions: function chartOptions() {
       return {
-        type: "pie",
-        palette: "bright",
+        type: "pieDonut",
+        palette: "darkRainbow",
         title: {
           label_text: "<b>Employee Satisfaction</b>",
           position: "center"
         },
-        defaultPoint_label_text: "<b>%name</b> %PercentOfTotal%",
+        defaultPoint: {
+          label_text: "<b>%name</b> %PercentOfTotal%",
+          tooltip: "%name <br> %PercentOfTotal% of Answers"
+        },
         legend_position: "bottom",
+        legend_visible: false,
         series: this.seriesData
       };
     }
@@ -6173,7 +6178,7 @@ var moduleE = {
       completedUsers: 0
     },
     categoryBreakDown: [{
-      name: "Very Happy",
+      name: "Very Unhappy",
       id: "s1",
       points: [{
         x: "Equitable Treatment",
@@ -6192,7 +6197,7 @@ var moduleE = {
         y: 238
       }]
     }, {
-      name: "Very Unhappy",
+      name: "Unhappy",
       points: [{
         x: "Equitable Treatment",
         y: 130
@@ -6246,7 +6251,7 @@ var moduleE = {
         y: 28
       }]
     }, {
-      name: "Unhappy",
+      name: "Very Happy",
       points: [{
         x: "Equitable Treatment",
         y: 30
@@ -6271,14 +6276,19 @@ var moduleE = {
       state.userAnswered.completedUsers = payload.completedUsers;
     },
     dataForAnalysis: function dataForAnalysis(state, payload) {
-      /*Take a look at the categoryBreakdown data in our state...the data came directly from the chart as default data. Thus we should organise the
+      /*Take a look at the categoryBreakdown data in our state...the data came directly from the chart (taken from chart.js) as default data. Thus we should organise the
       data coming from the database in that way.*/
       var my_points = state.categoryBreakDown;
+      /*all chart.js chart have an id of 's1' on the first object. SEE the categoryBreakdown above.*/
+
+      var id = "s1";
 
       var _final = my_points.reduce(function (acc, next) {
         acc.push({
-          //next.name are the category names e.g Mutual Support
+          //next.name are the names lik eHappy, Neutral etc
           name: next.name,
+          //assigning an id 's1' to the first object
+          id: next.name == "Very Unhappy" ? id : "",
           points: [{
             x: "Equitable Treatment",
 
@@ -6315,6 +6325,7 @@ var moduleE = {
       }, []);
 
       state.categoryBreakDown = _final;
+      console.log(_final);
     }
   },
   getters: {

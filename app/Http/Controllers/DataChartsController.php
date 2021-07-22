@@ -86,7 +86,7 @@ class DataChartsController extends Controller
 
         /*The follwing function will count the length of each array for each category name. For instance,
 $filtered_hundred is an associate array where the keys are the category names and the values
-are arrays where the answer value is 100. Its the length of those arrays for each category name 
+are arrays. Its the length of those arrays for each category name 
 we are trying to find.*/
 
         function count_items($par)
