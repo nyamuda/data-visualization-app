@@ -8,6 +8,11 @@ export const moduleE = {
             totalUsers: 0,
             completedUsers: 0
         },
+        employeePosition: "",
+        employeeAge: "",
+        employeeYearsAtCompany: "",
+        employeeGender: "",
+        employeeEducation: "",
         categoryBreakDown: [{
                 name: "Very Unhappy",
                 id: "s1",
@@ -67,6 +72,8 @@ export const moduleE = {
             state.userAnswered.completedUsers = payload.completedUsers;
         },
         dataForAnalysis(state, payload) {
+            /*FIRST WE DEAL WITH THE DATA ABOUT CATEGORIES. */
+
             /*Take a look at the categoryBreakdown data in our state...the data came directly from the chart (taken from chart.js) as default data. Thus we should organise the
             data coming from the database in that way.*/
             let my_points = state.categoryBreakDown;
@@ -82,49 +89,71 @@ export const moduleE = {
                             x: "Equitable Treatment",
                             /*some of these properties may not exist/may not be there sometimes.
                             So we assign a value 0 instead.*/
-                            y: payload[next.name]["Equitable Treatment"] ?
-                                payload[next.name]["Equitable Treatment"] :
-                                0
+                            y: payload["category_data"][next.name][
+                                    "Equitable Treatment"
+                                ] ?
+                                payload["category_data"][next.name][
+                                    "Equitable Treatment"
+                                ] : 0
                         },
                         {
                             x: "Mutual Support",
                             /*some of these properties may not exist/may not be there at sometimes.
                             So we assign a value 0 instead.*/
-                            y: payload[next.name]["Mutual Support"] ?
-                                payload[next.name]["Mutual Support"] :
-                                0
+                            y: payload["category_data"][next.name][
+                                    "Mutual Support"
+                                ] ?
+                                payload["category_data"][next.name][
+                                    "Mutual Support"
+                                ] : 0
                         },
                         {
                             x: "Confidence in Redress",
                             /*some of these properties may not exist/may not be there at sometimes.
                             So we assign a value 0 instead.*/
-                            y: payload[next.name]["Confidence in Redress"] ?
-                                payload[next.name]["Confidence in Redress"] :
-                                0
+                            y: payload["category_data"][next.name][
+                                    "Confidence in Redress"
+                                ] ?
+                                payload["category_data"][next.name][
+                                    "Confidence in Redress"
+                                ] : 0
                         },
                         {
                             x: "Workplace Fairness",
                             /*some of these properties may not exist/may not be there at sometimes.
                             So we assign a value 0 instead.*/
-                            y: payload[next.name]["Workplace Fairness"] ?
-                                payload[next.name]["Workplace Fairness"] :
-                                0
+                            y: payload["category_data"][next.name][
+                                    "Workplace Fairness"
+                                ] ?
+                                payload["category_data"][next.name][
+                                    "Workplace Fairness"
+                                ] : 0
                         },
                         {
                             x: "Organizational Belonging",
                             /*some of these properties may not exist/may not be there at sometimes.
                             So we assign a value 0 instead.*/
-                            y: payload[next.name]["Organizational Belonging"] ?
-                                payload[next.name]["Organizational Belonging"] :
-                                0
+                            y: payload["category_data"][next.name][
+                                    "Organizational Belonging"
+                                ] ?
+                                payload["category_data"][next.name][
+                                    "Organizational Belonging"
+                                ] : 0
                         }
                     ]
                 });
                 return acc;
             }, []);
-
             state.categoryBreakDown = final;
-            console.log(final);
+
+            /*NOW WE DEAL WITH THE USER DATA e.g GENDER, EDUCATIONS ETC */
+
+            state.employeeAge = payload.user_analysed.age;
+            state.employeeGender = payload.user_analysed.gender;
+            state.employeeEducation = payload.user_analysed.education;
+            state.employeeYearsAtCompany =
+                payload.user_analysed.years_at_company;
+            state.employeePosition = payload.user_analysed.position_at_company;
         }
     },
     getters: {

@@ -10,34 +10,43 @@ import JSCharting from "jscharting-vue";
 export default {
     name: "columnChart",
     data() {
-        return {
-            chartOptions: {
-                legend_visible: false,
+        return {};
+    },
+    computed: {
+        //getting gender data from our state -module E.
+        chartOptions() {
+            let gender = this.$store.state.e.employeeGender;
+            return {
                 title_position: "center",
-                defaultSeries: {
-                    type: "pie",
-                    pointSelection: true,
-                    shape_padding: 0.15
+                defaultSeries_type: "pie donut",
+                legend_visible: false,
+                defaultPoint: {
+                    label_text: "<b>%name</b> ",
+                    outline: { color: "white", width: 3 }
                 },
-                defaultPoint_label_text: "%name<br><b>%yValue</b>",
-                yAxis: { formatString: "n", label_text: "" },
+                title_label_text: "<b>Driver Scores Per Gender</b>",
+                yAxis: { label_text: "Employees", formatString: "n" },
                 series: [
                     {
+                        name: "Employees",
                         points: [
-                            { name: "Female", y: 5452500 },
-                            { exploded: true, name: "Male", y: 786052 },
+                            //in case the property is no there/available we assign 0.
+                            { name: "Male", y: gender.Male ? gender.Male : 0 },
                             {
-                                exploded: true,
+                                name: "Female",
+                                //in case the property is no there/available we assign 0.
+                                y: gender.Female ? gender.Female : 0
+                            },
+                            //in case the property is no there/available we assign 0.
+                            {
                                 name: "Other",
-                                y: 477338
+                                y: gender.Other ? gender.Other : 0
                             }
-                        ],
-                        name: "Employees"
+                        ]
                     }
-                ],
-                title_label_text: "<b>Driver Scores per Gender</b>"
-            }
-        };
+                ]
+            };
+        }
     },
     components: {
         JSCharting

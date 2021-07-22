@@ -10,66 +10,110 @@ import JSCharting from "jscharting-vue";
 export default {
     name: "columnChart",
     data() {
-        return {
-            chartOptions: {
-                title: {
-                    label_text: "<b>Driver Scores per Generation</b>",
-                    position: "center"
-                },
+        return {};
+    },
+    methods: {
+        /*The following function will group the ages into generations eg Millenials(1981-1996), Gen X(1965-1980) etc years etc and
+        add the values of the indiviual age within that generation. The aim is to get the total number of employees for each generation.*/
+        count_ages(obj) {
+            let post_war = 0;
+            let boomers1 = 0;
+            let boomers2 = 0;
+            let millenials = 0;
+            let genx = 0;
+            let genz = 0;
+            for (let key in obj) {
+                //less than 1 year
+                if (key >= 1928 && key <= 1945) {
+                    post_war += obj[key];
+                }
+                //1-2 years
+                if (key >= 1946 && key <= 1954) {
+                    boomers1 += obj[key];
+                }
+                //3-5 years
+                if (key >= 1955 && key <= 1964) {
+                    boomers2 += obj[key];
+                }
+                //6-10 years
+                if (key >= 1965 && key <= 1980) {
+                    genx += obj[key];
+                }
+                if (key >= 1981 && key <= 1996) {
+                    millenials += obj[key];
+                }
+                if (key >= 1997 && key <= 2012) {
+                    genz += obj[key];
+                }
+            }
+            return {
+                post_war,
+                boomers1,
+                boomers2,
+                genx,
+                genz,
+                millenials
+            };
+        }
+    },
+    computed: {
+        chartOptions() {
+            let age = this.$store.state.e.employeeAge;
+            let generations = this.count_ages(age);
+            return {
+                debug: true,
+                type: "column",
+                title_label_text: "Driver Scores per Generation",
                 legend_visible: false,
-                defaultSeries: {
-                    type: "pie donut",
-                    angle_orientation: 125,
-                    shape_padding: 0.3,
-                    mouseTracking_enabled: false
-                },
-                defaultPoint: {
-                    label: {
-                        text:
-                            "<b>%name</b><br/>Population: <b>{%yValue/1000000:n1}M</b><br/>Unemployment: <b>%zValue%</b>",
-                        margin: 10
+                yAxis_defaultTick_label_text: "%value%",
+                xAxis: {
+                    defaultTick: {
+                        placement: "inside",
+                        label: {
+                            color: "white",
+                            style: { fontWeight: "bold", fontSize: 16 }
+                        }
                     }
                 },
-                zAxis_formatString: "n1",
                 series: [
                     {
-                        name: "Employees",
+                        defaultPoint: {
+                            tooltip:
+                                "<b>%yValue%</b> of employees are<br><b>%name</b>",
+
+                            label_text: "%value%"
+                        },
+                        name: "Generations",
                         points: [
                             {
-                                name: "Gen Z (1997 - 2012)",
-                                y: 949585838,
-                                z: 6.4
+                                name: "Post War",
+                                y: generations.post_war
                             },
                             {
-                                name: "Millenials (1981 - 1996)",
-                                y: 1220800359,
-                                z: 7.8
+                                name: "BoomersI",
+                                y: generations.boomers1
                             },
                             {
-                                name: "Gen X (1965 - 1980)",
-                                y: 509365627,
-                                z: 8.8
+                                name: "BoomersII",
+                                y: generations.boomers2
                             },
                             {
-                                name: "Boomers II (1955 - 1964)",
-                                y: 316438601,
-                                z: 7.5
+                                name: "Gen X",
+                                y: generations.genx
                             },
                             {
-                                name: "Boomers I (1946 - 1954)",
-                                y: 251160124,
-                                z: 6.6
+                                name: "Millenials",
+                                y: generations.millenials
                             },
                             {
-                                name: "Post War (1928 - 1945)",
-                                y: 951160124,
-                                z: 6.6
+                                name: "Gen Z",
+                                y: generations.genz
                             }
                         ]
                     }
                 ]
-            }
-        };
+            };
+        }
     },
     components: {
         JSCharting

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DataChartsController extends Controller
 {
@@ -99,12 +100,51 @@ we are trying to find.*/
         }
 
 
-        return [
+        $category_data = [
             'Very Happy' => count_items($filtered_hundred),
             'Happy' => count_items($filtered_eighty),
             'Neutral' => count_items($filtered_sixty),
             'Unhappy' => count_items($filtered_forty),
             'Very Unhappy' => count_items($filtered_twenty)
+        ];
+
+
+        /*SECOND GETTING DATA ABOUT THE EMPLOYEES E.G POSITION, GENDER ETC.*/
+
+        /*the query is a bit complex, so we're using the raw query builder */
+        $user_data = DB::table('users')
+            ->select(DB::raw('id,position_at_company,gender,education,round(datediff(current_date,start_at_company)/365) as years_at_company,year(date_of_birth) as age'))
+            ->get();
+
+
+        /*The folloing function groups the data by a given name and then counts the number of elements per group name. */
+        function count_keys($par, $data)
+        {
+            $user_collection = collect($data);
+
+
+            /*grouping the user_data by position_at_company, gender, age etc */
+            $users_grouped = $user_collection->groupBy($par);
+            $my_arr = [];
+            /*counting the number of elements for each key/group name */
+            foreach ($users_grouped as $key => $val) {
+                $my_arr[$key] = count($val);
+            }
+            return $my_arr;
+        }
+        $user_analysed = [
+            'years_at_company' => count_keys('years_at_company', $user_data),
+            'gender' => count_keys('gender', $user_data),
+            'age' => count_keys('age', $user_data),
+            'position_at_company' => count_keys('position_at_company', $user_data),
+            'education' => count_keys('education', $user_data)
+        ];
+
+        /*SINCE ALL THE DATA HAS BE COLLECTED, WE NOW SUBMIT IT */
+
+        return [
+            'category_data' => $category_data,
+            'user_analysed' => $user_analysed
         ];
     }
 }

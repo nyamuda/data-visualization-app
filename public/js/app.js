@@ -2432,56 +2432,109 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "columnChart",
   data: function data() {
-    return {
-      chartOptions: {
-        title: {
-          label_text: "<b>Driver Scores per Generation</b>",
-          position: "center"
-        },
+    return {};
+  },
+  methods: {
+    /*The following function will group the ages into generations eg Millenials(1981-1996), Gen X(1965-1980) etc years etc and
+    add the values of the indiviual age within that generation. The aim is to get the total number of employees for each generation.*/
+    count_ages: function count_ages(obj) {
+      var post_war = 0;
+      var boomers1 = 0;
+      var boomers2 = 0;
+      var millenials = 0;
+      var genx = 0;
+      var genz = 0;
+
+      for (var key in obj) {
+        //less than 1 year
+        if (key >= 1928 && key <= 1945) {
+          post_war += obj[key];
+        } //1-2 years
+
+
+        if (key >= 1946 && key <= 1954) {
+          boomers1 += obj[key];
+        } //3-5 years
+
+
+        if (key >= 1955 && key <= 1964) {
+          boomers2 += obj[key];
+        } //6-10 years
+
+
+        if (key >= 1965 && key <= 1980) {
+          genx += obj[key];
+        }
+
+        if (key >= 1981 && key <= 1996) {
+          millenials += obj[key];
+        }
+
+        if (key >= 1997 && key <= 2012) {
+          genz += obj[key];
+        }
+      }
+
+      return {
+        post_war: post_war,
+        boomers1: boomers1,
+        boomers2: boomers2,
+        genx: genx,
+        genz: genz,
+        millenials: millenials
+      };
+    }
+  },
+  computed: {
+    chartOptions: function chartOptions() {
+      var age = this.$store.state.e.employeeAge;
+      var generations = this.count_ages(age);
+      return {
+        debug: true,
+        type: "column",
+        title_label_text: "Driver Scores per Generation",
         legend_visible: false,
-        defaultSeries: {
-          type: "pie donut",
-          angle_orientation: 125,
-          shape_padding: 0.3,
-          mouseTracking_enabled: false
-        },
-        defaultPoint: {
-          label: {
-            text: "<b>%name</b><br/>Population: <b>{%yValue/1000000:n1}M</b><br/>Unemployment: <b>%zValue%</b>",
-            margin: 10
+        yAxis_defaultTick_label_text: "%value%",
+        xAxis: {
+          defaultTick: {
+            placement: "inside",
+            label: {
+              color: "white",
+              style: {
+                fontWeight: "bold",
+                fontSize: 16
+              }
+            }
           }
         },
-        zAxis_formatString: "n1",
         series: [{
-          name: "Employees",
+          defaultPoint: {
+            tooltip: "<b>%yValue%</b> of employees are<br><b>%name</b>",
+            label_text: "%value%"
+          },
+          name: "Generations",
           points: [{
-            name: "Gen Z (1997 - 2012)",
-            y: 949585838,
-            z: 6.4
+            name: "Post War",
+            y: generations.post_war
           }, {
-            name: "Millenials (1981 - 1996)",
-            y: 1220800359,
-            z: 7.8
+            name: "BoomersI",
+            y: generations.boomers1
           }, {
-            name: "Gen X (1965 - 1980)",
-            y: 509365627,
-            z: 8.8
+            name: "BoomersII",
+            y: generations.boomers2
           }, {
-            name: "Boomers II (1955 - 1964)",
-            y: 316438601,
-            z: 7.5
+            name: "Gen X",
+            y: generations.genx
           }, {
-            name: "Boomers I (1946 - 1954)",
-            y: 251160124,
-            z: 6.6
+            name: "Millenials",
+            y: generations.millenials
           }, {
-            name: "Post War (1928 - 1945)",
-            y: 951160124,
-            z: 6.6
+            name: "Gen Z",
+            y: generations.genz
           }]
         }]
-      }
-    };
+      };
+    }
   },
   components: {
     JSCharting: jscharting_vue__WEBPACK_IMPORTED_MODULE_0__.default
@@ -2667,38 +2720,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "columnChart",
   data: function data() {
-    return {
-      chartOptions: {
-        legend_visible: false,
+    return {};
+  },
+  computed: {
+    //getting gender data from our state -module E.
+    chartOptions: function chartOptions() {
+      var gender = this.$store.state.e.employeeGender;
+      return {
         title_position: "center",
-        defaultSeries: {
-          type: "pie",
-          pointSelection: true,
-          shape_padding: 0.15
+        defaultSeries_type: "pie donut",
+        legend_visible: false,
+        defaultPoint: {
+          label_text: "<b>%name</b> ",
+          outline: {
+            color: "white",
+            width: 3
+          }
         },
-        defaultPoint_label_text: "%name<br><b>%yValue</b>",
+        title_label_text: "<b>Driver Scores Per Gender</b>",
         yAxis: {
-          formatString: "n",
-          label_text: ""
+          label_text: "Employees",
+          formatString: "n"
         },
         series: [{
-          points: [{
-            name: "Female",
-            y: 5452500
-          }, {
-            exploded: true,
+          name: "Employees",
+          points: [//in case the property is no there/available we assign 0.
+          {
             name: "Male",
-            y: 786052
+            y: gender.Male ? gender.Male : 0
           }, {
-            exploded: true,
+            name: "Female",
+            //in case the property is no there/available we assign 0.
+            y: gender.Female ? gender.Female : 0
+          }, //in case the property is no there/available we assign 0.
+          {
             name: "Other",
-            y: 477338
-          }],
-          name: "Employees"
-        }],
-        title_label_text: "<b>Driver Scores per Gender</b>"
-      }
-    };
+            y: gender.Other ? gender.Other : 0
+          }]
+        }]
+      };
+    }
   },
   components: {
     JSCharting: jscharting_vue__WEBPACK_IMPORTED_MODULE_0__.default
@@ -2782,8 +2843,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "columnChart",
   data: function data() {
-    return {
-      chartOptions: {
+    return {};
+  },
+  computed: {
+    //getting position data from our state -module E.
+    chartOptions: function chartOptions() {
+      var position = this.$store.state.e.employeePosition;
+      return {
         title_position: "center",
         legend: {
           template: "%value {%percentOfTotal:n1}% %icon %name",
@@ -2803,23 +2869,28 @@ __webpack_require__.r(__webpack_exports__);
           name: "Employees",
           points: [{
             name: "Executive",
-            y: 5452500
+            //in case the property is no there/available we assign 0.
+            y: position["Executive"] ? position["Executive"] : 0
           }, {
             name: "Senior Manager",
-            y: 786052
+            //in case the property is no there/available we assign 0.
+            y: position["Senior Manager"] ? position["Senior Manager"] : 0
           }, {
             name: "Junior Manager",
-            y: 477338
+            //in case the property is no there/available we assign 0.
+            y: position["Junior Manager"] ? position["Junior Manager"] : 0
           }, {
             name: "Operational/Staff",
-            y: 155313
+            //in case the property is no there/available we assign 0.
+            y: position["Operational/Staff"] ? position["Operational/Staff"] : 0
           }, {
             name: "Supervisor",
-            y: 155313
+            //in case the property is no there/available we assign 0.
+            y: position["Supervisor"] ? position["Supervisor"] : 0
           }]
         }]
-      }
-    };
+      };
+    }
   },
   components: {
     JSCharting: jscharting_vue__WEBPACK_IMPORTED_MODULE_0__.default
@@ -2850,12 +2921,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "columnChart",
   data: function data() {
-    return {
-      chartOptions: {
+    return {};
+  },
+  computed: {
+    chartOptions: function chartOptions() {
+      var education = this.$store.state.e.employeeEducation;
+      return {
         title: {
           position: "center",
           label_text: "<b>Driver Scores per Qualification</b>"
         },
+        yAxis_visible: false,
+        defaultPoint_label_visible: true,
+        legend_visible: false,
         defaultSeries_type: "column",
         series: [{
           name: "Employees",
@@ -2864,24 +2942,23 @@ __webpack_require__.r(__webpack_exports__);
           palette: "fiveColor44",
           points: [{
             name: "Postgrad Degree",
-            y: 91
+            y: education["Postgrad Degree"] ? education["Postgrad Degree"] : 0
           }, {
             name: "Bachelor's Degree",
-            y: 118
+            y: education["Bachelor's Degree"] ? education["Bachelor's Degree"] : 0
           }, {
             name: "Diploma/Certificate",
-            hatch_style: "none",
-            y: 136
+            y: education["Diploma/Certificate"] ? education["Diploma/Certificate"] : 0
           }, {
             name: "Matric",
-            y: 230
+            y: education["Matric"] ? education["Matric"] : 0
           }, {
             name: "Less than Matric",
-            y: 123
+            y: education["Less than Matric"] ? education["Less than Matric"] : 0
           }]
         }]
-      }
-    };
+      };
+    }
   },
   components: {
     JSCharting: jscharting_vue__WEBPACK_IMPORTED_MODULE_0__.default
@@ -2912,8 +2989,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "columnChart",
   data: function data() {
-    return {
-      chartOptions: {
+    return {};
+  },
+  methods: {
+    /*The following function will group the years into interrvals eg 1-2 years, 3-5 years etc and
+    add the values of the indiviual years within that interval. The aim is to get the total number of employees for each interval.*/
+    count_years: function count_years(obj) {
+      var zero_years = 0;
+      var one_to_two_years = 0;
+      var three_to_five_years = 0;
+      var six_to_ten_years = 0;
+      var plus_ten_years = 0;
+
+      for (var key in obj) {
+        //less than 1 year
+        if (key == 0) {
+          zero_years += obj[key];
+        } //1-2 years
+
+
+        if (key >= 1 && key <= 2) {
+          one_to_two_years += obj[key];
+        } //3-5 years
+
+
+        if (key >= 3 && key <= 5) {
+          three_to_five_years += obj[key];
+        } //6-10 years
+
+
+        if (key >= 6 && key <= 10) {
+          six_to_ten_years += obj[key];
+        } //more than ten years
+
+
+        if (key > 10) {
+          plus_ten_years += obj[key];
+        }
+      }
+
+      return {
+        zero_years: zero_years,
+        one_to_two_years: one_to_two_years,
+        three_to_five_years: three_to_five_years,
+        six_to_ten_years: six_to_ten_years,
+        plus_ten_years: plus_ten_years
+      };
+    }
+  },
+  computed: {
+    chartOptions: function chartOptions() {
+      var years = this.$store.state.e.employeeYearsAtCompany;
+      var interval_years = this.count_years(years);
+      return {
         type: "funnel",
         legend_visible: false,
 
@@ -2941,23 +3069,23 @@ __webpack_require__.r(__webpack_exports__);
           palette: "default",
           points: [{
             name: "Less than 1 year",
-            y: 183
+            y: interval_years.zero_years
           }, {
             name: "1 - 2 years",
-            y: 140
+            y: interval_years.one_to_two_years
           }, {
             name: "3 - 5 years",
-            y: 136
+            y: interval_years.three_to_five_years
           }, {
             name: "6 - 10 years",
-            y: 80
+            y: interval_years.six_to_ten_years
           }, {
             name: "10+ years",
-            y: 50
+            y: interval_years.plus_ten_years
           }]
         }]
-      }
-    };
+      };
+    }
   },
   components: {
     JSCharting: jscharting_vue__WEBPACK_IMPORTED_MODULE_0__.default
@@ -6177,6 +6305,11 @@ var moduleE = {
       totalUsers: 0,
       completedUsers: 0
     },
+    employeePosition: "",
+    employeeAge: "",
+    employeeYearsAtCompany: "",
+    employeeGender: "",
+    employeeEducation: "",
     categoryBreakDown: [{
       name: "Very Unhappy",
       id: "s1",
@@ -6276,6 +6409,8 @@ var moduleE = {
       state.userAnswered.completedUsers = payload.completedUsers;
     },
     dataForAnalysis: function dataForAnalysis(state, payload) {
+      /*FIRST WE DEAL WITH THE DATA ABOUT CATEGORIES. */
+
       /*Take a look at the categoryBreakdown data in our state...the data came directly from the chart (taken from chart.js) as default data. Thus we should organise the
       data coming from the database in that way.*/
       var my_points = state.categoryBreakDown;
@@ -6294,38 +6429,44 @@ var moduleE = {
 
             /*some of these properties may not exist/may not be there sometimes.
             So we assign a value 0 instead.*/
-            y: payload[next.name]["Equitable Treatment"] ? payload[next.name]["Equitable Treatment"] : 0
+            y: payload["category_data"][next.name]["Equitable Treatment"] ? payload["category_data"][next.name]["Equitable Treatment"] : 0
           }, {
             x: "Mutual Support",
 
             /*some of these properties may not exist/may not be there at sometimes.
             So we assign a value 0 instead.*/
-            y: payload[next.name]["Mutual Support"] ? payload[next.name]["Mutual Support"] : 0
+            y: payload["category_data"][next.name]["Mutual Support"] ? payload["category_data"][next.name]["Mutual Support"] : 0
           }, {
             x: "Confidence in Redress",
 
             /*some of these properties may not exist/may not be there at sometimes.
             So we assign a value 0 instead.*/
-            y: payload[next.name]["Confidence in Redress"] ? payload[next.name]["Confidence in Redress"] : 0
+            y: payload["category_data"][next.name]["Confidence in Redress"] ? payload["category_data"][next.name]["Confidence in Redress"] : 0
           }, {
             x: "Workplace Fairness",
 
             /*some of these properties may not exist/may not be there at sometimes.
             So we assign a value 0 instead.*/
-            y: payload[next.name]["Workplace Fairness"] ? payload[next.name]["Workplace Fairness"] : 0
+            y: payload["category_data"][next.name]["Workplace Fairness"] ? payload["category_data"][next.name]["Workplace Fairness"] : 0
           }, {
             x: "Organizational Belonging",
 
             /*some of these properties may not exist/may not be there at sometimes.
             So we assign a value 0 instead.*/
-            y: payload[next.name]["Organizational Belonging"] ? payload[next.name]["Organizational Belonging"] : 0
+            y: payload["category_data"][next.name]["Organizational Belonging"] ? payload["category_data"][next.name]["Organizational Belonging"] : 0
           }]
         });
         return acc;
       }, []);
 
       state.categoryBreakDown = _final;
-      console.log(_final);
+      /*NOW WE DEAL WITH THE USER DATA e.g GENDER, EDUCATIONS ETC */
+
+      state.employeeAge = payload.user_analysed.age;
+      state.employeeGender = payload.user_analysed.gender;
+      state.employeeEducation = payload.user_analysed.education;
+      state.employeeYearsAtCompany = payload.user_analysed.years_at_company;
+      state.employeePosition = payload.user_analysed.position_at_company;
     }
   },
   getters: {
@@ -6385,13 +6526,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
-/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
-/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
-/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
-/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
+/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
+/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
+/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
 
 
 
@@ -6399,14 +6540,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
+vue__WEBPACK_IMPORTED_MODULE_5__.default.use(vuex__WEBPACK_IMPORTED_MODULE_6__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_6__.default.Store({
   modules: {
-    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_2__.moduleA,
-    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_3__.moduleB,
-    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_4__.moduleC,
-    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_5__.moduleD,
-    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_6__.moduleE
+    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__.moduleA,
+    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__.moduleB,
+    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__.moduleC,
+    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__.moduleD,
+    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__.moduleE
   }
 });
 

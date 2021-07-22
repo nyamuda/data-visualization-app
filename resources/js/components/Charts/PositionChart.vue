@@ -10,8 +10,13 @@ import JSCharting from "jscharting-vue";
 export default {
     name: "columnChart",
     data() {
-        return {
-            chartOptions: {
+        return {};
+    },
+    computed: {
+        //getting position data from our state -module E.
+        chartOptions() {
+            let position = this.$store.state.e.employeePosition;
+            return {
                 title_position: "center",
                 legend: {
                     template: "%value {%percentOfTotal:n1}% %icon %name",
@@ -25,16 +30,46 @@ export default {
                     {
                         name: "Employees",
                         points: [
-                            { name: "Executive", y: 5452500 },
-                            { name: "Senior Manager", y: 786052 },
-                            { name: "Junior Manager", y: 477338 },
-                            { name: "Operational/Staff", y: 155313 },
-                            { name: "Supervisor", y: 155313 }
+                            {
+                                name: "Executive",
+                                //in case the property is no there/available we assign 0.
+                                y: position["Executive"]
+                                    ? position["Executive"]
+                                    : 0
+                            },
+                            {
+                                name: "Senior Manager",
+                                //in case the property is no there/available we assign 0.
+                                y: position["Senior Manager"]
+                                    ? position["Senior Manager"]
+                                    : 0
+                            },
+                            {
+                                name: "Junior Manager",
+                                //in case the property is no there/available we assign 0.
+                                y: position["Junior Manager"]
+                                    ? position["Junior Manager"]
+                                    : 0
+                            },
+                            {
+                                name: "Operational/Staff",
+                                //in case the property is no there/available we assign 0.
+                                y: position["Operational/Staff"]
+                                    ? position["Operational/Staff"]
+                                    : 0
+                            },
+                            {
+                                name: "Supervisor",
+                                //in case the property is no there/available we assign 0.
+                                y: position["Supervisor"]
+                                    ? position["Supervisor"]
+                                    : 0
+                            }
                         ]
                     }
                 ]
-            }
-        };
+            };
+        }
     },
     components: {
         JSCharting
