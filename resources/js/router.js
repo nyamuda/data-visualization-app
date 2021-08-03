@@ -2,14 +2,13 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import DashBoard from "./components/DashBoard.vue";
-import AdminPage from "./components/AdminPage.vue";
-import AdminLogin from "./components/AdminLogin.vue";
+import AdminDashboard from "./components/AdminComponents/Dashboard.vue";
+import AdminLogin from "./components/AdminComponents/AdminLogin.vue";
 import Login from "./components/Login.vue";
-import Register from "./components/Register.vue";
+import Register from "./components/AdminComponents/RegisterEmployees";
 import axios from "axios";
 import Quiz from "./components/Quiz.vue";
-import AddNewQuestion from "./components/AddNewQuestion.vue";
-import DataAnalytics from "./components/DataAnalytics.vue";
+import AddNewQuestion from "./components/AdminComponents/AddNewQuestion.vue";
 import SurveyList from "./components/SurveyList.vue";
 import QuizList from "./components/QuizList.vue";
 import {
@@ -22,8 +21,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: "history",
     linkExactActiveClass: "active",
-    routes: [
-        {
+    routes: [{
             path: "/dashboard",
             name: "dashboard",
             component: DashBoard,
@@ -32,7 +30,7 @@ const router = new VueRouter({
         {
             path: "/admin_dashboard",
             name: "admin_dashboard",
-            component: AdminPage,
+            component: AdminDashboard,
             beforeEnter: protectAdminRoutes
         },
         {
@@ -46,21 +44,15 @@ const router = new VueRouter({
             component: AdminLogin
         },
         {
-            path: "/admin_register_employee",
+            path: "/register_employee",
             name: "register",
             component: Register,
             beforeEnter: protectAdminRoutes
         },
         {
-            path: "/admin_new_question",
+            path: "/add_questions",
             name: "new_question",
             component: AddNewQuestion,
-            beforeEnter: protectAdminRoutes
-        },
-        {
-            path: "/admin_analytics",
-            name: "analytics",
-            component: DataAnalytics,
             beforeEnter: protectAdminRoutes
         },
         {

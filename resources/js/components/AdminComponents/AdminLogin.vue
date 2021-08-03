@@ -64,12 +64,14 @@ export default {
     },
     methods: {
         adminLogin() {
+            // this.$store.commit("loaderStatus");
             //initializing CSRF protection for the application
             axios.get("/sanctum/csrf-cookie").then(response => {
                 //then making the post request
                 axios
                     .post("/api/admin_login", this.adminData)
                     .then(res => {
+                        //this.$store.commit("loaderStatus");
                         //then moving to the admin dashboard
                         this.$router.push({ name: "admin_dashboard" });
                     })

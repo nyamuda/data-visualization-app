@@ -189,8 +189,10 @@ export const moduleE = {
         },
         /* Getting all the data to be to be analysed from the database*/
         dataForAnalysis(context) {
+            context.commit("loaderStatus");
             axios.get("/api/data_for_analysis").then(res => {
                 context.commit("dataForAnalysis", res.data);
+                context.commit("loaderStatus");
             });
         }
     }

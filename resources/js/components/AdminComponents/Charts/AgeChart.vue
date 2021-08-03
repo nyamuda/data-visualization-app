@@ -62,9 +62,10 @@ export default {
             return {
                 debug: false,
                 type: "column",
-                title_label_text: "Driver Scores per Generation",
+                title_label_text: "<b>Driver Scores per Generation</b>",
                 palette: "waterMeadow",
                 legend_visible: false,
+                yAxis_visible: false,
                 yAxis_defaultTick_label_text: "%value%",
 
                 series: [

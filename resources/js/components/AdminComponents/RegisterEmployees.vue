@@ -1,58 +1,6 @@
 <template>
-    <div>
-        <admin-menu :section="section">
-            <template v-slot:header>
-                <div class="ml-10 flex items-baseline space-x-4">
-                    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-
-                    <router-link
-                        to="/admin_dashboard"
-                        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                        >Dashboard</router-link
-                    >
-
-                    <router-link
-                        to="/admin_analytics"
-                        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                        >Analytics</router-link
-                    >
-                    <router-link
-                        to="/admin_register_employee"
-                        class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                        >Add Employee</router-link
-                    >
-
-                    <router-link
-                        to="/admin_new_question"
-                        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                        >Add Survey</router-link
-                    >>
-                </div>
-            </template>
-            <template v-slot:default>
-                <router-link
-                    to="/admin_dashboard"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    >Dashboard</router-link
-                >
-
-                <router-link
-                    to="/admin_analytics"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    >Analytics</router-link
-                >
-                <router-link
-                    to="/admin_register_employee"
-                    class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-                    >Add Employee</router-link
-                >
-                <router-link
-                    to="/admin_new_question"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    >Add Survey</router-link
-                >
-            </template>
-        </admin-menu>
+    <div class="flex flex-col h-screen justify-between">
+        <admin-header :section="section"></admin-header>
         <div id="form-container">
             <form
                 action
@@ -118,7 +66,7 @@
                     </label>
                 </div>
                 <div
-                    class="flex flex-col md:flex-row justify-between w-full flex-wrap w-full"
+                    class="flex flex-col md:flex-row justify-between w-full flex-wrap"
                 >
                     <label class="mt-2 flex flex-col items-start" for="gender">
                         Gender
@@ -274,21 +222,36 @@
                     </button>
                 </div>
             </form>
+            <transition name="slide-fade">
+                <div
+                    v-show="success"
+                    class="w-full flex justify-center items-center bg-green-800"
+                >
+                    <p class="py-3 text-gray-100">
+                        Employee Successully Added
+                    </p>
+                </div>
+            </transition>
         </div>
         <p>{{ registerData }}</p>
+        <the-footer></the-footer>
     </div>
 </template>
 
 <
 <script>
 import axios from "axios";
-import AdminMenu from "./AdminMenu";
+import AdminHeader from "./AdminHeader";
+import Footer from "../Footer";
+
 export default {
     components: {
-        "admin-menu": AdminMenu
+        "admin-header": AdminHeader,
+        "the-footer": Footer
     },
     data() {
         return {
+            success: true,
             registerData: {
                 first_name: "",
                 second_name: "",
@@ -308,10 +271,12 @@ export default {
     },
     methods: {
         addNewUser() {
+            this.success = !this.success;
             axios
                 .post("/api/register", this.registerData)
                 .then(res => {
                     console.log(res);
+
                     this.registerData.first_name = "";
                     this.registerData.second_name = "";
                     this.registerData.email = "";
@@ -322,7 +287,13 @@ export default {
                     this.errorMessage = error.response.data.errors;
                     console.log(error.response.data.errors.password[0]);
                     console.error(error);
+                    this.hideSuccess();
                 });
+        },
+        hideSuccess() {
+            setTimeout(() => {
+                this.success = !this.success;
+            }, 3000);
         }
     },
     created() {}
@@ -335,6 +306,19 @@ export default {
     position: relative;
     margin: auto;
     margin-top: 5rem;
+}
+.slide-fade-enter-active {
+    transition: all 0.5s ease;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.8s ease-in-out;
+}
+
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateY(10px);
+    opacity: 0;
 }
 @media (min-width: 786.5px) {
     #form-container {
