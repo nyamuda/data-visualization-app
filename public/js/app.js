@@ -2446,21 +2446,17 @@ __webpack_require__.r(__webpack_exports__);
       var genz = 0;
 
       for (var key in obj) {
-        //less than 1 year
         if (key >= 1928 && key <= 1945) {
           post_war += obj[key];
-        } //1-2 years
-
+        }
 
         if (key >= 1946 && key <= 1954) {
           boomers1 += obj[key];
-        } //3-5 years
-
+        }
 
         if (key >= 1955 && key <= 1964) {
           boomers2 += obj[key];
-        } //6-10 years
-
+        }
 
         if (key >= 1965 && key <= 1980) {
           genx += obj[key];
@@ -2490,23 +2486,12 @@ __webpack_require__.r(__webpack_exports__);
       var age = this.$store.state.e.employeeAge;
       var generations = this.count_ages(age);
       return {
-        debug: true,
+        debug: false,
         type: "column",
         title_label_text: "Driver Scores per Generation",
+        palette: "waterMeadow",
         legend_visible: false,
         yAxis_defaultTick_label_text: "%value%",
-        xAxis: {
-          defaultTick: {
-            placement: "inside",
-            label: {
-              color: "white",
-              style: {
-                fontWeight: "bold",
-                fontSize: 16
-              }
-            }
-          }
-        },
         series: [{
           defaultPoint: {
             tooltip: "<b>%yValue%</b> of employees are<br><b>%name</b>",
@@ -2517,10 +2502,10 @@ __webpack_require__.r(__webpack_exports__);
             name: "Post War",
             y: generations.post_war
           }, {
-            name: "BoomersI",
+            name: "Boomers I",
             y: generations.boomers1
           }, {
-            name: "BoomersII",
+            name: "Boomers II",
             y: generations.boomers2
           }, {
             name: "Gen X",
@@ -2634,40 +2619,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     chartOptions: function chartOptions() {
       return {
+        debug: false,
         title: {
           label_text: "<b>Employee Participation</b>",
           position: "center"
         },
         legend_visible: false,
         yAxis: [{
-          line_visible: true,
-          defaultTick_enabled: false,
-          scale_range: [0, 100]
-        }, {
-          id: "y2",
-          line_width: 0,
-          defaultTick_enabled: false,
-          scale_range: [0, 100]
-        }, {
           id: "y3",
           line_width: 0,
           defaultTick_enabled: false,
           scale_range: [0, 100]
         }],
         xAxis: [{
-          defaultTick_gridLine_width: 0,
-
-          /*Reduces column size to pad against axis line.*/
-          spacingPercentage: 0.15
-        }, {
-          id: "x2",
-          defaultTick_gridLine: {
-            onTop: true,
-            width: 3,
-            dashStyle: "dot"
-          },
-          spacingPercentage: 0.15
-        }, {
           id: "x3",
           defaultTick_gridLine_width: "column",
           spacingPercentage: 0.15
@@ -2679,7 +2643,7 @@ __webpack_require__.r(__webpack_exports__);
             label: [{
               text: "%name"
             }, {
-              text: "%sum%",
+              text: "%sum / 100",
               verticalAlign: "middle",
               style_fontSize: 20
             }]
@@ -2727,11 +2691,13 @@ __webpack_require__.r(__webpack_exports__);
     chartOptions: function chartOptions() {
       var gender = this.$store.state.e.employeeGender;
       return {
+        debug: false,
         title_position: "center",
         defaultSeries_type: "pie donut",
         legend_visible: false,
+        palette: "fiveColor26",
         defaultPoint: {
-          label_text: "<b>%name</b> ",
+          label_text: "<br><b>%name</b> ",
           outline: {
             color: "white",
             width: 3
@@ -2801,6 +2767,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     chartOptions: function chartOptions() {
       return {
+        debug: false,
         type: "pieDonut",
         palette: "darkRainbow",
         title: {
@@ -2850,7 +2817,9 @@ __webpack_require__.r(__webpack_exports__);
     chartOptions: function chartOptions() {
       var position = this.$store.state.e.employeePosition;
       return {
+        debug: false,
         title_position: "center",
+        palette: "fiveColor40",
         legend: {
           template: "%value {%percentOfTotal:n1}% %icon %name",
           position: "inside left bottom"
@@ -2927,6 +2896,7 @@ __webpack_require__.r(__webpack_exports__);
     chartOptions: function chartOptions() {
       var education = this.$store.state.e.employeeEducation;
       return {
+        debug: false,
         title: {
           position: "center",
           label_text: "<b>Driver Scores per Qualification</b>"
@@ -2939,7 +2909,7 @@ __webpack_require__.r(__webpack_exports__);
           name: "Employees",
           hatchPalette: false,
           defaultPoint_hatch_color: "#000000",
-          palette: "fiveColor44",
+          palette: "waterMeadow",
           points: [{
             name: "Postgrad Degree",
             y: education["Postgrad Degree"] ? education["Postgrad Degree"] : 0
@@ -3042,6 +3012,7 @@ __webpack_require__.r(__webpack_exports__);
       var years = this.$store.state.e.employeeYearsAtCompany;
       var interval_years = this.count_years(years);
       return {
+        debug: false,
         type: "funnel",
         legend_visible: false,
 
@@ -3066,7 +3037,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         series: [{
           name: "Employees",
-          palette: "default",
+          palette: "rainforest",
           points: [{
             name: "Less than 1 year",
             y: interval_years.zero_years
@@ -53002,7 +52973,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "md:w-1/4 w-full" },
+    { staticClass: "md:w-1/3 w-full p-8" },
     [
       _c("JSCharting", {
         staticClass: "columnChart",

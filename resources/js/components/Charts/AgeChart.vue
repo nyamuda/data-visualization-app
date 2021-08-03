@@ -23,19 +23,18 @@ export default {
             let genx = 0;
             let genz = 0;
             for (let key in obj) {
-                //less than 1 year
                 if (key >= 1928 && key <= 1945) {
                     post_war += obj[key];
                 }
-                //1-2 years
+
                 if (key >= 1946 && key <= 1954) {
                     boomers1 += obj[key];
                 }
-                //3-5 years
+
                 if (key >= 1955 && key <= 1964) {
                     boomers2 += obj[key];
                 }
-                //6-10 years
+
                 if (key >= 1965 && key <= 1980) {
                     genx += obj[key];
                 }
@@ -61,20 +60,13 @@ export default {
             let age = this.$store.state.e.employeeAge;
             let generations = this.count_ages(age);
             return {
-                debug: true,
+                debug: false,
                 type: "column",
                 title_label_text: "Driver Scores per Generation",
+                palette: "waterMeadow",
                 legend_visible: false,
                 yAxis_defaultTick_label_text: "%value%",
-                xAxis: {
-                    defaultTick: {
-                        placement: "inside",
-                        label: {
-                            color: "white",
-                            style: { fontWeight: "bold", fontSize: 16 }
-                        }
-                    }
-                },
+
                 series: [
                     {
                         defaultPoint: {
@@ -90,11 +82,11 @@ export default {
                                 y: generations.post_war
                             },
                             {
-                                name: "BoomersI",
+                                name: "Boomers I",
                                 y: generations.boomers1
                             },
                             {
-                                name: "BoomersII",
+                                name: "Boomers II",
                                 y: generations.boomers2
                             },
                             {

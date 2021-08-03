@@ -17,7 +17,9 @@ export default {
         chartOptions() {
             let position = this.$store.state.e.employeePosition;
             return {
+                debug: false,
                 title_position: "center",
+                palette: "fiveColor40",
                 legend: {
                     template: "%value {%percentOfTotal:n1}% %icon %name",
                     position: "inside left bottom"

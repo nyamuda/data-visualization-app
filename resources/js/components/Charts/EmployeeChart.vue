@@ -1,5 +1,5 @@
 <template>
-    <div class="md:w-1/4 w-full">
+    <div class="md:w-1/3 w-full p-8">
         <JSCharting :options="chartOptions" class="columnChart"></JSCharting>
     </div>
 </template>
@@ -24,23 +24,13 @@ export default {
         },
         chartOptions() {
             return {
+                debug: false,
                 title: {
                     label_text: "<b>Employee Participation</b>",
                     position: "center"
                 },
                 legend_visible: false,
                 yAxis: [
-                    {
-                        line_visible: true,
-                        defaultTick_enabled: false,
-                        scale_range: [0, 100]
-                    },
-                    {
-                        id: "y2",
-                        line_width: 0,
-                        defaultTick_enabled: false,
-                        scale_range: [0, 100]
-                    },
                     {
                         id: "y3",
                         line_width: 0,
@@ -49,21 +39,6 @@ export default {
                     }
                 ],
                 xAxis: [
-                    {
-                        defaultTick_gridLine_width: 0,
-
-                        /*Reduces column size to pad against axis line.*/
-                        spacingPercentage: 0.15
-                    },
-                    {
-                        id: "x2",
-                        defaultTick_gridLine: {
-                            onTop: true,
-                            width: 3,
-                            dashStyle: "dot"
-                        },
-                        spacingPercentage: 0.15
-                    },
                     {
                         id: "x3",
                         defaultTick_gridLine_width: "column",
@@ -77,7 +52,7 @@ export default {
                         label: [
                             { text: "%name" },
                             {
-                                text: "%sum%",
+                                text: "%sum / 100",
                                 verticalAlign: "middle",
                                 style_fontSize: 20
                             }

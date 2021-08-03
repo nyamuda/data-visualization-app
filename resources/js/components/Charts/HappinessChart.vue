@@ -21,6 +21,7 @@ export default {
         },
         chartOptions() {
             return {
+                debug: false,
                 type: "pieDonut",
                 palette: "darkRainbow",
                 title: {

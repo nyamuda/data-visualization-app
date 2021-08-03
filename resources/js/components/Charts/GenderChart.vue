@@ -17,11 +17,13 @@ export default {
         chartOptions() {
             let gender = this.$store.state.e.employeeGender;
             return {
+                debug: false,
                 title_position: "center",
                 defaultSeries_type: "pie donut",
                 legend_visible: false,
+                palette: "fiveColor26",
                 defaultPoint: {
-                    label_text: "<b>%name</b> ",
+                    label_text: "<br><b>%name</b> ",
                     outline: { color: "white", width: 3 }
                 },
                 title_label_text: "<b>Driver Scores Per Gender</b>",

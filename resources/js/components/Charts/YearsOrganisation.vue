@@ -59,6 +59,7 @@ export default {
             let interval_years = this.count_years(years);
 
             return {
+                debug: false,
                 type: "funnel",
                 legend_visible: false,
 
@@ -82,7 +83,7 @@ export default {
                 series: [
                     {
                         name: "Employees",
-                        palette: "default",
+                        palette: "rainforest",
                         points: [
                             {
                                 name: "Less than 1 year",

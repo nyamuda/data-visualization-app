@@ -16,6 +16,7 @@ export default {
         chartOptions() {
             let education = this.$store.state.e.employeeEducation;
             return {
+                debug: false,
                 title: {
                     position: "center",
                     label_text: "<b>Driver Scores per Qualification</b>"
@@ -29,7 +30,7 @@ export default {
                         name: "Employees",
                         hatchPalette: false,
                         defaultPoint_hatch_color: "#000000",
-                        palette: "fiveColor44",
+                        palette: "waterMeadow",
                         points: [
                             {
                                 name: "Postgrad Degree",
