@@ -6,9 +6,9 @@
                 action
                 class="w-full flex flex-col items-center md:items-start relative m-auto px-4 shadow-xl"
             >
-                <p class="text-xl text-center w-full">Register Employees</p>
+                <p class="text-2xl text-center w-full">Register Employees</p>
                 <label
-                    class="w-full mt-1 flex flex-col items-start"
+                    class="w-full mt-1 flex flex-col items-start relative"
                     for="email"
                 >
                     Email
@@ -19,17 +19,25 @@
                         type="email"
                         v-model="registerData.email"
                     />
+                    <!--if there is an error, we show the error. -->
                     <span
-                        class="text-xs text-red-600"
+                        class="text-xs text-red-600 md:absolute md:-bottom-4"
                         v-if="errorMessage.email"
-                        >{{ errorMessage.email[0] }}</span
                     >
+                        {{ errorMessage.email[0] }}
+                    </span>
+                    <!--else we don't display anything-->
+                    <span
+                        class="text-xs text-red-600 md:absolute md:-bottom-4"
+                        v-else
+                    >
+                    </span>
                 </label>
                 <div
                     class="flex flex-col md:flex-row justify-between w-full flex-wrap"
                 >
                     <label
-                        class="w-full md:w-2/5 mt-2 flex flex-col items-start"
+                        class="relative w-full md:w-2/5 mt-2 flex flex-col items-start"
                         for="first"
                     >
                         First Name
@@ -41,13 +49,20 @@
                             v-model="registerData.first_name"
                         />
                         <span
-                            class="text-xs text-red-600"
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
                             v-if="errorMessage.first_name"
-                            >{{ errorMessage.first_name[0] }}</span
                         >
+                            {{ errorMessage.first_name[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
                     </label>
                     <label
-                        class="w-full md:w-2/5 mt-2 flex flex-col items-start"
+                        class="relative w-full md:w-2/5 mt-2 flex flex-col items-start"
                         for="second"
                     >
                         Second Name
@@ -59,16 +74,26 @@
                             v-model="registerData.second_name"
                         />
                         <span
-                            class="text-xs text-red-600"
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
                             v-if="errorMessage.second_name"
-                            >{{ errorMessage.second_name[0] }}</span
                         >
+                            {{ errorMessage.second_name[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
                     </label>
                 </div>
                 <div
                     class="flex flex-col md:flex-row justify-between w-full flex-wrap"
                 >
-                    <label class="mt-2 flex flex-col items-start" for="gender">
+                    <label
+                        class="relative mt-2 flex flex-col items-start"
+                        for="gender"
+                    >
                         Gender
                         <br />
                         <select
@@ -82,9 +107,21 @@
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
                         </select>
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-if="errorMessage.gender"
+                        >
+                            {{ errorMessage.gender[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
                     </label>
                     <label
-                        class="mt-2 flex flex-col items-start"
+                        class=" relative mt-2 flex flex-col items-start"
                         for="education"
                     >
                         Education
@@ -110,9 +147,22 @@
                                 >Less than Matric</option
                             >
                         </select>
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-if="errorMessage.education"
+                        >
+                            {{ errorMessage.education[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
                     </label>
+
                     <label
-                        class="mt-2 flex flex-col items-start"
+                        class=" relative mt-2 flex flex-col items-start"
                         for="position"
                     >
                         Position
@@ -136,13 +186,25 @@
                                 >Operational/Staff</option
                             >
                         </select>
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-if="errorMessage.position_at_company"
+                        >
+                            {{ errorMessage.position_at_company[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
                     </label>
                 </div>
                 <div
-                    class="w-full flex flex-col md:flex-row justify-between flex-wrap md:w-3/5"
+                    class="w-full flex flex-col md:flex-row justify-between flex-wrap md:w-5/6"
                 >
                     <label
-                        class="mt-2 flex flex-col items-start"
+                        class="relative mt-2 flex flex-col items-start"
                         for="begin-date"
                     >
                         Starting Date at Company
@@ -154,12 +216,22 @@
                             v-model="registerData.start_at_company"
                         />
                         <span
-                            class="text-xs text-red-600"
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
                             v-if="errorMessage.start_at_company"
-                            >{{ errorMessage.start_at_company[0] }}</span
                         >
+                            {{ errorMessage.start_at_company[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
                     </label>
-                    <label class="mt-2 flex flex-col items-start" for="dob">
+                    <label
+                        class="relative mt-2 flex flex-col items-start"
+                        for="dob"
+                    >
                         D.O.B
                         <br />
                         <input
@@ -169,33 +241,47 @@
                             v-model="registerData.date_birth"
                         />
                         <span
-                            class="text-xs text-red-600"
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
                             v-if="errorMessage.date_birth"
-                            >{{ errorMessage.date_birth[0] }}</span
                         >
+                            {{ errorMessage.date_birth[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
                     </label>
                 </div>
                 <div class="flex flex-col justify-between w-full">
                     <label
-                        class="mt-2 flex flex-col items-start"
+                        class="relative mt-2 flex flex-col items-start"
                         for="password"
                     >
                         Password
                         <br />
                         <input
-                            class="mb-2 w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1"
+                            class="w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1"
                             id="password"
                             type="password"
                             v-model="registerData.password"
                         />
                         <span
-                            class="text-xs text-red-600"
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
                             v-if="errorMessage.password"
-                            >{{ errorMessage.password[0] }}</span
                         >
+                            {{ errorMessage.password[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
                     </label>
                     <label
-                        class="mt-2 flex flex-col items-start"
+                        class="relative mt-2 flex flex-col items-start"
                         for="password-confirmation"
                     >
                         Confirm Password
@@ -207,10 +293,17 @@
                             v-model="registerData.password_confirmation"
                         />
                         <span
-                            class="text-xs text-red-600"
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
                             v-if="errorMessage.password"
-                            >{{ errorMessage.password[0] }}</span
                         >
+                            {{ errorMessage.password[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
                     </label>
                 </div>
                 <div class="w-full my-4">
@@ -225,7 +318,7 @@
             <transition name="slide-fade">
                 <div
                     v-show="success"
-                    class="w-full flex justify-center items-center bg-green-800"
+                    class="w-full flex justify-center items-center bg-green-800 absolute"
                 >
                     <p class="py-3 text-gray-100">
                         Employee Successully Added
@@ -233,8 +326,8 @@
                 </div>
             </transition>
         </div>
-        <p>{{ registerData }}</p>
-        <the-footer></the-footer>
+
+        <the-footer class="mt-10"></the-footer>
     </div>
 </template>
 
@@ -251,7 +344,7 @@ export default {
     },
     data() {
         return {
-            success: true,
+            success: false,
             registerData: {
                 first_name: "",
                 second_name: "",
@@ -259,7 +352,7 @@ export default {
                 education: "",
                 start_at_company: "",
                 gender: "",
-                position: "",
+                position_at_company: "",
                 email: "",
                 password: "",
                 password_confirmation: ""

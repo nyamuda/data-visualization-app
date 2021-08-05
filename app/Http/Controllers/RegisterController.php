@@ -24,7 +24,12 @@ class RegisterController extends Controller
             'email' => 'required|unique:users|email',
             'password' => 'required|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed'
         ], [
-            'password.regex' => 'the password must contain a minimum of eight characters, at least one letter and one number.'
+            'password.regex' => 'The password must contain a minimum of eight characters, at least one letter and one number.',
+            'start_at_company.date' => 'Date required.',
+            'date_birth.date' => 'D.O.B required.',
+            'gender.required' => 'Gender required.',
+            'education.required' => 'Education required.',
+            'position_at_company.required' => 'Position required.',
         ]);
 
         User::create([

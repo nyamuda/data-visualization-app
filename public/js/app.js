@@ -2239,6 +2239,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -3279,6 +3282,99 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3289,7 +3385,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      success: true,
+      success: false,
       registerData: {
         first_name: "",
         second_name: "",
@@ -3297,7 +3393,7 @@ __webpack_require__.r(__webpack_exports__);
         education: "",
         start_at_company: "",
         gender: "",
-        position: "",
+        position_at_company: "",
         email: "",
         password: "",
         password_confirmation: ""
@@ -6359,20 +6455,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
-/* harmony import */ var _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminComponents/Dashboard.vue */ "./resources/js/components/AdminComponents/Dashboard.vue");
-/* harmony import */ var _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AdminComponents/AdminLogin.vue */ "./resources/js/components/AdminComponents/AdminLogin.vue");
-/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
-/* harmony import */ var _components_AdminComponents_RegisterEmployees__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/AdminComponents/RegisterEmployees */ "./resources/js/components/AdminComponents/RegisterEmployees.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Quiz.vue */ "./resources/js/components/Quiz.vue");
-/* harmony import */ var _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/AdminComponents/AddNewQuestion.vue */ "./resources/js/components/AdminComponents/AddNewQuestion.vue");
-/* harmony import */ var _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/SurveyList.vue */ "./resources/js/components/SurveyList.vue");
-/* harmony import */ var _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/QuizList.vue */ "./resources/js/components/QuizList.vue");
-/* harmony import */ var _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/protectRoutes */ "./resources/js/components/protectRoutes.js");
+/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
+/* harmony import */ var _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/AdminComponents/Dashboard.vue */ "./resources/js/components/AdminComponents/Dashboard.vue");
+/* harmony import */ var _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminComponents/AdminLogin.vue */ "./resources/js/components/AdminComponents/AdminLogin.vue");
+/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
+/* harmony import */ var _components_AdminComponents_RegisterEmployees__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/AdminComponents/RegisterEmployees */ "./resources/js/components/AdminComponents/RegisterEmployees.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Quiz.vue */ "./resources/js/components/Quiz.vue");
+/* harmony import */ var _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AdminComponents/AddNewQuestion.vue */ "./resources/js/components/AdminComponents/AddNewQuestion.vue");
+/* harmony import */ var _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/SurveyList.vue */ "./resources/js/components/SurveyList.vue");
+/* harmony import */ var _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/QuizList.vue */ "./resources/js/components/QuizList.vue");
+/* harmony import */ var _components_protectRoutes__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/protectRoutes */ "./resources/js/components/protectRoutes.js");
 
 
 
@@ -6386,53 +6482,53 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_12__.default);
+vue__WEBPACK_IMPORTED_MODULE_11__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_12__.default);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__.default({
   mode: "history",
   linkExactActiveClass: "active",
   routes: [{
     path: "/dashboard",
     name: "dashboard",
-    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectUserRoutes
+    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_10__.protectUserRoutes
   }, {
     path: "/admin_dashboard",
     name: "admin_dashboard",
-    component: _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectAdminRoutes
+    component: _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_10__.protectAdminRoutes
   }, {
     path: "/login",
     name: "login",
-    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__.default
+    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__.default
   }, {
     path: "/admin",
     name: "admin_login",
-    component: _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    component: _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__.default
   }, {
     path: "/register_employee",
     name: "register",
-    component: _components_AdminComponents_RegisterEmployees__WEBPACK_IMPORTED_MODULE_5__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectAdminRoutes
+    component: _components_AdminComponents_RegisterEmployees__WEBPACK_IMPORTED_MODULE_4__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_10__.protectAdminRoutes
   }, {
     path: "/add_questions",
     name: "new_question",
-    component: _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_8__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectAdminRoutes
+    component: _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_7__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_10__.protectAdminRoutes
   }, {
     path: "/quiz/:id",
     name: "quiz",
-    component: _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_7__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectUserRoutes
+    component: _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_6__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_10__.protectUserRoutes
   }, {
     path: "/survey_list",
     name: "survey_list",
-    component: _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_9__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectUserRoutes
+    component: _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_8__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_10__.protectUserRoutes
   }, {
     path: "/categories/:id",
     name: "quiz_list",
-    component: _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_10__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectUserRoutes
+    component: _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_9__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_10__.protectUserRoutes
   }]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -52426,16 +52522,17 @@ var render = function() {
       _c(
         "form",
         {
-          staticClass:
-            "my_forms rounded-sm m-auto flex flex-col border-2 border-gray-200 shadow-2xl p-8",
+          staticClass: "my_forms rounded-sm m-auto flex flex-col p-8",
           attrs: { action: "" }
         },
         [
-          _c("p", { staticClass: "text-center text-2xl" }, [
+          _c("p", { staticClass: "text-center text-2xl font-bold" }, [
             _vm._v("Admin Login")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "flex flex-col justify-center mt-4" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex flex-col justify-center mt-2" }, [
             _c("input", {
               directives: [
                 {
@@ -52446,7 +52543,7 @@ var render = function() {
                 }
               ],
               staticClass:
-                "w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2",
+                "rounded-md w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2",
               attrs: {
                 id: "user_email",
                 name: "email",
@@ -52511,7 +52608,7 @@ var render = function() {
             "button",
             {
               staticClass:
-                "focus:outline-none bg-green-500 rounded-sm w-auto hover:bg-green-800 transition duration-500 ease-in-out mt-4 py-1 text-gray-100 text-center h-10",
+                "focus:outline-none bg-gray-600 rounded-sm w-auto hover:bg-gray-800 transition duration-500 ease-in-out mt-4 py-1 text-gray-100 text-center h-10",
               attrs: { type: "submit" },
               on: {
                 click: function($event) {
@@ -52527,7 +52624,22 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "w-full flex justify-center items-center mt-2" },
+      [
+        _c("hr", {
+          staticClass: "w-5/6 border-t-2 border-solid border-gray-500"
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -52911,14 +53023,14 @@ var render = function() {
               attrs: { action: "" }
             },
             [
-              _c("p", { staticClass: "text-xl text-center w-full" }, [
+              _c("p", { staticClass: "text-2xl text-center w-full" }, [
                 _vm._v("Register Employees")
               ]),
               _vm._v(" "),
               _c(
                 "label",
                 {
-                  staticClass: "w-full mt-1 flex flex-col items-start",
+                  staticClass: "w-full mt-1 flex flex-col items-start relative",
                   attrs: { for: "email" }
                 },
                 [
@@ -52949,10 +53061,24 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _vm.errorMessage.email
-                    ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                        _vm._v(_vm._s(_vm.errorMessage.email[0]))
-                      ])
-                    : _vm._e()
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "text-xs text-red-600 md:absolute md:-bottom-4"
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.errorMessage.email[0]) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    : _c("span", {
+                        staticClass:
+                          "text-xs text-red-600 md:absolute md:-bottom-4"
+                      })
                 ]
               ),
               _vm._v(" "),
@@ -52967,7 +53093,7 @@ var render = function() {
                     "label",
                     {
                       staticClass:
-                        "w-full md:w-2/5 mt-2 flex flex-col items-start",
+                        "relative w-full md:w-2/5 mt-2 flex flex-col items-start",
                       attrs: { for: "first" }
                     },
                     [
@@ -53004,10 +53130,24 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _vm.errorMessage.first_name
-                        ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                            _vm._v(_vm._s(_vm.errorMessage.first_name[0]))
-                          ])
-                        : _vm._e()
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "text-xs text-red-600 md:absolute md:-bottom-4"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.errorMessage.first_name[0]) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        : _c("span", {
+                            staticClass:
+                              "text-xs text-red-600 md:absolute md:-bottom-4"
+                          })
                     ]
                   ),
                   _vm._v(" "),
@@ -53015,7 +53155,7 @@ var render = function() {
                     "label",
                     {
                       staticClass:
-                        "w-full md:w-2/5 mt-2 flex flex-col items-start",
+                        "relative w-full md:w-2/5 mt-2 flex flex-col items-start",
                       attrs: { for: "second" }
                     },
                     [
@@ -53052,10 +53192,24 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _vm.errorMessage.second_name
-                        ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                            _vm._v(_vm._s(_vm.errorMessage.second_name[0]))
-                          ])
-                        : _vm._e()
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "text-xs text-red-600 md:absolute md:-bottom-4"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.errorMessage.second_name[0]) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        : _c("span", {
+                            staticClass:
+                              "text-xs text-red-600 md:absolute md:-bottom-4"
+                          })
                     ]
                   )
                 ]
@@ -53071,7 +53225,7 @@ var render = function() {
                   _c(
                     "label",
                     {
-                      staticClass: "mt-2 flex flex-col items-start",
+                      staticClass: "relative mt-2 flex flex-col items-start",
                       attrs: { for: "gender" }
                     },
                     [
@@ -53131,14 +53285,34 @@ var render = function() {
                             _vm._v("Other")
                           ])
                         ]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.errorMessage.gender
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "text-xs text-red-600 md:absolute md:-bottom-4"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.errorMessage.gender[0]) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        : _c("span", {
+                            staticClass:
+                              "text-xs text-red-600 md:absolute md:-bottom-4"
+                          })
                     ]
                   ),
                   _vm._v(" "),
                   _c(
                     "label",
                     {
-                      staticClass: "mt-2 flex flex-col items-start",
+                      staticClass: " relative mt-2 flex flex-col items-start",
                       attrs: { for: "education" }
                     },
                     [
@@ -53214,14 +53388,34 @@ var render = function() {
                             [_vm._v("Less than Matric")]
                           )
                         ]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.errorMessage.education
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "text-xs text-red-600 md:absolute md:-bottom-4"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.errorMessage.education[0]) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        : _c("span", {
+                            staticClass:
+                              "text-xs text-red-600 md:absolute md:-bottom-4"
+                          })
                     ]
                   ),
                   _vm._v(" "),
                   _c(
                     "label",
                     {
-                      staticClass: "mt-2 flex flex-col items-start",
+                      staticClass: " relative mt-2 flex flex-col items-start",
                       attrs: { for: "position" }
                     },
                     [
@@ -53291,7 +53485,29 @@ var render = function() {
                             [_vm._v("Operational/Staff")]
                           )
                         ]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.errorMessage.position_at_company
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "text-xs text-red-600 md:absolute md:-bottom-4"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(
+                                    _vm.errorMessage.position_at_company[0]
+                                  ) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        : _c("span", {
+                            staticClass:
+                              "text-xs text-red-600 md:absolute md:-bottom-4"
+                          })
                     ]
                   )
                 ]
@@ -53301,13 +53517,13 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "w-full flex flex-col md:flex-row justify-between flex-wrap md:w-3/5"
+                    "w-full flex flex-col md:flex-row justify-between flex-wrap md:w-5/6"
                 },
                 [
                   _c(
                     "label",
                     {
-                      staticClass: "mt-2 flex flex-col items-start",
+                      staticClass: "relative mt-2 flex flex-col items-start",
                       attrs: { for: "begin-date" }
                     },
                     [
@@ -53344,17 +53560,31 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _vm.errorMessage.start_at_company
-                        ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                            _vm._v(_vm._s(_vm.errorMessage.start_at_company[0]))
-                          ])
-                        : _vm._e()
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "text-xs text-red-600 md:absolute md:-bottom-4"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.errorMessage.start_at_company[0]) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        : _c("span", {
+                            staticClass:
+                              "text-xs text-red-600 md:absolute md:-bottom-4"
+                          })
                     ]
                   ),
                   _vm._v(" "),
                   _c(
                     "label",
                     {
-                      staticClass: "mt-2 flex flex-col items-start",
+                      staticClass: "relative mt-2 flex flex-col items-start",
                       attrs: { for: "dob" }
                     },
                     [
@@ -53391,10 +53621,24 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _vm.errorMessage.date_birth
-                        ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                            _vm._v(_vm._s(_vm.errorMessage.date_birth[0]))
-                          ])
-                        : _vm._e()
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "text-xs text-red-600 md:absolute md:-bottom-4"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.errorMessage.date_birth[0]) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        : _c("span", {
+                            staticClass:
+                              "text-xs text-red-600 md:absolute md:-bottom-4"
+                          })
                     ]
                   )
                 ]
@@ -53407,7 +53651,7 @@ var render = function() {
                   _c(
                     "label",
                     {
-                      staticClass: "mt-2 flex flex-col items-start",
+                      staticClass: "relative mt-2 flex flex-col items-start",
                       attrs: { for: "password" }
                     },
                     [
@@ -53426,7 +53670,7 @@ var render = function() {
                           }
                         ],
                         staticClass:
-                          "mb-2 w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1",
+                          "w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1",
                         attrs: { id: "password", type: "password" },
                         domProps: { value: _vm.registerData.password },
                         on: {
@@ -53444,17 +53688,31 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _vm.errorMessage.password
-                        ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                            _vm._v(_vm._s(_vm.errorMessage.password[0]))
-                          ])
-                        : _vm._e()
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "text-xs text-red-600 md:absolute md:-bottom-4"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.errorMessage.password[0]) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        : _c("span", {
+                            staticClass:
+                              "text-xs text-red-600 md:absolute md:-bottom-4"
+                          })
                     ]
                   ),
                   _vm._v(" "),
                   _c(
                     "label",
                     {
-                      staticClass: "mt-2 flex flex-col items-start",
+                      staticClass: "relative mt-2 flex flex-col items-start",
                       attrs: { for: "password-confirmation" }
                     },
                     [
@@ -53496,10 +53754,24 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _vm.errorMessage.password
-                        ? _c("span", { staticClass: "text-xs text-red-600" }, [
-                            _vm._v(_vm._s(_vm.errorMessage.password[0]))
-                          ])
-                        : _vm._e()
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "text-xs text-red-600 md:absolute md:-bottom-4"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.errorMessage.password[0]) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        : _c("span", {
+                            staticClass:
+                              "text-xs text-red-600 md:absolute md:-bottom-4"
+                          })
                     ]
                   )
                 ]
@@ -53537,7 +53809,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "w-full flex justify-center items-center bg-green-800"
+                  "w-full flex justify-center items-center bg-green-800 absolute"
               },
               [
                 _c("p", { staticClass: "py-3 text-gray-100" }, [
@@ -53552,9 +53824,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.registerData))]),
-      _vm._v(" "),
-      _c("the-footer")
+      _c("the-footer", { staticClass: "mt-10" })
     ],
     1
   )

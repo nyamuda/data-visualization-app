@@ -2,13 +2,16 @@
     <div>
         <div class="mt-10">
             <form
-                class="my_forms rounded-sm m-auto flex flex-col border-2 border-gray-200 shadow-2xl p-8"
+                class="my_forms rounded-sm m-auto flex flex-col p-8"
                 action=""
             >
-                <p class="text-center text-2xl">Admin Login</p>
-                <div class="flex flex-col justify-center mt-4">
+                <p class="text-center text-2xl font-bold">Admin Login</p>
+                <div class="w-full flex justify-center items-center mt-2">
+                    <hr class="w-5/6 border-t-2 border-solid border-gray-500" />
+                </div>
+                <div class="flex flex-col justify-center mt-2">
                     <input
-                        class="w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2"
+                        class="rounded-md w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2"
                         v-model="adminData.email"
                         id="user_email"
                         name="email"
@@ -38,7 +41,7 @@
                 </div>
                 <button
                     @click.prevent="adminLogin"
-                    class="focus:outline-none bg-green-500 rounded-sm w-auto hover:bg-green-800 transition duration-500 ease-in-out mt-4 py-1 text-gray-100 text-center h-10"
+                    class="focus:outline-none bg-gray-600 rounded-sm w-auto hover:bg-gray-800 transition duration-500 ease-in-out mt-4 py-1 text-gray-100 text-center h-10"
                     type="submit"
                 >
                     Login
