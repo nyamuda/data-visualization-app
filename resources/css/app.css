@@ -11,7 +11,7 @@
 }
 
 .my_forms {
-    width: 22rem;
+    width: 95%;
 }
 
 .desk-active {
@@ -24,5 +24,8 @@
 @media (min-width: 768px) {
     .question_container {
         width: 40rem;
+    }
+    .my_forms {
+        width: 22rem;
     }
 }

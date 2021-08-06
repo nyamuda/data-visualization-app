@@ -25,7 +25,8 @@ class AdminLoginController extends Controller
             return  response()->json(Auth::user(), 200);
         }
         throw ValidationException::withMessages([
-            'email' => ['The provided admin credentials are incorrect.']
+            'email' => ['Admin credentials incorrect.'],
+            'password' => ['Admin credentials incorrect.']
         ]);
     }
     public function logout_admin()

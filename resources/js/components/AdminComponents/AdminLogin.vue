@@ -1,59 +1,72 @@
 <template>
-    <div>
-        <div class="mt-10">
-            <form
-                class="my_forms rounded-sm m-auto flex flex-col p-8"
-                action=""
-            >
-                <p class="text-center text-2xl font-bold">Admin Login</p>
-                <div class="w-full flex justify-center items-center mt-2">
-                    <hr class="w-5/6 border-t-2 border-solid border-gray-500" />
-                </div>
-                <div class="flex flex-col justify-center mt-2">
-                    <input
-                        class="rounded-md w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2"
-                        v-model="adminData.email"
-                        id="user_email"
-                        name="email"
-                        type="text"
-                        placeholder="Email"
-                    />
-                    <span
-                        class="text-xs text-red-600"
-                        v-if="errorMessage.email"
-                        >{{ errorMessage.email[0] }}</span
-                    >
-                </div>
-                <div class="flex flex-col justify-center mt-4">
-                    <input
-                        class="w-auto bg-gray-100 focus:outline-none focus:bg-green-100 transition duration-500 ease-in-out h-10 px-2"
-                        v-model="adminData.password"
-                        id="user_password"
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                    />
-                    <span
-                        class="text-xs text-red-600"
-                        v-if="errorMessage.password"
-                        >{{ errorMessage.password[0] }}</span
-                    >
-                </div>
+    <div class="flex flex-col h-screen justify-between">
+        <login-template>
+            <template v-slot:title>
+                Admin Login
+            </template>
+            <template v-slot:email>
+                <input
+                    class="input1 rounded-lg w-auto bg-gray-100 focus:outline-none transition duration-300 ease-in-out h-10 px-2"
+                    v-model="adminData.email"
+                    id="admin_email"
+                    name="email"
+                    type="text"
+                    placeholder="Email"
+                    required
+                />
+                <span
+                    class="text-xs text-red-600 absolute -bottom-4"
+                    v-if="errorMessage.email"
+                    >{{ errorMessage.email[0] }}</span
+                >
+                <span
+                    class="text-xs text-red-600 absolute -bottom-4"
+                    v-else
+                ></span>
+            </template>
+
+            <template v-slot:password>
+                <input
+                    class="input1 rounded-lg w-auto bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-opacity-30 focus:border-gray-200 transition duration-300 ease-in-out h-10 px-2"
+                    v-model="adminData.password"
+                    id="admin_password"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    required
+                />
+                <span
+                    class="text-xs text-red-600 absolute -bottom-4"
+                    v-if="errorMessage.password"
+                    >{{ errorMessage.password[0] }}</span
+                >
+                <span
+                    class="text-xs text-red-600 absolute -bottom-4"
+                    v-else
+                ></span>
+            </template>
+            <template v-slot:button>
                 <button
+                    @keyup.enter="adminLogin"
                     @click.prevent="adminLogin"
                     class="focus:outline-none bg-gray-600 rounded-sm w-auto hover:bg-gray-800 transition duration-500 ease-in-out mt-4 py-1 text-gray-100 text-center h-10"
                     type="submit"
                 >
                     Login
                 </button>
-            </form>
-        </div>
+            </template>
+        </login-template>
     </div>
 </template>
 
 <script>
 import axios from "axios";
+import LoginTemplate from "../LoginTemplate";
+
 export default {
+    components: {
+        "login-template": LoginTemplate
+    },
     data() {
         return {
             adminData: {
@@ -89,3 +102,9 @@ export default {
     }
 };
 </script>
+<style>
+.input1:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+</style>
