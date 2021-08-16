@@ -7,6 +7,7 @@ use App\Models\Question;
 use App\Models\Answer;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use App\Models\SurveyType;
 
 class SurveyTypesController extends Controller
 {
@@ -33,5 +34,16 @@ class SurveyTypesController extends Controller
 
 
         return $all_surveys;
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'surveyName' => 'required|unique:survey_types,survey_type_name'
+        ], ['surveyName.required' => 'Required.']);
+
+        SurveyType::create([
+            'survey_type_name' => $request->surveyName,
+        ]);
     }
 }

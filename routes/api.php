@@ -44,6 +44,15 @@ Route::post('/admin_logout', [AdminLoginController::class, 'logout_admin']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/questions', [SurveyQuestionsController::class, 'index']);
 Route::post('/add_question', [SurveyQuestionsController::class, 'store']);
+
+
+Route::post('/add_survey', [SurveyTypesController::class, 'store']);
+
+
+Route::post('/add_category', [CategoryController::class, 'store']);
+
+
+
 Route::get('/get_questions', [SurveyQuestionsController::class, 'show']);
 Route::get('/unanswered_categories', [SurveyQuestionsController::class, 'userCategories']);
 Route::get('/unanswered_surveys', [SurveyTypesController::class, 'show']);

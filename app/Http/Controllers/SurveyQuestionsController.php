@@ -54,7 +54,7 @@ class SurveyQuestionsController extends Controller
             ->get();
 
         //then using that to get the questions the user hasn't answered
-        $all_questions = Question::select('question_id', 'question', 'questions.category_id', 'type', 'category_name')
+        $all_questions = Question::select('question_id', 'question', 'questions.category_id', 'question_type_id AS type', 'category_name')
             //join with the category table to get the 'type' and 'category_name'
             ->join('category_questions', 'category_questions.category_id', '=', 'questions.category_id')
             ->whereNotIn('question_id', $answered_questions)->get();
@@ -66,15 +66,18 @@ class SurveyQuestionsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'question' => 'required|unique:questions',
-            'cat_val' => 'required|numeric'
+            'question' => 'required|unique:questions,question',
+            'category_id' => 'required|numeric',
+            'question_type_id' => 'required|numeric'
         ], [
-            'question.unique' => 'The question is already added. Please enter a different question.',
-            'cat_val.required' => 'Category is required. Please select the category.'
+            'question.unique' => 'The question has already been added.',
+            'category_id.required' => 'Required.',
+            'question_type_id.required' => 'Required.'
         ]);
         Question::create([
             'question' => $request->question,
-            'category_id' => $request->cat_val
+            'category_id' => $request->category_id,
+            'question_type_id' => $request->question_type_id
         ]);
     }
 

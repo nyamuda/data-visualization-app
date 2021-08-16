@@ -10,7 +10,7 @@ class Question extends Model
     use HasFactory;
 
     /* since we're are using the create method to store a record in the controller */
-    protected $fillable = ['question', 'category_id'];
+    protected $fillable = ['question', 'category_id', 'question_type_id'];
 
     public function category()
     {

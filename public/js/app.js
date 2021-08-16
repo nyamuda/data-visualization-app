@@ -2033,6 +2033,84 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2042,14 +2120,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      success: false,
+      successMessage: "",
       questionInfo: {
         cat_val: "",
         question: ""
       },
-      newSurvey: "",
+      newSurvey: {
+        surveyName: ""
+      },
       newCategory: {
         categoryName: "",
-        survey_id: ""
+        survey_id: "",
+        categoryyDescription: ""
       },
       newQuestion: {
         question: "",
@@ -2057,28 +2140,83 @@ __webpack_require__.r(__webpack_exports__);
         question_type_id: ""
       },
       allCategories: "",
-      question_error: "",
-      cat_error: "",
-      section: "Add Survery Questions",
+      section: "Add Survey Questions",
       errorMessage: ""
     };
   },
   methods: {
     //adding a new question to the database
-    addQuestion: function addQuestion() {
+    addNewSurvey: function addNewSurvey() {
       var _this = this;
 
-      axios.post("/api/add_question", this.questionInfo).then(function (res) {
-        console.log(res); // this.$router.push({ name: "dashboard" });
+      axios.post("/api/add_survey", this.newSurvey).then(function (res) {
+        _this.successMessage = "Survey Successully Added";
+        _this.success = !_this.success;
 
-        _this.questionInfo.question = "";
-        _this.question_error = "";
-        _this.cat_error = "";
+        _this.hideSuccess();
+
+        _this.newSurvey.surveyName = "";
+        /*disptaching an action that will fetch
+        all survey names and category names from the database - module B*/
+
+        _this.$store.dispatch("getNames");
+
+        _this.errorMessage = "";
+      })["catch"](function (error) {
+        _this.errorMessage = error.response.data.errors;
+      });
+    },
+    addNewCategory: function addNewCategory() {
+      var _this2 = this;
+
+      axios.post("/api/add_category", this.newCategory).then(function (res) {
+        _this2.successMessage = "Category Successully Added";
+        _this2.success = !_this2.success;
+
+        _this2.hideSuccess();
+
+        _this2.newCategory.categoryName = "";
+        _this2.newCategory.survey_id = "";
+        _this2.newCategory.categoryDescription = "";
+        /*disptaching an action that will fetch
+        all survey names and category names from the database - module B*/
+
+        _this2.$store.dispatch("getNames");
+
+        _this2.errorMessage = "";
+      })["catch"](function (error) {
+        _this2.errorMessage = error.response.data.errors;
+      });
+    },
+    addNewQuestion: function addNewQuestion() {
+      var _this3 = this;
+
+      axios.post("/api/add_question", this.newQuestion).then(function (res) {
+        _this3.successMessage = "Question Successully Added";
+        _this3.success = !_this3.success;
+
+        _this3.hideSuccess();
+
+        _this3.newQuestion.question = "";
+        _this3.newQuestion.category_id = "";
+        _this3.newQuestion.question_type_id = "";
+        /*disptaching an action that will fetch
+        all survey names and category names from the database - module B*/
+
+        _this3.$store.dispatch("getNames");
+
+        _this3.errorMessage = "";
       })["catch"](function (error) {
         // console.log(error.response.data.errors.question.shift());
-        _this.question_error = error.response.data.errors.question.shift();
-        _this.cat_error = error.response.data.errors.cat_val.shift();
+        _this3.errorMessage = error.response.data.errors;
       });
+    },
+    hideSuccess: function hideSuccess() {
+      var _this4 = this;
+
+      setTimeout(function () {
+        _this4.success = !_this4.success;
+      }, 3000);
     }
   },
   computed: {
@@ -11700,7 +11838,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#question-container[data-v-7f01e0cc] {\r\n    width: 95%;\n}\n@media (min-width: 768px) {\n#question-container[data-v-7f01e0cc] {\r\n        width: 40rem;\r\n        border: 1px solid;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#question-container[data-v-7f01e0cc] {\r\n    width: 95%;\n}\n.slide-fade-enter-active[data-v-7f01e0cc] {\r\n    transition: all 0.5s ease;\n}\n.slide-fade-leave-active[data-v-7f01e0cc] {\r\n    transition: all 0.8s ease-in-out;\n}\n.slide-fade-enter[data-v-7f01e0cc], .slide-fade-leave-to[data-v-7f01e0cc]\r\n/* .slide-fade-leave-active below version 2.1.8 */ {\r\n    transform: translateX(20px);\r\n    opacity: 0;\n}\n@media (min-width: 768px) {\n#question-container[data-v-7f01e0cc] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52496,16 +52634,54 @@ var render = function() {
     [
       _c("admin-header", { attrs: { section: _vm.section } }),
       _vm._v(" "),
+      _c("transition", { attrs: { name: "slide-fade" } }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.success,
+                expression: "success"
+              }
+            ],
+            staticClass: "w-full flex justify-end fixed top-48 z-20"
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  " w-1/2 md:w-1/6 flex justify-center items-center bg-green-800 absolute"
+              },
+              [
+                _c("p", { staticClass: "py-3 text-gray-100" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.successMessage) +
+                      "\n                "
+                  )
+                ])
+              ]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "div",
         {
-          staticClass: "text-center m-auto",
+          staticClass: "text-center m-auto pb-12",
           attrs: { id: "question-container" }
         },
         [
           _c(
             "div",
-            { staticClass: "flex flex-col justify-center items-center w-full" },
+            {
+              staticClass:
+                "flex flex-col justify-center items-center w-full py-4"
+            },
             [
               _c("p", { staticClass: "text-2xl" }, [_vm._v("Add New Survey")]),
               _vm._v(" "),
@@ -52513,7 +52689,7 @@ var render = function() {
                 "label",
                 {
                   staticClass:
-                    "flex flex-col w-full justify-center items-center",
+                    "relative flex flex-col w-full justify-center items-center font-bold mt-2",
                   attrs: { for: "survey-name" }
                 },
                 [
@@ -52523,23 +52699,47 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.newSurvey,
-                        expression: "newSurvey"
+                        value: _vm.newSurvey.surveyName,
+                        expression: "newSurvey.surveyName"
                       }
                     ],
                     staticClass:
                       "input1 rounded-lg w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-300 ease-in-out h-10 px-2",
                     attrs: { id: "survey-name" },
-                    domProps: { value: _vm.newSurvey },
+                    domProps: { value: _vm.newSurvey.surveyName },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.newSurvey = $event.target.value
+                        _vm.$set(
+                          _vm.newSurvey,
+                          "surveyName",
+                          $event.target.value
+                        )
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.errorMessage.surveyName
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "text-xs font-normal text-red-600 absolute -bottom-4"
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.errorMessage.surveyName[0]) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    : _c("span", {
+                        staticClass:
+                          "text-xs font-normal text-red-600 md:absolute md:-bottom-4"
+                      })
                 ]
               ),
               _vm._v(" "),
@@ -52547,7 +52747,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "md:w-1/3 w-full bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center p-2 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out justify-center",
+                    "mt-4 md:w-1/3 w-full bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center p-2 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out justify-center",
                   on: {
                     keyup: function($event) {
                       if (
@@ -52571,7 +52771,10 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex flex-col justify-center items-center w-full" },
+            {
+              staticClass:
+                "flex flex-col justify-center items-center w-full py-4"
+            },
             [
               _c("p", { staticClass: "text-2xl" }, [
                 _vm._v("Add New Category")
@@ -52581,11 +52784,11 @@ var render = function() {
                 "label",
                 {
                   staticClass:
-                    "flex flex-col w-full justify-center items-center",
+                    "relative flex flex-col w-full justify-center items-center font-bold md:mt-2",
                   attrs: { for: "survey" }
                 },
                 [
-                  _vm._v("\n                Survey\n                "),
+                  _vm._v("\n                Survey Name\n                "),
                   _c("br"),
                   _vm._v(" "),
                   _c(
@@ -52600,7 +52803,7 @@ var render = function() {
                         }
                       ],
                       staticClass:
-                        "outline-none w-full md:w-3/4 ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                        "outline-none w-full md:w-1/2 ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
                       attrs: { name: "survey", id: "survey" },
                       on: {
                         change: function($event) {
@@ -52638,24 +52841,24 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _vm.errorMessage
+                  _vm.errorMessage.survey_id
                     ? _c(
                         "span",
                         {
                           staticClass:
-                            "text-xs text-red-600 md:absolute md:-bottom-4"
+                            "text-xs font-normal text-red-600 absolute -bottom-4"
                         },
                         [
                           _vm._v(
                             "\n                    " +
-                              _vm._s(_vm.errorMessage) +
+                              _vm._s(_vm.errorMessage.survey_id[0]) +
                               "\n                "
                           )
                         ]
                       )
                     : _c("span", {
                         staticClass:
-                          "text-xs text-red-600 md:absolute md:-bottom-4"
+                          "text-xs font-normal text-red-600 md:absolute md:-bottom-4"
                       })
                 ]
               ),
@@ -52664,11 +52867,11 @@ var render = function() {
                 "label",
                 {
                   staticClass:
-                    "flex flex-col w-full justify-center items-center",
+                    "relative flex flex-col w-full justify-center items-center font-bold mt-2",
                   attrs: { for: "survey-name" }
                 },
                 [
-                  _vm._v("\n                Category Name:\n                "),
+                  _vm._v("\n                Category Name\n                "),
                   _c("input", {
                     directives: [
                       {
@@ -52694,7 +52897,93 @@ var render = function() {
                         )
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.errorMessage.categoryName
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "text-xs font-normal text-red-600 absolute -bottom-4"
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.errorMessage.categoryName[0]) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    : _c("span", {
+                        staticClass:
+                          "text-xs font-normal text-red-600 md:absolute md:-bottom-4"
+                      })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "relative flex flex-col w-full justify-center items-center font-bold mt-2",
+                  attrs: { for: "question" }
+                },
+                [
+                  _vm._v(
+                    "\n                Category Description\n                "
+                  ),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newCategory.categoryDescription,
+                        expression: "newCategory.categoryDescription"
+                      }
+                    ],
+                    staticClass:
+                      "p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-50",
+                    attrs: {
+                      val: _vm.newCategory.categoryDescription,
+                      id: "question",
+                      name: "question",
+                      rows: "4",
+                      cols: "50"
+                    },
+                    domProps: { value: _vm.newCategory.categoryDescription },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.newCategory,
+                          "categoryDescription",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errorMessage.categoryDescription
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "text-xs font-normal text-red-600 absolute -bottom-4"
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.errorMessage.categoryDescription[0]) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    : _c("span", {
+                        staticClass:
+                          "text-xs font-normal text-red-600 md:absolute md:-bottom-4"
+                      })
                 ]
               ),
               _vm._v(" "),
@@ -52702,7 +52991,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    " md:w-1/3 w-full bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center p-2 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out justify-center",
+                    " md:w-1/3 w-full bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center p-2 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out justify-center mt-4",
                   on: {
                     keyup: function($event) {
                       if (
@@ -52724,20 +53013,20 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "mt-10 text-center" }, [
-            _c("p", { staticClass: "text-2xl" }, [_vm._v("New question")]),
+          _c("div", { staticClass: "text-center py-4" }, [
+            _c("p", { staticClass: "text-2xl" }, [_vm._v("Add New Question")]),
             _vm._v(" "),
             _c("div", [
               _c(
                 "label",
                 {
                   staticClass:
-                    " relative flex flex-col w-full justify-center items-center",
+                    " relative flex flex-col w-full justify-center items-center font-bold mt-3",
                   attrs: { for: "category-name" }
                 },
                 [
                   _vm._v(
-                    "\n                    Category\n                    "
+                    "\n                    Category Name\n                    "
                   ),
                   _c("br"),
                   _vm._v(" "),
@@ -52753,7 +53042,7 @@ var render = function() {
                         }
                       ],
                       staticClass:
-                        "outline-none w-full md:w-3/4 ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                        "outline-none w-full md:w-1/2 ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
                       attrs: { name: "category-name", id: "category-name" },
                       on: {
                         change: function($event) {
@@ -52797,24 +53086,24 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _vm.errorMessage
+                  _vm.errorMessage.category_id
                     ? _c(
                         "span",
                         {
                           staticClass:
-                            "text-xs text-red-600 md:absolute md:-bottom-4"
+                            "text-xs font-normal text-red-600 absolute -bottom-4"
                         },
                         [
                           _vm._v(
                             "\n                        " +
-                              _vm._s(_vm.errorMessage) +
+                              _vm._s(_vm.errorMessage.category_id[0]) +
                               "\n                    "
                           )
                         ]
                       )
                     : _c("span", {
                         staticClass:
-                          "text-xs text-red-600 md:absolute md:-bottom-4"
+                          "text-xs font-normal text-red-600 md:absolute md:-bottom-4"
                       })
                 ]
               )
@@ -52825,7 +53114,7 @@ var render = function() {
                 "label",
                 {
                   staticClass:
-                    " relative flex flex-col w-full justify-center items-center",
+                    " relative flex flex-col w-full justify-center items-center font-bold mt-3",
                   attrs: { for: "category-name" }
                 },
                 [
@@ -52846,7 +53135,7 @@ var render = function() {
                         }
                       ],
                       staticClass:
-                        "outline-none ring-1 w-full md:w-3/4 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                        "outline-none ring-1 w-full md:w-1/2 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
                       attrs: { name: "category-name", id: "category-name" },
                       on: {
                         change: function($event) {
@@ -52890,24 +53179,24 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _vm.errorMessage
+                  _vm.errorMessage.question_type_id
                     ? _c(
                         "span",
                         {
                           staticClass:
-                            "text-xs text-red-600 md:absolute md:-bottom-4"
+                            "text-xs font-normal text-red-600 absolute -bottom-4"
                         },
                         [
                           _vm._v(
                             "\n                        " +
-                              _vm._s(_vm.errorMessage) +
+                              _vm._s(_vm.errorMessage.question_type_id[0]) +
                               "\n                    "
                           )
                         ]
                       )
                     : _c("span", {
                         staticClass:
-                          "text-xs text-red-600 md:absolute md:-bottom-4"
+                          "text-xs font-normal text-red-600 md:absolute md:-bottom-4"
                       })
                 ]
               )
@@ -52916,43 +53205,60 @@ var render = function() {
             _c(
               "label",
               {
-                staticClass: "flex flex-col w-full justify-center items-center",
+                staticClass:
+                  "relative flex flex-col w-full justify-center items-center font-bold mt-3",
                 attrs: { for: "question" }
               },
               [
-                _vm._v("\n                Question:\n                "),
+                _vm._v("\n                Question\n                "),
                 _c("textarea", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.questionInfo.question,
-                      expression: "questionInfo.question"
+                      value: _vm.newQuestion.question,
+                      expression: "newQuestion.question"
                     }
                   ],
                   staticClass:
                     "p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-50",
                   attrs: {
-                    val: _vm.questionInfo.question,
+                    val: _vm.newQuestion.question,
                     id: "question",
                     name: "question",
                     rows: "4",
                     cols: "50"
                   },
-                  domProps: { value: _vm.questionInfo.question },
+                  domProps: { value: _vm.newQuestion.question },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(
-                        _vm.questionInfo,
-                        "question",
-                        $event.target.value
-                      )
+                      _vm.$set(_vm.newQuestion, "question", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _vm.errorMessage.question
+                  ? _c(
+                      "span",
+                      {
+                        staticClass:
+                          "text-xs font-normal text-red-600 absolute -bottom-4"
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.errorMessage.question[0]) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  : _c("span", {
+                      staticClass:
+                        "text-xs font-normal text-red-600 md:absolute md:-bottom-4"
+                    })
               ]
             )
           ]),
@@ -52988,6 +53294,8 @@ var render = function() {
           )
         ]
       ),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.newSurvey.surveyName))]),
       _vm._v(" "),
       _c("the-footer")
     ],
