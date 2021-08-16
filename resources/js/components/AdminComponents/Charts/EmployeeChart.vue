@@ -52,7 +52,7 @@ export default {
                         label: [
                             { text: "%name" },
                             {
-                                text: "%sum / 100",
+                                text: "%sum%",
                                 verticalAlign: "middle",
                                 style_fontSize: 20
                             }

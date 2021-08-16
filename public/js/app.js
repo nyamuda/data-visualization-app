@@ -1895,6 +1895,144 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1908,10 +2046,21 @@ __webpack_require__.r(__webpack_exports__);
         cat_val: "",
         question: ""
       },
+      newSurvey: "",
+      newCategory: {
+        categoryName: "",
+        survey_id: ""
+      },
+      newQuestion: {
+        question: "",
+        category_id: "",
+        question_type_id: ""
+      },
       allCategories: "",
       question_error: "",
       cat_error: "",
-      section: "Add Survery Questions"
+      section: "Add Survery Questions",
+      errorMessage: ""
     };
   },
   methods: {
@@ -1933,15 +2082,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
-    //getting category names from the state
-    myCategories: function myCategories() {
-      return this.$store.state.b.all_categories;
+    //getting category names from the state - module B
+    myNames: function myNames() {
+      return this.$store.state.b.all_names;
     }
   },
   created: function created() {
     /*disptaching an action that will fetch
-    all question category names from the database*/
-    this.$store.dispatch("getCategoryNames"); // this.$store.dispatch("addDefaultUser");
+    all survey names and category names from the database - module B*/
+    this.$store.dispatch("getNames"); // this.$store.dispatch("addDefaultUser");
     //admin info
 
     this.$store.dispatch("getAuthenticatedUserInfo");
@@ -2528,7 +2677,7 @@ __webpack_require__.r(__webpack_exports__);
             label: [{
               text: "%name"
             }, {
-              text: "%sum / 100",
+              text: "%sum%",
               verticalAlign: "middle",
               style_fontSize: 20
             }]
@@ -3054,6 +3203,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _AdminHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminHeader */ "./resources/js/components/AdminComponents/AdminHeader.vue");
 /* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Footer */ "./resources/js/components/Footer.vue");
+//
 //
 //
 //
@@ -5994,27 +6144,27 @@ __webpack_require__.r(__webpack_exports__);
 
 var moduleB = {
   state: {
-    all_categories: "",
+    all_names: "",
     registerComp: false,
     newQuestionComp: false,
     dashBoardComp: false
   },
   mutations: {
-    //adding the categories names to the state
-    allCategories: function allCategories(state, paylaod) {
-      state.all_categories = paylaod;
+    //adding the survey and categories names to the state
+    allNames: function allNames(state, paylaod) {
+      state.all_names = paylaod;
     },
     changeAdminComponent: function changeAdminComponent() {}
   },
   actions: {
-    //getting all the question category names from the database.
-    getCategoryNames: function getCategoryNames(context) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_categories").then(function (res) {
+    //getting all the question survey names, question_type names and category names from the database.
+    getNames: function getNames(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_names").then(function (res) {
         console.log(res.data);
-        /*invoking the mutation that will add all categories names 
-        to the state from the database */
+        /*invoking the mutation that will add all the survey names, question_type names 
+        and category names to the state from the database */
 
-        context.commit("allCategories", res.data);
+        context.commit("allNames", res.data);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -11533,6 +11683,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.trinity-rings-spinner[data-v-e647c0
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n#question-container[data-v-7f01e0cc] {\r\n    width: 95%;\n}\n@media (min-width: 768px) {\n#question-container[data-v-7f01e0cc] {\r\n        width: 40rem;\r\n        border: 1px solid;\n}\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AdminHeader.vue?vue&type=style&index=0&id=8f0e1992&scoped=true&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AdminHeader.vue?vue&type=style&index=0&id=8f0e1992&scoped=true&lang=css& ***!
@@ -11622,7 +11796,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#form-container[data-v-4a30e75d] {\r\n    width: 95%;\r\n    position: relative;\r\n    margin: auto;\r\n    margin-top: 5rem;\n}\n.slide-fade-enter-active[data-v-4a30e75d] {\r\n    transition: all 0.5s ease;\n}\n.slide-fade-leave-active[data-v-4a30e75d] {\r\n    transition: all 0.8s ease-in-out;\n}\n.slide-fade-enter[data-v-4a30e75d], .slide-fade-leave-to[data-v-4a30e75d]\r\n/* .slide-fade-leave-active below version 2.1.8 */ {\r\n    transform: translateY(10px);\r\n    opacity: 0;\n}\n@media (min-width: 786.5px) {\n#form-container[data-v-4a30e75d] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#form-container[data-v-4a30e75d] {\r\n    width: 95%;\r\n    position: relative;\r\n    margin: auto;\r\n    margin-top: 10rem !important;\n}\n.slide-fade-enter-active[data-v-4a30e75d] {\r\n    transition: all 0.5s ease;\n}\n.slide-fade-leave-active[data-v-4a30e75d] {\r\n    transition: all 0.8s ease-in-out;\n}\n.slide-fade-enter[data-v-4a30e75d], .slide-fade-leave-to[data-v-4a30e75d]\r\n/* .slide-fade-leave-active below version 2.1.8 */ {\r\n    transform: translateY(10px);\r\n    opacity: 0;\n}\n@media (min-width: 786.5px) {\n#form-container[data-v-4a30e75d] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -44985,6 +45159,36 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_style_index_0_id_7f01e0cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_style_index_0_id_7f01e0cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_style_index_0_id_7f01e0cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AdminHeader.vue?vue&type=style&index=0&id=8f0e1992&scoped=true&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AdminHeader.vue?vue&type=style&index=0&id=8f0e1992&scoped=true&lang=css& ***!
@@ -48482,23 +48686,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _AddNewQuestion_vue_vue_type_template_id_7f01e0cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddNewQuestion.vue?vue&type=template&id=7f01e0cc& */ "./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&");
+/* harmony import */ var _AddNewQuestion_vue_vue_type_template_id_7f01e0cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddNewQuestion.vue?vue&type=template&id=7f01e0cc&scoped=true& */ "./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&scoped=true&");
 /* harmony import */ var _AddNewQuestion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddNewQuestion.vue?vue&type=script&lang=js& */ "./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _AddNewQuestion_vue_vue_type_style_index_0_id_7f01e0cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css& */ "./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _AddNewQuestion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _AddNewQuestion_vue_vue_type_template_id_7f01e0cc___WEBPACK_IMPORTED_MODULE_0__.render,
-  _AddNewQuestion_vue_vue_type_template_id_7f01e0cc___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _AddNewQuestion_vue_vue_type_template_id_7f01e0cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AddNewQuestion_vue_vue_type_template_id_7f01e0cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "7f01e0cc",
   null
   
 )
@@ -50159,6 +50365,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************!*\
+  !*** ./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_style_index_0_id_7f01e0cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=style&index=0&id=7f01e0cc&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/AdminComponents/AdminHeader.vue?vue&type=style&index=0&id=8f0e1992&scoped=true&lang=css&":
 /*!**************************************************************************************************************************!*\
   !*** ./resources/js/components/AdminComponents/AdminHeader.vue?vue&type=style&index=0&id=8f0e1992&scoped=true&lang=css& ***!
@@ -51022,19 +51241,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&":
-/*!***************************************************************************************************!*\
-  !*** ./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc& ***!
-  \***************************************************************************************************/
+/***/ "./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&scoped=true&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&scoped=true& ***!
+  \***************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_template_id_7f01e0cc___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_template_id_7f01e0cc___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_template_id_7f01e0cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_template_id_7f01e0cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_template_id_7f01e0cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddNewQuestion.vue?vue&type=template&id=7f01e0cc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNewQuestion_vue_vue_type_template_id_7f01e0cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddNewQuestion.vue?vue&type=template&id=7f01e0cc&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&scoped=true&");
 
 
 /***/ }),
@@ -52255,10 +52474,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&":
-/*!******************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc& ***!
-  \******************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminComponents/AddNewQuestion.vue?vue&type=template&id=7f01e0cc&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -52277,125 +52496,498 @@ var render = function() {
     [
       _c("admin-header", { attrs: { section: _vm.section } }),
       _vm._v(" "),
-      _c("div", { staticClass: "text-center mt-8" }, [
-        _c("p", { staticClass: "text-center text-2xl" }, [
-          _vm._v("Add new question")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "mt-10 text-center" }, [
-          _c("p", [_vm._v("New question")]),
-          _vm._v(" "),
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.questionInfo.question,
-                expression: "questionInfo.question"
-              }
-            ],
-            staticClass:
-              "p-2 bg-gray-100 focus:outline-none transition duration-500 ease-in focus:bg-green-50",
-            attrs: {
-              val: _vm.questionInfo.question,
-              id: "w3review",
-              name: "question",
-              rows: "4",
-              cols: "50"
-            },
-            domProps: { value: _vm.questionInfo.question },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.questionInfo, "question", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-red-500 text-xs" }, [
-            _vm._v(_vm._s(_vm.question_error))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "mt-4 text-center" }, [
-          _c("label", { attrs: { for: "categories" } }, [_vm._v("Category:")]),
-          _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "text-center m-auto",
+          attrs: { id: "question-container" }
+        },
+        [
           _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.questionInfo.cat_val,
-                  expression: "questionInfo.cat_val"
-                }
-              ],
-              staticClass:
-                "focus:outline-none focus:ring-2 ring-purple-400 rounded-sm shadow-md h-8 transition divide-purple-1000 ease-in-out",
-              attrs: { id: "categories" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.questionInfo,
-                    "cat_val",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                }
-              }
-            },
+            "div",
+            { staticClass: "flex flex-col justify-center items-center w-full" },
             [
-              _c("option", { attrs: { selected: "", hidden: "", value: "" } }, [
-                _vm._v("Choose here")
-              ]),
+              _c("p", { staticClass: "text-2xl" }, [_vm._v("Add New Survey")]),
               _vm._v(" "),
-              _vm._l(_vm.myCategories, function(category) {
-                return _c(
-                  "option",
-                  {
-                    key: category.id,
-                    domProps: { value: category.category_id }
-                  },
-                  [
-                    _vm._v(_vm._s(category.category_name)),
-                    _c("span", [_vm._v(" - " + _vm._s(category.type))])
-                  ]
-                )
-              })
-            ],
-            2
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "flex flex-col w-full justify-center items-center",
+                  attrs: { for: "survey-name" }
+                },
+                [
+                  _vm._v("\n                Survey Name:\n                "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newSurvey,
+                        expression: "newSurvey"
+                      }
+                    ],
+                    staticClass:
+                      "input1 rounded-lg w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-300 ease-in-out h-10 px-2",
+                    attrs: { id: "survey-name" },
+                    domProps: { value: _vm.newSurvey },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.newSurvey = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "md:w-1/3 w-full bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center p-2 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out justify-center",
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.addNewSurvey($event)
+                    },
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.addNewSurvey($event)
+                    }
+                  }
+                },
+                [_vm._v("\n                Add Survey\n            ")]
+              )
+            ]
           ),
           _vm._v(" "),
-          _c("p", { staticClass: "text-red-500 text-xs" }, [
-            _vm._v(_vm._s(_vm.cat_error))
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-purple-500 rounded-sm text-gray-50 p-2 hover:bg-purple-700 transition duration-500 ease-linear mt-8",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.addQuestion($event)
-              }
-            }
-          },
-          [_vm._v("\n            Add question\n        ")]
-        )
-      ]),
+          _c(
+            "div",
+            { staticClass: "flex flex-col justify-center items-center w-full" },
+            [
+              _c("p", { staticClass: "text-2xl" }, [
+                _vm._v("Add New Category")
+              ]),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "flex flex-col w-full justify-center items-center",
+                  attrs: { for: "survey" }
+                },
+                [
+                  _vm._v("\n                Survey\n                "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newCategory.survey_id,
+                          expression: "newCategory.survey_id"
+                        }
+                      ],
+                      staticClass:
+                        "outline-none w-full md:w-3/4 ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                      attrs: { name: "survey", id: "survey" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.newCategory,
+                            "survey_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("--Choose an option--")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.myNames.survey_names, function(survey, idx) {
+                        return _c(
+                          "option",
+                          { key: idx, domProps: { value: survey.id } },
+                          [_vm._v(_vm._s(survey.survey_type_name))]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm.errorMessage
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "text-xs text-red-600 md:absolute md:-bottom-4"
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.errorMessage) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    : _c("span", {
+                        staticClass:
+                          "text-xs text-red-600 md:absolute md:-bottom-4"
+                      })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "flex flex-col w-full justify-center items-center",
+                  attrs: { for: "survey-name" }
+                },
+                [
+                  _vm._v("\n                Category Name:\n                "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newCategory.categoryName,
+                        expression: "newCategory.categoryName"
+                      }
+                    ],
+                    staticClass:
+                      "input1 rounded-lg w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-300 ease-in-out h-10 px-2",
+                    attrs: { id: "survey-name" },
+                    domProps: { value: _vm.newCategory.categoryName },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.newCategory,
+                          "categoryName",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    " md:w-1/3 w-full bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center p-2 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out justify-center",
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.addNewCategory($event)
+                    },
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.addNewCategory($event)
+                    }
+                  }
+                },
+                [_vm._v("\n                Add Category\n            ")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-10 text-center" }, [
+            _c("p", { staticClass: "text-2xl" }, [_vm._v("New question")]),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "label",
+                {
+                  staticClass:
+                    " relative flex flex-col w-full justify-center items-center",
+                  attrs: { for: "category-name" }
+                },
+                [
+                  _vm._v(
+                    "\n                    Category\n                    "
+                  ),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newQuestion.category_id,
+                          expression: "newQuestion.category_id"
+                        }
+                      ],
+                      staticClass:
+                        "outline-none w-full md:w-3/4 ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                      attrs: { name: "category-name", id: "category-name" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.newQuestion,
+                            "category_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("--Choose an option--")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.myNames.category_names, function(
+                        category,
+                        idx
+                      ) {
+                        return _c(
+                          "option",
+                          {
+                            key: idx,
+                            domProps: { value: category.category_id }
+                          },
+                          [_vm._v(_vm._s(category.category_name))]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm.errorMessage
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "text-xs text-red-600 md:absolute md:-bottom-4"
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.errorMessage) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    : _c("span", {
+                        staticClass:
+                          "text-xs text-red-600 md:absolute md:-bottom-4"
+                      })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "label",
+                {
+                  staticClass:
+                    " relative flex flex-col w-full justify-center items-center",
+                  attrs: { for: "category-name" }
+                },
+                [
+                  _vm._v(
+                    "\n                    Question Type\n                    "
+                  ),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newQuestion.question_type_id,
+                          expression: "newQuestion.question_type_id"
+                        }
+                      ],
+                      staticClass:
+                        "outline-none ring-1 w-full md:w-3/4 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                      attrs: { name: "category-name", id: "category-name" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.newQuestion,
+                            "question_type_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("--Choose an option--")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.myNames.question_type_names, function(
+                        question_type,
+                        idx
+                      ) {
+                        return _c(
+                          "option",
+                          {
+                            key: idx,
+                            domProps: { value: question_type.question_type_id }
+                          },
+                          [_vm._v(_vm._s(question_type.question_type_name))]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm.errorMessage
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "text-xs text-red-600 md:absolute md:-bottom-4"
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.errorMessage) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    : _c("span", {
+                        staticClass:
+                          "text-xs text-red-600 md:absolute md:-bottom-4"
+                      })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "flex flex-col w-full justify-center items-center",
+                attrs: { for: "question" }
+              },
+              [
+                _vm._v("\n                Question:\n                "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.questionInfo.question,
+                      expression: "questionInfo.question"
+                    }
+                  ],
+                  staticClass:
+                    "p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-50",
+                  attrs: {
+                    val: _vm.questionInfo.question,
+                    id: "question",
+                    name: "question",
+                    rows: "4",
+                    cols: "50"
+                  },
+                  domProps: { value: _vm.questionInfo.question },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.questionInfo,
+                        "question",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "w-full flex flex-col justify-center items-center" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-blue-500 w-full md:w-1/3 rounded-sm hover:bg-blue-700 flex items-center p-2 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out justify-center",
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.addNewQuestion($event)
+                    },
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.addNewQuestion($event)
+                    }
+                  }
+                },
+                [_vm._v("\n                Add Survey\n            ")]
+              )
+            ]
+          )
+        ]
+      ),
       _vm._v(" "),
       _c("the-footer")
     ],
@@ -53316,18 +53908,18 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { attrs: { id: "form-container" } },
+        { staticClass: "relative bottom-16", attrs: { id: "form-container" } },
         [
           _c(
             "form",
             {
               staticClass:
-                "w-full flex flex-col items-center md:items-start relative m-auto px-4 shadow-xl",
+                "w-full flex flex-col items-center md:items-start relative m-auto px-4 pt-4 shadow-2xl",
               attrs: { action: "" }
             },
             [
               _c("p", { staticClass: "text-2xl text-center w-full" }, [
-                _vm._v("Register Employees")
+                _vm._v("Register Employee")
               ]),
               _vm._v(" "),
               _c(
@@ -53820,7 +54412,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "w-full flex flex-col md:flex-row justify-between flex-wrap md:w-5/6"
+                    "w-full flex flex-col md:flex-row justify-between flex-wrap md:w-full"
                 },
                 [
                   _c(
@@ -54087,6 +54679,21 @@ var render = function() {
                     staticClass:
                       "bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center px-2 py-1 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out md:w-1/4 w-full justify-center",
                     on: {
+                      keyup: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.addNewUser($event)
+                      },
                       click: function($event) {
                         $event.preventDefault()
                         return _vm.addNewUser($event)

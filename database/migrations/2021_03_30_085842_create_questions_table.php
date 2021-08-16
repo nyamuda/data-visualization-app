@@ -25,6 +25,14 @@ class CreateQuestionsTable extends Migration
                 ->on('category_questions') //table name
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            /*foreign key - there one-many relationship between the question_types table 
+            and the questions table respectively*/
+            $table->unsignedBigInteger('question_type_id');
+            $table->foreign('question_type_id')
+                ->references('question_type_id')
+                ->on('question_types')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,12 +1,12 @@
 <template>
     <div class="flex flex-col h-screen justify-between">
         <admin-header :section="section"></admin-header>
-        <div id="form-container">
+        <div id="form-container" class="relative bottom-16">
             <form
                 action
-                class="w-full flex flex-col items-center md:items-start relative m-auto px-4 shadow-xl"
+                class="w-full flex flex-col items-center md:items-start relative m-auto px-4 pt-4 shadow-2xl"
             >
-                <p class="text-2xl text-center w-full">Register Employees</p>
+                <p class="text-2xl text-center w-full">Register Employee</p>
                 <label
                     class="w-full mt-1 flex flex-col items-start relative"
                     for="email"
@@ -201,7 +201,7 @@
                     </label>
                 </div>
                 <div
-                    class="w-full flex flex-col md:flex-row justify-between flex-wrap md:w-5/6"
+                    class="w-full flex flex-col md:flex-row justify-between flex-wrap md:w-full"
                 >
                     <label
                         class="relative mt-2 flex flex-col items-start"
@@ -308,6 +308,7 @@
                 </div>
                 <div class="w-full my-4">
                     <button
+                        @keyup.enter="addNewUser"
                         @click.prevent="addNewUser"
                         class="bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center px-2 py-1 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out md:w-1/4 w-full justify-center"
                     >
@@ -398,7 +399,7 @@ export default {
     width: 95%;
     position: relative;
     margin: auto;
-    margin-top: 5rem;
+    margin-top: 10rem !important;
 }
 .slide-fade-enter-active {
     transition: all 0.5s ease;

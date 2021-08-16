@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\DataChartsController;
 use App\Http\Controllers\SurveyTypesController;
+use App\Http\Controllers\QuestionTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ Route::post('/add_question', [SurveyQuestionsController::class, 'store']);
 Route::get('/get_questions', [SurveyQuestionsController::class, 'show']);
 Route::get('/unanswered_categories', [SurveyQuestionsController::class, 'userCategories']);
 Route::get('/unanswered_surveys', [SurveyTypesController::class, 'show']);
-Route::get('/get_categories', [CategoryController::class, 'show']);
+Route::get('/get_names', [QuestionTypeController::class, 'show']);
 Route::post('/add', [SurveyQuestionsController::class, 'add']);
 Route::get('/users_completed_survey', [DataChartsController::class, 'show']);
 Route::get('/data_for_analysis', [DataChartsController::class, 'all_data']);
