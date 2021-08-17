@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\DataChartsController;
 use App\Http\Controllers\SurveyTypesController;
 use App\Http\Controllers\QuestionTypeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,12 @@ Route::post('/add_category', [CategoryController::class, 'store']);
 
 Route::post('/survey_categories', [CategoryController::class, 'show']);
 
+Route::get('/user_list', [UserController::class, 'show']);
+
+
+Route::post('/one_user_info', [UserController::class, 'one_user']);
+
+Route::post('/update_user', [UserController::class, 'update_user']);
 
 
 Route::get('/get_questions', [SurveyQuestionsController::class, 'show']);

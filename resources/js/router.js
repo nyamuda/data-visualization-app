@@ -11,6 +11,8 @@ import Quiz from "./components/Quiz.vue";
 import AddNewQuestion from "./components/AdminComponents/AddNewQuestion.vue";
 import SurveyList from "./components/SurveyList.vue";
 import QuizList from "./components/QuizList.vue";
+import UserList from "./components/AdminComponents/UserList.vue";
+import UpdateUser from "./components/AdminComponents/UpdateUserInfo.vue";
 import {
     protectAdminRoutes,
     protectUserRoutes
@@ -31,6 +33,18 @@ const router = new VueRouter({
             path: "/admin_dashboard",
             name: "admin_dashboard",
             component: AdminDashboard,
+            beforeEnter: protectAdminRoutes
+        },
+        {
+            path: "/user_list",
+            name: "user_list",
+            component: UserList,
+            beforeEnter: protectAdminRoutes
+        },
+        {
+            path: "/update_user/:user_id",
+            name: "update_user",
+            component: UpdateUser,
             beforeEnter: protectAdminRoutes
         },
         {

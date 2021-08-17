@@ -17,7 +17,7 @@
         </transition>
         <div id="question-container" class="text-center m-auto pb-12">
             <!-- first add Survey name -->
-            <div class="flex flex-col justify-center items-center w-full py-4">
+            <form class="flex flex-col justify-center items-center w-full py-4">
                 <p class="text-2xl">Add New Survey</p>
                 <label
                     for="survey-name"
@@ -49,7 +49,7 @@
                 >
                     Add Survey
                 </button>
-            </div>
+            </form>
             <hr />
             <!-- second add Category name -->
             <div class="flex flex-col justify-center items-center w-full py-4">

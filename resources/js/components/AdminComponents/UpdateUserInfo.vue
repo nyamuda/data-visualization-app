@@ -17,7 +17,7 @@
                         class="w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1"
                         id="email"
                         type="email"
-                        v-model="registerData.email"
+                        v-model="oneUserInfo.email"
                     />
                     <!--if there is an error, we show the error. -->
                     <span
@@ -46,7 +46,7 @@
                             class="outline-none bg-gray-50 rounded-sm w-full ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1"
                             id="first"
                             type="text"
-                            v-model="registerData.first_name"
+                            v-model="oneUserInfo.first_name"
                         />
                         <span
                             class="text-xs text-red-600 md:absolute md:-bottom-4"
@@ -71,7 +71,7 @@
                             class="outline-none bg-gray-50 rounded-sm w-full ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1"
                             id="second"
                             type="text"
-                            v-model="registerData.second_name"
+                            v-model="oneUserInfo.second_name"
                         />
                         <span
                             class="text-xs text-red-600 md:absolute md:-bottom-4"
@@ -100,7 +100,7 @@
                             class="outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-200 ease-in-out p-1"
                             name="gender"
                             id="gender"
-                            v-model="registerData.gender"
+                            v-model="oneUserInfo.gender"
                         >
                             <option value="">--Choose an option--</option>
                             <option value="Male">Male</option>
@@ -130,7 +130,7 @@
                             class="outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1"
                             name="education"
                             id="education"
-                            v-model="registerData.education"
+                            v-model="oneUserInfo.education"
                         >
                             <option value="">--Choose an option--</option>
                             <option value="Postgrad Degree"
@@ -171,7 +171,7 @@
                             class="outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1"
                             name="position"
                             id="position"
-                            v-model="registerData.position_at_company"
+                            v-model="oneUserInfo.position_at_company"
                         >
                             <option value="">--Choose an option--</option>
                             <option value="Executive">Executive</option>
@@ -200,9 +200,7 @@
                         </span>
                     </label>
                 </div>
-                <div
-                    class="w-full flex flex-col md:flex-row justify-between flex-wrap md:w-full"
-                >
+                <div class="w-full flex flex-col justify-between">
                     <label
                         class="relative mt-2 flex flex-col items-start"
                         for="begin-date"
@@ -213,7 +211,7 @@
                             class="outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1"
                             id="begin-date"
                             type="date"
-                            v-model="registerData.start_at_company"
+                            v-model="oneUserInfo.start_at_company"
                         />
                         <span
                             class="text-xs text-red-600 md:absolute md:-bottom-4"
@@ -238,13 +236,13 @@
                             class="outline-none ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1"
                             id="dob"
                             type="date"
-                            v-model="registerData.date_birth"
+                            v-model="oneUserInfo.date_of_birth"
                         />
                         <span
                             class="text-xs text-red-600 md:absolute md:-bottom-4"
-                            v-if="errorMessage.date_birth"
+                            v-if="errorMessage.date_of_birth"
                         >
-                            {{ errorMessage.date_birth[0] }}
+                            {{ errorMessage.date_of_birth[0] }}
                         </span>
                         <!--else we don't display anything-->
                         <span
@@ -254,65 +252,14 @@
                         </span>
                     </label>
                 </div>
-                <div class="flex flex-col justify-between w-full">
-                    <label
-                        class="relative mt-2 flex flex-col items-start"
-                        for="password"
-                    >
-                        Password
-                        <br />
-                        <input
-                            class="w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1"
-                            id="password"
-                            type="password"
-                            v-model="registerData.password"
-                        />
-                        <span
-                            class="text-xs text-red-600 md:absolute md:-bottom-4"
-                            v-if="errorMessage.password"
-                        >
-                            {{ errorMessage.password[0] }}
-                        </span>
-                        <!--else we don't display anything-->
-                        <span
-                            class="text-xs text-red-600 md:absolute md:-bottom-4"
-                            v-else
-                        >
-                        </span>
-                    </label>
-                    <label
-                        class="relative mt-2 flex flex-col items-start"
-                        for="password-confirmation"
-                    >
-                        Confirm Password
-                        <br />
-                        <input
-                            class="w-full md:w-3/4 outline-none bg-gray-50 rounded-sm ring-1 focus:ring-blue-100 focus:bg-gray-100 transition duration-200 ease-in-out p-1"
-                            id="password-confirmation"
-                            type="password"
-                            v-model="registerData.password_confirmation"
-                        />
-                        <span
-                            class="text-xs text-red-600 md:absolute md:-bottom-4"
-                            v-if="errorMessage.password"
-                        >
-                            {{ errorMessage.password[0] }}
-                        </span>
-                        <!--else we don't display anything-->
-                        <span
-                            class="text-xs text-red-600 md:absolute md:-bottom-4"
-                            v-else
-                        >
-                        </span>
-                    </label>
-                </div>
+
                 <div class="w-full my-4">
                     <button
-                        @keyup.enter="addNewUser"
-                        @click.prevent="addNewUser"
+                        @keyup.enter="updateUser"
+                        @click.prevent="updateUser"
                         class="bg-blue-500 rounded-sm hover:bg-blue-700 flex items-center px-2 py-1 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out md:w-1/4 w-full justify-center"
                     >
-                        Submit
+                        Update
                     </button>
                 </div>
             </form>
@@ -327,7 +274,7 @@
                 </div>
             </transition>
         </div>
-
+        {{ oneUserInfo }}
         <the-footer class="mt-10"></the-footer>
     </div>
 </template>
@@ -345,53 +292,35 @@ export default {
     },
     data() {
         return {
-            success: false,
-            registerData: {
-                first_name: "",
-                second_name: "",
-                date_birth: "",
-                education: "",
-                start_at_company: "",
-                gender: "",
-                position_at_company: "",
-                email: "",
-                password: "",
-                password_confirmation: ""
-            },
-            errorMessage: "",
             registerFormDisplay: true,
-            section: "Add Employee"
+            section: "Update User"
         };
     },
     methods: {
-        addNewUser() {
-            axios
-                .post("/api/register", this.registerData)
-                .then(res => {
-                    console.log(res);
-                    this.success = !this.success;
-
-                    this.registerData.first_name = "";
-                    this.registerData.second_name = "";
-                    this.registerData.email = "";
-                    this.registerData.password = "";
-                    this.registerData.password_confirmation = "";
-                    this.errorMessage = "";
-                    this.hideSuccess();
-                })
-                .catch(error => {
-                    this.errorMessage = error.response.data.errors;
-                    console.log(error.response.data.errors.password[0]);
-                    console.error(error);
-                });
-        },
-        hideSuccess() {
-            setTimeout(() => {
-                this.success = !this.success;
-            }, 3000);
+        updateUser() {
+            //update the user info --Module F
+            this.$store.dispatch("updateUserInfo");
         }
     },
-    created() {}
+    computed: {
+        updateID() {
+            let user_id = this.$route.params.user_id;
+            return { user_id };
+        },
+        oneUserInfo() {
+            return this.$store.state.f.oneUserInfo;
+        },
+        success() {
+            return this.$store.state.f.updateSuccessful;
+        },
+        errorMessage() {
+            return this.$store.state.f.errorMessage;
+        }
+    },
+    created() {
+        //get user with specific ID --MODULE F
+        this.$store.dispatch("getOneUser", this.updateID);
+    }
 };
 </script>
 

@@ -126,6 +126,12 @@
                         Add New Employee
                     </router-link>
                     <router-link
+                        to="/user_list"
+                        class="font-bold mt-4 inline-block lg:mt-0 text-gray-300 hover:no-underline hover:text-white mr-4"
+                    >
+                        User List
+                    </router-link>
+                    <router-link
                         to="add_questions"
                         class="font-bold mt-4 inline-block lg:mt-0 text-gray-300 hover:no-underline hover:text-white"
                     >

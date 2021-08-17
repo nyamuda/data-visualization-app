@@ -5,6 +5,7 @@ import { moduleB } from "./modules/moduleB";
 import { moduleC } from "./modules/moduleC";
 import { moduleD } from "./modules/moduleD";
 import { moduleE } from "./modules/moduleE";
+import { moduleF } from "./modules/moduleF";
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ export const store = new Vuex.Store({
         b: moduleB,
         c: moduleC,
         d: moduleD,
-        e: moduleE
+        e: moduleE,
+        f: moduleF
     }
 });
