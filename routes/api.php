@@ -51,6 +51,8 @@ Route::post('/add_survey', [SurveyTypesController::class, 'store']);
 
 Route::post('/add_category', [CategoryController::class, 'store']);
 
+Route::post('/survey_categories', [CategoryController::class, 'show']);
+
 
 
 Route::get('/get_questions', [SurveyQuestionsController::class, 'show']);

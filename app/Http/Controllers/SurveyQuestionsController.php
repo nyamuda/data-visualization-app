@@ -68,11 +68,13 @@ class SurveyQuestionsController extends Controller
         $request->validate([
             'question' => 'required|unique:questions,question',
             'category_id' => 'required|numeric',
-            'question_type_id' => 'required|numeric'
+            'question_type_id' => 'required|numeric',
+            'survey_type_id' => 'required'
         ], [
             'question.unique' => 'The question has already been added.',
             'category_id.required' => 'Required.',
-            'question_type_id.required' => 'Required.'
+            'question_type_id.required' => 'Required.',
+            'survey_type_id.required' => 'Required.'
         ]);
         Question::create([
             'question' => $request->question,

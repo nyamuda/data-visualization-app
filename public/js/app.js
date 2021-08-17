@@ -2111,6 +2111,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2137,9 +2175,10 @@ __webpack_require__.r(__webpack_exports__);
       newQuestion: {
         question: "",
         category_id: "",
-        question_type_id: ""
+        question_type_id: "",
+        survey_type_id: ""
       },
-      allCategories: "",
+      allSurveyCategories: "",
       section: "Add Survey Questions",
       errorMessage: ""
     };
@@ -2217,6 +2256,33 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(function () {
         _this4.success = !_this4.success;
       }, 3000);
+    },
+    //getting all the categories under the selected survey
+    getSurveyCategories: function getSurveyCategories() {
+      var _this5 = this;
+
+      var the_survey_id = this.newQuestion.survey_type_id; //if the selected value is not an empty string.
+
+      if (!!the_survey_id) {
+        axios.post("/api/survey_categories", {
+          the_survey_id: the_survey_id
+        }).then(function (res) {
+          console.log(res);
+          /*If there are no categories under the selected survey, and 
+          if another category had already been previously selected under
+          a different survey name, the category_id of the previously selected
+          category doesn't change but the select field will be 
+          empty (since there are no categories under the selected survey name). 
+          Hence if we don't get any categories from the new survey name, we assign the 'category_id' property
+          an empty string. Else we assign all the fetched categories. */
+
+          res.data.length == 0 //assign the category_id property an empty string.
+          ? _this5.newQuestion.category_id = "" : //else we display the new categories
+          _this5.allSurveyCategories = res.data;
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
     }
   },
   computed: {
@@ -52769,6 +52835,8 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
           _c(
             "div",
             {
@@ -53013,8 +53081,100 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
           _c("div", { staticClass: "text-center py-4" }, [
             _c("p", { staticClass: "text-2xl" }, [_vm._v("Add New Question")]),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "label",
+                {
+                  staticClass:
+                    " relative flex flex-col w-full justify-center items-center font-bold mt-3",
+                  attrs: { for: "category-name" }
+                },
+                [
+                  _vm._v(
+                    "\n                    Survey Name\n                    "
+                  ),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.newQuestion.survey_type_id,
+                          expression: "newQuestion.survey_type_id"
+                        }
+                      ],
+                      staticClass:
+                        "outline-none w-full md:w-1/2 ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1",
+                      attrs: { name: "category-name", id: "category-name" },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.newQuestion,
+                              "survey_type_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          _vm.getSurveyCategories
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("--Choose an option--")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.myNames.survey_names, function(survey, idx) {
+                        return _c(
+                          "option",
+                          { key: idx, domProps: { value: survey.id } },
+                          [_vm._v(_vm._s(survey.survey_type_name))]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm.errorMessage.survey_type_id
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "text-xs font-normal text-red-600 absolute -bottom-4"
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.errorMessage.survey_type_id[0]) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    : _c("span", {
+                        staticClass:
+                          "text-xs font-normal text-red-600 md:absolute md:-bottom-4"
+                      })
+                ]
+              )
+            ]),
             _vm._v(" "),
             _c("div", [
               _c(
@@ -53069,10 +53229,7 @@ var render = function() {
                         _vm._v("--Choose an option--")
                       ]),
                       _vm._v(" "),
-                      _vm._l(_vm.myNames.category_names, function(
-                        category,
-                        idx
-                      ) {
+                      _vm._l(_vm.allSurveyCategories, function(category, idx) {
                         return _c(
                           "option",
                           {
@@ -53295,7 +53452,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.newSurvey.surveyName))]),
+      _c("p", [_vm._v(_vm._s(_vm.newQuestion))]),
       _vm._v(" "),
       _c("the-footer")
     ],

@@ -50,6 +50,7 @@
                     Add Survey
                 </button>
             </div>
+            <hr />
             <!-- second add Category name -->
             <div class="flex flex-col justify-center items-center w-full py-4">
                 <p class="text-2xl">Add New Category</p>
@@ -144,8 +145,46 @@
                     Add Category
                 </button>
             </div>
+
+            <hr />
             <div class="text-center py-4">
                 <p class="text-2xl">Add New Question</p>
+                <div>
+                    <label
+                        class=" relative flex flex-col w-full justify-center items-center font-bold mt-3"
+                        for="category-name"
+                    >
+                        Survey Name
+                        <br />
+                        <select
+                            class="outline-none w-full md:w-1/2 ring-1 focus:ring-blue-100 text-gray-600 rounded-sm transition duration-100 ease-in-out p-1"
+                            name="category-name"
+                            id="category-name"
+                            v-model="newQuestion.survey_type_id"
+                            @change="getSurveyCategories"
+                        >
+                            <option value="">--Choose an option--</option>
+                            <option
+                                v-for="(survey, idx) in myNames.survey_names"
+                                :key="idx"
+                                :value="survey.id"
+                                >{{ survey.survey_type_name }}</option
+                            >
+                        </select>
+                        <span
+                            class="text-xs font-normal text-red-600 absolute -bottom-4"
+                            v-if="errorMessage.survey_type_id"
+                        >
+                            {{ errorMessage.survey_type_id[0] }}
+                        </span>
+                        <!--else we don't display anything-->
+                        <span
+                            class="text-xs font-normal text-red-600 md:absolute md:-bottom-4"
+                            v-else
+                        >
+                        </span>
+                    </label>
+                </div>
                 <div>
                     <label
                         class=" relative flex flex-col w-full justify-center items-center font-bold mt-3"
@@ -161,8 +200,7 @@
                         >
                             <option value="">--Choose an option--</option>
                             <option
-                                v-for="(category,
-                                idx) in myNames.category_names"
+                                v-for="(category, idx) in allSurveyCategories"
                                 :key="idx"
                                 :value="category.category_id"
                                 >{{ category.category_name }}</option
@@ -257,7 +295,7 @@
                 </button>
             </div>
         </div>
-        <p>{{ newSurvey.surveyName }}</p>
+        <p>{{ newQuestion }}</p>
         <the-footer></the-footer>
     </div>
 </template>
@@ -289,9 +327,10 @@ export default {
             newQuestion: {
                 question: "",
                 category_id: "",
-                question_type_id: ""
+                question_type_id: "",
+                survey_type_id: ""
             },
-            allCategories: "",
+            allSurveyCategories: "",
             section: "Add Survey Questions",
             errorMessage: ""
         };
@@ -365,6 +404,33 @@ export default {
             setTimeout(() => {
                 this.success = !this.success;
             }, 3000);
+        },
+        //getting all the categories under the selected survey
+        getSurveyCategories() {
+            let the_survey_id = this.newQuestion.survey_type_id;
+            //if the selected value is not an empty string.
+            if (!!the_survey_id) {
+                axios
+                    .post("/api/survey_categories", { the_survey_id })
+                    .then(res => {
+                        console.log(res);
+                        /*If there are no categories under the selected survey, and 
+                        if another category had already been previously selected under
+                        a different survey name, the category_id of the previously selected
+                        category doesn't change but the select field will be 
+                        empty (since there are no categories under the selected survey name). 
+                        Hence if we don't get any categories from the new survey name, we assign the 'category_id' property
+                        an empty string. Else we assign all the fetched categories. */
+                        res.data.length == 0
+                        //assign the category_id property an empty string.
+                            ? (this.newQuestion.category_id = "")
+                            //else we display the new categories
+                            : (this.allSurveyCategories = res.data);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            }
         }
     },
     computed: {

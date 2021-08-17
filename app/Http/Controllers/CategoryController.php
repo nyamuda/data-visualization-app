@@ -29,4 +29,13 @@ class CategoryController extends Controller
             'survey_type_id' => $request->survey_id
         ]);
     }
+
+    public function show(Request $request)
+    {
+        $categories = Category::select('category_id', 'category_name')
+            ->where('survey_type_id', $request->the_survey_id)
+            ->get();
+
+        return $categories;
+    }
 }
