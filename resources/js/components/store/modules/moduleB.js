@@ -9,22 +9,22 @@ export const moduleB = {
         dashBoardComp: false
     },
     mutations: {
-        //adding the survey and categories names to the state
+        //adding the survey and question type names to the state.
         allNames(state, paylaod) {
             state.all_names = paylaod;
         },
         changeAdminComponent() {}
     },
     actions: {
-        //getting all the question survey names, question_type names and category names from the database.
+        //getting all the question survey names, and question_type names from the database.
         getNames(context) {
             axios
                 .get("/api/get_names")
                 .then(res => {
                     console.log(res.data);
 
-                    /*invoking the mutation that will add all the survey names, question_type names 
-                    and category names to the state from the database */
+                    /*invoking the mutation that will add all the survey names, and question_type names 
+                    to the state from the database. */
                     context.commit("allNames", res.data);
                 })
                 .catch(error => {

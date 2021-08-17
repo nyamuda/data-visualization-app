@@ -6,7 +6,7 @@
                 action
                 class="w-full flex flex-col items-center md:items-start relative m-auto px-4 pt-4 shadow-2xl"
             >
-                <p class="text-2xl text-center w-full">Register Employee</p>
+                <!--  <p class="text-2xl text-center w-full">Register Employee</p> -->
                 <label
                     class="w-full mt-1 flex flex-col items-start relative"
                     for="email"

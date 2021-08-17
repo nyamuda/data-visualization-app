@@ -2276,8 +2276,8 @@ __webpack_require__.r(__webpack_exports__);
           Hence if we don't get any categories from the new survey name, we assign the 'category_id' property
           an empty string. Else we assign all the fetched categories. */
 
-          res.data.length == 0 //assign the category_id property an empty string.
-          ? _this5.newQuestion.category_id = "" : //else we display the new categories
+          res.data.length == 0 ? //assign the category_id property an empty string.
+          _this5.newQuestion.category_id = "" : //else we display the new categories
           _this5.allSurveyCategories = res.data;
         })["catch"](function (err) {
           console.log(err);
@@ -2293,7 +2293,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     /*disptaching an action that will fetch
-    all survey names and category names from the database - module B*/
+    all survey names and question type names from the database - module B*/
     this.$store.dispatch("getNames"); // this.$store.dispatch("addDefaultUser");
     //admin info
 
@@ -6354,19 +6354,19 @@ var moduleB = {
     dashBoardComp: false
   },
   mutations: {
-    //adding the survey and categories names to the state
+    //adding the survey and question type names to the state.
     allNames: function allNames(state, paylaod) {
       state.all_names = paylaod;
     },
     changeAdminComponent: function changeAdminComponent() {}
   },
   actions: {
-    //getting all the question survey names, question_type names and category names from the database.
+    //getting all the question survey names, and question_type names from the database.
     getNames: function getNames(context) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_names").then(function (res) {
         console.log(res.data);
-        /*invoking the mutation that will add all the survey names, question_type names 
-        and category names to the state from the database */
+        /*invoking the mutation that will add all the survey names, and question_type names 
+        to the state from the database. */
 
         context.commit("allNames", res.data);
       })["catch"](function (error) {
@@ -11904,7 +11904,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#question-container[data-v-7f01e0cc] {\r\n    width: 95%;\n}\n.slide-fade-enter-active[data-v-7f01e0cc] {\r\n    transition: all 0.5s ease;\n}\n.slide-fade-leave-active[data-v-7f01e0cc] {\r\n    transition: all 0.8s ease-in-out;\n}\n.slide-fade-enter[data-v-7f01e0cc], .slide-fade-leave-to[data-v-7f01e0cc]\r\n/* .slide-fade-leave-active below version 2.1.8 */ {\r\n    transform: translateX(20px);\r\n    opacity: 0;\n}\n@media (min-width: 768px) {\n#question-container[data-v-7f01e0cc] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#question-container[data-v-7f01e0cc] {\r\n    width: 95%;\n}\nselect[data-v-7f01e0cc] {\r\n    -moz-text-align-last: center;\r\n         text-align-last: center;\n}\ntextarea[data-v-7f01e0cc]:focus {\r\n    border: none;\n}\n.slide-fade-enter-active[data-v-7f01e0cc] {\r\n    transition: all 0.5s ease;\n}\n.slide-fade-leave-active[data-v-7f01e0cc] {\r\n    transition: all 0.8s ease-in-out;\n}\n.slide-fade-enter[data-v-7f01e0cc], .slide-fade-leave-to[data-v-7f01e0cc]\r\n/* .slide-fade-leave-active below version 2.1.8 */ {\r\n    transform: translateX(20px);\r\n    opacity: 0;\n}\n@media (min-width: 768px) {\n#question-container[data-v-7f01e0cc] {\r\n        width: 40rem;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -53010,7 +53010,7 @@ var render = function() {
                       }
                     ],
                     staticClass:
-                      "p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-50",
+                      "p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-200 ease-in-out",
                     attrs: {
                       val: _vm.newCategory.categoryDescription,
                       id: "question",
@@ -53378,7 +53378,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-50",
+                    "p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-200 ease-in-out",
                   attrs: {
                     val: _vm.newQuestion.question,
                     id: "question",
@@ -54383,10 +54383,6 @@ var render = function() {
               attrs: { action: "" }
             },
             [
-              _c("p", { staticClass: "text-2xl text-center w-full" }, [
-                _vm._v("Register Employee")
-              ]),
-              _vm._v(" "),
               _c(
                 "label",
                 {

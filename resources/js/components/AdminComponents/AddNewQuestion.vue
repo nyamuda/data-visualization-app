@@ -122,7 +122,7 @@
                         name="question"
                         rows="4"
                         cols="50"
-                        class="p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-50"
+                        class="p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-200 ease-in-out"
                     ></textarea>
                     <span
                         class="text-xs font-normal text-red-600 absolute -bottom-4"
@@ -268,7 +268,7 @@
                         name="question"
                         rows="4"
                         cols="50"
-                        class="p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-50"
+                        class="p-2 input1 w-full md:w-3/4 bg-gray-200 focus:outline-none transition duration-200 ease-in-out"
                     ></textarea>
                     <span
                         class="text-xs font-normal text-red-600 absolute -bottom-4"
@@ -422,10 +422,10 @@ export default {
                         Hence if we don't get any categories from the new survey name, we assign the 'category_id' property
                         an empty string. Else we assign all the fetched categories. */
                         res.data.length == 0
-                        //assign the category_id property an empty string.
-                            ? (this.newQuestion.category_id = "")
-                            //else we display the new categories
-                            : (this.allSurveyCategories = res.data);
+                            ? //assign the category_id property an empty string.
+                              (this.newQuestion.category_id = "")
+                            : //else we display the new categories
+                              (this.allSurveyCategories = res.data);
                     })
                     .catch(err => {
                         console.log(err);
@@ -441,7 +441,7 @@ export default {
     },
     created() {
         /*disptaching an action that will fetch
-        all survey names and category names from the database - module B*/
+        all survey names and question type names from the database - module B*/
         this.$store.dispatch("getNames");
         // this.$store.dispatch("addDefaultUser");
         //admin info
@@ -453,6 +453,13 @@ export default {
 <style scoped>
 #question-container {
     width: 95%;
+}
+select {
+    text-align-last: center;
+}
+
+textarea:focus {
+    border: none;
 }
 .slide-fade-enter-active {
     transition: all 0.5s ease;

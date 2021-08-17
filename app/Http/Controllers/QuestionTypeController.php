@@ -40,10 +40,8 @@ class QuestionTypeController extends Controller
         $survey_names = SurveyType::select('id', 'survey_type_name')->get();
 
 
-        /*NOW WE GET THE CATEGORY NAMES FROM THE DATABASE*/
-        $category_names = Category::select('category_id', 'category_name')->get();
 
 
-        return ['question_type_names' => $question_types, 'survey_names' => $survey_names, 'category_names' => $category_names];
+        return ['question_type_names' => $question_types, 'survey_names' => $survey_names];
     }
 }
