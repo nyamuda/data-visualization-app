@@ -85,7 +85,11 @@ export const moduleF = {
                 .delete("/api/delete_user", payload)
                 .then(res => {
                     //invoking the success notification
+
                     context.commit("success");
+
+                    //getting fresh user list
+                    context.commit("userList", res.data);
                 })
                 .catch(err => {
                     //show error if there are some

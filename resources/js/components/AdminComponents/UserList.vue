@@ -1,6 +1,20 @@
 <template>
     <div class="flex flex-col h-screen justify-between">
         <admin-header :section="section"></admin-header>
+        <transition name="slide-fade">
+            <div
+                v-show="deleteSuccessful"
+                class="w-full flex justify-end fixed top-48 z-20"
+            >
+                <div
+                    class=" w-1/2 md:w-1/6 flex justify-center items-center bg-green-800 absolute"
+                >
+                    <p class="py-3 text-gray-100">
+                        User Deleted
+                    </p>
+                </div>
+            </div>
+        </transition>
         <div class="mb-10">
             <div
                 class="
@@ -259,9 +273,10 @@ export default {
     },
     methods: {
         deleteUser() {
+            this.showModal = !this.showModal;
             //finally deleting the user -- module F
             this.$store.dispatch("removeUser", {
-                user_id: this.deleteUserWithID
+                params: { id: this.deleteUserWithID }
             });
         },
         getDeleteID(event) {
@@ -290,6 +305,9 @@ export default {
     computed: {
         getUsersRandom() {
             return this.$store.state.f.userList;
+        },
+        deleteSuccessful() {
+            return this.$store.state.f.updateSuccessful;
         }
     },
     created() {
@@ -301,6 +319,19 @@ export default {
 </script>
 
 <style scoped>
+.slide-fade-enter-active {
+    transition: all 0.5s ease;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.8s ease-in-out;
+}
+
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(20px);
+    opacity: 0;
+}
 @media (max-width: 767.9px) {
     .table-cont {
         width: 95%;

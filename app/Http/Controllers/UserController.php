@@ -63,12 +63,14 @@ class UserController extends Controller
             ]);
     }
     public function delete(Request $request)
-
-
     {
-        dd($request->user_id);
-        $user_to_delete = User::find($request->user_id);
+
+        $user_to_delete = User::find($request->id);
 
         $user_to_delete->delete();
+
+        //showing new list of users after deleting one
+        $current_list = $this->show();
+        return $current_list;
     }
 }

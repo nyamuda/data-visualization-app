@@ -4404,6 +4404,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4426,9 +4440,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteUser: function deleteUser() {
-      //finally deleting the user -- module F
+      this.showModal = !this.showModal; //finally deleting the user -- module F
+
       this.$store.dispatch("removeUser", {
-        user_id: this.deleteUserWithID
+        params: {
+          id: this.deleteUserWithID
+        }
       });
     },
     getDeleteID: function getDeleteID(event) {
@@ -4456,6 +4473,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     getUsersRandom: function getUsersRandom() {
       return this.$store.state.f.userList;
+    },
+    deleteSuccessful: function deleteSuccessful() {
+      return this.$store.state.f.updateSuccessful;
     }
   },
   created: function created() {
@@ -7708,7 +7728,9 @@ var moduleF = {
     removeUser: function removeUser(context, payload) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/delete_user", payload).then(function (res) {
         //invoking the success notification
-        context.commit("success");
+        context.commit("success"); //getting fresh user list
+
+        context.commit("userList", res.data);
       })["catch"](function (err) {
         //show error if there are some
         console.log(err);
@@ -12947,7 +12969,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n@media (max-width: 767.9px) {\n.table-cont[data-v-048c581e] {\r\n        width: 95%;\n}\n}\n@media (min-width: 768px) {\n.table-cont[data-v-048c581e] {\r\n        width: 90%;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.slide-fade-enter-active[data-v-048c581e] {\r\n    transition: all 0.5s ease;\n}\n.slide-fade-leave-active[data-v-048c581e] {\r\n    transition: all 0.8s ease-in-out;\n}\n.slide-fade-enter[data-v-048c581e], .slide-fade-leave-to[data-v-048c581e]\r\n/* .slide-fade-leave-active below version 2.1.8 */ {\r\n    transform: translateX(20px);\r\n    opacity: 0;\n}\n@media (max-width: 767.9px) {\n.table-cont[data-v-048c581e] {\r\n        width: 95%;\n}\n}\n@media (min-width: 768px) {\n.table-cont[data-v-048c581e] {\r\n        width: 90%;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -57217,6 +57239,37 @@ var render = function() {
     { staticClass: "flex flex-col h-screen justify-between" },
     [
       _c("admin-header", { attrs: { section: _vm.section } }),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "slide-fade" } }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.deleteSuccessful,
+                expression: "deleteSuccessful"
+              }
+            ],
+            staticClass: "w-full flex justify-end fixed top-48 z-20"
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  " w-1/2 md:w-1/6 flex justify-center items-center bg-green-800 absolute"
+              },
+              [
+                _c("p", { staticClass: "py-3 text-gray-100" }, [
+                  _vm._v("\n                    User Deleted\n                ")
+                ])
+              ]
+            )
+          ]
+        )
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "mb-10" }, [
         _c(
