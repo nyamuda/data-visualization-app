@@ -62,4 +62,13 @@ class UserController extends Controller
                 'education' => $request->education,
             ]);
     }
+    public function delete(Request $request)
+
+
+    {
+        dd($request->user_id);
+        $user_to_delete = User::find($request->user_id);
+
+        $user_to_delete->delete();
+    }
 }

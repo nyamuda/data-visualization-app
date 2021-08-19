@@ -79,6 +79,18 @@ export const moduleF = {
                     //show error if there are some
                     context.commit("errorMessage", err);
                 });
+        },
+        removeUser(context, payload) {
+            axios
+                .delete("/api/delete_user", payload)
+                .then(res => {
+                    //invoking the success notification
+                    context.commit("success");
+                })
+                .catch(err => {
+                    //show error if there are some
+                    console.log(err);
+                });
         }
     }
 };

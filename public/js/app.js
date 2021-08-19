@@ -4165,6 +4165,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _AdminHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminHeader */ "./resources/js/components/AdminComponents/AdminHeader.vue");
 /* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Footer */ "./resources/js/components/Footer.vue");
+/* harmony import */ var _Templates_ConfirmMessageTemplate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Templates/ConfirmMessageTemplate */ "./resources/js/components/Templates/ConfirmMessageTemplate.vue");
 //
 //
 //
@@ -4383,15 +4384,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     "admin-header": _AdminHeader__WEBPACK_IMPORTED_MODULE_0__.default,
-    "the-footer": _Footer__WEBPACK_IMPORTED_MODULE_1__.default
+    "the-footer": _Footer__WEBPACK_IMPORTED_MODULE_1__.default,
+    "confirm-template": _Templates_ConfirmMessageTemplate__WEBPACK_IMPORTED_MODULE_2__.default
   },
   data: function data() {
     return {
+      deleteUserWithID: "",
+      showModal: false,
       section: "User List",
       search: "",
       sort: {
@@ -4400,16 +4425,38 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    edit_user: function edit_user(event) {
-      var id = event.target.parentElement;
-      console.log(id); // this.$router.push({ path: `/update_user/${id}` });
+    deleteUser: function deleteUser() {
+      //finally deleting the user -- module F
+      this.$store.dispatch("removeUser", {
+        user_id: this.deleteUserWithID
+      });
+    },
+    getDeleteID: function getDeleteID(event) {
+      /*When you click an SVG (the delete one), sometimes you click the parent SVG element and
+      sometimes you click the path. The aim is get the id of the parent SVG element.
+      Paths have no ids on them, so in case we click a path, we should navigate up to the parent
+      element which has the id we're looking for.*/
+      var id = event.target.id; //if id!=empty string meaning--> we didn't click a path.
+
+      if (id) {
+        //we store the id to our data.
+        this.deleteUserWithID = id; //we then show the confirmation modal
+
+        this.showModal = !this.showModal;
+      } //else we clicked a path - so we go up to the parent element.
+      else {
+          id = event.target.parentElement.id; //we store the id to our data.
+
+          this.deleteUserWithID = id; //we then show the confirmation modal
+
+          this.showModal = !this.showModal;
+        }
     }
   },
   computed: {
     getUsersRandom: function getUsersRandom() {
       return this.$store.state.f.userList;
-    },
-    get_id: function get_id() {}
+    }
   },
   created: function created() {
     /* dispatching an action(module F) that will get a list of all the users.*/
@@ -5107,6 +5154,24 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5923,16 +5988,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     "the-footer": _Footer__WEBPACK_IMPORTED_MODULE_5__.default
   },
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
+      showModal: false,
       val: "",
       categoryAnswers: {},
       dat: {},
       answerObject: {},
       countErrors: 0,
-      scaleAnswers: {},
-      showModal: false,
-      showThank: true
-    };
+      scaleAnswers: {}
+    }, _defineProperty(_ref, "showModal", false), _defineProperty(_ref, "showThank", true), _ref;
   },
   methods: {
     getScaleAnswers: function getScaleAnswers() {},
@@ -6422,6 +6488,107 @@ __webpack_require__.r(__webpack_exports__);
     this.$store.commit("loaderStatus"); //getting uncompleted surveys
 
     this.$store.dispatch("getSurveys");
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["showModal"],
+  data: function data() {
+    return {};
+  },
+  methods: {
+    /*
+    cancelConfirm() {
+        this.$store.commit("confirmModal");
+    }
+    */
+  },
+  computed: {
+    /*
+    showModal() {
+        return this.$store.state.d.confirmModal;
+    }
+    */
   }
 });
 
@@ -7168,8 +7335,7 @@ __webpack_require__.r(__webpack_exports__);
 var moduleD = {
   state: {
     all_answers: {},
-    showThank: false,
-    confirmModal: false
+    showThank: false
   },
   mutations: {
     //add the answers to the state
@@ -7179,10 +7345,6 @@ var moduleD = {
     //hid/show the thank you modal
     thankModal: function thankModal(state) {
       state.showThank = !state.showThank;
-    },
-    //hid/show the confirmation modal
-    confirmModal: function confirmModal(state) {
-      state.confirmModal = !state.confirmModal;
     }
   },
   actions: {
@@ -7541,6 +7703,15 @@ var moduleF = {
       })["catch"](function (err) {
         //show error if there are some
         context.commit("errorMessage", err);
+      });
+    },
+    removeUser: function removeUser(context, payload) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/delete_user", payload).then(function (res) {
+        //invoking the success notification
+        context.commit("success");
+      })["catch"](function (err) {
+        //show error if there are some
+        console.log(err);
       });
     }
   }
@@ -50751,6 +50922,45 @@ component.options.__file = "resources/js/components/SurveyList.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Templates/ConfirmMessageTemplate.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Templates/ConfirmMessageTemplate.vue ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ConfirmMessageTemplate_vue_vue_type_template_id_a3d0b13c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConfirmMessageTemplate.vue?vue&type=template&id=a3d0b13c&scoped=true& */ "./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=template&id=a3d0b13c&scoped=true&");
+/* harmony import */ var _ConfirmMessageTemplate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ConfirmMessageTemplate.vue?vue&type=script&lang=js& */ "./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ConfirmMessageTemplate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ConfirmMessageTemplate_vue_vue_type_template_id_a3d0b13c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ConfirmMessageTemplate_vue_vue_type_template_id_a3d0b13c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "a3d0b13c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Templates/ConfirmMessageTemplate.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Templates/LoginHeader.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/Templates/LoginHeader.vue ***!
@@ -51240,6 +51450,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SurveyList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SurveyList.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmMessageTemplate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ConfirmMessageTemplate.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmMessageTemplate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -52859,6 +53085,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyList_vue_vue_type_template_id_47e6207a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyList_vue_vue_type_template_id_47e6207a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SurveyList.vue?vue&type=template&id=47e6207a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SurveyList.vue?vue&type=template&id=47e6207a&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=template&id=a3d0b13c&scoped=true&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=template&id=a3d0b13c&scoped=true& ***!
+  \*****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmMessageTemplate_vue_vue_type_template_id_a3d0b13c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmMessageTemplate_vue_vue_type_template_id_a3d0b13c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmMessageTemplate_vue_vue_type_template_id_a3d0b13c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ConfirmMessageTemplate.vue?vue&type=template&id=a3d0b13c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=template&id=a3d0b13c&scoped=true&");
 
 
 /***/ }),
@@ -57201,7 +57444,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "td",
-                      { staticClass: "flex py-3 px-4" },
+                      { staticClass: "flex py-3 px-2" },
                       [
                         _c(
                           "router-link",
@@ -57237,35 +57480,31 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c(
-                          "router-link",
-                          { attrs: { to: "update_user/" + user.id } },
+                          "svg",
+                          {
+                            staticClass:
+                              "\n            fill-current\n            text-base text-gray-400\n            hover:text-gray-100\n            mx-2\n            cursor-pointer\n            transition\n            duration-100\n            ease-out\n          ",
+                            attrs: {
+                              id: user.id,
+                              xmlns: "http://www.w3.org/2000/svg",
+                              height: "24px",
+                              viewBox: "0 0 24 24",
+                              width: "24px",
+                              fill: "#000000"
+                            },
+                            on: { click: _vm.getDeleteID }
+                          },
                           [
-                            _c(
-                              "svg",
-                              {
-                                staticClass:
-                                  "\n            fill-current\n            text-base text-gray-400\n            hover:text-gray-100\n            mx-2\n            cursor-pointer\n            transition\n            duration-100\n            ease-out\n          ",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  height: "24px",
-                                  viewBox: "0 0 24 24",
-                                  width: "24px",
-                                  fill: "#000000"
-                                }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: { d: "M0 0h24v24H0V0z", fill: "none" }
-                                }),
-                                _vm._v(" "),
-                                _c("path", {
-                                  attrs: {
-                                    d:
-                                      "M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
-                                  }
-                                })
-                              ]
-                            )
+                            _c("path", {
+                              attrs: { d: "M0 0h24v24H0V0z", fill: "none" }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
+                              }
+                            })
                           ]
                         )
                       ],
@@ -57279,6 +57518,50 @@ var render = function() {
           )
         ])
       ]),
+      _vm._v(" "),
+      _c("confirm-template", {
+        attrs: { showModal: _vm.showModal },
+        scopedSlots: _vm._u([
+          {
+            key: "title",
+            fn: function() {
+              return [_vm._v("\n            Delete?\n        ")]
+            },
+            proxy: true
+          },
+          {
+            key: "buttons",
+            fn: function() {
+              return [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "my-1 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-3 py-1.5 bg-gray-600 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto",
+                    on: { click: _vm.deleteUser }
+                  },
+                  [_vm._v("\n                Delete\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "my-1 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-gray-300 shadow-sm px-3 py-1.5 bg-white text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto md:mr-4",
+                    on: {
+                      click: function($event) {
+                        _vm.showModal = !_vm.showModal
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Cancel\n            ")]
+                )
+              ]
+            },
+            proxy: true
+          }
+        ])
+      }),
       _vm._v(" "),
       _c("the-footer")
     ],
@@ -58278,1459 +58561,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "flex flex-col h-screen justify-between" },
-    [
-      _c("the-header"),
-      _vm._v(" "),
-      _vm.category_data.length > 0
-        ? _c(
-            "div",
-            { staticClass: "mb-auto mt-10" },
-            [
-              _c(
-                "div",
-                { staticClass: "question_container mt-8 m-auto shadow-xl" },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "bg-purple-500 px-2 py-1 text-gray-100" },
-                    [
-                      _c(
-                        "p",
-                        {
-                          staticClass:
-                            "flex items-center justify-center text-lg"
-                        },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.category_data[0]["category_name"]) +
-                              "\n                "
-                          )
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "bg-purple-900 text-purple-300 px-2 py-1" },
-                    [
-                      _c(
-                        "p",
-                        {
-                          staticClass:
-                            "text-sm flex items-center justify-center"
-                        },
-                        [
-                          _vm._v(
-                            "\n                    Number of Questions : " +
-                              _vm._s(_vm.category_data.length) +
-                              "\n                "
-                          )
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.category_data, function(question, index) {
-                    return _c(
-                      "div",
-                      {
-                        key: question.id,
-                        staticClass:
-                          "flex justify-around flex-col bg-gray-100 px-4"
-                      },
-                      [
-                        _c("hr", { staticClass: "border-gray-300" }),
-                        _vm._v(" "),
-                        question.type == "Open Ended"
-                          ? _c("div", { staticClass: "mb-4" }, [
-                              _c(
-                                "div",
-                                { staticClass: "p-2 w-auto flex flex-row" },
-                                [
-                                  _c("span", [
-                                    _vm._v(_vm._s(index + 1) + ".  ")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("ul", [
-                                    _c("li", [
-                                      _vm._v(_vm._s(question.question))
-                                    ])
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "flex flex-col items-start ml-4"
-                                },
-                                [
-                                  _c("input", {
-                                    attrs: { type: "text", hidden: "" },
-                                    domProps: { value: question.question_id }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    attrs: { type: "text", hidden: "" },
-                                    domProps: { value: question.category_id }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("textarea", {
-                                    staticClass:
-                                      "open-ended w-5/6 p-2 bg-gray-200 focus:outline-none transition duration-500 ease-in focus:bg-green-100",
-                                    attrs: {
-                                      required: "",
-                                      id: "open_" + question.question_id,
-                                      name: "quiz_" + question.question_id,
-                                      rows: "4",
-                                      cols: "50"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("div", [
-                                    _c("p", {
-                                      staticClass:
-                                        "text-red-600 text-xs text-center mt-4",
-                                      attrs: {
-                                        id: "quiz_" + question.question_id
-                                      }
-                                    })
-                                  ])
-                                ]
-                              )
-                            ])
-                          : question.type == "Scale"
-                          ? _c(
-                              "div",
-                              {
-                                staticClass: "mb-4 flex flex-col justify-around"
-                              },
-                              [
-                                _c("input", {
-                                  attrs: { type: "text", hidden: "" },
-                                  domProps: { value: question.question_id }
-                                }),
-                                _vm._v(" "),
-                                _c("input", {
-                                  attrs: { type: "text", hidden: "" },
-                                  domProps: { value: question.category_id }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "p-2 w-auto flex flex-row" },
-                                  [
-                                    _c("span", [
-                                      _vm._v(_vm._s(index + 1) + ".  ")
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("ul", [
-                                      _c("li", [
-                                        _vm._v(_vm._s(question.question))
-                                      ])
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "my-scale relative m-auto" },
-                                  [
-                                    _c("input", {
-                                      attrs: { type: "text", hidden: "" },
-                                      domProps: { value: question.question_id }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      attrs: { type: "text", hidden: "" },
-                                      domProps: { value: question.category_id }
-                                    }),
-                                    _vm._v(" "),
-                                    _vm._m(0, true),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "flex justify-evenly flex-wrap"
-                                      },
-                                      [
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-700 focus:outline-none appearance-none bg-red-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-700 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "0"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-600 focus:outline-none appearance-none bg-red-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-600 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "1"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-red-500 focus:outline-none appearance-none bg-red-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-red-500 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "2"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-700 focus:outline-none appearance-none bg-yellow-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-700 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "3"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-600 focus:outline-none appearance-none bg-yellow-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-600 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "4"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-500 focus:outline-none appearance-none bg-yellow-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-500 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "5"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-yellow-400 focus:outline-none appearance-none bg-yellow-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-yellow-400 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "6"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-400 focus:outline-none appearance-none bg-green-400 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-400 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "7"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-500 focus:outline-none appearance-none bg-green-500 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-500 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "8"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-600 focus:outline-none appearance-none bg-green-600 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-600 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "9"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          staticClass:
-                                            "cat_input md:h-12 sm:w-12 sm:h-12 my-1 mx-1 cursor-pointer focus:ring-2 ring-opacity-50 ring-offset-2 focus:ring-green-700 focus:outline-none appearance-none bg-green-700 text-gray-100 rounded-full flex items-center justify-center h-10 w-10 hover:bg-green-700 transition duration-500 ease-in-out",
-                                          attrs: {
-                                            name: "quiz_" + index,
-                                            type: "button",
-                                            value: "10"
-                                          },
-                                          on: { click: _vm.buttonClicked }
-                                        })
-                                      ]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", [
-                                  _c("p", {
-                                    staticClass:
-                                      "text-red-600 text-xs text-center",
-                                    attrs: { id: "quiz_" + index }
-                                  })
-                                ])
-                              ]
-                            )
-                          : question.type == "Multiple Choice"
-                          ? _c(
-                              "div",
-                              {
-                                staticClass: "mb-4 flex flex-col justify-around"
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "p-2 w-auto flex flex-row" },
-                                  [
-                                    _c("span", [
-                                      _vm._v(_vm._s(index + 1) + ".  ")
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("ul", [
-                                      _c("li", [
-                                        _vm._v(_vm._s(question.question))
-                                      ])
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "flex flex-col px-4 pb-4 md:mt-4 md:flex-row md:justify-between md:-ml-2"
-                                  },
-                                  [
-                                    _c("input", {
-                                      attrs: { type: "text", hidden: "" },
-                                      domProps: { value: question.question_id }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      attrs: { type: "text", hidden: "" },
-                                      domProps: { value: question.category_id }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass:
-                                          "flex justify-start items-center",
-                                        attrs: {
-                                          for:
-                                            "very_unhappy_" +
-                                            question.question_id
-                                        }
-                                      },
-                                      [
-                                        _c("input", {
-                                          staticClass:
-                                            "emoji-input cat_input w-4 h-4",
-                                          attrs: {
-                                            required: "required",
-                                            value: "20",
-                                            type: "radio",
-                                            name: "quiz_" + index,
-                                            id:
-                                              "very_unhappy_" +
-                                              question.question_id
-                                          },
-                                          on: { click: _vm.radioClicked }
-                                        }),
-                                        _c(
-                                          "span",
-                                          { staticClass: "text-xl ml-1" },
-                                          [
-                                            _c(
-                                              "svg",
-                                              {
-                                                staticStyle: {
-                                                  "enable-background":
-                                                    "new 0 0 512 512"
-                                                },
-                                                attrs: {
-                                                  xmlns:
-                                                    "http://www.w3.org/2000/svg",
-                                                  "xmlns:xlink":
-                                                    "http://www.w3.org/1999/xlink",
-                                                  "xmlns:svgjs":
-                                                    "http://svgjs.com/svgjs",
-                                                  version: "1.1",
-                                                  width: "30",
-                                                  height: "30",
-                                                  x: "0",
-                                                  y: "0",
-                                                  viewBox: "0 0 512 512",
-                                                  "xml:space": "preserve"
-                                                }
-                                              },
-                                              [
-                                                _c("g", [
-                                                  _c(
-                                                    "g",
-                                                    {
-                                                      attrs: {
-                                                        xmlns:
-                                                          "http://www.w3.org/2000/svg"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("path", {
-                                                        attrs: {
-                                                          d:
-                                                            "m437.02 74.98c-48.353-48.351-112.64-74.98-181.02-74.98s-132.667 26.629-181.02 74.98c-48.351 48.353-74.98 112.64-74.98 181.02s26.629 132.667 74.98 181.02c48.353 48.351 112.64 74.98 181.02 74.98s132.667-26.629 181.02-74.98c48.351-48.353 74.98-112.64 74.98-181.02s-26.629-132.667-74.98-181.02zm-21.214 340.826c-42.686 42.686-99.439 66.194-159.806 66.194s-117.12-23.508-159.806-66.194-66.194-99.439-66.194-159.806 23.508-117.12 66.194-159.806 99.439-66.194 159.806-66.194 117.12 23.508 159.806 66.194 66.194 99.439 66.194 159.806-23.508 117.12-66.194 159.806z",
-                                                          fill: "#c50505",
-                                                          "data-original":
-                                                            "#000000"
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c("path", {
-                                                        attrs: {
-                                                          d:
-                                                            "m256 312.895c-21.783 0-42.821 9.114-57.719 25.005l-31.004 33.07 21.886 20.519 31.004-33.07c9.25-9.866 22.31-15.524 35.833-15.524s26.584 5.658 35.834 15.524l31.005 33.07 21.885-20.519-31.004-33.07c-14.899-15.891-35.937-25.005-57.72-25.005z",
-                                                          fill: "#c50505",
-                                                          "data-original":
-                                                            "#000000"
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c("path", {
-                                                        attrs: {
-                                                          d:
-                                                            "m185.059 265.356v-52.216c3.525 2.908 6.789 6.18 9.739 9.798l11.185 13.716 23.25-18.959-11.185-13.716c-16.621-20.383-40.172-33.194-66.314-36.073l-33.512-3.691-3.284 29.819s37.949 4.29 40.122 4.74v66.583h29.999z",
-                                                          fill: "#c50505",
-                                                          "data-original":
-                                                            "#000000"
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c("path", {
-                                                        attrs: {
-                                                          d:
-                                                            "m360.268 167.906c-26.144 2.878-49.694 15.689-66.315 36.073l-11.185 13.716 23.25 18.959 11.185-13.716c2.95-3.618 6.214-6.89 9.739-9.798v52.217h30v-66.582c2.173-.45 40.122-4.74 40.122-4.74l-3.285-29.819z",
-                                                          fill: "#c50505",
-                                                          "data-original":
-                                                            "#000000"
-                                                        }
-                                                      })
-                                                    ]
-                                                  )
-                                                ])
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(
-                                          " Very Unhappy\n                        "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass:
-                                          "flex justify-start items-center",
-                                        attrs: {
-                                          for: "unhappy_" + question.question_id
-                                        }
-                                      },
-                                      [
-                                        _c("input", {
-                                          staticClass:
-                                            "emoji-input cat_input w-4 h-4",
-                                          attrs: {
-                                            value: "40",
-                                            type: "radio",
-                                            name: "quiz_" + index,
-                                            id:
-                                              "unhappy_" + question.question_id
-                                          },
-                                          on: { click: _vm.radioClicked }
-                                        }),
-                                        _c(
-                                          "span",
-                                          { staticClass: "text-xl ml-1" },
-                                          [
-                                            _c(
-                                              "svg",
-                                              {
-                                                staticStyle: {
-                                                  "enable-background":
-                                                    "new 0 0 512 512"
-                                                },
-                                                attrs: {
-                                                  xmlns:
-                                                    "http://www.w3.org/2000/svg",
-                                                  "xmlns:xlink":
-                                                    "http://www.w3.org/1999/xlink",
-                                                  "xmlns:svgjs":
-                                                    "http://svgjs.com/svgjs",
-                                                  version: "1.1",
-                                                  width: "30",
-                                                  height: "30",
-                                                  x: "0",
-                                                  y: "0",
-                                                  viewBox:
-                                                    "0 0 106.059 106.059",
-                                                  "xml:space": "preserve"
-                                                }
-                                              },
-                                              [
-                                                _c("g", [
-                                                  _c(
-                                                    "g",
-                                                    {
-                                                      attrs: {
-                                                        xmlns:
-                                                          "http://www.w3.org/2000/svg"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("path", {
-                                                        attrs: {
-                                                          d:
-                                                            "M90.546,15.518C69.858-5.172,36.199-5.172,15.515,15.513C-5.173,36.198-5.171,69.858,15.517,90.547   c20.682,20.684,54.341,20.684,75.027-0.004C111.23,69.858,111.229,36.2,90.546,15.518z M84.757,84.758   c-17.494,17.494-45.96,17.496-63.455,0.002c-17.498-17.497-17.496-45.966,0-63.46C38.796,3.807,67.261,3.805,84.759,21.302   C102.253,38.796,102.251,67.265,84.757,84.758z M77.017,74.001c0.658,1.521-0.042,3.286-1.562,3.943   c-1.521,0.66-3.286-0.042-3.944-1.562c-2.893-6.689-9.73-11.012-17.421-11.012c-7.868,0-14.747,4.319-17.522,11.004   c-0.479,1.154-1.596,1.851-2.771,1.851c-0.384,0-0.773-0.074-1.15-0.23c-1.53-0.636-2.255-2.392-1.62-3.921   c3.71-8.932,12.764-14.703,23.063-14.703C64.174,59.371,73.174,65.113,77.017,74.001z M33.24,38.671   c0-3.424,2.777-6.201,6.201-6.201c3.423,0,6.2,2.776,6.2,6.201c0,3.426-2.777,6.202-6.2,6.202   C36.017,44.873,33.24,42.097,33.24,38.671z M61.357,38.671c0-3.424,2.779-6.201,6.203-6.201c3.423,0,6.2,2.776,6.2,6.201   c0,3.426-2.776,6.202-6.2,6.202S61.357,42.097,61.357,38.671z",
-                                                          fill: "#e71c1c",
-                                                          "data-original":
-                                                            "#000000"
-                                                        }
-                                                      })
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  })
-                                                ])
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" Unhappy")
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass:
-                                          "flex justify-start items-center",
-                                        attrs: {
-                                          for: "neutral_" + question.question_id
-                                        }
-                                      },
-                                      [
-                                        _c("input", {
-                                          staticClass:
-                                            "emoji-input cat_input w-4 h-4",
-                                          attrs: {
-                                            value: "60",
-                                            type: "radio",
-                                            name: "quiz_" + index,
-                                            id:
-                                              "neutral_" + question.question_id
-                                          },
-                                          on: { click: _vm.radioClicked }
-                                        }),
-                                        _c(
-                                          "span",
-                                          { staticClass: "text-xl ml-1" },
-                                          [
-                                            _c(
-                                              "svg",
-                                              {
-                                                staticStyle: {
-                                                  "enable-background":
-                                                    "new 0 0 512 512"
-                                                },
-                                                attrs: {
-                                                  xmlns:
-                                                    "http://www.w3.org/2000/svg",
-                                                  "xmlns:xlink":
-                                                    "http://www.w3.org/1999/xlink",
-                                                  "xmlns:svgjs":
-                                                    "http://svgjs.com/svgjs",
-                                                  version: "1.1",
-                                                  width: "30",
-                                                  height: "30",
-                                                  x: "0",
-                                                  y: "0",
-                                                  viewBox: "0 0 512 512",
-                                                  "xml:space": "preserve"
-                                                }
-                                              },
-                                              [
-                                                _c("g", [
-                                                  _c("path", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg",
-                                                      d:
-                                                        "m256 512c-68.38 0-132.667-26.629-181.02-74.98-48.351-48.353-74.98-112.64-74.98-181.02s26.629-132.667 74.98-181.02c48.353-48.351 112.64-74.98 181.02-74.98s132.667 26.629 181.02 74.98c48.351 48.353 74.98 112.64 74.98 181.02s-26.629 132.667-74.98 181.02c-48.353 48.351-112.64 74.98-181.02 74.98zm0-472c-119.103 0-216 96.897-216 216s96.897 216 216 216 216-96.897 216-216-96.897-216-216-216zm100 293c0-11.046-8.954-20-20-20h-160c-11.046 0-20 8.954-20 20s8.954 20 20 20h160c11.046 0 20-8.954 20-20zm-188-167c13.807 0 25 11.193 25 25s-11.193 25-25 25-25-11.193-25-25 11.193-25 25-25zm150 25c0 13.807 11.193 25 25 25s25-11.193 25-25-11.193-25-25-25-25 11.193-25 25z",
-                                                      fill: "#edc115",
-                                                      "data-original": "#000000"
-                                                    }
-                                                  })
-                                                ])
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" Neutral")
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass:
-                                          "flex justify-start items-center",
-                                        attrs: {
-                                          for: "happy_" + question.question_id
-                                        }
-                                      },
-                                      [
-                                        _c("input", {
-                                          staticClass:
-                                            "emoji-input cat_input w-4 h-4",
-                                          attrs: {
-                                            value: "80",
-                                            type: "radio",
-                                            name: "quiz_" + index,
-                                            id: "happy_" + question.question_id
-                                          },
-                                          on: { click: _vm.radioClicked }
-                                        }),
-                                        _c(
-                                          "span",
-                                          { staticClass: "text-xl ml-1" },
-                                          [
-                                            _c(
-                                              "svg",
-                                              {
-                                                staticStyle: {
-                                                  "enable-background":
-                                                    "new 0 0 512 512"
-                                                },
-                                                attrs: {
-                                                  xmlns:
-                                                    "http://www.w3.org/2000/svg",
-                                                  "xmlns:xlink":
-                                                    "http://www.w3.org/1999/xlink",
-                                                  "xmlns:svgjs":
-                                                    "http://svgjs.com/svgjs",
-                                                  version: "1.1",
-                                                  width: "30",
-                                                  height: "30",
-                                                  x: "0",
-                                                  y: "0",
-                                                  viewBox:
-                                                    "0 0 295.996 295.996",
-                                                  "xml:space": "preserve"
-                                                }
-                                              },
-                                              [
-                                                _c("g", [
-                                                  _c(
-                                                    "g",
-                                                    {
-                                                      attrs: {
-                                                        xmlns:
-                                                          "http://www.w3.org/2000/svg"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("path", {
-                                                        attrs: {
-                                                          d:
-                                                            "M147.998,0C66.392,0,0,66.392,0,147.998s66.392,147.998,147.998,147.998s147.998-66.392,147.998-147.998   S229.605,0,147.998,0z M147.998,279.996c-36.256,0-69.143-14.696-93.022-38.44c-9.536-9.482-17.631-20.41-23.934-32.42   C21.442,190.847,16,170.047,16,147.998C16,75.214,75.214,16,147.998,16c34.523,0,65.987,13.328,89.533,35.102   c12.208,11.288,22.289,24.844,29.558,39.996c8.27,17.239,12.907,36.538,12.907,56.9   C279.996,220.782,220.782,279.996,147.998,279.996z",
-                                                          fill: "#0ccd18",
-                                                          "data-original":
-                                                            "#000000"
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c("circle", {
-                                                        attrs: {
-                                                          cx: "99.666",
-                                                          cy: "114.998",
-                                                          r: "16",
-                                                          fill: "#0ccd18",
-                                                          "data-original":
-                                                            "#000000"
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c("circle", {
-                                                        attrs: {
-                                                          cx: "198.666",
-                                                          cy: "114.998",
-                                                          r: "16",
-                                                          fill: "#0ccd18",
-                                                          "data-original":
-                                                            "#000000"
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c("path", {
-                                                        attrs: {
-                                                          d:
-                                                            "M147.715,229.995c30.954,0,60.619-15.83,77.604-42.113l-13.439-8.684c-15.597,24.135-44.126,37.604-72.693,34.308   c-22.262-2.567-42.849-15.393-55.072-34.308l-13.438,8.684c14.79,22.889,39.716,38.409,66.676,41.519   C140.814,229.8,144.27,229.995,147.715,229.995z",
-                                                          fill: "#0ccd18",
-                                                          "data-original":
-                                                            "#000000"
-                                                        }
-                                                      })
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  })
-                                                ])
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(
-                                          "\n                             Happy"
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass:
-                                          "flex justify-start items-center",
-                                        attrs: {
-                                          for:
-                                            "very_happy_" + question.question_id
-                                        }
-                                      },
-                                      [
-                                        _c("input", {
-                                          staticClass:
-                                            "emoji-input cat_input w-4 h-4",
-                                          attrs: {
-                                            value: "100",
-                                            type: "radio",
-                                            name: "quiz_" + index,
-                                            id:
-                                              "very_happy_" +
-                                              question.question_id
-                                          },
-                                          on: { click: _vm.radioClicked }
-                                        }),
-                                        _c(
-                                          "span",
-                                          { staticClass: "text-xl ml-1" },
-                                          [
-                                            _c(
-                                              "svg",
-                                              {
-                                                staticStyle: {
-                                                  "enable-background":
-                                                    "new 0 0 512 512"
-                                                },
-                                                attrs: {
-                                                  xmlns:
-                                                    "http://www.w3.org/2000/svg",
-                                                  "xmlns:xlink":
-                                                    "http://www.w3.org/1999/xlink",
-                                                  "xmlns:svgjs":
-                                                    "http://svgjs.com/svgjs",
-                                                  version: "1.1",
-                                                  width: "30",
-                                                  height: "30",
-                                                  x: "0",
-                                                  y: "0",
-                                                  viewBox: "0 0 512 512",
-                                                  "xml:space": "preserve"
-                                                }
-                                              },
-                                              [
-                                                _c("g", [
-                                                  _c(
-                                                    "g",
-                                                    {
-                                                      attrs: {
-                                                        xmlns:
-                                                          "http://www.w3.org/2000/svg"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("g", [
-                                                        _c("path", {
-                                                          attrs: {
-                                                            d:
-                                                              "M437.019,74.981C388.668,26.629,324.38,0,256,0S123.332,26.629,74.981,74.981C26.628,123.332,0,187.62,0,256    s26.628,132.668,74.981,181.019C123.332,485.371,187.62,512,256,512s132.668-26.629,181.019-74.981    C485.372,388.668,512,324.38,512,256S485.372,123.332,437.019,74.981z M256,481.524c-124.354,0-225.524-101.17-225.524-225.524    S131.646,30.476,256,30.476S481.524,131.646,481.524,256S380.354,481.524,256,481.524z",
-                                                            fill: "#048718",
-                                                            "data-original":
-                                                              "#000000"
-                                                          }
-                                                        })
-                                                      ])
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "g",
-                                                    {
-                                                      attrs: {
-                                                        xmlns:
-                                                          "http://www.w3.org/2000/svg"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("g", [
-                                                        _c("path", {
-                                                          attrs: {
-                                                            d:
-                                                              "M200.622,188.396c-24.953-24.955-65.556-24.953-90.509,0c-5.951,5.95-5.951,15.599,0,21.55    c5.952,5.95,15.601,5.95,21.551,0c13.072-13.071,34.34-13.07,47.41,0c2.976,2.976,6.875,4.464,10.774,4.464    s7.8-1.488,10.774-4.464C206.573,203.995,206.573,194.347,200.622,188.396z",
-                                                            fill: "#048718",
-                                                            "data-original":
-                                                              "#000000"
-                                                          }
-                                                        })
-                                                      ])
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "g",
-                                                    {
-                                                      attrs: {
-                                                        xmlns:
-                                                          "http://www.w3.org/2000/svg"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("g", [
-                                                        _c("path", {
-                                                          attrs: {
-                                                            d:
-                                                              "M401.884,188.396c-24.953-24.953-65.556-24.955-90.509,0c-5.951,5.95-5.951,15.599,0,21.55    c5.952,5.95,15.601,5.95,21.551,0c13.07-13.071,34.338-13.072,47.41,0c2.976,2.976,6.875,4.464,10.774,4.464    s7.8-1.488,10.774-4.464C407.835,203.995,407.835,194.347,401.884,188.396z",
-                                                            fill: "#048718",
-                                                            "data-original":
-                                                              "#000000"
-                                                          }
-                                                        })
-                                                      ])
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "g",
-                                                    {
-                                                      attrs: {
-                                                        xmlns:
-                                                          "http://www.w3.org/2000/svg"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("g", [
-                                                        _c("path", {
-                                                          attrs: {
-                                                            d:
-                                                              "M391.111,267.175H120.889c-8.416,0-15.238,6.823-15.238,15.238c0,82.902,67.447,150.349,150.349,150.349    s150.349-67.447,150.349-150.349C406.349,273.997,399.527,267.175,391.111,267.175z M256,402.286    c-60.938,0-111.402-45.703-118.909-104.635H374.91C367.402,356.583,316.938,402.286,256,402.286z",
-                                                            fill: "#048718",
-                                                            "data-original":
-                                                              "#000000"
-                                                          }
-                                                        })
-                                                      ])
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("g", {
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  })
-                                                ])
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" Very Happy")
-                                      ]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", [
-                                  _c("p", {
-                                    staticClass:
-                                      "text-red-600 text-xs text-center",
-                                    attrs: { id: "quiz_" + index }
-                                  })
-                                ])
-                              ]
-                            )
-                          : _vm._e()
-                      ]
-                    )
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "flex justify-center bg-purple-500 text-gray-100 items-center h-10"
-                    },
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "bg-red-500 rounded-sm px-3 py-1 hover:bg-red-800 ml-4 transform duration-500 ease-in-out focus:outline-none",
-                          on: { click: _vm.submitQuiz }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    Submit\n                "
-                          )
-                        ]
-                      )
-                    ]
-                  )
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c("confirm-modal", {
-                attrs: { storeAllAnswers: _vm.storeAllAnswers }
-              }),
-              _vm._v(" "),
-              _c("thank-you", { attrs: { goHome: _vm.goHome } })
-            ],
-            1
-          )
-        : _c(
-            "div",
-            {
-              staticClass:
-                "m-auto flex flex-col justify-center items-center w-5/6 text-center sm:flex-row"
-            },
-            [
-              _c("div", [
-                _c(
-                  "svg",
-                  {
-                    staticStyle: { "enable-background": "new 0 0 512 512" },
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                      "xmlns:svgjs": "http://svgjs.com/svgjs",
-                      version: "1.1",
-                      width: "60",
-                      height: "60",
-                      x: "0",
-                      y: "0",
-                      viewBox: "0 0 512 512",
-                      "xml:space": "preserve"
-                    }
-                  },
-                  [
-                    _c("g", [
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M52,112a6,6,0,0,0,6-6v-2a6,6,0,0,0-12,0v2A6,6,0,0,0,52,112Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d: "M46,218a6,6,0,0,0,12,0V126a6,6,0,0,0-12,0Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M77,333.067c0,3.314,3.164,5.933,6.478,5.933h64.533A5.934,5.934,0,0,0,154,333.067V322.444a6,6,0,0,0-12,0V327H89V275h47.744a6,6,0,1,0,0-12H83.478C80.164,263,77,265.22,77,268.534Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M149.751,280.362,125.8,300.445l-8.186-8.185a6,6,0,1,0-8.484,8.486L121.2,312.817a6,6,0,0,0,8.1.355l28.166-23.614a6,6,0,0,0-7.709-9.2Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M185.541,292H274.98a6,6,0,0,0,0-12H185.541a6,6,0,0,0,0,12Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M185.541,321H321.163a6,6,0,0,0,0-12H185.541a6,6,0,0,0,0,12Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M77,448a6,6,0,0,0,6,6h65a6,6,0,0,0,6-6V383a6,6,0,0,0-6-6H83a6,6,0,0,0-6,6Zm12-59h53v53H89Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M185.541,407H274.98a6,6,0,0,0,0-12H185.541a6,6,0,1,0,0,12Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M136.744,149H83.478A6.788,6.788,0,0,0,77,155.412v64.534c0,3.313,3.164,6.054,6.478,6.054h64.533A6.038,6.038,0,0,0,154,219.946V209.322a6,6,0,0,0-12,0V214H89V161h47.744a6,6,0,1,0,0-12Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M158.2,167.984a6,6,0,0,0-8.452-.743L125.8,187.324l-8.186-8.185a6,6,0,0,0-8.484,8.485L121.2,199.7a6,6,0,0,0,8.1.356l28.166-23.614A6,6,0,0,0,158.2,167.984Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M185.541,179H274.98a6,6,0,0,0,0-12H185.541a6,6,0,0,0,0,12Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M185.541,208H321.163a6,6,0,0,0,0-12H185.541a6,6,0,0,0,0,12Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          d:
-                            "M430.957,251.2,387,295.1V93.7A35.816,35.816,0,0,0,350.96,58H341V42.326a37,37,0,1,0-74,0V58H137V41.766a37,37,0,0,0-74,0V58H53.68A35.68,35.68,0,0,0,18,93.68V128a6,6,0,0,0,12,0V93.7A23.7,23.7,0,0,1,53.7,70H63V89.555A6.518,6.518,0,0,0,69.143,96h61.532A6.679,6.679,0,0,0,137,89.555V70H267V89.555c0,3.314,2.532,6.445,5.846,6.445H335.5c3.314,0,5.5-3.131,5.5-6.445V70h9.96A23.8,23.8,0,0,1,375,93.7V307.074l-84.8,84.62a6.029,6.029,0,0,0-1.41,2.192L277.817,424H185.541a6,6,0,1,0,0,12h87.9l-10.059,27.6a6,6,0,0,0,7.688,7.691l69.71-25.4a6.008,6.008,0,0,0,2.192-1.4L375,412.4V471a24,24,0,0,1-24,24H53.68A23.68,23.68,0,0,1,30,471.32V170a6,6,0,0,0-12,0V471.32A35.68,35.68,0,0,0,53.68,507H350.96A36.146,36.146,0,0,0,387,470.96V400.378l96.467-96.646h0a37.137,37.137,0,0,0-52.51-52.53ZM125,84H75V41.766a25,25,0,0,1,50,0Zm204,0H279V42.326a25,25,0,1,1,50,0Zm85.727,200.336,13.714,13.716L316.73,409.764l-13.82-13.82ZM279.064,455.6l5.132-14.082,8.95,8.95Zm26.52-9.664-16.855-16.855,8.107-22.246,30.994,30.994Zm33.141-14.183-13.51-13.508L436.927,306.537l13.4,13.405Zm136.249-136.5L458.81,311.449l-35.591-35.59L439.413,259.7a25.145,25.145,0,0,1,35.56,35.56Z",
-                          fill: "#000000",
-                          "data-original": "#000000"
-                        }
-                      })
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-2xl" }, [
-                _vm._v(
-                  "\n            All the questions for this survey have been answered.\n        "
-                )
-              ])
-            ]
-          ),
-      _vm._v(" "),
-      _c("loader"),
-      _vm._v(" "),
-      _c("div", { staticClass: "mb-10" }),
-      _vm._v(" "),
-      _c("the-footer")
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex justify-between flex-wrap text-gray-500 text-sm" },
-      [
-        _c("p", [_vm._v("0 = Not likely at all")]),
-        _vm._v(" "),
-        _c("p", [_vm._v("10 = Extremely likely")])
-      ]
-    )
-  }
-]
-render._withStripped = true
+var render = function () {}
+var staticRenderFns = []
 
 
 
@@ -60162,6 +58994,158 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=template&id=a3d0b13c&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Templates/ConfirmMessageTemplate.vue?vue&type=template&id=a3d0b13c&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showModal,
+            expression: "showModal"
+          }
+        ],
+        staticClass:
+          "fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "w-5/6 m-auto flex flex-col items-center justify-center text-center shadow-xl md:w-2/5 md:items-start bg-white"
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "md:flex md:flex-row md:items-center md:justify-start md:pt-8 md:pl-4 md:-mt-8"
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "m-auto flex justify-center pt-4 md:pt-0" },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticStyle: { "enable-background": "new 0 0 512 512" },
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                          "xmlns:svgjs": "http://svgjs.com/svgjs",
+                          version: "1.1",
+                          width: "50",
+                          height: "50",
+                          x: "0",
+                          y: "0",
+                          viewBox: "0 0 512 512",
+                          "xml:space": "preserve"
+                        }
+                      },
+                      [
+                        _c("g", [
+                          _c(
+                            "g",
+                            { attrs: { xmlns: "http://www.w3.org/2000/svg" } },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "m256 392c-33.084 0-60 26.916-60 60s26.916 60 60 60 60-26.916 60-60-26.916-60-60-60zm0 90c-16.542 0-30-13.458-30-30s13.458-30 30-30 30 13.458 30 30-13.458 30-30 30z",
+                                  fill: "#000000",
+                                  "data-original": "#000000"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "m256 0c-86.019 0-156 69.981-156 156v15h120v-15c0-19.851 16.149-36 36-36s36 16.149 36 36c0 10.578-4.643 20.59-12.74 27.471l-83.26 70.787v107.742h120v-52.258l40.976-34.837c34.968-29.714 55.024-73.052 55.024-118.905 0-86.019-69.981-156-156-156zm81.547 252.047-51.547 43.824v36.129h-60v-63.871l72.688-61.8c14.815-12.589 23.312-30.933 23.312-50.329 0-36.393-29.607-66-66-66-31.235 0-57.471 21.81-64.281 51h-60.832c7.441-62.431 60.712-111 125.113-111 69.477 0 126 56.523 126 126 0 37.034-16.201 72.04-44.453 96.047z",
+                                  fill: "#000000",
+                                  "data-original": "#000000"
+                                }
+                              })
+                            ]
+                          )
+                        ])
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "p-4 md:flex md:flex-col md:items-start md:-ml-4 md:justify-center"
+                  },
+                  [
+                    _c(
+                      "p",
+                      { staticClass: "text-xl font-bold" },
+                      [_vm._t("title")],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Are you sure ?")])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col items-center justify-center w-full bg-gray-100 px-4 py-2 md:py-2 md:flex-row-reverse md:justify-start md:items-center md:h-12"
+              },
+              [_vm._t("buttons")],
+              2
+            )
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.showModal,
+          expression: "showModal"
+        }
+      ],
+      staticClass: "fixed inset-0 z-40 opacity-25 bg-black min-h-full"
+    })
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

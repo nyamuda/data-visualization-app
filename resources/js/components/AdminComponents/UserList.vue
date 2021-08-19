@@ -158,7 +158,7 @@
                         <td class="px-4 py-3">{{ user.education }}</td>
                         <td class="px-4 py-3">{{ user.start_at_company }}</td>
                         <td class="px-4 py-3">{{ user.date_of_birth }}</td>
-                        <td class="flex py-3 px-4">
+                        <td class="flex py-3 px-2">
                             <router-link :to="'update_user/' + user.id">
                                 <svg
                                     class="
@@ -183,9 +183,11 @@
                                     />
                                 </svg>
                             </router-link>
-                            <router-link :to="'update_user/' + user.id">
-                                <svg
-                                    class="
+
+                            <svg
+                                :id="user.id"
+                                @click="getDeleteID"
+                                class="
                 fill-current
                 text-base text-gray-400
                 hover:text-gray-100
@@ -195,23 +197,41 @@
                 duration-100
                 ease-out
               "
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    height="24px"
-                                    viewBox="0 0 24 24"
-                                    width="24px"
-                                    fill="#000000"
-                                >
-                                    <path d="M0 0h24v24H0V0z" fill="none" />
-                                    <path
-                                        d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
-                                    />
-                                </svg>
-                            </router-link>
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 0 24 24"
+                                width="24px"
+                                fill="#000000"
+                            >
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                    d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
+                                />
+                            </svg>
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
+        <confirm-template :showModal="showModal">
+            <template v-slot:title>
+                Delete?
+            </template>
+            <template v-slot:buttons>
+                <button
+                    @click="deleteUser"
+                    class="my-1 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-3 py-1.5 bg-gray-600 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto"
+                >
+                    Delete
+                </button>
+                <button
+                    @click="showModal = !showModal"
+                    class="my-1 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-gray-300 shadow-sm px-3 py-1.5 bg-white text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto md:mr-4"
+                >
+                    Cancel
+                </button>
+            </template>
+        </confirm-template>
         <the-footer></the-footer>
     </div>
 </template>
@@ -219,13 +239,17 @@
 <script>
 import AdminHeader from "./AdminHeader";
 import TheFooter from "../Footer";
+import ConfirmMessageTemplate from "../Templates/ConfirmMessageTemplate";
 export default {
     components: {
         "admin-header": AdminHeader,
-        "the-footer": TheFooter
+        "the-footer": TheFooter,
+        "confirm-template": ConfirmMessageTemplate
     },
     data() {
         return {
+            deleteUserWithID: "",
+            showModal: false,
             section: "User List",
             search: "",
             sort: {
@@ -234,17 +258,39 @@ export default {
         };
     },
     methods: {
-        edit_user(event) {
-            let id = event.target.parentElement;
-            console.log(id);
-            // this.$router.push({ path: `/update_user/${id}` });
+        deleteUser() {
+            //finally deleting the user -- module F
+            this.$store.dispatch("removeUser", {
+                user_id: this.deleteUserWithID
+            });
+        },
+        getDeleteID(event) {
+            /*When you click an SVG (the delete one), sometimes you click the parent SVG element and
+            sometimes you click the path. The aim is get the id of the parent SVG element.
+            Paths have no ids on them, so in case we click a path, we should navigate up to the parent
+            element which has the id we're looking for.*/
+            let id = event.target.id;
+            //if id!=empty string meaning--> we didn't click a path.
+            if (id) {
+                //we store the id to our data.
+                this.deleteUserWithID = id;
+                //we then show the confirmation modal
+                this.showModal = !this.showModal;
+            }
+            //else we clicked a path - so we go up to the parent element.
+            else {
+                id = event.target.parentElement.id;
+                //we store the id to our data.
+                this.deleteUserWithID = id;
+                //we then show the confirmation modal
+                this.showModal = !this.showModal;
+            }
         }
     },
     computed: {
         getUsersRandom() {
             return this.$store.state.f.userList;
-        },
-        get_id() {}
+        }
     },
     created() {
         /* dispatching an action(module F) that will get a list of all the users.*/

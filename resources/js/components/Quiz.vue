@@ -669,9 +669,6 @@
                     </button>
                 </div>
             </div>
-
-            <confirm-modal :storeAllAnswers="storeAllAnswers"></confirm-modal>
-            <thank-you :goHome="goHome"></thank-you>
         </div>
         <div
             v-else
@@ -790,6 +787,25 @@
                 All the questions for this survey have been answered.
             </p>
         </div>
+           <confirm-modal :showModal="showModal">
+                  <template v-slot:title>
+                Submit Quiz?
+            </template>
+            <template v-slot:buttons>
+                <button
+                    @click="storeAllAnswers"
+                    class="my-1 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-transparent shadow-sm px-3 py-1.5 bg-gray-600 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto"
+                >
+                    Submit
+                </button>
+                <button
+                    @click="showModal = !showModal"
+                    class="my-1 transition duration-500 ease-in-out w-full flex justify-center items-center rounded-md border border-gray-300 shadow-sm px-3 py-1.5 bg-white text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 md:w-auto md:mr-4"
+                >
+                    Cancel
+                </button>
+            </confirm-modal>
+            <thank-you :goHome="goHome"></thank-you>
         <loader></loader>
         <!--IF THE SURVEY HAS BEEN ANSWERED (NO QUESTIONS TO DISPLAY) -->
 
@@ -816,6 +832,7 @@ export default {
     },
     data() {
         return {
+            showModal:false,
             val: "",
             categoryAnswers: {},
             dat: {},

@@ -61,6 +61,8 @@ Route::post('/one_user_info', [UserController::class, 'one_user']);
 
 Route::post('/update_user', [UserController::class, 'update_user']);
 
+Route::delete('/delete_user', [UserController::class, 'delete']);
+
 
 Route::get('/get_questions', [SurveyQuestionsController::class, 'show']);
 Route::get('/unanswered_categories', [SurveyQuestionsController::class, 'userCategories']);

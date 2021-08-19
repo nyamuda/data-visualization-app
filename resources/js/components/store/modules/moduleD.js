@@ -4,8 +4,7 @@ import router from "../../../router";
 export const moduleD = {
     state: {
         all_answers: {},
-        showThank: false,
-        confirmModal: false
+        showThank: false
     },
     mutations: {
         //add the answers to the state
@@ -15,10 +14,6 @@ export const moduleD = {
         //hid/show the thank you modal
         thankModal(state) {
             state.showThank = !state.showThank;
-        },
-        //hid/show the confirmation modal
-        confirmModal(state) {
-            state.confirmModal = !state.confirmModal;
         }
     },
     actions: {
