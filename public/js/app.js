@@ -4380,6 +4380,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4396,10 +4399,17 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  methods: {
+    edit_user: function edit_user(event) {
+      var id = event.target.parentElement;
+      console.log(id); // this.$router.push({ path: `/update_user/${id}` });
+    }
+  },
   computed: {
     getUsersRandom: function getUsersRandom() {
       return this.$store.state.f.userList;
-    }
+    },
+    get_id: function get_id() {}
   },
   created: function created() {
     /* dispatching an action(module F) that will get a list of all the users.*/
@@ -7456,6 +7466,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../router */ "./resources/js/router.js");
+
  //THIS MODULE MAINLY DEALS WITH THE USERLIST COMPONENT.
 
 var moduleF = {
@@ -7519,7 +7531,13 @@ var moduleF = {
     updateUserInfo: function updateUserInfo(context) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/update_user", context.state.oneUserInfo).then(function (res) {
         //invoking the success notification
-        context.commit("success");
+        context.commit("success"); //and we navigate to the list of users after 1 second of success.
+
+        setTimeout(function () {
+          return _router__WEBPACK_IMPORTED_MODULE_1__.default.push({
+            name: "user_list"
+          });
+        }, 1000);
       })["catch"](function (err) {
         //show error if there are some
         context.commit("errorMessage", err);
@@ -7541,14 +7559,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
-/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
-/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
-/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
-/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
-/* harmony import */ var _modules_moduleF__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/moduleF */ "./resources/js/components/store/modules/moduleF.js");
+/* harmony import */ var _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/moduleA */ "./resources/js/components/store/modules/moduleA.js");
+/* harmony import */ var _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/moduleB */ "./resources/js/components/store/modules/moduleB.js");
+/* harmony import */ var _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/moduleC */ "./resources/js/components/store/modules/moduleC.js");
+/* harmony import */ var _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/moduleD */ "./resources/js/components/store/modules/moduleD.js");
+/* harmony import */ var _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/moduleE */ "./resources/js/components/store/modules/moduleE.js");
+/* harmony import */ var _modules_moduleF__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/moduleF */ "./resources/js/components/store/modules/moduleF.js");
 
 
 
@@ -7557,15 +7575,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_7__.default);
+vue__WEBPACK_IMPORTED_MODULE_6__.default.use(vuex__WEBPACK_IMPORTED_MODULE_7__.default);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_7__.default.Store({
   modules: {
-    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_1__.moduleA,
-    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_2__.moduleB,
-    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_3__.moduleC,
-    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_4__.moduleD,
-    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_5__.moduleE,
-    f: _modules_moduleF__WEBPACK_IMPORTED_MODULE_6__.moduleF
+    a: _modules_moduleA__WEBPACK_IMPORTED_MODULE_0__.moduleA,
+    b: _modules_moduleB__WEBPACK_IMPORTED_MODULE_1__.moduleB,
+    c: _modules_moduleC__WEBPACK_IMPORTED_MODULE_2__.moduleC,
+    d: _modules_moduleD__WEBPACK_IMPORTED_MODULE_3__.moduleD,
+    e: _modules_moduleE__WEBPACK_IMPORTED_MODULE_4__.moduleE,
+    f: _modules_moduleF__WEBPACK_IMPORTED_MODULE_5__.moduleF
   }
 });
 
@@ -7582,22 +7600,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
-/* harmony import */ var _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminComponents/Dashboard.vue */ "./resources/js/components/AdminComponents/Dashboard.vue");
-/* harmony import */ var _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AdminComponents/AdminLogin.vue */ "./resources/js/components/AdminComponents/AdminLogin.vue");
-/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
-/* harmony import */ var _components_AdminComponents_RegisterEmployees__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/AdminComponents/RegisterEmployees */ "./resources/js/components/AdminComponents/RegisterEmployees.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Quiz.vue */ "./resources/js/components/Quiz.vue");
-/* harmony import */ var _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/AdminComponents/AddNewQuestion.vue */ "./resources/js/components/AdminComponents/AddNewQuestion.vue");
-/* harmony import */ var _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/SurveyList.vue */ "./resources/js/components/SurveyList.vue");
-/* harmony import */ var _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/QuizList.vue */ "./resources/js/components/QuizList.vue");
-/* harmony import */ var _components_AdminComponents_UserList_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AdminComponents/UserList.vue */ "./resources/js/components/AdminComponents/UserList.vue");
-/* harmony import */ var _components_AdminComponents_UpdateUserInfo_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/AdminComponents/UpdateUserInfo.vue */ "./resources/js/components/AdminComponents/UpdateUserInfo.vue");
-/* harmony import */ var _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/protectRoutes */ "./resources/js/components/protectRoutes.js");
+/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
+/* harmony import */ var _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/AdminComponents/Dashboard.vue */ "./resources/js/components/AdminComponents/Dashboard.vue");
+/* harmony import */ var _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminComponents/AdminLogin.vue */ "./resources/js/components/AdminComponents/AdminLogin.vue");
+/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
+/* harmony import */ var _components_AdminComponents_RegisterEmployees__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/AdminComponents/RegisterEmployees */ "./resources/js/components/AdminComponents/RegisterEmployees.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Quiz.vue */ "./resources/js/components/Quiz.vue");
+/* harmony import */ var _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AdminComponents/AddNewQuestion.vue */ "./resources/js/components/AdminComponents/AddNewQuestion.vue");
+/* harmony import */ var _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/SurveyList.vue */ "./resources/js/components/SurveyList.vue");
+/* harmony import */ var _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/QuizList.vue */ "./resources/js/components/QuizList.vue");
+/* harmony import */ var _components_AdminComponents_UserList_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/AdminComponents/UserList.vue */ "./resources/js/components/AdminComponents/UserList.vue");
+/* harmony import */ var _components_AdminComponents_UpdateUserInfo_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AdminComponents/UpdateUserInfo.vue */ "./resources/js/components/AdminComponents/UpdateUserInfo.vue");
+/* harmony import */ var _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/protectRoutes */ "./resources/js/components/protectRoutes.js");
 
 
 
@@ -7613,63 +7631,63 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_14__.default);
+vue__WEBPACK_IMPORTED_MODULE_13__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_14__.default);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_14__.default({
   mode: "history",
   linkExactActiveClass: "active",
   routes: [{
     path: "/dashboard",
     name: "dashboard",
-    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__.protectUserRoutes
+    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectUserRoutes
   }, {
     path: "/admin_dashboard",
     name: "admin_dashboard",
-    component: _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__.protectAdminRoutes
+    component: _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectAdminRoutes
   }, {
     path: "/user_list",
     name: "user_list",
-    component: _components_AdminComponents_UserList_vue__WEBPACK_IMPORTED_MODULE_11__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__.protectAdminRoutes
+    component: _components_AdminComponents_UserList_vue__WEBPACK_IMPORTED_MODULE_10__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectAdminRoutes
   }, {
     path: "/update_user/:user_id",
     name: "update_user",
-    component: _components_AdminComponents_UpdateUserInfo_vue__WEBPACK_IMPORTED_MODULE_12__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__.protectAdminRoutes
+    component: _components_AdminComponents_UpdateUserInfo_vue__WEBPACK_IMPORTED_MODULE_11__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectAdminRoutes
   }, {
     path: "/login",
     name: "login",
-    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__.default
+    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__.default
   }, {
     path: "/admin",
     name: "admin_login",
-    component: _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    component: _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__.default
   }, {
     path: "/register_employee",
     name: "register",
-    component: _components_AdminComponents_RegisterEmployees__WEBPACK_IMPORTED_MODULE_5__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__.protectAdminRoutes
+    component: _components_AdminComponents_RegisterEmployees__WEBPACK_IMPORTED_MODULE_4__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectAdminRoutes
   }, {
     path: "/add_questions",
     name: "new_question",
-    component: _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_8__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__.protectAdminRoutes
+    component: _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_7__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectAdminRoutes
   }, {
     path: "/quiz/:id",
     name: "quiz",
-    component: _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_7__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__.protectUserRoutes
+    component: _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_6__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectUserRoutes
   }, {
     path: "/survey_list",
     name: "survey_list",
-    component: _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_9__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__.protectUserRoutes
+    component: _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_8__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectUserRoutes
   }, {
     path: "/categories/:id",
     name: "quiz_list",
-    component: _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_10__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_13__.protectUserRoutes
+    component: _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_9__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectUserRoutes
   }]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -12758,7 +12776,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n@media (max-width: 767.9px) {\n.table-cont[data-v-048c581e] {\r\n        width: 95%;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n@media (max-width: 767.9px) {\n.table-cont[data-v-048c581e] {\r\n        width: 95%;\n}\n}\n@media (min-width: 768px) {\n.table-cont[data-v-048c581e] {\r\n        width: 90%;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -56962,10 +56980,10 @@ var render = function() {
           "div",
           {
             staticClass:
-              "\n    table-cont\n    m-auto\n    flex\n    justify-between\n    flex-wrap\n    md:flex-col md:justify-center md:items-end md:w-3/4\n    mt-10\n    mb-4\n    md:mb-2\n    p-2\n  "
+              "\n    m-auto\n    flex\n    justify-center\n    flex-col\n    items-center\n    md:flex-row\n    md:flex-wrap\n    md:w-1/2\n    md:justify-evenly\n    mt-10\n    mb-4\n    md:mb-2\n    p-2\n  "
           },
           [
-            _c("div", { staticClass: "md:w-1/5 w-full" }, [
+            _c("div", { staticClass: "md:w-auto w-full flex justify-center" }, [
               _c("label", { attrs: { for: "search" } }, [
                 _vm._v("Search:\n                    "),
                 _c("input", {
@@ -56978,7 +56996,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "input1\n          w-full\n          bg-gray-200\n          focus:outline-none\n          transition\n          duration-500\n          ease-in-out\n          h-8\n          px-2\n        ",
+                    "\n          w-full\n          bg-gray-200\n          focus:outline-none\n          focus:ring-1\n          rounded-sm\n          transition\n          duration-200\n          ease-in-out\n          h-8\n          px-2\n        ",
                   attrs: { id: "search", name: "search", type: "text" },
                   domProps: { value: _vm.search },
                   on: {
@@ -56993,83 +57011,83 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "md:w-1/5 w-1/2" }, [
-              _c(
-                "label",
-                { staticClass: "relative mt-2", attrs: { for: "gender" } },
-                [
-                  _vm._v(
-                    "\n                    Order By:\n                    "
-                  ),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.sort.sortBy,
-                          expression: "sort.sortBy"
+            _c(
+              "div",
+              { staticClass: "md:w-auto w-full flex justify-center mx-1" },
+              [
+                _c(
+                  "label",
+                  { staticClass: "relative", attrs: { for: "gender" } },
+                  [
+                    _vm._v(
+                      "\n                    Order By:\n                    "
+                    ),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.sort.sortBy,
+                            expression: "sort.sortBy"
+                          }
+                        ],
+                        staticClass:
+                          "\n          w-full\n          outline-none\n          ring-1\n          ring-gray-300\n          focus:ring-blue-300\n          text-gray-600\n          rounded-sm\n          transition\n          duration-200\n          ease-in-out\n          h-8\n          px-2\n        ",
+                        attrs: { name: "gender", id: "gender" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.sort,
+                              "sortBy",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      ],
-                      staticClass:
-                        "\n          w-full\n          outline-none\n          ring-1\n          focus:ring-blue-100\n          text-gray-600\n          rounded-sm\n          transition\n          duration-200\n          ease-in-out\n          h-8\n          px-2\n        ",
-                      attrs: { name: "gender", id: "gender" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.sort,
-                            "sortBy",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("--select--")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "first_name" } }, [
-                        _vm._v("Firstname")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "last_name" } }, [
-                        _vm._v("Lastname")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "gender" } }, [
-                        _vm._v("Gender")
-                      ])
-                    ]
-                  )
-                ]
-              )
-            ]),
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Default - Firstname")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "last_name" } }, [
+                          _vm._v("Lastname")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "gender" } }, [
+                          _vm._v("Gender")
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
               {
                 staticClass:
-                  "\n      md:w-1/5\n      w-1/2\n      flex\n      justify-start\n      md:justify-center md:mt-0\n      mt-6\n      pl-4\n      md:pl-0\n    "
+                  "\n      md:w-auto\n      w-full\n      flex\n      justify-center\n      md:mt-3\n    "
               },
               [
-                _c("span", [
+                _c("span", { staticClass: "rounded ring-1 ring-gray-600" }, [
                   _c(
                     "svg",
                     {
                       staticClass:
-                        "\n          fill-current\n          text-gray-500\n          cursor-pointer\n          hover:text-gray-900\n          transition\n          duration-100\n          ease-out\n        ",
+                        "\n          fill-current\n          text-gray-500\n          cursor-pointer\n          hover:text-gray-100\n          hover:bg-gray-700\n          transition\n          duration-300\n          ease-out\n        ",
                       attrs: {
                         xmlns: "http://www.w3.org/2000/svg",
                         height: "30px",
@@ -57093,34 +57111,38 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("span", [
-                  _c(
-                    "svg",
-                    {
-                      staticClass:
-                        "\n          fill-current\n          text-gray-500\n          cursor-pointer\n          hover:text-gray-900\n          transition\n          duration-100\n          ease-out\n        ",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        height: "30px",
-                        viewBox: "0 0 24 24",
-                        width: "30px",
-                        fill: "#000000"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: { d: "M0 0h24v24H0V0z", fill: "none" }
-                      }),
-                      _vm._v(" "),
-                      _c("path", {
+                _c(
+                  "span",
+                  { staticClass: "rounded ring-1 ring-gray-600 mx-2" },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass:
+                          "\n          fill-current\n          text-gray-500\n          cursor-pointer\n          hover:text-gray-100\n          hover:bg-gray-700\n          transition\n          duration-300\n          ease-out\n        ",
                         attrs: {
-                          d:
-                            "M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                          xmlns: "http://www.w3.org/2000/svg",
+                          height: "30px",
+                          viewBox: "0 0 24 24",
+                          width: "30px",
+                          fill: "#000000"
                         }
-                      })
-                    ]
-                  )
-                ])
+                      },
+                      [
+                        _c("path", {
+                          attrs: { d: "M0 0h24v24H0V0z", fill: "none" }
+                        }),
+                        _vm._v(" "),
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                )
               ]
             )
           ]
@@ -57129,10 +57151,7 @@ var render = function() {
         _c("div", { staticClass: "table-cont overflow-x-auto m-auto" }, [
           _c(
             "table",
-            {
-              staticClass:
-                "md:w-3/4 bg-gray-800 text-gray-200 table-auto m-auto"
-            },
+            { staticClass: "bg-gray-800 text-gray-200 table-auto mt-3" },
             [
               _vm._m(0),
               _vm._v(" "),
@@ -57180,63 +57199,78 @@ var render = function() {
                       _vm._v(_vm._s(user.date_of_birth))
                     ]),
                     _vm._v(" "),
-                    _c("td", { staticClass: "flex mt-2" }, [
-                      _c(
-                        "svg",
-                        {
-                          staticClass:
-                            "\n            fill-current\n            text-base text-gray-400\n            hover:text-gray-100\n            mx-2\n            cursor-pointer\n            transition\n            duration-100\n            ease-out\n          ",
-                          attrs: {
-                            id: user.id,
-                            xmlns: "http://www.w3.org/2000/svg",
-                            height: "24px",
-                            viewBox: "0 0 24 24",
-                            width: "24px",
-                            fill: "#000000"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: { d: "M0 0h24v24H0V0z", fill: "none" }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "svg",
-                        {
-                          staticClass:
-                            "\n            fill-current\n            text-base text-gray-400\n            hover:text-gray-100\n            mx-2\n            cursor-pointer\n            transition\n            duration-100\n            ease-out\n          ",
-                          attrs: {
-                            id: user.id,
-                            xmlns: "http://www.w3.org/2000/svg",
-                            height: "24px",
-                            viewBox: "0 0 24 24",
-                            width: "24px",
-                            fill: "#000000"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: { d: "M0 0h24v24H0V0z", fill: "none" }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
-                            }
-                          })
-                        ]
-                      )
-                    ])
+                    _c(
+                      "td",
+                      { staticClass: "flex py-3 px-4" },
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: "update_user/" + user.id } },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass:
+                                  "\n            fill-current\n            text-base text-gray-400\n            hover:text-gray-100\n            mx-2\n            cursor-pointer\n            transition\n            duration-100\n            ease-out\n          ",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  height: "24px",
+                                  viewBox: "0 0 24 24",
+                                  width: "24px",
+                                  fill: "#000000"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: { d: "M0 0h24v24H0V0z", fill: "none" }
+                                }),
+                                _vm._v(" "),
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          { attrs: { to: "update_user/" + user.id } },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass:
+                                  "\n            fill-current\n            text-base text-gray-400\n            hover:text-gray-100\n            mx-2\n            cursor-pointer\n            transition\n            duration-100\n            ease-out\n          ",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  height: "24px",
+                                  viewBox: "0 0 24 24",
+                                  width: "24px",
+                                  fill: "#000000"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: { d: "M0 0h24v24H0V0z", fill: "none" }
+                                }),
+                                _vm._v(" "),
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
                   ]
                 )
               })

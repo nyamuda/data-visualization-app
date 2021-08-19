@@ -4,28 +4,33 @@
         <div class="mb-10">
             <div
                 class="
-        table-cont
         m-auto
         flex
-        justify-between
-        flex-wrap
-        md:flex-col md:justify-center md:items-end md:w-3/4
+        justify-center
+        flex-col
+        items-center
+        md:flex-row
+        md:flex-wrap
+        md:w-1/2
+        md:justify-evenly
         mt-10
         mb-4
         md:mb-2
         p-2
       "
             >
-                <div class="md:w-1/5 w-full">
+                <div class="md:w-auto w-full flex justify-center">
                     <label for="search"
                         >Search:
                         <input
-                            class="input1
+                            class="
               w-full
               bg-gray-200
               focus:outline-none
+              focus:ring-1
+              rounded-sm
               transition
-              duration-500
+              duration-200
               ease-in-out
               h-8
               px-2
@@ -37,15 +42,16 @@
                         />
                     </label>
                 </div>
-                <div class="md:w-1/5 w-1/2">
-                    <label class="relative mt-2" for="gender">
+                <div class="md:w-auto w-full flex justify-center mx-1">
+                    <label class="relative" for="gender">
                         Order By:
                         <select
                             class="
               w-full
               outline-none
               ring-1
-              focus:ring-blue-100
+              ring-gray-300
+              focus:ring-blue-300
               text-gray-600
               rounded-sm
               transition
@@ -58,8 +64,7 @@
                             id="gender"
                             v-model="sort.sortBy"
                         >
-                            <option value="">--select--</option>
-                            <option value="first_name">Firstname</option>
+                            <option value="">Default - Firstname</option>
                             <option value="last_name">Lastname</option>
                             <option value="gender">Gender</option>
                         </select>
@@ -67,25 +72,23 @@
                 </div>
                 <div
                     class="
-          md:w-1/5
-          w-1/2
+          md:w-auto
+          w-full
           flex
-          justify-start
-          md:justify-center md:mt-0
-          mt-6
-          pl-4
-          md:pl-0
+          justify-center
+          md:mt-3
         "
                 >
-                    <span>
+                    <span class="rounded ring-1 ring-gray-600">
                         <svg
                             class="
               fill-current
               text-gray-500
               cursor-pointer
-              hover:text-gray-900
+              hover:text-gray-100
+              hover:bg-gray-700
               transition
-              duration-100
+              duration-300
               ease-out
             "
                             xmlns="http://www.w3.org/2000/svg"
@@ -100,15 +103,16 @@
                             />
                         </svg>
                     </span>
-                    <span>
+                    <span class="rounded ring-1 ring-gray-600 mx-2">
                         <svg
                             class="
               fill-current
               text-gray-500
               cursor-pointer
-              hover:text-gray-900
+              hover:text-gray-100
+              hover:bg-gray-700
               transition
-              duration-100
+              duration-300
               ease-out
             "
                             xmlns="http://www.w3.org/2000/svg"
@@ -126,9 +130,7 @@
                 </div>
             </div>
             <div class="table-cont overflow-x-auto m-auto">
-                <table
-                    class="md:w-3/4 bg-gray-800 text-gray-200 table-auto m-auto"
-                >
+                <table class="bg-gray-800 text-gray-200 table-auto mt-3">
                     <tr class="text-left border-b border-gray-300">
                         <th class="px-4 py-3">Firstname</th>
                         <th class="px-4 py-3">Lastname</th>
@@ -156,10 +158,10 @@
                         <td class="px-4 py-3">{{ user.education }}</td>
                         <td class="px-4 py-3">{{ user.start_at_company }}</td>
                         <td class="px-4 py-3">{{ user.date_of_birth }}</td>
-                        <td class="flex mt-2">
-                            <svg
-                                :id="user.id"
-                                class="
+                        <td class="flex py-3 px-4">
+                            <router-link :to="'update_user/' + user.id">
+                                <svg
+                                    class="
                 fill-current
                 text-base text-gray-400
                 hover:text-gray-100
@@ -169,21 +171,21 @@
                 duration-100
                 ease-out
               "
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                width="24px"
-                                fill="#000000"
-                            >
-                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                <path
-                                    d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
-                                />
-                            </svg>
-
-                            <svg
-                                :id="user.id"
-                                class="
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="24px"
+                                    viewBox="0 0 24 24"
+                                    width="24px"
+                                    fill="#000000"
+                                >
+                                    <path d="M0 0h24v24H0V0z" fill="none" />
+                                    <path
+                                        d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
+                                    />
+                                </svg>
+                            </router-link>
+                            <router-link :to="'update_user/' + user.id">
+                                <svg
+                                    class="
                 fill-current
                 text-base text-gray-400
                 hover:text-gray-100
@@ -193,17 +195,18 @@
                 duration-100
                 ease-out
               "
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                width="24px"
-                                fill="#000000"
-                            >
-                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                <path
-                                    d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
-                                />
-                            </svg>
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="24px"
+                                    viewBox="0 0 24 24"
+                                    width="24px"
+                                    fill="#000000"
+                                >
+                                    <path d="M0 0h24v24H0V0z" fill="none" />
+                                    <path
+                                        d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
+                                    />
+                                </svg>
+                            </router-link>
                         </td>
                     </tr>
                 </table>
@@ -230,10 +233,18 @@ export default {
             }
         };
     },
+    methods: {
+        edit_user(event) {
+            let id = event.target.parentElement;
+            console.log(id);
+            // this.$router.push({ path: `/update_user/${id}` });
+        }
+    },
     computed: {
         getUsersRandom() {
             return this.$store.state.f.userList;
-        }
+        },
+        get_id() {}
     },
     created() {
         /* dispatching an action(module F) that will get a list of all the users.*/
@@ -247,6 +258,11 @@ export default {
 @media (max-width: 767.9px) {
     .table-cont {
         width: 95%;
+    }
+}
+@media (min-width: 768px) {
+    .table-cont {
+        width: 90%;
     }
 }
 </style>

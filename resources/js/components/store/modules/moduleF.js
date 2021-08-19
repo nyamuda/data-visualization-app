@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import router from "../../../router";
 //THIS MODULE MAINLY DEALS WITH THE USERLIST COMPONENT.
 export const moduleF = {
     state: {
@@ -71,6 +71,9 @@ export const moduleF = {
                 .then(res => {
                     //invoking the success notification
                     context.commit("success");
+
+                    //and we navigate to the list of users after 1 second of success.
+                    setTimeout(() => router.push({ name: "user_list" }), 1000);
                 })
                 .catch(err => {
                     //show error if there are some
