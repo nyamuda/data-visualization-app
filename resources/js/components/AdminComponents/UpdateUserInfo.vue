@@ -275,6 +275,7 @@
             </transition>
         </div>
         {{ oneUserInfo }}
+        <loader></loader>
         <the-footer class="mt-10"></the-footer>
     </div>
 </template>
@@ -284,11 +285,13 @@
 import axios from "axios";
 import AdminHeader from "./AdminHeader";
 import Footer from "../Footer";
+import Loader from "../Loader";
 
 export default {
     components: {
         "admin-header": AdminHeader,
-        "the-footer": Footer
+        "the-footer": Footer,
+        loader: Loader
     },
     data() {
         return {

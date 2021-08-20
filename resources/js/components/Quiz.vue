@@ -787,8 +787,8 @@
                 All the questions for this survey have been answered.
             </p>
         </div>
-           <confirm-modal :showModal="showModal">
-                  <template v-slot:title>
+        <confirm-modal :showModal="showModal">
+            <template v-slot:title>
                 Submit Quiz?
             </template>
             <template v-slot:buttons>
@@ -804,8 +804,9 @@
                 >
                     Cancel
                 </button>
-            </confirm-modal>
-            <thank-you :goHome="goHome"></thank-you>
+            </template>
+        </confirm-modal>
+        <thank-you :goHome="goHome"></thank-you>
         <loader></loader>
         <!--IF THE SURVEY HAS BEEN ANSWERED (NO QUESTIONS TO DISPLAY) -->
 
@@ -832,7 +833,7 @@ export default {
     },
     data() {
         return {
-            showModal:false,
+            showModal: false,
             val: "",
             categoryAnswers: {},
             dat: {},
@@ -938,7 +939,7 @@ export default {
         /*This function will run when the user clicks the confirmation button to submit the quiz. */
         storeAllAnswers() {
             //hide the confirmation modal.
-           // this.$store.commit("confirmModal");
+            // this.$store.commit("confirmModal");
             //show the loader.
             this.$store.commit("loaderStatus");
             /*storing the answers to the database and also passing in 

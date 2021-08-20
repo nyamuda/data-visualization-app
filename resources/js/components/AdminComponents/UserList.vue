@@ -7,37 +7,37 @@
                 class="w-full flex justify-end fixed top-48 z-20"
             >
                 <div
-                    class=" w-1/2 md:w-1/6 flex justify-center items-center bg-green-800 absolute"
+                    class="rounded-sm w-auto flex justify-center items-center bg-green-800 absolute bg-opacity-90"
                 >
-                    <p class="py-3 text-gray-100">
+                    <p class="py-3 text-gray-100 px-3">
                         User Deleted
                     </p>
                 </div>
             </div>
         </transition>
+
         <div class="mb-10">
             <div
-                class="
-        m-auto
+                class="table-cont md:grid md:grid-cols-4 flex flex-col items-center m-auto"
+            >
+                <div
+                    class="
+        md:col-start-1 md:col-end-4
         flex
         justify-center
         flex-col
         items-center
         md:flex-row
         md:flex-wrap
-        md:w-1/2
-        md:justify-evenly
-        mt-10
-        mb-4
-        md:mb-2
-        p-2
+        md:w-full
+        md:justify-center
       "
-            >
-                <div class="md:w-auto w-full flex justify-center">
-                    <label for="search"
-                        >Search:
-                        <input
-                            class="
+                >
+                    <div class="md:w-auto w-full flex justify-center">
+                        <label for="search"
+                            >Search:
+                            <input
+                                class="
               w-full
               bg-gray-200
               focus:outline-none
@@ -49,18 +49,18 @@
               h-8
               px-2
             "
-                            v-model="search"
-                            id="search"
-                            name="search"
-                            type="text"
-                        />
-                    </label>
-                </div>
-                <div class="md:w-auto w-full flex justify-center mx-1">
-                    <label class="relative" for="gender">
-                        Order By:
-                        <select
-                            class="
+                                v-model="search"
+                                id="search"
+                                name="search"
+                                type="text"
+                            />
+                        </label>
+                    </div>
+                    <div class="md:w-auto w-full flex justify-center mx-1">
+                        <label class="relative" for="gender">
+                            Order:
+                            <select
+                                class="
               w-full
               outline-none
               ring-1
@@ -74,77 +74,89 @@
               h-8
               px-2
             "
-                            name="gender"
-                            id="gender"
-                            v-model="sort.sortBy"
-                        >
-                            <option value="">Default - Firstname</option>
-                            <option value="last_name">Lastname</option>
-                            <option value="gender">Gender</option>
-                        </select>
-                    </label>
-                </div>
-                <div
-                    class="
+                                name="gender"
+                                id="gender"
+                                v-model="sort.sortBy"
+                            >
+                                <option value="">Default - Firstname</option>
+                                <option value="last_name">Lastname</option>
+                                <option value="gender">Gender</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div
+                        class="
           md:w-auto
           w-full
           flex
           justify-center
           md:mt-3
         "
+                    >
+                        <span class="rounded ring-1 ring-gray-600">
+                            <svg
+                                class="
+              fill-current
+              text-gray-500
+              cursor-pointer
+              hover:text-gray-100
+              hover:bg-gray-700
+              transition
+              duration-300
+              ease-out
+            "
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="30px"
+                                viewBox="0 0 24 24"
+                                width="30px"
+                                fill=""
+                            >
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                    d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"
+                                />
+                            </svg>
+                        </span>
+                        <span class="rounded ring-1 ring-gray-600 mx-2">
+                            <svg
+                                class="
+              fill-current
+              text-gray-500
+              cursor-pointer
+              hover:text-gray-100
+              hover:bg-gray-700
+              transition
+              duration-300
+              ease-out
+            "
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="30px"
+                                viewBox="0 0 24 24"
+                                width="30px"
+                                fill="#000000"
+                            >
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                    d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                                />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div
+                    class="w-full flex justify-center md:col-start-4 md:col-end-5 items-center md:justify-end"
                 >
-                    <span class="rounded ring-1 ring-gray-600">
-                        <svg
-                            class="
-              fill-current
-              text-gray-500
-              cursor-pointer
-              hover:text-gray-100
-              hover:bg-gray-700
-              transition
-              duration-300
-              ease-out
-            "
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="30px"
-                            viewBox="0 0 24 24"
-                            width="30px"
-                            fill=""
-                        >
-                            <path d="M0 0h24v24H0V0z" fill="none" />
-                            <path
-                                d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"
-                            />
-                        </svg>
-                    </span>
-                    <span class="rounded ring-1 ring-gray-600 mx-2">
-                        <svg
-                            class="
-              fill-current
-              text-gray-500
-              cursor-pointer
-              hover:text-gray-100
-              hover:bg-gray-700
-              transition
-              duration-300
-              ease-out
-            "
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="30px"
-                            viewBox="0 0 24 24"
-                            width="30px"
-                            fill="#000000"
-                        >
-                            <path d="M0 0h24v24H0V0z" fill="none" />
-                            <path
-                                d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
-                            />
-                        </svg>
-                    </span>
+                    <button
+                        @keyup.enter="addNewUser"
+                        @click.prevent="addNewUser"
+                        class="bg-blue-600 h-9 mt-4 rounded-sm hover:bg-blue-900 flex items-center px-4 py-1 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out w-auto justify-center"
+                    >
+                        Add User
+                    </button>
                 </div>
             </div>
             <div class="table-cont overflow-x-auto m-auto">
-                <table class="bg-gray-800 text-gray-200 table-auto mt-3">
+                <table class="bg-gray-800 text-gray-200 table-auto mt-3 w-full">
                     <tr class="text-left border-b border-gray-300">
                         <th class="px-4 py-3">Firstname</th>
                         <th class="px-4 py-3">Lastname</th>
@@ -246,6 +258,7 @@
                 </button>
             </template>
         </confirm-template>
+        <loader></loader>
         <the-footer></the-footer>
     </div>
 </template>
@@ -254,11 +267,13 @@
 import AdminHeader from "./AdminHeader";
 import TheFooter from "../Footer";
 import ConfirmMessageTemplate from "../Templates/ConfirmMessageTemplate";
+import Loader from "../Loader";
 export default {
     components: {
         "admin-header": AdminHeader,
         "the-footer": TheFooter,
-        "confirm-template": ConfirmMessageTemplate
+        "confirm-template": ConfirmMessageTemplate,
+        loader: Loader
     },
     data() {
         return {
@@ -300,14 +315,15 @@ export default {
                 //we then show the confirmation modal
                 this.showModal = !this.showModal;
             }
-        }
+        },
+        addNewUser() {}
     },
     computed: {
         getUsersRandom() {
             return this.$store.state.f.userList;
         },
         deleteSuccessful() {
-            return this.$store.state.f.updateSuccessful;
+            return this.$store.state.f.deleteSuccessful;
         }
     },
     created() {
