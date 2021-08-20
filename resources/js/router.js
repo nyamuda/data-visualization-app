@@ -5,7 +5,7 @@ import DashBoard from "./components/DashBoard.vue";
 import AdminDashboard from "./components/AdminComponents/Dashboard.vue";
 import AdminLogin from "./components/AdminComponents/AdminLogin.vue";
 import Login from "./components/Login.vue";
-import Register from "./components/AdminComponents/RegisterEmployees";
+//import Register from "./components/AdminComponents/RegisterEmployees";
 import axios from "axios";
 import Quiz from "./components/Quiz.vue";
 import AddNewQuestion from "./components/AdminComponents/AddNewQuestion.vue";
@@ -57,12 +57,13 @@ const router = new VueRouter({
             name: "admin_login",
             component: AdminLogin
         },
+        /*
         {
             path: "/register_employee",
             name: "register",
             component: Register,
             beforeEnter: protectAdminRoutes
-        },
+        },*/
         {
             path: "/add_questions",
             name: "new_question",

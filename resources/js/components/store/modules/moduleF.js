@@ -7,6 +7,7 @@ export const moduleF = {
         updateSuccessful: false,
         deleteSuccessful: false,
         errorMessage: "",
+        hideShowEmployeeForm: false,
         oneUserInfo: {
             first_name: "",
             second_name: "",
@@ -39,6 +40,9 @@ export const moduleF = {
         errorMessage(state, payload) {
             //diplay errors if they exists.
             state.errorMessage = payload.response.data.errors;
+        },
+        hideShowEmployeeForm(state) {
+            state.hideShowEmployeeForm = !state.hideShowEmployeeForm;
         }
     },
     actions: {

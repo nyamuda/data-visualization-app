@@ -119,12 +119,7 @@
                     >
                         Dashboard
                     </router-link>
-                    <router-link
-                        to="/register_employee"
-                        class="font-bold mt-4 inline-block lg:mt-0 text-gray-300 hover:no-underline hover:text-white mr-4"
-                    >
-                        Add New Employee
-                    </router-link>
+
                     <router-link
                         to="/user_list"
                         class="font-bold mt-4 inline-block lg:mt-0 text-gray-300 hover:no-underline hover:text-white mr-4"
@@ -161,10 +156,10 @@
                             Dashboard
                         </router-link>
                         <router-link
-                            to="/register_employee"
-                            class="block mt-4 lg:inline-block text-teal-200 hover:text-white mr-4"
+                            to="/user_list"
+                            class="font-bold mt-4 inline-block lg:mt-0 text-gray-300 hover:no-underline hover:text-white mr-4"
                         >
-                            Add New Employee
+                            User List
                         </router-link>
                         <router-link
                             to="add_questions"

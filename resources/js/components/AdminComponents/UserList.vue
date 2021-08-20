@@ -147,8 +147,7 @@
                     class="w-full flex justify-center md:col-start-4 md:col-end-5 items-center md:justify-end"
                 >
                     <button
-                        @keyup.enter="addNewUser"
-                        @click.prevent="addNewUser"
+                        @click.prevent="addEmployee"
                         class="bg-blue-600 h-9 mt-4 rounded-sm hover:bg-blue-900 flex items-center px-4 py-1 text-gray-50 outline-none ring-0 transition duration-200 ease-in-out w-auto justify-center"
                     >
                         Add User
@@ -258,6 +257,7 @@
                 </button>
             </template>
         </confirm-template>
+        <register-employee :addEmployee="addEmployee"></register-employee>
         <loader></loader>
         <the-footer></the-footer>
     </div>
@@ -268,12 +268,14 @@ import AdminHeader from "./AdminHeader";
 import TheFooter from "../Footer";
 import ConfirmMessageTemplate from "../Templates/ConfirmMessageTemplate";
 import Loader from "../Loader";
+import RegisterEmployees from "./RegisterEmployees";
 export default {
     components: {
         "admin-header": AdminHeader,
         "the-footer": TheFooter,
         "confirm-template": ConfirmMessageTemplate,
-        loader: Loader
+        loader: Loader,
+        "register-employee": RegisterEmployees
     },
     data() {
         return {
@@ -316,7 +318,10 @@ export default {
                 this.showModal = !this.showModal;
             }
         },
-        addNewUser() {}
+        //display the register form by mutating our state - module F
+        addEmployee() {
+            this.$store.commit("hideShowEmployeeForm");
+        }
     },
     computed: {
         getUsersRandom() {
