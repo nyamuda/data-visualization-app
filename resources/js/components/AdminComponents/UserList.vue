@@ -37,6 +37,8 @@
                         <label for="search"
                             >Search:
                             <input
+                                @keyup.enter="searchUser"
+                                v-model="userToSearch"
                                 class="
               w-full
               bg-gray-200
@@ -49,7 +51,6 @@
               h-8
               px-2
             "
-                                v-model="search"
                                 id="search"
                                 name="search"
                                 type="text"
@@ -58,7 +59,7 @@
                     </div>
                     <div class="md:w-auto w-full flex justify-center mx-1">
                         <label class="relative" for="gender">
-                            Order:
+                            Order By:
                             <select
                                 class="
               w-full
@@ -76,11 +77,11 @@
             "
                                 name="gender"
                                 id="gender"
-                                v-model="sort.sortBy"
+                                v-model="order.orderBy"
                             >
-                                <option value="">Default - Firstname</option>
-                                <option value="last_name">Lastname</option>
+                                <option value="">--default Firstname--</option>
                                 <option value="gender">Gender</option>
+                                <option value="last_name">Lastname</option>
                             </select>
                         </label>
                     </div>
@@ -279,12 +280,13 @@ export default {
     },
     data() {
         return {
+            userToSearch: "",
             deleteUserWithID: "",
             showModal: false,
             section: "User List",
             search: "",
-            sort: {
-                sortBy: ""
+            order: {
+                orderBy: ""
             }
         };
     },
@@ -321,6 +323,23 @@ export default {
         //display the register form by mutating our state - module F
         addEmployee() {
             this.$store.commit("hideShowEmployeeForm");
+        },
+        searchUser() {
+            //if the value to order by is an empty string, we use the default firstName
+            //if its an empty string
+            if (this.order.orderBy.length == 0) {
+                this.store.dispatch("getUserList", {
+                    name: this.userToSearch,
+                    orderBy: "first_name"
+                });
+            }
+            //else if the order by is an actual value
+            else {
+                this.store.dispatch("getUserList", {
+                    name: this.userToSearch,
+                    orderBy: this.order.orderBy
+                });
+            }
         }
     },
     computed: {

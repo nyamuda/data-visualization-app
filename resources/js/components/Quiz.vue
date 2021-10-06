@@ -787,7 +787,7 @@
                 All the questions for this survey have been answered.
             </p>
         </div>
-        <confirm-modal :showModal="showModal">
+        <confirm-template :showModal="showModal">
             <template v-slot:title>
                 Submit Quiz?
             </template>
@@ -805,7 +805,7 @@
                     Cancel
                 </button>
             </template>
-        </confirm-modal>
+        </confirm-template>
         <thank-you :goHome="goHome"></thank-you>
         <loader></loader>
         <!--IF THE SURVEY HAS BEEN ANSWERED (NO QUESTIONS TO DISPLAY) -->
@@ -820,6 +820,7 @@
 import * as myMethods from "./categoriesCode";
 import Loader from "./Loader";
 import ConfirmModal from "./ConfirmModal";
+import ConfirmMessageTemplate from "./Templates/ConfirmMessageTemplate.vue";
 import Thank from "./ThankModal";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -827,6 +828,7 @@ export default {
     components: {
         "confirm-modal": ConfirmModal,
         loader: Loader,
+        "confirm-template": ConfirmMessageTemplate,
         "thank-you": Thank,
         "the-header": Header,
         "the-footer": Footer
@@ -934,7 +936,8 @@ export default {
             this.$store.dispatch("getAnswers", this.categoryAnswers);
             //showing the confirmation modal
             //this.$store.commit("confirmModal");
-            this.storeAllAnswers();
+
+            this.showModal = !this.showModal;
         },
         /*This function will run when the user clicks the confirmation button to submit the quiz. */
         storeAllAnswers() {

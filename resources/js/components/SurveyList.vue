@@ -63,47 +63,27 @@
             </div>
             <div v-if="all_surveys.length > 0" class="text-center">
                 <div
-                    v-for="(survey, indx) in all_surveys"
+                    v-for="survey in all_surveys"
                     :key="survey.id"
                     class="flex flex-col items-center justify-evenly"
                 >
                     <div
                         class="
-          bg-gray-300
-          h-auto
-          px-2
-          py-1
-          md:py-0
           flex
           items-center
           text-xl
           min-w-2/5
         "
                     >
-                        <p
-                            class="
-            my-circle
-            hidden
-            md:bg-blue-400
-            md:rounded-full
-            md:h-12
-            md:w-12
-            md:flex
-            md:items-center
-            md:justify-center
-            md:-ml-8
-            md:mr-4
-          "
-                        >
-                            {{ indx + 1 }}
-                        </p>
-                        <p
-                            @click="click_survey"
-                            :id="survey.id"
-                            class="text-blue-500 cursor-pointer md:text-gray-800 md:hover:text-blue-600 transition duration-200 ease-in-out"
-                        >
-                            {{ survey.survey_type_name }}
-                        </p>
+                        <ol>
+                            <li
+                                @click="click_survey"
+                                :id="survey.id"
+                                class="text-blue-500 text-2xl cursor-pointer transition duration-200 ease-in-out hover:text-blue-800 hover:underline"
+                            >
+                                {{ survey.survey_type_name }}
+                            </li>
+                        </ol>
                     </div>
                 </div>
             </div>

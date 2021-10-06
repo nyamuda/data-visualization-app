@@ -1,6 +1,7 @@
 <template>
     <div class="md:w-3/4 w-full">
         <JSCharting :options="chartOptions" class="columnChart"></JSCharting>
+        <button class="h-10 bg-red-700" @click="check">check</button>
     </div>
 </template>
 
@@ -14,6 +15,11 @@ export default {
     },
     components: {
         JSCharting
+    },
+    methods: {
+        check() {
+            console.log(this.seriesData);
+        }
     },
     computed: {
         seriesData() {

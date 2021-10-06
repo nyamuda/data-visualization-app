@@ -77,13 +77,6 @@ export default {
             this.$store.commit("confirmModal");
         }
         */
-    },
-    computed: {
-        /*
-        showModal() {
-            return this.$store.state.d.confirmModal;
-        }
-        */
     }
 };
 </script>

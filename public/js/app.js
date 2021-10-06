@@ -2785,6 +2785,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "columnChart",
@@ -2793,6 +2794,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     JSCharting: jscharting_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  methods: {
+    check: function check() {
+      console.log(this.seriesData);
+    }
   },
   computed: {
     seriesData: function seriesData() {
@@ -4470,6 +4476,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -4485,12 +4492,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      userToSearch: "",
       deleteUserWithID: "",
       showModal: false,
       section: "User List",
       search: "",
-      sort: {
-        sortBy: ""
+      order: {
+        orderBy: ""
       }
     };
   },
@@ -4528,6 +4536,22 @@ __webpack_require__.r(__webpack_exports__);
     //display the register form by mutating our state - module F
     addEmployee: function addEmployee() {
       this.$store.commit("hideShowEmployeeForm");
+    },
+    searchUser: function searchUser() {
+      //if the value to order by is an empty string, we use the default firstName
+      //if its an empty string
+      if (this.order.orderBy.length == 0) {
+        this.store.dispatch("getUserList", {
+          name: this.userToSearch,
+          orderBy: "first_name"
+        });
+      } //else if the order by is an actual value
+      else {
+          this.store.dispatch("getUserList", {
+            name: this.userToSearch,
+            orderBy: this.order.orderBy
+          });
+        }
     }
   },
   computed: {
@@ -5010,10 +5034,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//import { FlowerSpinner } from "epic-spinners";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    FlowerSpinner: epic_spinners__WEBPACK_IMPORTED_MODULE_0__.FlowerSpinner
+    //FlowerSpinner,
+    "swapping-squares-spinner": epic_spinners__WEBPACK_IMPORTED_MODULE_0__.SwappingSquaresSpinner
   },
   data: function data() {
     return {};
@@ -5219,9 +5252,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _categoriesCode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categoriesCode */ "./resources/js/components/categoriesCode.js");
 /* harmony import */ var _Loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loader */ "./resources/js/components/Loader.vue");
 /* harmony import */ var _ConfirmModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ConfirmModal */ "./resources/js/components/ConfirmModal.vue");
-/* harmony import */ var _ThankModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ThankModal */ "./resources/js/components/ThankModal.vue");
-/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.vue");
-/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/Footer.vue");
+/* harmony import */ var _Templates_ConfirmMessageTemplate_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Templates/ConfirmMessageTemplate.vue */ "./resources/js/components/Templates/ConfirmMessageTemplate.vue");
+/* harmony import */ var _ThankModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ThankModal */ "./resources/js/components/ThankModal.vue");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.vue");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/Footer.vue");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6060,13 +6094,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     "confirm-modal": _ConfirmModal__WEBPACK_IMPORTED_MODULE_2__.default,
     loader: _Loader__WEBPACK_IMPORTED_MODULE_1__.default,
-    "thank-you": _ThankModal__WEBPACK_IMPORTED_MODULE_3__.default,
-    "the-header": _Header__WEBPACK_IMPORTED_MODULE_4__.default,
-    "the-footer": _Footer__WEBPACK_IMPORTED_MODULE_5__.default
+    "confirm-template": _Templates_ConfirmMessageTemplate_vue__WEBPACK_IMPORTED_MODULE_3__.default,
+    "thank-you": _ThankModal__WEBPACK_IMPORTED_MODULE_4__.default,
+    "the-header": _Header__WEBPACK_IMPORTED_MODULE_5__.default,
+    "the-footer": _Footer__WEBPACK_IMPORTED_MODULE_6__.default
   },
   data: function data() {
     var _ref;
@@ -6162,7 +6198,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch("getAnswers", this.categoryAnswers); //showing the confirmation modal
       //this.$store.commit("confirmModal");
 
-      this.storeAllAnswers();
+      this.showModal = !this.showModal;
     },
 
     /*This function will run when the user clicks the confirmation button to submit the quiz. */
@@ -6521,26 +6557,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -6661,13 +6677,6 @@ __webpack_require__.r(__webpack_exports__);
     /*
     cancelConfirm() {
         this.$store.commit("confirmModal");
-    }
-    */
-  },
-  computed: {
-    /*
-    showModal() {
-        return this.$store.state.d.confirmModal;
     }
     */
   }
@@ -7914,21 +7923,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
-/* harmony import */ var _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminComponents/Dashboard.vue */ "./resources/js/components/AdminComponents/Dashboard.vue");
-/* harmony import */ var _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AdminComponents/AdminLogin.vue */ "./resources/js/components/AdminComponents/AdminLogin.vue");
-/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Quiz.vue */ "./resources/js/components/Quiz.vue");
-/* harmony import */ var _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AdminComponents/AddNewQuestion.vue */ "./resources/js/components/AdminComponents/AddNewQuestion.vue");
-/* harmony import */ var _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/SurveyList.vue */ "./resources/js/components/SurveyList.vue");
-/* harmony import */ var _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/QuizList.vue */ "./resources/js/components/QuizList.vue");
-/* harmony import */ var _components_AdminComponents_UserList_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/AdminComponents/UserList.vue */ "./resources/js/components/AdminComponents/UserList.vue");
-/* harmony import */ var _components_AdminComponents_UpdateUserInfo_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AdminComponents/UpdateUserInfo.vue */ "./resources/js/components/AdminComponents/UpdateUserInfo.vue");
-/* harmony import */ var _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/protectRoutes */ "./resources/js/components/protectRoutes.js");
+/* harmony import */ var _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue");
+/* harmony import */ var _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/AdminComponents/Dashboard.vue */ "./resources/js/components/AdminComponents/Dashboard.vue");
+/* harmony import */ var _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminComponents/AdminLogin.vue */ "./resources/js/components/AdminComponents/AdminLogin.vue");
+/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Quiz.vue */ "./resources/js/components/Quiz.vue");
+/* harmony import */ var _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/AdminComponents/AddNewQuestion.vue */ "./resources/js/components/AdminComponents/AddNewQuestion.vue");
+/* harmony import */ var _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/SurveyList.vue */ "./resources/js/components/SurveyList.vue");
+/* harmony import */ var _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/QuizList.vue */ "./resources/js/components/QuizList.vue");
+/* harmony import */ var _components_AdminComponents_UserList_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/AdminComponents/UserList.vue */ "./resources/js/components/AdminComponents/UserList.vue");
+/* harmony import */ var _components_AdminComponents_UpdateUserInfo_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/AdminComponents/UpdateUserInfo.vue */ "./resources/js/components/AdminComponents/UpdateUserInfo.vue");
+/* harmony import */ var _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/protectRoutes */ "./resources/js/components/protectRoutes.js");
 
 
 
@@ -7944,38 +7953,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_13__.default);
+vue__WEBPACK_IMPORTED_MODULE_12__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_13__.default);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_13__.default({
   mode: "history",
   linkExactActiveClass: "active",
   routes: [{
     path: "/dashboard",
     name: "dashboard",
-    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectUserRoutes
+    component: _components_DashBoard_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectUserRoutes
   }, {
     path: "/admin_dashboard",
     name: "admin_dashboard",
-    component: _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectAdminRoutes
+    component: _components_AdminComponents_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectAdminRoutes
   }, {
     path: "/user_list",
     name: "user_list",
-    component: _components_AdminComponents_UserList_vue__WEBPACK_IMPORTED_MODULE_10__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectAdminRoutes
+    component: _components_AdminComponents_UserList_vue__WEBPACK_IMPORTED_MODULE_9__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectAdminRoutes
   }, {
     path: "/update_user/:user_id",
     name: "update_user",
-    component: _components_AdminComponents_UpdateUserInfo_vue__WEBPACK_IMPORTED_MODULE_11__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectAdminRoutes
+    component: _components_AdminComponents_UpdateUserInfo_vue__WEBPACK_IMPORTED_MODULE_10__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectAdminRoutes
   }, {
     path: "/login",
     name: "login",
-    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__.default
+    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_3__.default
   }, {
     path: "/admin",
     name: "admin_login",
-    component: _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    component: _components_AdminComponents_AdminLogin_vue__WEBPACK_IMPORTED_MODULE_2__.default
   },
   /*
   {
@@ -7987,23 +7996,23 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_13__.default({
   {
     path: "/add_questions",
     name: "new_question",
-    component: _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_7__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectAdminRoutes
+    component: _components_AdminComponents_AddNewQuestion_vue__WEBPACK_IMPORTED_MODULE_6__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectAdminRoutes
   }, {
     path: "/quiz/:id",
     name: "quiz",
-    component: _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_6__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectUserRoutes
+    component: _components_Quiz_vue__WEBPACK_IMPORTED_MODULE_5__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectUserRoutes
   }, {
     path: "/survey_list",
     name: "survey_list",
-    component: _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_8__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectUserRoutes
+    component: _components_SurveyList_vue__WEBPACK_IMPORTED_MODULE_7__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectUserRoutes
   }, {
     path: "/categories/:id",
     name: "quiz_list",
-    component: _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_9__.default,
-    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_12__.protectUserRoutes
+    component: _components_QuizList_vue__WEBPACK_IMPORTED_MODULE_8__.default,
+    beforeEnter: _components_protectRoutes__WEBPACK_IMPORTED_MODULE_11__.protectUserRoutes
   }]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -55534,7 +55543,13 @@ var render = function() {
       _c("JSCharting", {
         staticClass: "columnChart",
         attrs: { options: _vm.chartOptions }
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "h-10 bg-red-700", on: { click: _vm.check } },
+        [_vm._v("check")]
+      )
     ],
     1
   )
@@ -57596,20 +57611,35 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.search,
-                            expression: "search"
+                            value: _vm.userToSearch,
+                            expression: "userToSearch"
                           }
                         ],
                         staticClass:
                           "\n          w-full\n          bg-gray-200\n          focus:outline-none\n          focus:ring-1\n          rounded-sm\n          transition\n          duration-200\n          ease-in-out\n          h-8\n          px-2\n        ",
                         attrs: { id: "search", name: "search", type: "text" },
-                        domProps: { value: _vm.search },
+                        domProps: { value: _vm.userToSearch },
                         on: {
+                          keyup: function($event) {
+                            if (
+                              !$event.type.indexOf("key") &&
+                              _vm._k(
+                                $event.keyCode,
+                                "enter",
+                                13,
+                                $event.key,
+                                "Enter"
+                              )
+                            ) {
+                              return null
+                            }
+                            return _vm.searchUser($event)
+                          },
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.search = $event.target.value
+                            _vm.userToSearch = $event.target.value
                           }
                         }
                       })
@@ -57626,7 +57656,7 @@ var render = function() {
                       { staticClass: "relative", attrs: { for: "gender" } },
                       [
                         _vm._v(
-                          "\n                        Order:\n                        "
+                          "\n                        Order By:\n                        "
                         ),
                         _c(
                           "select",
@@ -57635,8 +57665,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.sort.sortBy,
-                                expression: "sort.sortBy"
+                                value: _vm.order.orderBy,
+                                expression: "order.orderBy"
                               }
                             ],
                             staticClass:
@@ -57653,8 +57683,8 @@ var render = function() {
                                     return val
                                   })
                                 _vm.$set(
-                                  _vm.sort,
-                                  "sortBy",
+                                  _vm.order,
+                                  "orderBy",
                                   $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
@@ -57664,15 +57694,15 @@ var render = function() {
                           },
                           [
                             _c("option", { attrs: { value: "" } }, [
-                              _vm._v("Default - Firstname")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "last_name" } }, [
-                              _vm._v("Lastname")
+                              _vm._v("--default Firstname--")
                             ]),
                             _vm._v(" "),
                             _c("option", { attrs: { value: "gender" } }, [
                               _vm._v("Gender")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "last_name" } }, [
+                              _vm._v("Lastname")
                             ])
                           ]
                         )
@@ -58656,8 +58686,8 @@ var render = function() {
           "div",
           { staticClass: "m-auto" },
           [
-            _c("flower-spinner", {
-              attrs: { "animation-duration": 1500, size: 70, color: "#912CEE" }
+            _c("swapping-squares-spinner", {
+              attrs: { "animation-duration": 1000, size: 65, color: "#912CEE" }
             })
           ],
           1
@@ -60356,7 +60386,7 @@ var render = function() {
             ]
           ),
       _vm._v(" "),
-      _c("confirm-modal", {
+      _c("confirm-template", {
         attrs: { showModal: _vm.showModal },
         scopedSlots: _vm._u([
           {
@@ -60719,7 +60749,7 @@ var render = function() {
             ? _c(
                 "div",
                 { staticClass: "text-center" },
-                _vm._l(_vm.all_surveys, function(survey, indx) {
+                _vm._l(_vm.all_surveys, function(survey) {
                   return _c(
                     "div",
                     {
@@ -60731,40 +60761,27 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "\n      bg-gray-300\n      h-auto\n      px-2\n      py-1\n      md:py-0\n      flex\n      items-center\n      text-xl\n      min-w-2/5\n    "
+                            "\n      flex\n      items-center\n      text-xl\n      min-w-2/5\n    "
                         },
                         [
-                          _c(
-                            "p",
-                            {
-                              staticClass:
-                                "\n        my-circle\n        hidden\n        md:bg-blue-400\n        md:rounded-full\n        md:h-12\n        md:w-12\n        md:flex\n        md:items-center\n        md:justify-center\n        md:-ml-8\n        md:mr-4\n      "
-                            },
-                            [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(indx + 1) +
-                                  "\n                    "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticClass:
-                                "text-blue-500 cursor-pointer md:text-gray-800 md:hover:text-blue-600 transition duration-200 ease-in-out",
-                              attrs: { id: survey.id },
-                              on: { click: _vm.click_survey }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(survey.survey_type_name) +
-                                  "\n                    "
-                              )
-                            ]
-                          )
+                          _c("ol", [
+                            _c(
+                              "li",
+                              {
+                                staticClass:
+                                  "text-blue-500 text-2xl cursor-pointer transition duration-200 ease-in-out hover:text-blue-800 hover:underline",
+                                attrs: { id: survey.id },
+                                on: { click: _vm.click_survey }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(survey.survey_type_name) +
+                                    "\n                        "
+                                )
+                              ]
+                            )
+                          ])
                         ]
                       )
                     ]

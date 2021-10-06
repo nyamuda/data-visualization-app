@@ -5,9 +5,16 @@
             class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
         >
             <div class="m-auto">
+                <!--
                 <flower-spinner
                     :animation-duration="1500"
                     :size="70"
+                    color="#912CEE"
+                />
+                -->
+                <swapping-squares-spinner
+                    :animation-duration="1000"
+                    :size="65"
                     color="#912CEE"
                 />
             </div>
@@ -20,10 +27,12 @@
 </template>
 
 <script>
-import { FlowerSpinner } from "epic-spinners";
+//import { FlowerSpinner } from "epic-spinners";
+import { SwappingSquaresSpinner } from "epic-spinners";
 export default {
     components: {
-        FlowerSpinner
+        //FlowerSpinner,
+        "swapping-squares-spinner": SwappingSquaresSpinner
     },
     data() {
         return {};

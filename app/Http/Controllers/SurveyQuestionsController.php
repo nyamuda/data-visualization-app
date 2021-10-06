@@ -54,9 +54,10 @@ class SurveyQuestionsController extends Controller
             ->get();
 
         //then using that to get the questions the user hasn't answered
-        $all_questions = Question::select('question_id', 'question', 'questions.category_id', 'question_type_id AS type', 'category_name')
+        $all_questions = Question::select('question_id', 'question', 'questions.category_id', 'question_type_name AS type', 'category_name')
             //join with the category table to get the 'type' and 'category_name'
             ->join('category_questions', 'category_questions.category_id', '=', 'questions.category_id')
+            ->join('question_types', 'questions.question_type_id', '=', 'question_types.question_type_id')
             ->whereNotIn('question_id', $answered_questions)->get();
 
 
